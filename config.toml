@@ -17,6 +17,8 @@ pygmentscodefencesguesssyntax = true
 
 disqusShortname = "yourdiscussshortname"
 
+math = true
+
 [params]
     author = "Mitchel Fruin"
     description = "Mitchel Fruin's personal website"
