@@ -119,8 +119,10 @@ Follow the following steps:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>I’ll put music on R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-When you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</description>
+      <description>Education I have a B.A. in Biological Sciences from the University of Oxford and an M.Sc. in Behavioural Economics from the University of Essex.
+ Employment I currently work as a Junior Data Scientist in the Intelligence Team at a marketing agency called SHARE.
+ The site I built the site using the R package blogdown for a few reasons:
+ I wanted to learn the (very) basics of web development.</description>
     </item>
     
     <item>

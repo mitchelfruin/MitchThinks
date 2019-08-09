@@ -41,12 +41,6 @@ disqusShortname = "yourdiscussshortname"
     # Series see also post count
     maxSeeAlsoItems = 5
 
-    # Custom CSS
-    custom_css = []
-    
-    # Custom JS
-    custom_js = []
-
 [taxonomies]
   category = "categories"
   series = "series"

@@ -4,35 +4,36 @@ date: "Last edited `r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document:
     code_folding: hide
-    toc: true
-    toc_float:
-      collapsed: true
-    toc_depth: 4
-    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# I'll put music on
+# Education
 
-## R Markdown
+I have a B.A. in Biological Sciences from the University of Oxford and an M.Sc. in Behavioural Economics from the University of Essex. 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Employment
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+I currently work as a Junior Data Scientist in the Intelligence Team at a marketing agency called [SHARE](https://sharecreative.com/).  
 
-```{r cars}
-summary(cars)
-```
+# The site
 
-## Including Plots
+I built the site using the R package `blogdown` for a few reasons:
 
-You can also embed plots, for example:
+* I wanted to learn the (very) basics of web development.
+* I wanted to post book summaries to encourage myself to read (and actually think about what I've read). 
+* I wanted to post R code somewhere publicly so that people could criticise it. 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+The site is split into two sections:
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+* Book Summaries
+    + Self-contained summaries of interesting non-fiction books, illustrated with R code, with a few of my thoughts thrown in. 
+* Interests
+    + Compilations of notes on various topics that I'm trying to learn about, including:
+        - Programming 
+        - Data Science (analytics, statistics, and machine learning)
+        - Alternative approaches to economics (e.g. behavioural, complexity)
+        - Evolutionary biology
+    + Once complete, each page would hopefully serve as an *Intro to X*.
