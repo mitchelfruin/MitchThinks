@@ -39,7 +39,7 @@ V(l)[weapon==2]$color&lt;-&#39;yellow&#39; # Scissors
 V(l)[weapon==3]$color&lt;-&#39;green&#39; # Rock
 # and this is what it looks like:
 plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)</code></pre>
-<p><img src="/interests/data_science/2019-08-10-agent-based-modelling-lizards-rock-paper-scissors_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="/interests/2019-08-10-agent-based-modelling-lizards-rock-paper-scissors_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <pre class="r"><code>for(t in 1:1000){
     # pick a random agent ...
     from &lt;- as.numeric(sample(V(l), 1)) # or sample(sidelength^2,1)
@@ -79,5 +79,5 @@ s&lt;-melt(stat)</code></pre>
 <pre><code>## No id variables; using all as measure variables</code></pre>
 <pre class="r"><code>s$time&lt;-1:nrow(stat)
 ggplot(data=s, mapping=aes(x=time, y=value, col=variable)) + geom_line() + theme_bw() </code></pre>
-<p><img src="/interests/data_science/2019-08-10-agent-based-modelling-lizards-rock-paper-scissors_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p><img src="/interests/2019-08-10-agent-based-modelling-lizards-rock-paper-scissors_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
 </div>

@@ -13,10 +13,10 @@
     
     <item>
       <title>Agent-based modelling: lizards &amp; rock, paper, scissors.</title>
-      <link>/interests/data_science/agent-based-modelling-lizards-rock-paper-scissors/</link>
+      <link>/interests/agent-based-modelling-lizards-rock-paper-scissors/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/interests/data_science/agent-based-modelling-lizards-rock-paper-scissors/</guid>
+      <guid>/interests/agent-based-modelling-lizards-rock-paper-scissors/</guid>
       <description>Rock Paper Scissors   NEED TO UPDATE WITH MY CODE, THIS IS SOMEONE ELSE’S. JUST A PLACEHOLDER.
 Rock Paper Scissors In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa.</description>
     </item>
@@ -33,10 +33,10 @@ Even if we start with the most generous estimate that intitially there was 1 mar
     
     <item>
       <title>Complexity Economics: Overview</title>
-      <link>/interests/complexity/overview/</link>
+      <link>/interests/overview/</link>
       <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/interests/complexity/overview/</guid>
+      <guid>/interests/overview/</guid>
       <description>Critique of Traditional Economics E.g. Sugarscape   1st difference: Dynamics  Traditional:
  Closed, static, linear systems in equilibrium  Complexity:
  Open, dynamic, non-linear systems far from equilibrium    2nd difference: Agents  Traditional:
