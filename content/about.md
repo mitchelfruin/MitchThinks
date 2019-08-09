@@ -3,7 +3,7 @@ slug: about
 title: About Hugo
 ---
 
-Hugo is a static site engine written in Go. I made this change locally and pushed it. 
+Hugo is a static site engine written in Go. I made this change locally and pushed it. I made another change locally and pushed that too. 
 
 
 It makes use of a variety of open source projects including:
