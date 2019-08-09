@@ -23,7 +23,7 @@ disqusShortname = "yourdiscussshortname"
     keywords = "blog,data science,personal"
     info = "Junior Data Scientist"
     avatarurl = "images/Mitch_Headshot_Colour.jpg"
-    footercontent = "Enter a text here."
+    footercontent = "A man must have (a) code."
 
     dateformat = "January 2, 2006"
 
