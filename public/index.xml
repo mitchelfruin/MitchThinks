@@ -17,7 +17,8 @@
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/interests/data_science/agent-based-modelling-lizards-rock-paper-scissors/</guid>
-      <description>Rock Paper Scissors   Rock Paper Scissors In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa. This can also be seen as a very simple example of an evolutionary process.</description>
+      <description>Rock Paper Scissors   NEED TO UPDATE WITH MY CODE, THIS IS SOMEONE ELSE’S. JUST A PLACEHOLDER.
+Rock Paper Scissors In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa.</description>
     </item>
     
     <item>
