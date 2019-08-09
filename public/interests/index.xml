@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Agent-based modeling: Lizards &amp; Rock, Paper, Scissors</title>
+      <link>/interests/abm_intro/</link>
+      <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/interests/abm_intro/</guid>
+      <description>Rock Paper Scissors   Rock Paper Scissors In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa. This can also be seen as a very simple example of an evolutionary process.</description>
+    </item>
+    
+    <item>
       <title>Complexity Economics: Overview</title>
       <link>/interests/complexity_overview/</link>
       <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
@@ -21,27 +30,6 @@
  Closed, static, linear systems in equilibrium  Complexity:
  Open, dynamic, non-linear systems far from equilibrium    2nd difference: Agents  Traditional:
  Modeled collectively (homogenous) Use complex deductive calculations to make decisions Have complete information Random errors (no biases) No learning or adaptation (already optimal)  Complexity:</description>
-    </item>
-    
-    <item>
-      <title>Complexity Economics: Overview</title>
-      <link>/interests/overview/</link>
-      <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/interests/overview/</guid>
-      <description>Critique of Traditional Economics E.g. Sugarscape  1st difference: Dynamics 2nd difference: Agents 3rd difference: Networks 4th difference: Emergence 5th difference: Evolution   Critique of Traditional Economics E.g. Sugarscape   1st difference: Dynamics  Traditional:
- Closed, static, linear systems in equilibrium  Complexity:
- Open, dynamic, non-linear systems far from equilibrium    2nd difference: Agents  Traditional:
- Modeled collectively (homogenous) Use complex deductive calculations to make decisions Have complete information Random errors (no biases) No learning or adaptation (already optimal)  Complexity:</description>
-    </item>
-    
-    <item>
-      <title>Rock, Paper, Scissors</title>
-      <link>/interests/abm_intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/interests/abm_intro/</guid>
-      <description>Rock Paper Scissors In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa. This can also be seen as a very simple example of an evolutionary process.</description>
     </item>
     
   </channel>

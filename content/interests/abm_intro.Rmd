@@ -1,8 +1,10 @@
 ---
-title: "Rock, Paper, Scissors"
-author: "Mitchel Fruin"
-date: "18/07/2019"
-output: html_document
+title: "Agent-based modeling: Lizards & Rock, Paper, Scissors"
+date: "2019-08-09"
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}

@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>/interests/abm_intro/</loc>
+    <lastmod>2019-08-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/books/</loc>
     <lastmod>2019-08-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -15,11 +20,6 @@
   
   <url>
     <loc>/interests/complexity_overview/</loc>
-    <lastmod>2019-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/interests/overview/</loc>
     <lastmod>2019-08-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -46,10 +46,6 @@
   
   <url>
     <loc>/contact/</loc>
-  </url>
-  
-  <url>
-    <loc>/interests/abm_intro/</loc>
   </url>
   
   <url>
