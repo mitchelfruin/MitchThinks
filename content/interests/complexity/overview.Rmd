@@ -1,0 +1,79 @@
+---
+title: "Complexity Economics: Overview"
+date: "Last edited `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_float:
+      collapsed: true
+    toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Critique of Traditional Economics
+
+## E.g. Sugarscape
+
+# 1st difference: Dynamics
+
+> Traditional: 
+> 
+> * Closed, static, linear systems in equilibrium
+>
+> Complexity:
+> 
+> * Open, dynamic, non-linear systems far from equilibrium
+
+# 2nd difference: Agents
+
+> Traditional: 
+>
+>* Modeled collectively (homogenous)
+>* Use complex deductive calculations to make decisions
+>* Have complete information
+>* Random errors (no biases)
+>* No learning or adaptation (already optimal)
+>
+> Complexity:
+>
+>* Modeled individually (heterogenous)
+>* Use inductive heuristics to make decisions
+>* Have incomplete information
+>* Some biases
+>* Learn and adapt over time
+
+# 3rd difference: Networks
+
+> Traditional:
+>
+>* Agents only interact indirectly through market mechanisms
+>
+> Complexity:
+>
+>* Explicitly model interactions between individual agents
+>* Networks of relationships change over time 
+
+# 4th difference: Emergence
+
+> Traditional:
+>
+>* Separate disciplines for micro- and macroeconomics
+>
+> Complexity:
+>
+>* No hard distinction between micro- and macro-
+>* Macro patterns are emergent result of mirco-level behaviours and interactions 
+
+# 5th difference: Evolution 
+
+> Traditional:
+>
+>* No mechanism for endogenously creating novelty, or growth in order/complexity
+>
+> Complexity:
+>
+>* Process of differentiation, selection, and amplification generates novelty and is responsible for economy's growth in order and complexity

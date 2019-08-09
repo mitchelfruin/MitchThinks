@@ -68,14 +68,14 @@ disqusShortname = "yourdiscussshortname"
         url = "about/"
 
         [[languages.en.menu.main]]
-        name = "Blog"
+        name = "Books"
         weight = 2
-        url = "posts/"
+        url = "books/"
 
         [[languages.en.menu.main]]
-        name = "Projects"
+        name = "Interests"
         weight = 3
-        url = "projects/"
+        url = "interests/"
 
         [[languages.en.menu.main]]
         name = "Contact me"
