@@ -6,9 +6,37 @@
     <description>Recent content in Tags on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Sat, 10 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ABM</title>
+      <link>/tags/abm/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/abm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Complexity</title>
+      <link>/tags/complexity/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/complexity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Evolution</title>
+      <link>/tags/evolution/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/evolution/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

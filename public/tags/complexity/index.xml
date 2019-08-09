@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Interests on MitchThinks</title>
-    <link>/interests/</link>
-    <description>Recent content in Interests on MitchThinks</description>
+    <title>Complexity on MitchThinks</title>
+    <link>/tags/complexity/</link>
+    <description>Recent content in Complexity on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 10 Aug 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/interests/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/complexity/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,19 +18,6 @@
       
       <guid>/interests/data_science/agent-based-modelling-lizards-rock-paper-scissors/</guid>
       <description>Rock Paper Scissors   Rock Paper Scissors In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa. This can also be seen as a very simple example of an evolutionary process.</description>
-    </item>
-    
-    <item>
-      <title>Complexity Economics: Overview</title>
-      <link>/interests/complexity/overview/</link>
-      <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/interests/complexity/overview/</guid>
-      <description>Critique of Traditional Economics E.g. Sugarscape   1st difference: Dynamics  Traditional:
- Closed, static, linear systems in equilibrium  Complexity:
- Open, dynamic, non-linear systems far from equilibrium    2nd difference: Agents  Traditional:
- Modeled collectively (homogenous) Use complex deductive calculations to make decisions Have complete information Random errors (no biases) No learning or adaptation (already optimal)  Complexity:
- Modeled individually (heterogenous) Use inductive heuristics to make decisions Have incomplete information Some biases Learn and adapt over time    3rd difference: Networks  Traditional:</description>
     </item>
     
   </channel>
