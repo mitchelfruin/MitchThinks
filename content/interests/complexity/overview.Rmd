@@ -1,6 +1,6 @@
 ---
 title: "Complexity Economics: Overview"
-date: "Last edited `r format(Sys.time(), '%B %d, %Y')`"
+date: "2019-08-09"
 output:
   html_document:
     code_folding: hide
