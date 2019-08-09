@@ -1,0 +1,100 @@
+---
+title: "A Field Guide to Lies & Stats (Levitin 2016)"
+date: "2019-08-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Evaluating Numbers
+
+## Plausibility
+
+**Numerical sense checks.**
+Claim: "In the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year". 
+
+Even if we start with the most generous estimate that intitially there was 1 marijuana smoker then after 35 years that would give us $2^{34} (> 17\text{bil})$ smokers. 
+
+**Non mutually exclusive surveys.**
+"7 out of 10 dentists recommend colgate". They also recommend plenty of other brands. 
+
+**Remember the real world.** 
+Checking birth rates 3 months after a policy change attempting to discourage pregnancy. 200% decreases mean the person is now paying you as much as you used to pay them. 
+
+## Averages
+
+**Mean, median and mode.**
+
+**Bimodal distributions.** 
+Humans on average have one testicle. Meaningless to compute an average on a metric over a whole population where there are important differences. 
+
+## Axes
+
+**Unlabeled axes.**
+
+**Truncated y-axis.** Exaggerate between-group differences. If 0 is a plausible value it should be included. 
+
+**Discontinuity in axes.** Easy to make line graph jump. 
+
+**Elongated axes.** Include axis space beyond the range of your data to make changes look more extreme. 
+
+**Double y-axis.** If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood jason chaffetz. 
+
+## Reporting 
+
+**Cumulative hides a decrease.** Tim Cook iPhone sales. 
+
+**Unrelated plotting.** Spurious time series. 
+
+**Deceptive illustrations.**
+
+**Irrelevant differences.** Just increase N enough to lower the p-value until it's 'significant'.
+
+**Interpolation & Extrapolation.**
+
+**Mistaking precision for accuracy.**
+
+**Comparing apples and oranges.** 
+
+Amalgamating: group samples that differ on an important dimension to make the stat more shocking. "50% of 10-18 year olds are sexually active". 
+
+Subdividing: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).  
+
+## How numbers are collected
+
+Sampling.
+
+Participation biases. 
+
+## Probabilities
+
+**Types.** Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess. 
+
+**Independent probabilities.** Should multiply. 
+
+**Dependent/Conditional probabilities.** Sally Clark had two children dies from SIDs. Dr. Meadow, peadiatrician, said there's 1 in 8543 chance of having a child die from SIDs giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise bayesian updating with a contingency table. Base rate neglect in medical test results. 
+
+**Prosecutor's fallacy.** Conditional probabilities aren't invertible. 
+
+$$Pr(A|B) \neq Pr(B|A)$$
+
+Forensics may compute that probability of blood at scene matching the defendent's by chance is 1%. That doesn't mean there's a 1% chance the defendent is innocent. We have been told the probability of a match given innocence, we want the probability of innocence given a match, but they don't equate:
+
+$$Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})$$
+
+Puzzles from datacamp course. 
+
+**Bayesian thinking in court.** 
+
+# Evaluating Words
+
+## Identifying expertise 
+
+## Induction vs deduction 
+
+Modus ponens: valid
+The contrapositive: valid
+The converse: invalid
+The inverse: invalid

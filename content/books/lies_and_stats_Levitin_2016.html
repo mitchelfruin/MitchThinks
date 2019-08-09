@@ -1,0 +1,70 @@
+---
+title: "A Field Guide to Lies & Stats (Levitin 2016)"
+date: "2019-08-09"
+output: html_document
+---
+
+
+
+<div id="evaluating-numbers" class="section level1">
+<h1>Evaluating Numbers</h1>
+<div id="plausibility" class="section level2">
+<h2>Plausibility</h2>
+<p><strong>Numerical sense checks.</strong> Claim: “In the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year”.</p>
+<p>Even if we start with the most generous estimate that intitially there was 1 marijuana smoker then after 35 years that would give us <span class="math inline">\(2^{34} (&gt; 17\text{bil})\)</span> smokers.</p>
+<p><strong>Non mutually exclusive surveys.</strong> “7 out of 10 dentists recommend colgate”. They also recommend plenty of other brands.</p>
+<p><strong>Remember the real world.</strong> Checking birth rates 3 months after a policy change attempting to discourage pregnancy. 200% decreases mean the person is now paying you as much as you used to pay them.</p>
+</div>
+<div id="averages" class="section level2">
+<h2>Averages</h2>
+<p><strong>Mean, median and mode.</strong></p>
+<p><strong>Bimodal distributions.</strong> Humans on average have one testicle. Meaningless to compute an average on a metric over a whole population where there are important differences.</p>
+</div>
+<div id="axes" class="section level2">
+<h2>Axes</h2>
+<p><strong>Unlabeled axes.</strong></p>
+<p><strong>Truncated y-axis.</strong> Exaggerate between-group differences. If 0 is a plausible value it should be included.</p>
+<p><strong>Discontinuity in axes.</strong> Easy to make line graph jump.</p>
+<p><strong>Elongated axes.</strong> Include axis space beyond the range of your data to make changes look more extreme.</p>
+<p><strong>Double y-axis.</strong> If they measure the same thing then you can fudge the graph however you want. Only use if they’re different units and you want to make within axis comparisons not between. E.g. planned parenthood jason chaffetz.</p>
+</div>
+<div id="reporting" class="section level2">
+<h2>Reporting</h2>
+<p><strong>Cumulative hides a decrease.</strong> Tim Cook iPhone sales.</p>
+<p><strong>Unrelated plotting.</strong> Spurious time series.</p>
+<p><strong>Deceptive illustrations.</strong></p>
+<p><strong>Irrelevant differences.</strong> Just increase N enough to lower the p-value until it’s ‘significant’.</p>
+<p><strong>Interpolation &amp; Extrapolation.</strong></p>
+<p><strong>Mistaking precision for accuracy.</strong></p>
+<p><strong>Comparing apples and oranges.</strong></p>
+<p>Amalgamating: group samples that differ on an important dimension to make the stat more shocking. “50% of 10-18 year olds are sexually active”.</p>
+<p>Subdividing: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).</p>
+</div>
+<div id="how-numbers-are-collected" class="section level2">
+<h2>How numbers are collected</h2>
+<p>Sampling.</p>
+<p>Participation biases.</p>
+</div>
+<div id="probabilities" class="section level2">
+<h2>Probabilities</h2>
+<p><strong>Types.</strong> Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess.</p>
+<p><strong>Independent probabilities.</strong> Should multiply.</p>
+<p><strong>Dependent/Conditional probabilities.</strong> Sally Clark had two children dies from SIDs. Dr. Meadow, peadiatrician, said there’s 1 in 8543 chance of having a child die from SIDs giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise bayesian updating with a contingency table. Base rate neglect in medical test results.</p>
+<p><strong>Prosecutor’s fallacy.</strong> Conditional probabilities aren’t invertible.</p>
+<p><span class="math display">\[Pr(A|B) \neq Pr(B|A)\]</span></p>
+<p>Forensics may compute that probability of blood at scene matching the defendent’s by chance is 1%. That doesn’t mean there’s a 1% chance the defendent is innocent. We have been told the probability of a match given innocence, we want the probability of innocence given a match, but they don’t equate:</p>
+<p><span class="math display">\[Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})\]</span></p>
+<p>Puzzles from datacamp course.</p>
+<p><strong>Bayesian thinking in court.</strong></p>
+</div>
+</div>
+<div id="evaluating-words" class="section level1">
+<h1>Evaluating Words</h1>
+<div id="identifying-expertise" class="section level2">
+<h2>Identifying expertise</h2>
+</div>
+<div id="induction-vs-deduction" class="section level2">
+<h2>Induction vs deduction</h2>
+<p>Modus ponens: valid The contrapositive: valid The converse: invalid The inverse: invalid</p>
+</div>
+</div>
