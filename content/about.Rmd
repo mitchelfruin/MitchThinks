@@ -27,7 +27,7 @@ I built the site using the R package [`blogdown`](https://bookdown.org/yihui/blo
 * I wanted to post book summaries to encourage myself to read (and actually think about what I've read). 
 * I wanted to use R for something that didn't feel like work. 
 
-The site is split into two sections:
+The site is still very much a work-in-progress but is broadly split into two sections:
 
 * Book summaries.
     + Selective summaries of interesting non-fiction books.
