@@ -15,14 +15,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments. However, given his psychologist/neuroscientist angle I was hoping for more of a general thread pulling the examples together concerning *why* the human brain is fooled by particular presentations rather than just *what* those presentations are.
 
-Good easy summary about induction vs. deduction and how science/arguments should work:
+That said, he did present a neat summary about induction vs. deduction and how science/arguments should work:
 
 * **Modus ponens**: valid
 * **The contrapositive**: valid
 * **The converse**: invalid
 * **The inverse**: invalid
 
-A few of the more interesting examples from the book are included below. 
+And, there were some very illustrative examples which comprise the rest of this post. 
 
 # Numerical plausibility
 
