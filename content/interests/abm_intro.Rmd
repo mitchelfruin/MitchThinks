@@ -1,5 +1,5 @@
 ---
-title: "Agent-based modeling: Lizards & Rock, Paper, Scissors"
+title: "Lizards & Rock, Paper, Scissors: Agent-based modelling"
 date: "2019-08-10"
 output:
   blogdown::html_page:
@@ -16,12 +16,6 @@ library(igraph)
 library(reshape2)
 library(ggplot2)
 ```
-
-# Agent-based modeling
-
-Intro. 
-
-Use/relevance in complexity economics. 
 
 This article was inspired by this [post](https://marcosmolla.com/2015/07/16/an-introduction-to-agent-based-modelling-in-r/), which I attempted to recreate and extend.  
 
@@ -255,3 +249,9 @@ SBL_sim <- function(n_rounds){
 ```{r SBL sim, eval = FALSE}
 SBL_sim(n_rounds = 500)
 ```
+
+# Agent-based modeling
+
+Summary. 
+
+Use/relevance in complexity economics.

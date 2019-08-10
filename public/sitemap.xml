@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/interests/abm_intro/</loc>
-    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/books/</loc>
     <lastmod>2019-08-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -22,6 +17,11 @@
     <loc>/interests/</loc>
     <lastmod>2019-08-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/interests/abm_intro/</loc>
+    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>

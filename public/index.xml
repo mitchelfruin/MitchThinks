@@ -12,20 +12,6 @@
     
     
     <item>
-      <title>Agent-based modeling: Lizards &amp; Rock, Paper, Scissors</title>
-      <link>/interests/abm_intro/</link>
-      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/interests/abm_intro/</guid>
-      <description>Agent-based modeling Rock, paper, scissors Side Blotched Lizards   Agent-based modeling Intro.
-Use/relevance in complexity economics.
-This article was inspired by this post, which I attempted to recreate and extend.
- Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.
-Simple Game Rules:
- Individuals are organised on a lattice network. Each individual has a strategy (Rock, Paper, Scissors). Each time period we choose one individual at random to play a game.</description>
-    </item>
-    
-    <item>
       <title>Doughnut Economics - Raworth 2017</title>
       <link>/books/doughtnut_economics/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
@@ -33,6 +19,18 @@ Simple Game Rules:
       <guid>/books/doughtnut_economics/</guid>
       <description>Summary Illustration 1: Complexity Illustration 2: Growth   Summary Raworth proposes 7 changes to bring economics into the 21st century.
 Goal: GDP growth \(\rightarrow\) The Doughnut.   Summarise chapter.  Big Picture: Self contained market \(\rightarrow\) Embedded economy.   Summarise chapter.  Behavioural: Rational economic man \(\rightarrow\) Social, adaptable humans.   Summarise chapter.  Complexity: Mechanical equilibrium \(\rightarrow\) Dynamic complexity.   Summarise chapter.  Inequality: Growth will even it up \(\rightarrow\) Distributive by design.</description>
+    </item>
+    
+    <item>
+      <title>Lizards &amp; Rock, Paper, Scissors: Agent-based modelling</title>
+      <link>/interests/abm_intro/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/interests/abm_intro/</guid>
+      <description>Rock, paper, scissors Side Blotched Lizards Agent-based modeling   This article was inspired by this post, which I attempted to recreate and extend.
+Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.
+Simple Game Rules:
+ Individuals are organised on a lattice network. Each individual has a strategy (Rock, Paper, Scissors). Each time period we choose one individual at random to play a game.</description>
     </item>
     
     <item>

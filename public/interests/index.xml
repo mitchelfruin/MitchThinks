@@ -12,15 +12,13 @@
     
     
     <item>
-      <title>Agent-based modeling: Lizards &amp; Rock, Paper, Scissors</title>
+      <title>Lizards &amp; Rock, Paper, Scissors: Agent-based modelling</title>
       <link>/interests/abm_intro/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/interests/abm_intro/</guid>
-      <description>Agent-based modeling Rock, paper, scissors Side Blotched Lizards   Agent-based modeling Intro.
-Use/relevance in complexity economics.
-This article was inspired by this post, which I attempted to recreate and extend.
- Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.
+      <description>Rock, paper, scissors Side Blotched Lizards Agent-based modeling   This article was inspired by this post, which I attempted to recreate and extend.
+Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.
 Simple Game Rules:
  Individuals are organised on a lattice network. Each individual has a strategy (Rock, Paper, Scissors). Each time period we choose one individual at random to play a game.</description>
     </item>
