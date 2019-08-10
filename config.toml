@@ -58,6 +58,16 @@ math = true
     icon = "fab fa-linkedin"
     weight = 2
     url = "https://www.linkedin.com/in/mitchelfruin/"
+[[params.social]]
+    name = "Kaggle"
+    icon = "fab fa-kaggle"
+    weight = 3
+    url = "https://www.kaggle.com/mitchelfruin"
+[[params.social]]
+    name = "DataCamp"
+    icon = "fas fa-database"
+    weight = 4
+    url = "https://www.datacamp.com/profile/mitchelfruin"
 
 
 [languages]
