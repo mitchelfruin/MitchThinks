@@ -11,6 +11,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+If you want to see the code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/books/lies_and_stats_Levitin_2016.Rmd).
+
 # Summary 
 
 Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments. However, given his psychologist/neuroscientist angle I was hoping for more of a general thread pulling the examples together concerning *why* the human brain is fooled by particular presentations rather than just *what* those presentations are.

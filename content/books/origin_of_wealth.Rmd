@@ -11,6 +11,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+If you want to see the code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/books/origin_of_wealth.Rmd).
+
 # Summary
 
 In the first section of *The Origin of Wealth* Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:

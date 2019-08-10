@@ -41,9 +41,9 @@ Simple Game Rules:
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/books/origin_of_wealth/</guid>
-      <description>Summary 1st difference: Dynamics 2nd difference: Agents 3rd difference: Networks 4th difference: Emergence 5th difference: Evolution   Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
-Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation).
- 1st difference: Dynamics  Traditional:</description>
+      <description>Summary 1st difference: Dynamics 2nd difference: Agents 3rd difference: Networks 4th difference: Emergence 5th difference: Evolution   If you want to see the code for this post then you can find the .Rmd file here.
+Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
+Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation).</description>
     </item>
     
     <item>
@@ -52,7 +52,8 @@ Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in t
       <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/books/lies_and_stats_levitin_2016/</guid>
-      <description>Summary Numerical plausibility Misleading averages Misleading axes Nefarious reporting Decrease hiding in the cumulative Unrelated plotting Irrelevant differences Comparing apples and oranges  Probabilities in court Probability The prosecutor’s fallacy Bayesian updating    Summary Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments. However, given his psychologist/neuroscientist angle I was hoping for more of a general thread pulling the examples together concerning why the human brain is fooled by particular presentations rather than just what those presentations are.</description>
+      <description>Summary Numerical plausibility Misleading averages Misleading axes Nefarious reporting Decrease hiding in the cumulative Unrelated plotting Irrelevant differences Comparing apples and oranges  Probabilities in court Probability The prosecutor’s fallacy Bayesian updating    If you want to see the code for this post then you can find the .Rmd file here.
+Summary Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments.</description>
     </item>
     
     <item>
