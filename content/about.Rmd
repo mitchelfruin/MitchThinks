@@ -32,7 +32,7 @@ The site is split into two sections:
 * Book summaries.
     + Self-contained summaries of interesting non-fiction books, illustrated with R code, with a few of my thoughts thrown in. 
 * Interests.
-    + Compilations of notes on various topics that I'm trying to learn more about, including:
+    + Random articles on various topics that I'm interested in and trying to learn more about, including:
         - Programming. 
         - Data Science (analytics, statistics, and machine learning).
         - Alternative approaches to economics (e.g. behavioural, complexity).
