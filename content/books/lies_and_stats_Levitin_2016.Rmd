@@ -11,56 +11,75 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-If you want to see the code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/books/lies_and_stats_Levitin_2016.Rmd).
+If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/books/lies_and_stats_Levitin_2016.Rmd).
 
-# Summary 
+# Summary
 
-Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments. However, given his psychologist/neuroscientist angle I was hoping for more of a general thread pulling the examples together concerning *why* the human brain is fooled by particular presentations rather than just *what* those presentations are.
+Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in  psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning *why* the human brain is 'fooled' by particular ways of presenting information rather than just *what* those presentations are.
 
-That said, he did present a neat summary about induction vs. deduction and how science/arguments should work:
+The book's main strength was its illustrative examples which stuck in my mind and comprise the rest of this post.
 
-* **Modus ponens**: valid
-* **The contrapositive**: valid
-* **The converse**: invalid
-* **The inverse**: invalid
+# Is the stat plausible?
 
-And, there were some very illustrative examples which comprise the rest of this post. 
+The first thing to check when presented with a statistic, especially out of context, is whether the claim is even plausible in the first place. 
 
-# Numerical plausibility
+## Back of the napkin calculations
 
-**Basic sense checks.**
-Claim: "In the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year". 
+One way to check plausibility is a quick on-the-fly calculation.
 
-Even if we start with the most generous estimate that intitially there was 1 marijuana smoker then after 35 years that would give us $2^{34} (> 17\text{bil})$ smokers. 
+Say, for example, we run into someone claiming that "in the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year". 
 
-**Non mutually exclusive surveys.**
-"7 out of 10 dentists recommend colgate". They also recommend plenty of other brands. 
+Well, even if we start with the most generous estimate that intitially there was only 1 lonely pothead in California, then if that number doubled every year for 35 years:
 
-**Remember the real world.** 
+$$\begin{aligned}
+\text{Year 1:} \;\; 1 &= 2^0 \\
+\text{Year 2:} \;\; 2 &= 2^1 \\
+\text{Year 3:} \;\; 4 &= 2^2 \\
+\vdots \\
+\text{Year 35:} \;\; &= 2^{34} \\
+\end{aligned}$$
+
+So let's see just how many marijuana smokers we've currently got if that stat holds:
+```{r potheads}
+# Too high to count that high
+2^34
+```
+
+Just over 17.1 billion people, which seems more than a little high. 
+
+## Remember the real world
+
 Checking birth rates 3 months after a policy change attempting to discourage pregnancy. 200% decreases mean the person is now paying you as much as you used to pay them. 
 
-# Misleading averages
+# Does the average mean anything?
 
-**Mean, median and mode.**
+## Mean, median and mode
 
-**Bimodal distributions.** 
+## Bimodal distributions
+
 Humans on average have one testicle. Meaningless to compute an average on a metric over a whole population where there are important differences. 
 
-# Misleading axes
+# Are the axes leading you astray?
 
-**Unlabeled axes.**
+## Truncated
 
-**Truncated y-axis.** Exaggerate between-group differences. If 0 is a plausible value it should be included. 
+Exaggerate between-group differences. If 0 is a plausible value it should be included. 
 
-**Discontinuity in axes.** Easy to make line graph jump. 
+## Discontinuous
 
-**Elongated axes.** Include axis space beyond the range of your data to make changes look more extreme. 
+Easy to make line graph jump. 
 
-**Double y-axis.** If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood jason chaffetz. 
+## Elongated
 
-# Nefarious reporting 
+Include axis space beyond the range of your data to make changes look more extreme. 
 
-## Decrease hiding in the cumulative
+## Duplicate
+
+If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood jason chaffetz. 
+
+# Dodgy reporting 
+
+## Hiding a decrease in the cumulative
 
 Tim Cook iPhone sales. 
 
@@ -78,9 +97,9 @@ Just increase N enough to lower the p-value until it's 'significant'.
 
 **Subdividing**: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).  
 
-# Probabilities in court
+# That's probably not quite right
 
-## Probability
+## Conditional probabilities
 
 Sometimes probability is unintuitive. Birthday puzzle. 
 

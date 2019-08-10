@@ -11,60 +11,99 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#summary">Summary</a></li>
-<li><a href="#numerical-plausibility">Numerical plausibility</a></li>
-<li><a href="#misleading-averages">Misleading averages</a></li>
-<li><a href="#misleading-axes">Misleading axes</a></li>
-<li><a href="#nefarious-reporting">Nefarious reporting</a><ul>
-<li><a href="#decrease-hiding-in-the-cumulative">Decrease hiding in the cumulative</a></li>
+<li><a href="#is-the-stat-plausible">Is the stat plausible?</a><ul>
+<li><a href="#back-of-the-napkin-calculations">Back of the napkin calculations</a></li>
+<li><a href="#remember-the-real-world">Remember the real world</a></li>
+</ul></li>
+<li><a href="#does-the-average-mean-anything">Does the average mean anything?</a><ul>
+<li><a href="#mean-median-and-mode">Mean, median and mode</a></li>
+<li><a href="#bimodal-distributions">Bimodal distributions</a></li>
+</ul></li>
+<li><a href="#are-the-axes-leading-you-astray">Are the axes leading you astray?</a><ul>
+<li><a href="#truncated">Truncated</a></li>
+<li><a href="#discontinuous">Discontinuous</a></li>
+<li><a href="#elongated">Elongated</a></li>
+<li><a href="#duplicate">Duplicate</a></li>
+</ul></li>
+<li><a href="#dodgy-reporting">Dodgy reporting</a><ul>
+<li><a href="#hiding-a-decrease-in-the-cumulative">Hiding a decrease in the cumulative</a></li>
 <li><a href="#unrelated-plotting">Unrelated plotting</a></li>
 <li><a href="#irrelevant-differences">Irrelevant differences</a></li>
 <li><a href="#comparing-apples-and-oranges">Comparing apples and oranges</a></li>
 </ul></li>
-<li><a href="#probabilities-in-court">Probabilities in court</a><ul>
-<li><a href="#probability">Probability</a></li>
+<li><a href="#thats-probably-not-quite-right">That’s probably not quite right</a><ul>
+<li><a href="#conditional-probabilities">Conditional probabilities</a></li>
 <li><a href="#the-prosecutors-fallacy">The prosecutor’s fallacy</a></li>
 <li><a href="#bayesian-updating">Bayesian updating</a></li>
 </ul></li>
 </ul>
 </div>
 
-<p>If you want to see the code for this post then you can find the .Rmd file <a href="https://github.com/mitchelfruin/MitchThinks/blob/master/content/books/lies_and_stats_Levitin_2016.Rmd">here</a>.</p>
+<p>If you want to see the full code for this post then you can find the .Rmd file <a href="https://github.com/mitchelfruin/MitchThinks/blob/master/content/books/lies_and_stats_Levitin_2016.Rmd">here</a>.</p>
 <div id="summary" class="section level1">
 <h1>Summary</h1>
-<p>Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments. However, given his psychologist/neuroscientist angle I was hoping for more of a general thread pulling the examples together concerning <em>why</em> the human brain is fooled by particular presentations rather than just <em>what</em> those presentations are.</p>
-<p>That said, he did present a neat summary about induction vs. deduction and how science/arguments should work:</p>
-<ul>
-<li><strong>Modus ponens</strong>: valid</li>
-<li><strong>The contrapositive</strong>: valid</li>
-<li><strong>The converse</strong>: invalid</li>
-<li><strong>The inverse</strong>: invalid</li>
-</ul>
-<p>And, there were some very illustrative examples which comprise the rest of this post.</p>
+<p>Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning <em>why</em> the human brain is ‘fooled’ by particular ways of presenting information rather than just <em>what</em> those presentations are.</p>
+<p>The book’s main strength was its illustrative examples which stuck in my mind and comprise the rest of this post.</p>
 </div>
-<div id="numerical-plausibility" class="section level1">
-<h1>Numerical plausibility</h1>
-<p><strong>Basic sense checks.</strong> Claim: “In the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year”.</p>
-<p>Even if we start with the most generous estimate that intitially there was 1 marijuana smoker then after 35 years that would give us <span class="math inline">\(2^{34} (&gt; 17\text{bil})\)</span> smokers.</p>
-<p><strong>Non mutually exclusive surveys.</strong> “7 out of 10 dentists recommend colgate”. They also recommend plenty of other brands.</p>
-<p><strong>Remember the real world.</strong> Checking birth rates 3 months after a policy change attempting to discourage pregnancy. 200% decreases mean the person is now paying you as much as you used to pay them.</p>
+<div id="is-the-stat-plausible" class="section level1">
+<h1>Is the stat plausible?</h1>
+<p>The first thing to check when presented with a statistic, especially out of context, is whether the claim is even plausible in the first place.</p>
+<div id="back-of-the-napkin-calculations" class="section level2">
+<h2>Back of the napkin calculations</h2>
+<p>One way to check plausibility is a quick on-the-fly calculation.</p>
+<p>Say, for example, we run into someone claiming that “in the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year”.</p>
+<p>Well, even if we start with the most generous estimate that intitially there was only 1 lonely pothead in California, then if that number doubled every year for 35 years:</p>
+<p><span class="math display">\[\begin{aligned}
+\text{Year 1:} \;\; 1 &amp;= 2^0 \\
+\text{Year 2:} \;\; 2 &amp;= 2^1 \\
+\text{Year 3:} \;\; 4 &amp;= 2^2 \\
+\vdots \\
+\text{Year 35:} \;\; &amp;= 2^{34} \\
+\end{aligned}\]</span></p>
+<p>So let’s see just how many marijuana smokers we’ve currently got if that stat holds:</p>
+<pre class="r"><code># Too high to count that high
+2^34</code></pre>
+<pre><code>## [1] 17179869184</code></pre>
+<p>Just over 17.1 billion people, which seems more than a little high.</p>
 </div>
-<div id="misleading-averages" class="section level1">
-<h1>Misleading averages</h1>
-<p><strong>Mean, median and mode.</strong></p>
-<p><strong>Bimodal distributions.</strong> Humans on average have one testicle. Meaningless to compute an average on a metric over a whole population where there are important differences.</p>
+<div id="remember-the-real-world" class="section level2">
+<h2>Remember the real world</h2>
+<p>Checking birth rates 3 months after a policy change attempting to discourage pregnancy. 200% decreases mean the person is now paying you as much as you used to pay them.</p>
 </div>
-<div id="misleading-axes" class="section level1">
-<h1>Misleading axes</h1>
-<p><strong>Unlabeled axes.</strong></p>
-<p><strong>Truncated y-axis.</strong> Exaggerate between-group differences. If 0 is a plausible value it should be included.</p>
-<p><strong>Discontinuity in axes.</strong> Easy to make line graph jump.</p>
-<p><strong>Elongated axes.</strong> Include axis space beyond the range of your data to make changes look more extreme.</p>
-<p><strong>Double y-axis.</strong> If they measure the same thing then you can fudge the graph however you want. Only use if they’re different units and you want to make within axis comparisons not between. E.g. planned parenthood jason chaffetz.</p>
 </div>
-<div id="nefarious-reporting" class="section level1">
-<h1>Nefarious reporting</h1>
-<div id="decrease-hiding-in-the-cumulative" class="section level2">
-<h2>Decrease hiding in the cumulative</h2>
+<div id="does-the-average-mean-anything" class="section level1">
+<h1>Does the average mean anything?</h1>
+<div id="mean-median-and-mode" class="section level2">
+<h2>Mean, median and mode</h2>
+</div>
+<div id="bimodal-distributions" class="section level2">
+<h2>Bimodal distributions</h2>
+<p>Humans on average have one testicle. Meaningless to compute an average on a metric over a whole population where there are important differences.</p>
+</div>
+</div>
+<div id="are-the-axes-leading-you-astray" class="section level1">
+<h1>Are the axes leading you astray?</h1>
+<div id="truncated" class="section level2">
+<h2>Truncated</h2>
+<p>Exaggerate between-group differences. If 0 is a plausible value it should be included.</p>
+</div>
+<div id="discontinuous" class="section level2">
+<h2>Discontinuous</h2>
+<p>Easy to make line graph jump.</p>
+</div>
+<div id="elongated" class="section level2">
+<h2>Elongated</h2>
+<p>Include axis space beyond the range of your data to make changes look more extreme.</p>
+</div>
+<div id="duplicate" class="section level2">
+<h2>Duplicate</h2>
+<p>If they measure the same thing then you can fudge the graph however you want. Only use if they’re different units and you want to make within axis comparisons not between. E.g. planned parenthood jason chaffetz.</p>
+</div>
+</div>
+<div id="dodgy-reporting" class="section level1">
+<h1>Dodgy reporting</h1>
+<div id="hiding-a-decrease-in-the-cumulative" class="section level2">
+<h2>Hiding a decrease in the cumulative</h2>
 <p>Tim Cook iPhone sales.</p>
 </div>
 <div id="unrelated-plotting" class="section level2">
@@ -81,10 +120,10 @@ output:
 <p><strong>Subdividing</strong>: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).</p>
 </div>
 </div>
-<div id="probabilities-in-court" class="section level1">
-<h1>Probabilities in court</h1>
-<div id="probability" class="section level2">
-<h2>Probability</h2>
+<div id="thats-probably-not-quite-right" class="section level1">
+<h1>That’s probably not quite right</h1>
+<div id="conditional-probabilities" class="section level2">
+<h2>Conditional probabilities</h2>
 <p>Sometimes probability is unintuitive. Birthday puzzle.</p>
 <p><strong>Types.</strong> Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess.</p>
 <p><strong>Independent probabilities.</strong> Should multiply.</p>
