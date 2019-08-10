@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>A Field Guide to Lies &amp; Stats - Levitin 2016</title>
+      <link>/books/lies_and_stats_levitin_2016/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/books/lies_and_stats_levitin_2016/</guid>
+      <description>Summary Numerical plausibility Misleading averages Misleading axes Nefarious reporting Decrease hiding in the cumulative Unrelated plotting Irrelevant differences Comparing apples and oranges  Probabilities in court Probability The prosecutor’s fallacy Bayesian updating    If you want to see the code for this post then you can find the .Rmd file here.
+Summary Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments.</description>
+    </item>
+    
+    <item>
       <title>Doughnut Economics - Raworth 2017</title>
       <link>/books/doughtnut_economics/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
@@ -44,16 +54,6 @@ Simple Game Rules:
       <description>Summary 1st difference: Dynamics 2nd difference: Agents 3rd difference: Networks 4th difference: Emergence 5th difference: Evolution   If you want to see the code for this post then you can find the .Rmd file here.
 Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
 Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation).</description>
-    </item>
-    
-    <item>
-      <title>A Field Guide to Lies &amp; Stats - Levitin 2016</title>
-      <link>/books/lies_and_stats_levitin_2016/</link>
-      <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/books/lies_and_stats_levitin_2016/</guid>
-      <description>Summary Numerical plausibility Misleading averages Misleading axes Nefarious reporting Decrease hiding in the cumulative Unrelated plotting Irrelevant differences Comparing apples and oranges  Probabilities in court Probability The prosecutor’s fallacy Bayesian updating    If you want to see the code for this post then you can find the .Rmd file here.
-Summary Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments.</description>
     </item>
     
     <item>
