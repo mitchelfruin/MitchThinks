@@ -25,17 +25,5 @@ Simple Game Rules:
  Individuals are organised on a lattice network. Each individual has a strategy (Rock, Paper, Scissors). Each time period we choose one individual at random to play a game.</description>
     </item>
     
-    <item>
-      <title>Complexity Economics: Overview</title>
-      <link>/interests/complexity_overview/</link>
-      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/interests/complexity_overview/</guid>
-      <description>Critique of Traditional Economics E.g. Sugarscape  1st difference: Dynamics 2nd difference: Agents 3rd difference: Networks 4th difference: Emergence 5th difference: Evolution   Critique of Traditional Economics E.g. Sugarscape   1st difference: Dynamics  Traditional:
- Closed, static, linear systems in equilibrium  Complexity:
- Open, dynamic, non-linear systems far from equilibrium    2nd difference: Agents  Traditional:
- Modeled collectively (homogenous) Use complex deductive calculations to make decisions Have complete information Random errors (no biases) No learning or adaptation (already optimal)  Complexity:</description>
-    </item>
-    
   </channel>
 </rss>
