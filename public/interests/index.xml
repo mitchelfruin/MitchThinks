@@ -18,9 +18,10 @@
       
       <guid>/interests/abm_intro/</guid>
       <description>Rock, paper, scissors Side Blotched Lizards Agent-based modeling   This article was inspired by this post, which I attempted to recreate and extend.
+If you want to see the full code for this post then you can find the .Rmd file here.
 Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.
 Simple Game Rules:
- Individuals are organised on a lattice network. Each individual has a strategy (Rock, Paper, Scissors). Each time period we choose one individual at random to play a game.</description>
+ Individuals are organised on a lattice network.</description>
     </item>
     
   </channel>

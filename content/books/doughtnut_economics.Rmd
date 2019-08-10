@@ -8,8 +8,10 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
+
+If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/books/doughtnut_economics.Rmd).
 
 # Summary 
 
