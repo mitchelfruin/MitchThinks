@@ -1,5 +1,5 @@
 ---
-title: "Doughnut Economics (Raworth 2017)"
+title: "Doughnut Economics - Raworth 2017"
 date: "2019-08-10"
 output:
   blogdown::html_page:
