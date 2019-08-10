@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>A Field Guide to Lies &amp; Stats - Levitin 2016</title>
+      <title>A Field Guide to Lies &amp; Stats - Levitin 2016*</title>
       <link>/books/lies_and_stats_levitin_2016/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>Doughnut Economics - Raworth 2017</title>
+      <title>Doughnut Economics - Raworth 2017*</title>
       <link>/books/doughtnut_economics/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
@@ -32,7 +32,7 @@ Goal: GDP growth \(\rightarrow\) The Doughnut.   Summarise chapter.  Big Picture
     </item>
     
     <item>
-      <title>Lizards &amp; Rock, Paper, Scissors: Agent-based modelling</title>
+      <title>Lizards &amp; Rock, Paper, Scissors: Agent-based modelling*</title>
       <link>/interests/abm_intro/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
@@ -45,7 +45,7 @@ Simple Game Rules:
     </item>
     
     <item>
-      <title>The Origin of Wealth: Complexity Economics - Beinhocker 2007</title>
+      <title>The Origin of Wealth: Complexity Economics - Beinhocker 2007*</title>
       <link>/books/origin_of_wealth/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
@@ -62,8 +62,7 @@ Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in t
       
       <guid>/about/</guid>
       <description>The Site I built the site using the R package blogdown for a few reasons:
- To learn the (very) basics of web development. To post book summaries to encourage myself to read (and actually think about what I’ve read). To use R for something that didn’t feel like work.  The site is still very much a work-in-progress but is broadly split into two sections:
- Book summaries.  Selective summaries of non-fiction books.</description>
+ To learn the (very) basics of web development. To post book summaries to encourage myself to read (and actually think about what I’ve read). To use R for something that didn’t feel like work.  The site is still very much a work-in-progress (unfinished articles are marked with a *) but is broadly split into two sections:</description>
     </item>
     
     <item>
@@ -72,7 +71,8 @@ Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in t
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/contact/</guid>
-      <description>Send me a message on LinkedIn.</description>
+      <description>Contact me via any of the interactive icons on the homepage.
+I’ll probably be most reponsive if you send me a message on LinkedIn.</description>
     </item>
     
   </channel>
