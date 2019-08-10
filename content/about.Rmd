@@ -11,30 +11,30 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# The Site
+
+I built the site using the R package [`blogdown`](https://bookdown.org/yihui/blogdown/) for a few reasons:
+
+* To learn the (very) basics of web development.
+* To post book summaries to encourage myself to read (and actually think about what I've read). 
+* To use R for something that didn't feel like work. 
+
+The site is still very much a work-in-progress but is broadly split into two sections:
+
+* Book summaries.
+    + Selective summaries of non-fiction books.
+    + Focused on trying to illustrate concepts using R, with a few of my thoughts thrown in, rather than providing an exhaustive summary or review. 
+* Interests.
+    + Random articles at the intersection of topics that I'm interested in and trying to learn more about, including:
+        - Programming. 
+        - Data Science (analytics, statistics, and machine learning).
+        - Alternative approaches to economics (e.g. behavioural, complexity).
+        - Evolutionary biology.
+
 # Education
 
 I have a B.A. in Biological Sciences from the University of Oxford and an M.Sc. in Behavioural Economics from the University of Essex. 
 
 # Employment
 
-I currently work as a Junior Data Scientist in the Intelligence Team at a marketing agency called [SHARE](https://sharecreative.com/).  
-
-# The Site
-
-I built the site using the R package [`blogdown`](https://bookdown.org/yihui/blogdown/) for a few reasons:
-
-* I wanted to learn the (very) basics of web development.
-* I wanted to post book summaries to encourage myself to read (and actually think about what I've read). 
-* I wanted to use R for something that didn't feel like work. 
-
-The site is still very much a work-in-progress but is broadly split into two sections:
-
-* Book summaries.
-    + Selective summaries of interesting non-fiction books.
-    + Focused on trying to illustrate concepts using R, with a few of my thoughts thrown in, rather than providing an exhaustive summary or review. 
-* Interests.
-    + Random articles on various topics that I'm interested in and trying to learn more about, including:
-        - Programming. 
-        - Data Science (analytics, statistics, and machine learning).
-        - Alternative approaches to economics (e.g. behavioural, complexity).
-        - Evolutionary biology.
+I currently work as a Junior Data Scientist in the Intelligence Team at a marketing agency called [SHARE](https://sharecreative.com/).

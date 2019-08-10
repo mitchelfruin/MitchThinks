@@ -11,17 +11,40 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Intro 
+# Summary 
 
-Proposes 7 changes to bring economics into the 21st century.
+Raworth proposes 7 changes to bring economics into the 21st century.
 
 1. Goal: GDP growth $\rightarrow$ The Doughnut.
+
+* Summarise chapter.
+
 2. Big Picture: Self contained market $\rightarrow$ Embedded economy.
+
+* Summarise chapter.
+
 3. Behavioural: Rational economic man $\rightarrow$ Social, adaptable humans.
+
+* Summarise chapter.
+
 4. Complexity: Mechanical equilibrium $\rightarrow$ Dynamic complexity.
-5. Inequality: Growth will even it up $\rightarrow$ Distributive by design. 
-6. Environment: Growth will clean it up $\rightarrow$ Regenerative by design. 
+
+* Summarise chapter.
+
+5. Inequality: Growth will even it up $\rightarrow$ Distributive by design.
+
+* Summarise chapter.
+
+6. Environment: Growth will clean it up $\rightarrow$ Regenerative by design.
+
+* Summarise chapter.
+
 7. Growth: Growth addicted $\rightarrow$ Growth agnostic.
+
+* Summarise chapter.
 
 Focus on diagrams is brilliant. Well worth reading. 
 
+# Illustration 1: Complexity
+
+# Illustration 2: Growth
