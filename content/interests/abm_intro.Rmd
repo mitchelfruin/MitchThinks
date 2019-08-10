@@ -1,6 +1,6 @@
 ---
 title: "Agent-based modeling: Lizards & Rock, Paper, Scissors"
-date: "2019-08-09"
+date: "2019-08-10"
 output:
   blogdown::html_page:
     toc: true
@@ -8,67 +8,250 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+# RMarkdown
 knitr::opts_chunk$set(echo = TRUE)
 
-require(igraph)
-require(reshape2)
-require(ggplot2)
+# Packages
+library(igraph)
+library(reshape2)
+library(ggplot2)
 ```
 
-## Rock Paper Scissors
-In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa. This can also be seen as a very simple example of an evolutionary process.
+# Agent-based modeling
 
-```{r}
-# size of the lattice
-sidelength<-10 
-# creating an empty data.frame to store data
-stat<-data.frame()
-# creating a lattice network using the igraph package
-l<-graph.lattice(length=sidelength,dim=2)
-# now every individual chooses a strategy at random
-V(l)$weapon<-sample(c(1:3), size=length(V(l)), replace=T)
-# for a nicer visualisation lets colour the different options
-V(l)[weapon==1]$color<-'blue' # Paper
-V(l)[weapon==2]$color<-'yellow' # Scissors
-V(l)[weapon==3]$color<-'green' # Rock
-# and this is what it looks like:
-plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)
-for(t in 1:1000){
-	# pick a random agent ...
-	from <- as.numeric(sample(V(l), 1)) # or sample(sidelength^2,1)
-	# who are its neighbours?
-	nei<-neighbors(l, v=from, mode='all')
-	
-	# if there is only one weapon type left
-	if(length(unique(V(l)$weapon))==1) {
-		# we can either stop the simulation
-		stop(paste(c('Paper','Scissors','Rock')[unique(V(l)$weapon)], 'has won the game after',t,'rounds!'))
-		# or we let the selected individual choose a different strategy to let the dynamics go on
-		# V(l)$weapon[from]<-sample((1:3)[1:3!=as.numeric(V(l)$weapon[from])], 1)
-	} else {
-		# ... and one of its neighbours
-		to <- sample(nei, 1) 
-		fromto<-c(from,to)
-		w<-as.numeric(V(l)$weapon[fromto])
-		# if both choices are equal, nothing happens:
-		if(w[1]==w[2]) {} else{ 
-			# in the case that one chooses Rock and the other Paper, Paper wins:
-			if(max(w) == 3 && min(w) ==1) { 
-				V(l)$weapon[fromto[w==3]] <- "1" 
-			} 
-			else{
-				# for the two other cases, the better weapon wins:
-				V(l)$weapon[fromto[w==min(w)]] <- V(l)$weapon[fromto[w==max(w)]]
-			}
-		} 
-		
-	}
-	# let's record the individual abundance of each strategy
-	stat<-rbind(stat, c(sum(V(l)$'weapon'=="1"), sum(V(l)$'weapon'=="2"), sum(V(l)$'weapon'=="3")))
-	# plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)
+Intro. 
+
+Use/relevance in complexity economics. 
+
+This article was inspired by this [post](https://marcosmolla.com/2015/07/16/an-introduction-to-agent-based-modelling-in-r/), which I attempted to recreate and extend.  
+
+# Rock, paper, scissors
+
+Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.  
+
+Simple Game Rules:
+
+* Individuals are organised on a lattice network.
+* Each individual has a strategy (Rock, Paper, Scissors). 
+* Each time period we choose one individual at random to play a game. 
+* They can only play with one of their direct neighbors. 
+* The loser takes on the strategy of the winner.
+
+```{r simple function}
+# Define function to simulate simple game 
+simple_RPS <- function(n_rounds){
+  
+  # Define size of the lattice
+  side_length <- 10 
+  
+  # Create an empty data.frame to store strategy frequencies
+  strat_freq <- data.frame()
+  
+  # Create a lattice network using the igraph package
+  l <- graph.lattice(length = side_length, dim = 2)
+  
+  # Every individual (vertices) chooses a strategy at random
+  V(l)$weapon <- sample(c(1:3), size = length(V(l)), replace = T)
+  
+  # Colour the different options
+  V(l)[weapon==1]$color <- "purple" # Paper
+  V(l)[weapon==2]$color <- "blue" # Scissors (sapphire)
+  V(l)[weapon==3]$color <- "red" # Rock
+  
+  # Initial arrangement: 
+  plot(l,
+       layout = as.matrix(expand.grid(1:side_length, 1:side_length)),
+       vertex.label=NA)
+  
+  # Simulate n rounds
+  for(t in 1:n_rounds){
+    
+    # Pick a random agent
+    from <- as.numeric(sample(V(l), 1))
+    # Find its neighbours
+    nei <- neighbors(l, v = from, mode = 'all')
+    
+    # If there is only one weapon type left, then stop simulation 
+    if(length(unique(V(l)$weapon))==1) {
+      stop(paste(unique(V(l)$weapon),
+                 'has won the game after',
+                 t,
+                 'rounds!'))
+      } else {
+        # If there are multiple weapon types then choose 1 of agent's neighbours
+        to <- sample(nei, 1)
+        from_to <- c(from, to)
+        
+        # Find both their weapon types
+        w <- as.numeric(V(l)$weapon[from_to])
+        
+        # If both weapons are equal, nothing happens:
+        if(w[1]==w[2]) {} else{
+          
+          # If one chooses Rock and the other Paper, Paper wins:
+          if(max(w) == 3 && min(w) == 1) {
+            V(l)$weapon[from_to[w==3]] <- "1" 
+            }
+          else{
+            # For the two other cases, the better weapon wins:
+            V(l)$weapon[from_to[w == min(w)]] <- V(l)$weapon[from_to[w == max(w)]]
+            }
+          }
+        }
+    
+    # Record the frequency of each strategy for each round
+    strat_freq <- rbind(strat_freq,
+                        c(sum(V(l)$"weapon" == "1"),
+                          sum(V(l)$"weapon" == "2"),
+                          sum(V(l)$"weapon" == "3")))
+    
+    # Plot the lattice network every 25th round
+    if(t %% 25 == 0){
+      V(l)[weapon==1]$color <- "purple" # Paper
+      V(l)[weapon==2]$color <- "blue" # Scissors
+      V(l)[weapon==3]$color <- "red" # Rock
+      
+      plot(l,
+           layout = as.matrix(expand.grid(1:side_length, 1:side_length)),
+           vertex.label=NA)
+      }
+    }
+
+# Viz changes over time 
+names(strat_freq) <- c("Paper", "Scissors", "Rock")
+s <- melt(strat_freq)
+s$time <- 1:nrow(strat_freq)
+
+ggplot(s, aes(x = time, y = value, col = variable)) + 
+  geom_line() + 
+  scale_y_continuous("Frequency") +
+  scale_x_continuous("Time") +
+  scale_color_discrete("Strategy") +
+  theme_minimal() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 }
-names(stat)<-c("Paper","Scissors","Rock")
-s<-melt(stat)
-s$time<-1:nrow(stat)
-ggplot(data=s, mapping=aes(x=time, y=value, col=variable)) + geom_line() + theme_bw() 
+```
+
+```{r simulate RPS, cache = TRUE}
+# Play for 1000 rounds
+simple_RPS(n_rounds = 1000)
+```
+
+# Side Blotched Lizards
+
+Aim: Simulate a stylized version of common side-blotched lizard evolution to visualise a more complicated evolutionary process. 
+
+SBL rules: 
+
+* Individuals are organised on a large lattice network (some blank space).
+* Each individual has a colour.  
+* Each node has a food value.  
+* They can only play with their direct neighbors. 
+* Orange beats Blue, Blue beats Yellow, Yellow beats Orange. 
+* If they lose, they take over the strategy of the winner. 
+
+```{r SBL function, eval=FALSE}
+# SBL function (unfinished)
+SBL_sim <- function(n_rounds){
+  
+  # Define size of the lattice
+  side_length <- 15 
+  
+  # Create an empty data.frame to store strategy frequencies
+  strat_freq <- data.frame()
+  
+  # Create a lattice network using the igraph package
+  l <- graph.lattice(length = side_length, dim = 2)
+  
+  # Every individual (vertices) chooses a strategy at random
+  V(l)$weapon <- sample(c(1:4), size = length(V(l)), replace = T)
+  
+  # Colour the different options
+  V(l)[weapon == 0]$color <- "white" # Vacant
+  V(l)[weapon == 1]$color <- "yellow" # Sneakers
+  V(l)[weapon == 2]$color <- "blue" # Dominant
+  V(l)[weapon == 3]$color <- "orange" # Ultra Dominant
+  
+  # Initial arrangement: 
+  plot(l,
+       layout = as.matrix(expand.grid(1:side_length, 1:side_length)),
+       vertex.label=NA)
+  
+  # Simulate n rounds
+  for(t in 1:n_rounds){
+    
+    # Pick a random agent
+    from <- as.numeric(sample(V(l), 1))
+    # Find its neighbours
+    nei <- neighbors(l, v = from, mode = 'all')
+    
+    # If there is only one weapon type left, then stop simulation 
+    if(length(unique(V(l)$weapon)) == 1) {
+      stop(paste(unique(V(l)$weapon),
+                 'has won the game after',
+                 t,
+                 'rounds!'))
+    } else {
+      # If there are multiple weapon types then choose 1 of agent's neighbours
+      to <- sample(nei, 1)
+      from_to <- c(from, to)
+      
+      # Find both their weapon types
+      w <- as.numeric(V(l)$weapon[from_to])
+      
+      # Find neighbours weapon types
+      neigh_w <- as.numeric(V(l)$weapon[nei])
+      
+      # If chosen isn't blank and neighbour is same type, then take over any blank neighbours:
+      if(w[1] != 0 & w[1] == w[2]) {
+        V(l)$weapon[nei[w == 0]] <- w[1]
+      } 
+      else{
+        # If they're different types, then competitive rules apply
+        if(max(w) == 3 && min(w) == 1) {
+          V(l)$weapon[from_to[w==3]] <- "1" 
+        }
+        else{
+          V(l)$weapon[from_to[w == min(w)]] <- V(l)$weapon[from_to[w == max(w)]]
+        }
+      }
+    }
+    
+    # Record the frequency of each strategy for each round
+    strat_freq <- rbind(strat_freq,
+                        c(sum(V(l)$"weapon" == "1"),
+                          sum(V(l)$"weapon" == "2"),
+                          sum(V(l)$"weapon" == "3"),
+                          sum(V(l)$"weapon" == "0")))
+    
+    # Plot the lattice network every 25th round
+    if(t %% 25 == 0){
+      V(l)[weapon == 1]$color <- "yellow" # Sneakers
+      V(l)[weapon == 2]$color <- "blue" # Dominant
+      V(l)[weapon == 3]$color <- "orange" # Ultra Dominant
+      V(l)[weapon == 0]$color <- "white" # Vacant
+      
+      plot(l,
+           layout = as.matrix(expand.grid(1:side_length, 1:side_length)),
+           vertex.label=NA)
+    }
+  }
+  
+  # Viz changes over time 
+  names(strat_freq) <- c("Sneakers", "Dominant", "Ultra-Dominant", "Vacant")
+  s <- melt(strat_freq)
+  s$time <- 1:nrow(strat_freq)
+  
+  ggplot(s, aes(x = time, y = value, col = variable)) + 
+    geom_line() + 
+    scale_y_continuous("Frequency") +
+    scale_x_continuous("Time") +
+    scale_color_discrete("Type") +
+    theme_minimal() +
+    theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+}
+```
+
+```{r SBL sim, eval = FALSE}
+SBL_sim(n_rounds = 500)
 ```

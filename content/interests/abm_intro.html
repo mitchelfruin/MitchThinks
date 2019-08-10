@@ -1,6 +1,6 @@
 ---
 title: "Agent-based modeling: Lizards & Rock, Paper, Scissors"
-date: "2019-08-09"
+date: "2019-08-10"
 output:
   blogdown::html_page:
     toc: true
@@ -10,66 +10,239 @@ output:
 
 <div id="TOC">
 <ul>
-<li><a href="#rock-paper-scissors">Rock Paper Scissors</a></li>
+<li><a href="#agent-based-modeling">Agent-based modeling</a></li>
+<li><a href="#rock-paper-scissors">Rock, paper, scissors</a></li>
+<li><a href="#side-blotched-lizards">Side Blotched Lizards</a></li>
 </ul>
 </div>
 
-<div id="rock-paper-scissors" class="section level2">
-<h2>Rock Paper Scissors</h2>
-<p>In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa. This can also be seen as a very simple example of an evolutionary process.</p>
-<pre class="r"><code># size of the lattice
-sidelength&lt;-10 
-# creating an empty data.frame to store data
-stat&lt;-data.frame()
-# creating a lattice network using the igraph package
-l&lt;-graph.lattice(length=sidelength,dim=2)
-# now every individual chooses a strategy at random
-V(l)$weapon&lt;-sample(c(1:3), size=length(V(l)), replace=T)
-# for a nicer visualisation lets colour the different options
-V(l)[weapon==1]$color&lt;-&#39;blue&#39; # Paper
-V(l)[weapon==2]$color&lt;-&#39;yellow&#39; # Scissors
-V(l)[weapon==3]$color&lt;-&#39;green&#39; # Rock
-# and this is what it looks like:
-plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)</code></pre>
-<p><img src="/interests/abm_intro_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>for(t in 1:1000){
-    # pick a random agent ...
-    from &lt;- as.numeric(sample(V(l), 1)) # or sample(sidelength^2,1)
-    # who are its neighbours?
-    nei&lt;-neighbors(l, v=from, mode=&#39;all&#39;)
+<div id="agent-based-modeling" class="section level1">
+<h1>Agent-based modeling</h1>
+<p>Intro.</p>
+<p>Use/relevance in complexity economics.</p>
+<p>This article was inspired by this <a href="https://marcosmolla.com/2015/07/16/an-introduction-to-agent-based-modelling-in-r/">post</a>, which I attempted to recreate and extend.</p>
+</div>
+<div id="rock-paper-scissors" class="section level1">
+<h1>Rock, paper, scissors</h1>
+<p>Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.</p>
+<p>Simple Game Rules:</p>
+<ul>
+<li>Individuals are organised on a lattice network.</li>
+<li>Each individual has a strategy (Rock, Paper, Scissors).</li>
+<li>Each time period we choose one individual at random to play a game.</li>
+<li>They can only play with one of their direct neighbors.</li>
+<li>The loser takes on the strategy of the winner.</li>
+</ul>
+<pre class="r"><code># Define function to simulate simple game 
+simple_RPS &lt;- function(n_rounds){
+  
+  # Define size of the lattice
+  side_length &lt;- 10 
+  
+  # Create an empty data.frame to store strategy frequencies
+  strat_freq &lt;- data.frame()
+  
+  # Create a lattice network using the igraph package
+  l &lt;- graph.lattice(length = side_length, dim = 2)
+  
+  # Every individual (vertices) chooses a strategy at random
+  V(l)$weapon &lt;- sample(c(1:3), size = length(V(l)), replace = T)
+  
+  # Colour the different options
+  V(l)[weapon==1]$color &lt;- &quot;purple&quot; # Paper
+  V(l)[weapon==2]$color &lt;- &quot;blue&quot; # Scissors (sapphire)
+  V(l)[weapon==3]$color &lt;- &quot;red&quot; # Rock
+  
+  # Initial arrangement: 
+  plot(l,
+       layout = as.matrix(expand.grid(1:side_length, 1:side_length)),
+       vertex.label=NA)
+  
+  # Simulate n rounds
+  for(t in 1:n_rounds){
     
-    # if there is only one weapon type left
+    # Pick a random agent
+    from &lt;- as.numeric(sample(V(l), 1))
+    # Find its neighbours
+    nei &lt;- neighbors(l, v = from, mode = &#39;all&#39;)
+    
+    # If there is only one weapon type left, then stop simulation 
     if(length(unique(V(l)$weapon))==1) {
-        # we can either stop the simulation
-        stop(paste(c(&#39;Paper&#39;,&#39;Scissors&#39;,&#39;Rock&#39;)[unique(V(l)$weapon)], &#39;has won the game after&#39;,t,&#39;rounds!&#39;))
-        # or we let the selected individual choose a different strategy to let the dynamics go on
-        # V(l)$weapon[from]&lt;-sample((1:3)[1:3!=as.numeric(V(l)$weapon[from])], 1)
-    } else {
-        # ... and one of its neighbours
-        to &lt;- sample(nei, 1) 
-        fromto&lt;-c(from,to)
-        w&lt;-as.numeric(V(l)$weapon[fromto])
-        # if both choices are equal, nothing happens:
-        if(w[1]==w[2]) {} else{ 
-            # in the case that one chooses Rock and the other Paper, Paper wins:
-            if(max(w) == 3 &amp;&amp; min(w) ==1) { 
-                V(l)$weapon[fromto[w==3]] &lt;- &quot;1&quot; 
-            } 
-            else{
-                # for the two other cases, the better weapon wins:
-                V(l)$weapon[fromto[w==min(w)]] &lt;- V(l)$weapon[fromto[w==max(w)]]
-            }
-        } 
+      stop(paste(unique(V(l)$weapon),
+                 &#39;has won the game after&#39;,
+                 t,
+                 &#39;rounds!&#39;))
+      } else {
+        # If there are multiple weapon types then choose 1 of agent&#39;s neighbours
+        to &lt;- sample(nei, 1)
+        from_to &lt;- c(from, to)
         
+        # Find both their weapon types
+        w &lt;- as.numeric(V(l)$weapon[from_to])
+        
+        # If both weapons are equal, nothing happens:
+        if(w[1]==w[2]) {} else{
+          
+          # If one chooses Rock and the other Paper, Paper wins:
+          if(max(w) == 3 &amp;&amp; min(w) == 1) {
+            V(l)$weapon[from_to[w==3]] &lt;- &quot;1&quot; 
+            }
+          else{
+            # For the two other cases, the better weapon wins:
+            V(l)$weapon[from_to[w == min(w)]] &lt;- V(l)$weapon[from_to[w == max(w)]]
+            }
+          }
+        }
+    
+    # Record the frequency of each strategy for each round
+    strat_freq &lt;- rbind(strat_freq,
+                        c(sum(V(l)$&quot;weapon&quot; == &quot;1&quot;),
+                          sum(V(l)$&quot;weapon&quot; == &quot;2&quot;),
+                          sum(V(l)$&quot;weapon&quot; == &quot;3&quot;)))
+    
+    # Plot the lattice network every 25th round
+    if(t %% 25 == 0){
+      V(l)[weapon==1]$color &lt;- &quot;purple&quot; # Paper
+      V(l)[weapon==2]$color &lt;- &quot;blue&quot; # Scissors
+      V(l)[weapon==3]$color &lt;- &quot;red&quot; # Rock
+      
+      plot(l,
+           layout = as.matrix(expand.grid(1:side_length, 1:side_length)),
+           vertex.label=NA)
+      }
     }
-    # let&#39;s record the individual abundance of each strategy
-    stat&lt;-rbind(stat, c(sum(V(l)$&#39;weapon&#39;==&quot;1&quot;), sum(V(l)$&#39;weapon&#39;==&quot;2&quot;), sum(V(l)$&#39;weapon&#39;==&quot;3&quot;)))
-    # plot(l, layout=as.matrix(expand.grid(1:sidelength, 1:sidelength)), vertex.label=NA)
-}
-names(stat)&lt;-c(&quot;Paper&quot;,&quot;Scissors&quot;,&quot;Rock&quot;)
-s&lt;-melt(stat)</code></pre>
+
+# Viz changes over time 
+names(strat_freq) &lt;- c(&quot;Paper&quot;, &quot;Scissors&quot;, &quot;Rock&quot;)
+s &lt;- melt(strat_freq)
+s$time &lt;- 1:nrow(strat_freq)
+
+ggplot(s, aes(x = time, y = value, col = variable)) + 
+  geom_line() + 
+  scale_y_continuous(&quot;Frequency&quot;) +
+  scale_x_continuous(&quot;Time&quot;) +
+  scale_color_discrete(&quot;Strategy&quot;) +
+  theme_minimal() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+}</code></pre>
+<pre class="r"><code># Play for 1000 rounds
+simple_RPS(n_rounds = 1000)</code></pre>
+<p><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-1.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-2.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-3.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-4.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-5.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-6.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-7.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-8.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-9.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-10.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-11.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-12.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-13.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-14.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-15.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-16.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-17.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-18.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-19.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-20.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-21.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-22.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-23.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-24.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-25.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-26.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-27.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-28.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-29.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-30.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-31.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-32.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-33.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-34.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-35.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-36.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-37.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-38.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-39.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-40.png" width="672" /></p>
 <pre><code>## No id variables; using all as measure variables</code></pre>
-<pre class="r"><code>s$time&lt;-1:nrow(stat)
-ggplot(data=s, mapping=aes(x=time, y=value, col=variable)) + geom_line() + theme_bw() </code></pre>
-<p><img src="/interests/abm_intro_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-41.png" width="672" /><img src="/interests/abm_intro_files/figure-html/simulate%20RPS-42.png" width="672" /></p>
+</div>
+<div id="side-blotched-lizards" class="section level1">
+<h1>Side Blotched Lizards</h1>
+<p>Aim: Simulate a stylized version of common side-blotched lizard evolution to visualise a more complicated evolutionary process.</p>
+<p>SBL rules:</p>
+<ul>
+<li>Individuals are organised on a large lattice network (some blank space).</li>
+<li>Each individual has a colour.<br />
+</li>
+<li>Each node has a food value.<br />
+</li>
+<li>They can only play with their direct neighbors.</li>
+<li>Orange beats Blue, Blue beats Yellow, Yellow beats Orange.</li>
+<li>If they lose, they take over the strategy of the winner.</li>
+</ul>
+<pre class="r"><code># SBL function (unfinished)
+SBL_sim &lt;- function(n_rounds){
+  
+  # Define size of the lattice
+  side_length &lt;- 15 
+  
+  # Create an empty data.frame to store strategy frequencies
+  strat_freq &lt;- data.frame()
+  
+  # Create a lattice network using the igraph package
+  l &lt;- graph.lattice(length = side_length, dim = 2)
+  
+  # Every individual (vertices) chooses a strategy at random
+  V(l)$weapon &lt;- sample(c(1:4), size = length(V(l)), replace = T)
+  
+  # Colour the different options
+  V(l)[weapon == 0]$color &lt;- &quot;white&quot; # Vacant
+  V(l)[weapon == 1]$color &lt;- &quot;yellow&quot; # Sneakers
+  V(l)[weapon == 2]$color &lt;- &quot;blue&quot; # Dominant
+  V(l)[weapon == 3]$color &lt;- &quot;orange&quot; # Ultra Dominant
+  
+  # Initial arrangement: 
+  plot(l,
+       layout = as.matrix(expand.grid(1:side_length, 1:side_length)),
+       vertex.label=NA)
+  
+  # Simulate n rounds
+  for(t in 1:n_rounds){
+    
+    # Pick a random agent
+    from &lt;- as.numeric(sample(V(l), 1))
+    # Find its neighbours
+    nei &lt;- neighbors(l, v = from, mode = &#39;all&#39;)
+    
+    # If there is only one weapon type left, then stop simulation 
+    if(length(unique(V(l)$weapon)) == 1) {
+      stop(paste(unique(V(l)$weapon),
+                 &#39;has won the game after&#39;,
+                 t,
+                 &#39;rounds!&#39;))
+    } else {
+      # If there are multiple weapon types then choose 1 of agent&#39;s neighbours
+      to &lt;- sample(nei, 1)
+      from_to &lt;- c(from, to)
+      
+      # Find both their weapon types
+      w &lt;- as.numeric(V(l)$weapon[from_to])
+      
+      # Find neighbours weapon types
+      neigh_w &lt;- as.numeric(V(l)$weapon[nei])
+      
+      # If chosen isn&#39;t blank and neighbour is same type, then take over any blank neighbours:
+      if(w[1] != 0 &amp; w[1] == w[2]) {
+        V(l)$weapon[nei[w == 0]] &lt;- w[1]
+      } 
+      else{
+        # If they&#39;re different types, then competitive rules apply
+        if(max(w) == 3 &amp;&amp; min(w) == 1) {
+          V(l)$weapon[from_to[w==3]] &lt;- &quot;1&quot; 
+        }
+        else{
+          V(l)$weapon[from_to[w == min(w)]] &lt;- V(l)$weapon[from_to[w == max(w)]]
+        }
+      }
+    }
+    
+    # Record the frequency of each strategy for each round
+    strat_freq &lt;- rbind(strat_freq,
+                        c(sum(V(l)$&quot;weapon&quot; == &quot;1&quot;),
+                          sum(V(l)$&quot;weapon&quot; == &quot;2&quot;),
+                          sum(V(l)$&quot;weapon&quot; == &quot;3&quot;),
+                          sum(V(l)$&quot;weapon&quot; == &quot;0&quot;)))
+    
+    # Plot the lattice network every 25th round
+    if(t %% 25 == 0){
+      V(l)[weapon == 1]$color &lt;- &quot;yellow&quot; # Sneakers
+      V(l)[weapon == 2]$color &lt;- &quot;blue&quot; # Dominant
+      V(l)[weapon == 3]$color &lt;- &quot;orange&quot; # Ultra Dominant
+      V(l)[weapon == 0]$color &lt;- &quot;white&quot; # Vacant
+      
+      plot(l,
+           layout = as.matrix(expand.grid(1:side_length, 1:side_length)),
+           vertex.label=NA)
+    }
+  }
+  
+  # Viz changes over time 
+  names(strat_freq) &lt;- c(&quot;Sneakers&quot;, &quot;Dominant&quot;, &quot;Ultra-Dominant&quot;, &quot;Vacant&quot;)
+  s &lt;- melt(strat_freq)
+  s$time &lt;- 1:nrow(strat_freq)
+  
+  ggplot(s, aes(x = time, y = value, col = variable)) + 
+    geom_line() + 
+    scale_y_continuous(&quot;Frequency&quot;) +
+    scale_x_continuous(&quot;Time&quot;) +
+    scale_color_discrete(&quot;Type&quot;) +
+    theme_minimal() +
+    theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+}</code></pre>
+<pre class="r"><code>SBL_sim(n_rounds = 500)</code></pre>
 </div>

@@ -6,7 +6,7 @@
     <description>Recent content in Interests on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 09 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/interests/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,16 +14,21 @@
     <item>
       <title>Agent-based modeling: Lizards &amp; Rock, Paper, Scissors</title>
       <link>/interests/abm_intro/</link>
-      <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/interests/abm_intro/</guid>
-      <description>Rock Paper Scissors   Rock Paper Scissors In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa. This can also be seen as a very simple example of an evolutionary process.</description>
+      <description>Agent-based modeling Rock, paper, scissors Side Blotched Lizards   Agent-based modeling Intro.
+Use/relevance in complexity economics.
+This article was inspired by this post, which I attempted to recreate and extend.
+ Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.
+Simple Game Rules:
+ Individuals are organised on a lattice network. Each individual has a strategy (Rock, Paper, Scissors). Each time period we choose one individual at random to play a game.</description>
     </item>
     
     <item>
       <title>Complexity Economics: Overview</title>
       <link>/interests/complexity_overview/</link>
-      <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/interests/complexity_overview/</guid>
       <description>Critique of Traditional Economics E.g. Sugarscape  1st difference: Dynamics 2nd difference: Agents 3rd difference: Networks 4th difference: Emergence 5th difference: Evolution   Critique of Traditional Economics E.g. Sugarscape   1st difference: Dynamics  Traditional:

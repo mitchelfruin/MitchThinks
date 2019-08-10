@@ -3,34 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/books/lies_and_stats_levitin_2016/</loc>
-    <lastmod>2019-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/interests/abm_intro/</loc>
-    <lastmod>2019-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/books/</loc>
-    <lastmod>2019-08-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/interests/complexity_overview/</loc>
-    <lastmod>2019-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/interests/</loc>
-    <lastmod>2019-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
+    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/books/lies_and_stats_levitin_2016/</loc>
+    <lastmod>2019-08-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/books/</loc>
     <lastmod>2019-08-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
