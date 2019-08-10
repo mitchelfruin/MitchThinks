@@ -53,7 +53,7 @@ In a maths lecture at uni the professor began by writing a complicated looking f
 
 These kind of 'wait, but we're still talking about the real world' checks can sometimes help assess the plausibility of a statistic. For example, in 1993 New Jersey adopted a 'family cap' law that denied additional benefits to mothers who have children while already on welfare. After two months, legislators were celebrating its success as births had already fallen by 16%. The only problem being that human pregnancies generally take a bit longer than 2 months. 
 
-# Does the average mean anything?
+# What does the average mean?
 
 ## Mean, median and mode
 
