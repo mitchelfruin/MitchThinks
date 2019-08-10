@@ -1,5 +1,5 @@
 ---
-title: "Complexity Economics: Overview"
+title: "The Origin of Wealth (Beinhocker 2007): Complexity Economics"
 date: "2019-08-10"
 output:
   blogdown::html_page:
