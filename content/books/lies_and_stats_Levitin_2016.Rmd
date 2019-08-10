@@ -97,7 +97,7 @@ Just increase N enough to lower the p-value until it's 'significant'.
 
 **Subdividing**: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).  
 
-# That's probably not quite right
+# There's a high probability that's not quite right
 
 ## Conditional probabilities
 
