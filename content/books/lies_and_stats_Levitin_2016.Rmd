@@ -29,7 +29,7 @@ One way to check plausibility is a quick on-the-fly calculation.
 
 Say, for example, we run into someone claiming that "in the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year". 
 
-Well, even if we start with the most generous estimate that intitially there was only 1 lonely pothead in California, then if that number doubled every year for 35 years:
+Well, even if we start with the most generous estimate that initially there was only 1 lonely pothead in California, then if that number doubled every year for 35 years:
 
 $$\begin{aligned}
 \text{Year 1:} \;\; 1 &= 2^0 \\
@@ -49,11 +49,17 @@ Just over 17.1 billion people, which seems more than a little high.
 
 ## Remember the real world
 
-Checking birth rates 3 months after a policy change attempting to discourage pregnancy. 200% decreases mean the person is now paying you as much as you used to pay them. 
+In a maths lecture at uni the professor began by writing a complicated looking formula on the board and told us that it described the time taken for a bath to empty as a function of its volume and the diameter of the plughole. He then asked us to raise our hand if we believed the bath would ever empty. When only a few of us sheepishly did so he shouted up into the lecture theatre, "have you fucking taken a bath before?". His point was, just because we're dealing with supposedly scary maths doesn't mean you should ignore common sense. You've taken a bath before, you know the answer, whether you understand the formula or not. 
+
+These kind of 'wait, but we're still talking about the real world' checks can sometimes help assess the plausibility of a statistic. For example, in 1993 New Jersey adopted a 'family cap' law that denied additional benefits to mothers who have children while already on welfare. After two months, legislators were celebrating its success as births had already fallen by 16%. The only problem being that human pregnancies generally take a bit longer than 2 months. 
 
 # Does the average mean anything?
 
 ## Mean, median and mode
+
+## All averages aren't made equal
+
+Relative percentage change vs. absolute percentage change (i.e. percentage points) vs. natural frequencies. 
 
 ## Bimodal distributions
 
@@ -75,7 +81,7 @@ Include axis space beyond the range of your data to make changes look more extre
 
 ## Duplicate
 
-If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood jason chaffetz. 
+If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood Jason chaffetz. 
 
 # Dodgy reporting 
 
@@ -97,7 +103,7 @@ Just increase N enough to lower the p-value until it's 'significant'.
 
 **Subdividing**: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).  
 
-# There's a high probability that's not quite right
+# High probability that's not quite right
 
 ## Conditional probabilities
 
@@ -107,7 +113,7 @@ Sometimes probability is unintuitive. Birthday puzzle.
 
 **Independent probabilities.** Should multiply. 
 
-**Dependent/Conditional probabilities.** Sally Clark had two children dies from SIDs. Dr. Meadow, peadiatrician, said there's 1 in 8543 chance of having a child die from SIDs giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise bayesian updating with a contingency table. Base rate neglect in medical test results. 
+**Dependent/Conditional probabilities.** Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there's 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise Bayesian updating with a contingency table. Base rate neglect in medical test results. 
 
 ## The prosecutor's fallacy
 
