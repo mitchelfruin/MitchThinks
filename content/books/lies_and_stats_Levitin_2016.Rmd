@@ -81,7 +81,7 @@ Include axis space beyond the range of your data to make changes look more extre
 
 ## Duplicate
 
-If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood Jason chaffetz. 
+If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood Jason Chaffetz. 
 
 # Dodgy reporting 
 
