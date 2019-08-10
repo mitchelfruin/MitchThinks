@@ -17,7 +17,8 @@
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/books/lies_and_stats_levitin_2016/</guid>
-      <description>Summary Is the stat plausible? Back of the napkin calculations Remember the real world  Does the average mean anything? Mean, median and mode All averages aren’t made equal Bimodal distributions  Are the axes leading you astray? Truncated Discontinuous Elongated Duplicate  Dodgy reporting Hiding a decrease in the cumulative Unrelated plotting Irrelevant differences Comparing apples and oranges  Probably not quite right Conditional probabilities The prosecutor’s fallacy Bayesian updating    If you want to see the full code for this post then you can find the .</description>
+      <description>Summary Is the stat plausible? Does the average mean anything? Are the axes leading you astray? Dodgy reporting Probably not quite right   If you want to see the full code for this post then you can find the .Rmd file here.
+Summary Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning why the human brain is ‘fooled’ by particular ways of presenting information rather than just what those presentations are.</description>
     </item>
     
     <item>
