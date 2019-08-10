@@ -11,9 +11,17 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Critique of Traditional Economics
+# Summary
 
-## E.g. Sugarscape
+In the first section of *The Origin of Wealth* Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
+
+1. Dynamics
+2. Agents
+3. Networks
+4. Emergence
+5. Evolution
+
+I'll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation). 
 
 # 1st difference: Dynamics
 
