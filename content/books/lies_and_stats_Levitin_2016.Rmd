@@ -11,11 +11,22 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Evaluating Numbers
+# Summary 
 
-## Plausibility
+Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments. However, given his psychologist/neuroscientist angle I was hoping for more of a general thread pulling the examples together concerning *why* the human brain is fooled by particular presentations rather than just *what* those presentations are.
 
-**Numerical sense checks.**
+Good easy summary about induction vs. deduction and how science/arguments should work:
+
+* **Modus ponens**: valid
+* **The contrapositive**: valid
+* **The converse**: invalid
+* **The inverse**: invalid
+
+A few of the more interesting examples from the book are included below. 
+
+# Numerical plausibility
+
+**Basic sense checks.**
 Claim: "In the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year". 
 
 Even if we start with the most generous estimate that intitially there was 1 marijuana smoker then after 35 years that would give us $2^{34} (> 17\text{bil})$ smokers. 
@@ -26,14 +37,14 @@ Even if we start with the most generous estimate that intitially there was 1 mar
 **Remember the real world.** 
 Checking birth rates 3 months after a policy change attempting to discourage pregnancy. 200% decreases mean the person is now paying you as much as you used to pay them. 
 
-## Averages
+# Misleading averages
 
 **Mean, median and mode.**
 
 **Bimodal distributions.** 
 Humans on average have one testicle. Meaningless to compute an average on a metric over a whole population where there are important differences. 
 
-## Axes
+# Misleading axes
 
 **Unlabeled axes.**
 
@@ -45,33 +56,31 @@ Humans on average have one testicle. Meaningless to compute an average on a metr
 
 **Double y-axis.** If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood jason chaffetz. 
 
-## Reporting 
+# Nefarious reporting 
 
-**Cumulative hides a decrease.** Tim Cook iPhone sales. 
+## Decrease hiding in the cumulative
 
-**Unrelated plotting.** Spurious time series. 
+Tim Cook iPhone sales. 
 
-**Deceptive illustrations.**
+## Unrelated plotting
 
-**Irrelevant differences.** Just increase N enough to lower the p-value until it's 'significant'.
+Spurious time series. 
 
-**Interpolation & Extrapolation.**
+## Irrelevant differences
 
-**Mistaking precision for accuracy.**
+Just increase N enough to lower the p-value until it's 'significant'.
 
-**Comparing apples and oranges.** 
+## Comparing apples and oranges 
 
-Amalgamating: group samples that differ on an important dimension to make the stat more shocking. "50% of 10-18 year olds are sexually active". 
+**Amalgamating**: group samples that differ on an important dimension to make the stat more shocking. "50% of 10-18 year olds are sexually active". 
 
-Subdividing: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).  
+**Subdividing**: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).  
 
-## How numbers are collected
+# Probabilities in court
 
-Sampling.
+## Probability
 
-Participation biases. 
-
-## Probabilities
+Sometimes probability is unintuitive. Birthday puzzle. 
 
 **Types.** Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess. 
 
@@ -79,7 +88,9 @@ Participation biases.
 
 **Dependent/Conditional probabilities.** Sally Clark had two children dies from SIDs. Dr. Meadow, peadiatrician, said there's 1 in 8543 chance of having a child die from SIDs giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise bayesian updating with a contingency table. Base rate neglect in medical test results. 
 
-**Prosecutor's fallacy.** Conditional probabilities aren't invertible. 
+## The prosecutor's fallacy
+
+**Prosecutor's fallacy:** False belief that conditional probabilities are invertible when in fact they aren't.
 
 $$Pr(A|B) \neq Pr(B|A)$$
 
@@ -87,17 +98,5 @@ Forensics may compute that probability of blood at scene matching the defendent'
 
 $$Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})$$
 
-Puzzles from datacamp course. 
+## Bayesian updating
 
-**Bayesian thinking in court.** 
-
-# Evaluating Words
-
-## Identifying expertise 
-
-## Induction vs deduction 
-
-Modus ponens: valid
-The contrapositive: valid
-The converse: invalid
-The inverse: invalid

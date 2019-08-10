@@ -10,80 +10,93 @@ output:
 
 <div id="TOC">
 <ul>
-<li><a href="#evaluating-numbers">Evaluating Numbers</a><ul>
-<li><a href="#plausibility">Plausibility</a></li>
-<li><a href="#averages">Averages</a></li>
-<li><a href="#axes">Axes</a></li>
-<li><a href="#reporting">Reporting</a></li>
-<li><a href="#how-numbers-are-collected">How numbers are collected</a></li>
-<li><a href="#probabilities">Probabilities</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#numerical-plausibility">Numerical plausibility</a></li>
+<li><a href="#misleading-averages">Misleading averages</a></li>
+<li><a href="#misleading-axes">Misleading axes</a></li>
+<li><a href="#nefarious-reporting">Nefarious reporting</a><ul>
+<li><a href="#decrease-hiding-in-the-cumulative">Decrease hiding in the cumulative</a></li>
+<li><a href="#unrelated-plotting">Unrelated plotting</a></li>
+<li><a href="#irrelevant-differences">Irrelevant differences</a></li>
+<li><a href="#comparing-apples-and-oranges">Comparing apples and oranges</a></li>
 </ul></li>
-<li><a href="#evaluating-words">Evaluating Words</a><ul>
-<li><a href="#identifying-expertise">Identifying expertise</a></li>
-<li><a href="#induction-vs-deduction">Induction vs deduction</a></li>
+<li><a href="#probabilities-in-court">Probabilities in court</a><ul>
+<li><a href="#probability">Probability</a></li>
+<li><a href="#the-prosecutors-fallacy">The prosecutor’s fallacy</a></li>
+<li><a href="#bayesian-updating">Bayesian updating</a></li>
 </ul></li>
 </ul>
 </div>
 
-<div id="evaluating-numbers" class="section level1">
-<h1>Evaluating Numbers</h1>
-<div id="plausibility" class="section level2">
-<h2>Plausibility</h2>
-<p><strong>Numerical sense checks.</strong> Claim: “In the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year”.</p>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>Bit unsatisfying. Good compilation of mistakes to avoid/ tricks to look out for when reading research and/or arguments. However, given his psychologist/neuroscientist angle I was hoping for more of a general thread pulling the examples together concerning <em>why</em> the human brain is fooled by particular presentations rather than just <em>what</em> those presentations are.</p>
+<p>Good easy summary about induction vs. deduction and how science/arguments should work:</p>
+<ul>
+<li><strong>Modus ponens</strong>: valid</li>
+<li><strong>The contrapositive</strong>: valid</li>
+<li><strong>The converse</strong>: invalid</li>
+<li><strong>The inverse</strong>: invalid</li>
+</ul>
+<p>A few of the more interesting examples from the book are included below.</p>
+</div>
+<div id="numerical-plausibility" class="section level1">
+<h1>Numerical plausibility</h1>
+<p><strong>Basic sense checks.</strong> Claim: “In the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year”.</p>
 <p>Even if we start with the most generous estimate that intitially there was 1 marijuana smoker then after 35 years that would give us <span class="math inline">\(2^{34} (&gt; 17\text{bil})\)</span> smokers.</p>
 <p><strong>Non mutually exclusive surveys.</strong> “7 out of 10 dentists recommend colgate”. They also recommend plenty of other brands.</p>
 <p><strong>Remember the real world.</strong> Checking birth rates 3 months after a policy change attempting to discourage pregnancy. 200% decreases mean the person is now paying you as much as you used to pay them.</p>
 </div>
-<div id="averages" class="section level2">
-<h2>Averages</h2>
+<div id="misleading-averages" class="section level1">
+<h1>Misleading averages</h1>
 <p><strong>Mean, median and mode.</strong></p>
 <p><strong>Bimodal distributions.</strong> Humans on average have one testicle. Meaningless to compute an average on a metric over a whole population where there are important differences.</p>
 </div>
-<div id="axes" class="section level2">
-<h2>Axes</h2>
+<div id="misleading-axes" class="section level1">
+<h1>Misleading axes</h1>
 <p><strong>Unlabeled axes.</strong></p>
 <p><strong>Truncated y-axis.</strong> Exaggerate between-group differences. If 0 is a plausible value it should be included.</p>
 <p><strong>Discontinuity in axes.</strong> Easy to make line graph jump.</p>
 <p><strong>Elongated axes.</strong> Include axis space beyond the range of your data to make changes look more extreme.</p>
 <p><strong>Double y-axis.</strong> If they measure the same thing then you can fudge the graph however you want. Only use if they’re different units and you want to make within axis comparisons not between. E.g. planned parenthood jason chaffetz.</p>
 </div>
-<div id="reporting" class="section level2">
-<h2>Reporting</h2>
-<p><strong>Cumulative hides a decrease.</strong> Tim Cook iPhone sales.</p>
-<p><strong>Unrelated plotting.</strong> Spurious time series.</p>
-<p><strong>Deceptive illustrations.</strong></p>
-<p><strong>Irrelevant differences.</strong> Just increase N enough to lower the p-value until it’s ‘significant’.</p>
-<p><strong>Interpolation &amp; Extrapolation.</strong></p>
-<p><strong>Mistaking precision for accuracy.</strong></p>
-<p><strong>Comparing apples and oranges.</strong></p>
-<p>Amalgamating: group samples that differ on an important dimension to make the stat more shocking. “50% of 10-18 year olds are sexually active”.</p>
-<p>Subdividing: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).</p>
+<div id="nefarious-reporting" class="section level1">
+<h1>Nefarious reporting</h1>
+<div id="decrease-hiding-in-the-cumulative" class="section level2">
+<h2>Decrease hiding in the cumulative</h2>
+<p>Tim Cook iPhone sales.</p>
 </div>
-<div id="how-numbers-are-collected" class="section level2">
-<h2>How numbers are collected</h2>
-<p>Sampling.</p>
-<p>Participation biases.</p>
+<div id="unrelated-plotting" class="section level2">
+<h2>Unrelated plotting</h2>
+<p>Spurious time series.</p>
 </div>
-<div id="probabilities" class="section level2">
-<h2>Probabilities</h2>
+<div id="irrelevant-differences" class="section level2">
+<h2>Irrelevant differences</h2>
+<p>Just increase N enough to lower the p-value until it’s ‘significant’.</p>
+</div>
+<div id="comparing-apples-and-oranges" class="section level2">
+<h2>Comparing apples and oranges</h2>
+<p><strong>Amalgamating</strong>: group samples that differ on an important dimension to make the stat more shocking. “50% of 10-18 year olds are sexually active”.</p>
+<p><strong>Subdividing</strong>: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).</p>
+</div>
+</div>
+<div id="probabilities-in-court" class="section level1">
+<h1>Probabilities in court</h1>
+<div id="probability" class="section level2">
+<h2>Probability</h2>
+<p>Sometimes probability is unintuitive. Birthday puzzle.</p>
 <p><strong>Types.</strong> Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess.</p>
 <p><strong>Independent probabilities.</strong> Should multiply.</p>
 <p><strong>Dependent/Conditional probabilities.</strong> Sally Clark had two children dies from SIDs. Dr. Meadow, peadiatrician, said there’s 1 in 8543 chance of having a child die from SIDs giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise bayesian updating with a contingency table. Base rate neglect in medical test results.</p>
-<p><strong>Prosecutor’s fallacy.</strong> Conditional probabilities aren’t invertible.</p>
+</div>
+<div id="the-prosecutors-fallacy" class="section level2">
+<h2>The prosecutor’s fallacy</h2>
+<p><strong>Prosecutor’s fallacy:</strong> False belief that conditional probabilities are invertible when in fact they aren’t.</p>
 <p><span class="math display">\[Pr(A|B) \neq Pr(B|A)\]</span></p>
 <p>Forensics may compute that probability of blood at scene matching the defendent’s by chance is 1%. That doesn’t mean there’s a 1% chance the defendent is innocent. We have been told the probability of a match given innocence, we want the probability of innocence given a match, but they don’t equate:</p>
 <p><span class="math display">\[Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})\]</span></p>
-<p>Puzzles from datacamp course.</p>
-<p><strong>Bayesian thinking in court.</strong></p>
 </div>
-</div>
-<div id="evaluating-words" class="section level1">
-<h1>Evaluating Words</h1>
-<div id="identifying-expertise" class="section level2">
-<h2>Identifying expertise</h2>
-</div>
-<div id="induction-vs-deduction" class="section level2">
-<h2>Induction vs deduction</h2>
-<p>Modus ponens: valid The contrapositive: valid The converse: invalid The inverse: invalid</p>
+<div id="bayesian-updating" class="section level2">
+<h2>Bayesian updating</h2>
 </div>
 </div>
