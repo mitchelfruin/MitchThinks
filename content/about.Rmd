@@ -37,4 +37,3 @@ The site is split into two sections:
         - Data Science (analytics, statistics, and machine learning).
         - Alternative approaches to economics (e.g. behavioural, complexity).
         - Evolutionary biology.
-    + Once complete, each page would hopefully serve as an *Intro to X*.
