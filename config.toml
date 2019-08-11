@@ -80,9 +80,9 @@ math = true
         url = "about/"
 
         [[languages.en.menu.main]]
-        name = "Books"
+        name = "Summaries"
         weight = 2
-        url = "books/"
+        url = "summaries/"
 
         [[languages.en.menu.main]]
         name = "Interests"

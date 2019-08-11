@@ -3,18 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/books/lies_and_stats_levitin_2016/</loc>
+    <loc>/summaries/lies_and_stats_levitin_2016/</loc>
     <lastmod>2019-08-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/books/</loc>
-    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/books/doughtnut_economics/</loc>
+    <loc>/summaries/doughtnut_economics/</loc>
     <lastmod>2019-08-10T00:00:00+00:00</lastmod>
   </url>
   
@@ -36,7 +30,13 @@
   </url>
   
   <url>
-    <loc>/books/origin_of_wealth/</loc>
+    <loc>/summaries/</loc>
+    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/summaries/origin_of_wealth/</loc>
     <lastmod>2019-08-10T00:00:00+00:00</lastmod>
   </url>
   

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>MitchThinks</title>
-    <link>/</link>
-    <description>Recent content on MitchThinks</description>
+    <title>Summaries on MitchThinks</title>
+    <link>/summaries/</link>
+    <description>Recent content in Summaries on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 10 Aug 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/summaries/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -33,19 +33,6 @@ Goal: GDP growth \(\rightarrow\) The Doughnut.   Summarise chapter.  Big Picture
     </item>
     
     <item>
-      <title>Lizards &amp; Rock, Paper, Scissors: Agent-based modelling*</title>
-      <link>/interests/abm_intro/</link>
-      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/interests/abm_intro/</guid>
-      <description>Rock, paper, scissors Side Blotched Lizards Agent-based modeling   This article was inspired by this post, which I attempted to recreate and extend.
-If you want to see the full code for this post then you can find the .Rmd file here.
-Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.
-Simple Game Rules:
- Individuals are organised on a lattice network.</description>
-    </item>
-    
-    <item>
       <title>The Origin of Wealth: Complexity Economics - Beinhocker 2007*</title>
       <link>/summaries/origin_of_wealth/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
@@ -54,26 +41,6 @@ Simple Game Rules:
       <description>Summary 1st difference: Dynamics 2nd difference: Agents 3rd difference: Networks 4th difference: Emergence 5th difference: Evolution   If you want to see the code for this post then you can find the .Rmd file here.
 Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
 Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation).</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>The Site Education Employment   The Site I built the site using the R package blogdown for a few reasons:
- To learn the (very) basics of web development. To post book summaries to encourage myself to read (and actually think about what I’ve read). To use R for something that didn’t feel like work.  The site is still very much a work-in-progress (unfinished articles are marked with a *) but is broadly split into two sections:</description>
-    </item>
-    
-    <item>
-      <title>Contact</title>
-      <link>/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/contact/</guid>
-      <description>Contact me via any of the interactive icons on the homepage.
-I’ll probably be most reponsive if you send me a message on LinkedIn.</description>
     </item>
     
   </channel>
