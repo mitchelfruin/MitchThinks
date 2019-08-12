@@ -127,6 +127,8 @@ However, the apparent spike in burglaries is just an artefact of the fact that 5
 
 ## Elongated
 
+Discontinuous axes make a change look more extreme by removing values, but we can also exaggerate changes by adding in irrelevant blank values. 
+
 Include axis space beyond the range of your data to make changes look more extreme. 
 
 ## Duplicate
