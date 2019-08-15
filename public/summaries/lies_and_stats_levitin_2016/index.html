@@ -11,11 +11,11 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="A Field Guide to Lies &amp; Stats - Levitin 2016*"/>
-<meta name="twitter:description" content="Summary Is the stat plausible? What does the average mean? Are the axes leading you astray? Dodgy reporting Probably not quite right   If you want to see the full code for this post then you can find the .Rmd file here.
+<meta name="twitter:description" content="Summary Is the stat plausible? What does the average mean? Are the axes leading you astray? Dodgy reporting   If you want to see the full code for this post then you can find the .Rmd file here.
 Summary Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning why the human brain is ‘fooled’ by particular ways of presenting information rather than just what those presentations are."/>
 
     <meta property="og:title" content="A Field Guide to Lies &amp; Stats - Levitin 2016*" />
-<meta property="og:description" content="Summary Is the stat plausible? What does the average mean? Are the axes leading you astray? Dodgy reporting Probably not quite right   If you want to see the full code for this post then you can find the .Rmd file here.
+<meta property="og:description" content="Summary Is the stat plausible? What does the average mean? Are the axes leading you astray? Dodgy reporting   If you want to see the full code for this post then you can find the .Rmd file here.
 Summary Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning why the human brain is ‘fooled’ by particular ways of presenting information rather than just what those presentations are." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/summaries/lies_and_stats_levitin_2016/" />
@@ -115,11 +115,10 @@ Summary Levitin provides a solid compilation of mistakes to avoid and tricks to 
 <li><a href="#what-does-the-average-mean">What does the average mean?</a></li>
 <li><a href="#are-the-axes-leading-you-astray">Are the axes leading you astray?</a></li>
 <li><a href="#dodgy-reporting">Dodgy reporting</a></li>
-<li><a href="#probably-not-quite-right">Probably not quite right</a></li>
 </ul>
 </div>
 
-<p>If you want to see the full code for this post then you can find the .Rmd file <a href="https://github.com/mitchelfruin/MitchThinks/blob/master/content/books/lies_and_stats_Levitin_2016.Rmd">here</a>.</p>
+<p>If you want to see the full code for this post then you can find the .Rmd file <a href="https://github.com/mitchelfruin/MitchThinks/blob/master/content/summaries/lies_and_stats_Levitin_2016.Rmd">here</a>.</p>
 <div id="summary" class="section level1">
 <h1>Summary</h1>
 <p>Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning <em>why</em> the human brain is ‘fooled’ by particular ways of presenting information rather than just <em>what</em> those presentations are.</p>
@@ -181,7 +180,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   coord_cartesian(ylim = c(67.5, 71.5)) +
   theme_minimal() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
-<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/truncated%20bar%20chart-1.png" width="672" /></p>
+<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/truncated%20bar%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It looks like my product blows my competitor’s out of the water. However, notice where the y-axis starts and ends.</p>
 <p>If we’re being strict, the y-axis should include the full range of values that customers were able to provide (it should at the very least include 0 if that’s a possible value). Once we properly format the graph my product looks a little less impressive:</p>
 <pre class="r"><code># Bar chart with truncated y-axis
@@ -191,7 +190,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   scale_y_continuous(&quot;Customer\nRating&quot;, limits = c(0, 100)) +
   theme_minimal() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
-<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/full%20range%20bar%20chart-1.png" width="672" /></p>
+<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/full%20range%20bar%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="discontinuous" class="section level2">
 <h2>Discontinuous</h2>
@@ -204,13 +203,30 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   scale_y_continuous(&quot;Burglary\nCount&quot;) +
   theme_minimal() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
-<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/discontinuous%20line%20graph-1.png" width="672" /></p>
-<p>However, the apparent spike in burglaries is just an artefact of the fact that 5 year’s worth of increase has been squeezed into one notch on the x-axis.</p>
+<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/discontinuous%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>However, the apparent spike in burglaries is just an artefact of the fact that 5 year’s worth of increases have been squeezed into one notch on the x-axis.</p>
 </div>
 <div id="elongated" class="section level2">
 <h2>Elongated</h2>
-<p>Discontinuous axes make a change look more extreme by removing values, but we can also exaggerate changes by adding in irrelevant blank values.</p>
-<p>Include axis space beyond the range of your data to make changes look more extreme.</p>
+<p>Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by adding in irrelevant blank values.</p>
+<p>For example, take a similar line graph to the one discussed above. If we plot the graph without any trickery then the data seem to show a steady increase in the number of burglaries:</p>
+<pre class="r"><code>tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
+  ggplot(aes(x = Year, y = burglary_count)) +
+  geom_line(group = 1) +
+  scale_y_continuous(&quot;Burglary\nCount&quot;) +
+  scale_x_continuous(breaks = c(2009, 2011, 2013, 2015, 2017, 2019)) +
+  theme_minimal() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
+<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/normal%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>However, we can make the same data look much more extreme by including space on the x-axis for years without any data. This narrows the visual space over which the increase in our data must be plotted meaning the line is steeper. Thus, the same increase over the same timespan looks much more drastic:</p>
+<pre class="r"><code>tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
+  ggplot(aes(x = Year, y = burglary_count)) +
+  geom_line(group = 1) +
+  scale_y_continuous(&quot;Burglary\nCount&quot;) +
+  coord_cartesian(xlim = c(2004, 2024)) +
+  theme_minimal() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
+<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/elongated%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /> Include axis space beyond the range of your data to make changes look more extreme.</p>
 </div>
 <div id="duplicate" class="section level2">
 <h2>Duplicate</h2>
@@ -235,26 +251,6 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <h2>Comparing apples and oranges</h2>
 <p><strong>Amalgamating</strong>: group samples that differ on an important dimension to make the stat more shocking. “50% of 10-18 year olds are sexually active”.</p>
 <p><strong>Subdividing</strong>: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).</p>
-</div>
-</div>
-<div id="probably-not-quite-right" class="section level1">
-<h1>Probably not quite right</h1>
-<div id="conditional-probabilities" class="section level2">
-<h2>Conditional probabilities</h2>
-<p>Sometimes probability is unintuitive. Birthday puzzle.</p>
-<p><strong>Types.</strong> Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess.</p>
-<p><strong>Independent probabilities.</strong> Should multiply.</p>
-<p><strong>Dependent/Conditional probabilities.</strong> Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there’s 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise Bayesian updating with a contingency table. Base rate neglect in medical test results.</p>
-</div>
-<div id="the-prosecutors-fallacy" class="section level2">
-<h2>The prosecutor’s fallacy</h2>
-<p><strong>Prosecutor’s fallacy:</strong> False belief that conditional probabilities are invertible when in fact they aren’t.</p>
-<p><span class="math display">\[Pr(A|B) \neq Pr(B|A)\]</span></p>
-<p>Forensics may compute that probability of blood at scene matching the defendent’s by chance is 1%. That doesn’t mean there’s a 1% chance the defendent is innocent. We have been told the probability of a match given innocence, we want the probability of innocence given a match, but they don’t equate:</p>
-<p><span class="math display">\[Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})\]</span></p>
-</div>
-<div id="bayesian-updating" class="section level2">
-<h2>Bayesian updating</h2>
 </div>
 </div>
 
