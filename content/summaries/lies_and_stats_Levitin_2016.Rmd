@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
 
 # Packages
 library(tidyverse)
@@ -83,7 +83,7 @@ Shortening the proper range of y-axis values is often used to exaggerate the dif
 
 For example, if I wanted to convince you that my product was way better than a competitor's I might show you a bar chart reporting the average customer rating like this:
 
-```{r truncated bar chart, fig.align='center'}
+```{r truncated bar chart}
 # Bar chart with truncated y-axis
 ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   geom_col() +
@@ -98,7 +98,7 @@ It looks like my product blows my competitor's out of the water. However, notice
 
 If we're being strict, the y-axis should include the full range of values that customers were able to provide (it should at the very least include 0 if that's a possible value). Once we properly format the graph my product looks a little less impressive:
 
-```{r full range bar chart, fig.align='center'}
+```{r full range bar chart}
 # Bar chart with truncated y-axis
 ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   geom_col() +
@@ -114,7 +114,7 @@ Condensing a small portion of the x-axis can be used to falsely emphasise a few 
 
 For example, say I'm selling security systems and I want to put a scary graph on the leaflet I drop through people's letterboxes. I might include a line graph like this one that exaggerates the recent increase in the number of burglaries: 
 
-```{r discontinuous line graph, fig.align='center'}
+```{r discontinuous line graph}
 tibble(Year = c("2009", "2010", "2011", "2012", "2013", "2014", "2019"),
        burglary_count = c(100, 102.5, 105, 107.5, 110, 112.5, 125)) %>%
   ggplot(aes(x = Year, y = burglary_count)) +
@@ -132,7 +132,7 @@ Discontinuous axes make a change look more extreme by removing some values, but 
 
 For example, take a similar line graph to the one discussed above. If we plot the graph without any trickery then the data seem to show a steady increase in the number of burglaries: 
 
-```{r normal line graph, fig.align='center'}
+```{r normal line graph}
 tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
   ggplot(aes(x = Year, y = burglary_count)) +
   geom_line(group = 1) +
@@ -144,7 +144,7 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
 
 However, we can make the same data look much more extreme by including space on the x-axis for years without any data. This narrows the visual space over which the increase in our data must be plotted meaning the line is steeper. Thus, the same increase over the same timespan looks much more drastic:
 
-```{r elongated line graph, fig.align='center'}
+```{r elongated line graph}
 tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
   ggplot(aes(x = Year, y = burglary_count)) +
   geom_line(group = 1) +
