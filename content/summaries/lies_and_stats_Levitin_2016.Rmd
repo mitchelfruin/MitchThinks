@@ -26,7 +26,7 @@ If you want to see the full code for this post then you can find the .Rmd file [
 
 Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in  psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning *why* the human brain is 'fooled' by particular ways of presenting information rather than just *what* those presentations are.
 
-The book's main strength was illustrative examples some of which stuck in my mind and comprise the rest of this post.
+The book's main strength was illustrative examples some of which comprise the rest of this post.
 
 # Is the stat plausible?
 
@@ -192,7 +192,7 @@ There are still problems with this graph (just plotting two time series and look
 
 # Dogdy reporting 
 
-Nothing technically wrong with the implementation, but plenty wrong with the implications.
+A few miscellaneous tactics that people use to fudge their reporting. 
 
 ## Hiding a decrease in the cumulative
 
