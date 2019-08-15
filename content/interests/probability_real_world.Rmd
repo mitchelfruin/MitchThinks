@@ -9,7 +9,12 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+# Rmarkdown
 knitr::opts_chunk$set(echo = TRUE)
+
+# Packages
+library(tidyverse)
+library(waffle) # Need to add Font Awesome using extrafont::
 ```
 
 # Probability 101
@@ -61,6 +66,30 @@ $$Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})$$
 # Health problems
 
 ## Base rate neglect
+
+Disease with 5% prevalence. Test is 95% accurate. 
+
+Say 100 people in our population. 5% prevalence means 5 people have the disease, 95 don't. If we tested everyone in our population then 95% accucuracy means:
+
+* From the 5 people with the disease, we'll get 4.75 true positive results
+* From the 95 people with the disease, we'll get 4.75 false positive results
+
+So, given a positive result the probability you have the disease is:
+
+$$\begin{aligned}
+\text{Pr}(D|+) &= \frac{\text{True pos.}}{\text{Total pos.}} \\
+&= \frac{47.5}{47.5 + 47.5} \\
+&= 0.5
+\end{aligned}$$
+
+```{r base rate neglect}
+example <- c("True pos" = 4.75, "False pos" = 4.75, "True neg" = 90.25, "False neg" = .25)
+
+waffle(example)
+
+parts <- c(80, 30, 20, 10)
+waffle(parts, rows=8)
+```
 
 # Research problems
 
