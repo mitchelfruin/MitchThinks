@@ -6,10 +6,23 @@
     <description>Recent content on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 10 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Probability in the real world</title>
+      <link>/interests/probability_real_world/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/interests/probability_real_world/</guid>
+      <description>Probability 101 Legal problems Health problems Research problems Statistical cognition   Probability 101 Types of probability Types. Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess.
+ Types of events Independent probabilities. Should multiply.
+Conditional probabilities. Should use Bayes law.
+ Puzzles Sometimes probability is unintuitive. Birthday puzzle.
+  Legal problems Ignoring dependence Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there’s 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it.</description>
+    </item>
     
     <item>
       <title>A Field Guide to Lies &amp; Stats - Levitin 2016*</title>
