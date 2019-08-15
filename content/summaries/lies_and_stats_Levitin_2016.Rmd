@@ -66,9 +66,6 @@ These kind of 'wait, but we're still talking about the real world' checks can so
 
 ## Mean, median and mode
 
-## All averages aren't made equal
-
-Relative percentage change vs. absolute percentage change (i.e. percentage points) vs. natural frequencies. 
 
 ## Bimodal distributions
 

@@ -11,17 +11,27 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Probably not quite right
+# Probability 101
 
-## Conditional probabilities
-
-Sometimes probability is unintuitive. Birthday puzzle. 
+## Types of probability
 
 **Types.** Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess. 
 
+## Types of events
+
 **Independent probabilities.** Should multiply. 
 
-**Dependent/Conditional probabilities.** Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there's 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise Bayesian updating with a contingency table. Base rate neglect in medical test results. 
+**Conditional probabilities.** Should use Bayes law. 
+
+## Puzzles
+
+Sometimes probability is unintuitive. Birthday puzzle. 
+
+# Legal problems
+
+## Ignoring dependence
+
+Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there's 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise Bayesian updating with a contingency table. Base rate neglect in medical test results. 
 
 ## The prosecutor's fallacy
 
@@ -33,4 +43,14 @@ Forensics may compute that probability of blood at scene matching the defendent'
 
 $$Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})$$
 
-## Bayesian updating
+# Health problems
+
+## Base rate neglect
+
+# Research problems
+
+# Statistical cognition
+
+## All averages aren't made equal
+
+Relative percentage change vs. absolute percentage change (i.e. percentage points) vs. natural frequencies. 
