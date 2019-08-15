@@ -178,7 +178,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   scale_fill_discrete(guide = &quot;none&quot;) +
   scale_y_continuous(&quot;Customer\nRating&quot;) +
   coord_cartesian(ylim = c(67.5, 71.5)) +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
 <p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/truncated%20bar%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It looks like my product blows my competitor’s out of the water. However, notice where the y-axis starts and ends.</p>
@@ -188,7 +188,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   geom_col() +
   scale_fill_discrete(guide = &quot;none&quot;) +
   scale_y_continuous(&quot;Customer\nRating&quot;, limits = c(0, 100)) +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
 <p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/full%20range%20bar%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
@@ -201,7 +201,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   ggplot(aes(x = Year, y = burglary_count)) +
   geom_line(group = 1) +
   scale_y_continuous(&quot;Burglary\nCount&quot;) +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
 <p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/discontinuous%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>However, the apparent spike in burglaries is just an artefact of the fact that 5 year’s worth of increases have been squeezed into one notch on the x-axis.</p>
@@ -215,7 +215,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   geom_line(group = 1) +
   scale_y_continuous(&quot;Burglary\nCount&quot;) +
   scale_x_continuous(breaks = c(2009, 2011, 2013, 2015, 2017, 2019)) +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
 <p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/normal%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>However, we can make the same data look much more extreme by including space on the x-axis for years without any data. This narrows the visual space over which the increase in our data must be plotted meaning the line is steeper. Thus, the same increase over the same timespan looks much more drastic:</p>
@@ -224,7 +224,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   geom_line(group = 1) +
   scale_y_continuous(&quot;Burglary\nCount&quot;) +
   coord_cartesian(xlim = c(2004, 2024)) +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
 <p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/elongated%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /> Include axis space beyond the range of your data to make changes look more extreme.</p>
 </div>

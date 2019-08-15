@@ -91,7 +91,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   scale_fill_discrete(guide = "none") +
   scale_y_continuous("Customer\nRating") +
   coord_cartesian(ylim = c(67.5, 71.5)) +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
@@ -105,7 +105,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   geom_col() +
   scale_fill_discrete(guide = "none") +
   scale_y_continuous("Customer\nRating", limits = c(0, 100)) +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
@@ -121,7 +121,7 @@ tibble(Year = c("2009", "2010", "2011", "2012", "2013", "2014", "2019"),
   ggplot(aes(x = Year, y = burglary_count)) +
   geom_line(group = 1) +
   scale_y_continuous("Burglary\nCount") +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
@@ -139,7 +139,7 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
   geom_line(group = 1) +
   scale_y_continuous("Burglary\nCount") +
   scale_x_continuous(breaks = c(2009, 2011, 2013, 2015, 2017, 2019)) +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
@@ -151,7 +151,7 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
   geom_line(group = 1) +
   scale_y_continuous("Burglary\nCount") +
   coord_cartesian(xlim = c(2004, 2024)) +
-  theme_minimal() +
+  theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 Include axis space beyond the range of your data to make changes look more extreme. 
