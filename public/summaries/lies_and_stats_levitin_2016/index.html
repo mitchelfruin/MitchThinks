@@ -208,7 +208,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 </div>
 <div id="elongated" class="section level2">
 <h2>Elongated</h2>
-<p>Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by adding in irrelevant blank values.</p>
+<p>Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by elongating an axis using irrelevant blank values.</p>
 <p>For example, take a similar line graph to the one discussed above. If we plot the graph without any trickery then the data seem to show a steady increase in the number of burglaries:</p>
 <pre class="r"><code>tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
   ggplot(aes(x = Year, y = burglary_count)) +
@@ -231,6 +231,23 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <div id="duplicate" class="section level2">
 <h2>Duplicate</h2>
 <p>If they measure the same thing then you can fudge the graph however you want. Only use if they’re different units and you want to make within axis comparisons not between. E.g. planned parenthood Jason Chaffetz.</p>
+<div class="figure">
+<img src="/images/double_y_axis.jpeg" alt="Alt text" />
+<p class="caption">Alt text</p>
+</div>
+<pre class="r"><code>tibble(Year = c(2006, 2013), 
+       Cancer = c(2007371, 935573), 
+       Abortions = c(289750, 327000)) %&gt;%
+  melt(id.vars = &quot;Year&quot;) %&gt;%
+  ggplot(aes(x = Year, y = value, col = variable)) +
+  geom_line(arrow = arrow(length = unit(0.15, &quot;inches&quot;), type = &quot;closed&quot;)) +
+  scale_y_continuous(&quot;Freq.&quot;, labels = scales::comma) +
+  scale_x_continuous(breaks = c(2006:2013)) +
+  scale_color_manual(&quot;Procedure\nPurpose&quot;,
+                     values = c(&quot;Cancer&quot; = &quot;#FF96A7&quot;, &quot;Abortions&quot; = &quot;red&quot;)) +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
+<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/planned%20parenthood-1.png" width="672" /></p>
 </div>
 </div>
 <div id="dodgy-reporting" class="section level1">

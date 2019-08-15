@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Packages
 library(tidyverse)
+library(reshape2)
 
 # Data
 product_ratings <- tibble(Product = c("Mine", "Competitor's"),
@@ -127,7 +128,7 @@ However, the apparent spike in burglaries is just an artefact of the fact that 5
 
 ## Elongated
 
-Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by adding in irrelevant blank values. 
+Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by elongating an axis using irrelevant blank values. 
 
 For example, take a similar line graph to the one discussed above. If we plot the graph without any trickery then the data seem to show a steady increase in the number of burglaries: 
 
@@ -157,6 +158,23 @@ Include axis space beyond the range of your data to make changes look more extre
 ## Duplicate
 
 If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood Jason Chaffetz. 
+
+![Alt text](/images/double_y_axis.jpeg)
+
+```{r planned parenthood}
+tibble(Year = c(2006, 2013), 
+       Cancer = c(2007371, 935573), 
+       Abortions = c(289750, 327000)) %>%
+  melt(id.vars = "Year") %>%
+  ggplot(aes(x = Year, y = value, col = variable)) +
+  geom_line(arrow = arrow(length = unit(0.15, "inches"), type = "closed")) +
+  scale_y_continuous("Freq.", labels = scales::comma) +
+  scale_x_continuous(breaks = c(2006:2013)) +
+  scale_color_manual("Procedure\nPurpose",
+                     values = c("Cancer" = "#FF96A7", "Abortions" = "red")) +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+```
 
 # Dodgy reporting 
 
