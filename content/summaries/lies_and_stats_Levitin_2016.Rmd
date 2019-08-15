@@ -179,7 +179,9 @@ tibble(Year = c(2006, 2013),
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
-# Dodgy reporting 
+# Dogdy reporting 
+
+Nothing technically wrong with the implementation, but plenty wrong with the implications.
 
 ## Hiding a decrease in the cumulative
 
