@@ -131,10 +131,12 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 </div>
 <div id="duplicate-axes" class="section level2">
 <h2><span class="header-section-number">4.4</span> Duplicate axes</h2>
-<p>If they measure the same thing then you can fudge the graph however you want. Only use if they’re different units and you want to make within axis comparisons not between. E.g. planned parenthood Jason Chaffetz.</p>
+<p>Duplicating the y-axis allows you to tell any story you fancy with the data. If they measure the same thing then you can fudge the graph however you want. A prominent example of this kind of manipulation is a graph presented by U.S. Representative Jason Chaffetz during a hearing on planned parenthood:</p>
 <center>
-<img src="/images/double_y_axis.jpeg" alt="Alt text" />
+<img src="/images/double_y_axis.jpeg" alt="Jason Chaffetz’s graphical car crash" />
 </center>
+<p>A good general rule is ‘when you want to use a double y-axis, use two graphs instead’. There are some instances when it’s defensible, I like a <a href="https://duckduckgo.com/?q=pareto+chart&amp;t=ffab&amp;atb=v170-1&amp;iax=images&amp;ia=images">pareto chart</a> as much as the next guy, if you’re using two different measures (i.e. different units) and only making ‘within-axis’ comparisons (rather than just shifting the left-hand y-axis up or down and to make your point).</p>
+<p>If we plot Chaffetz’s chart properly it looks a little less like doctors are too busy with abortions to treat cancer:</p>
 <pre class="r"><code>tibble(Year = c(2006, 2013), 
        Cancer = c(2007371, 935573), 
        Abortions = c(289750, 327000)) %&gt;%
@@ -148,6 +150,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
 <p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/planned%20parenthood-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>There are still problems with this graph (just plotting two time series and looking for a relationship is setting yourself up to overinterpret a <a href="http://www.tylervigen.com/spurious-correlations">spurious correlation</a>) but it’s better than before.</p>
 </div>
 </div>
 <div id="dogdy-reporting" class="section level1">

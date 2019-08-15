@@ -158,11 +158,15 @@ Include axis space beyond the range of your data to make changes look more extre
 
 ## Duplicate axes
 
-If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood Jason Chaffetz. 
+Duplicating the y-axis allows you to tell any story you fancy with the data. If they measure the same thing then you can fudge the graph however you want. A prominent example of this kind of manipulation is a graph presented by U.S. Representative Jason Chaffetz during a hearing on planned parenthood:
 
 <center>
-![Alt text](/images/double_y_axis.jpeg)
+![Jason Chaffetz's graphical car crash](/images/double_y_axis.jpeg)
 </center>
+
+A good general rule is 'when you want to use a double y-axis, use two graphs instead'. There are some instances when it's defensible, I like a [pareto chart](https://duckduckgo.com/?q=pareto+chart&t=ffab&atb=v170-1&iax=images&ia=images) as much as the next guy, if you're using two different measures (i.e. different units) and only making 'within-axis' comparisons (rather than just shifting the left-hand y-axis up or down and to make your point). 
+
+If we plot Chaffetz's chart properly it looks a little less like doctors are too busy with abortions to treat cancer:
 
 ```{r planned parenthood}
 tibble(Year = c(2006, 2013), 
@@ -178,6 +182,8 @@ tibble(Year = c(2006, 2013),
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
+
+There are still problems with this graph (just plotting two time series and looking for a relationship is setting yourself up to overinterpret a [spurious correlation](http://www.tylervigen.com/spurious-correlations)) but it's better than before.
 
 # Dogdy reporting 
 
