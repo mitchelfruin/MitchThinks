@@ -5,6 +5,7 @@ output:
   blogdown::html_page:
     toc: true
     toc_depth: 1
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
@@ -77,7 +78,7 @@ Humans on average have one testicle. Meaningless to compute an average on a metr
 
 Manipulating the axes on a graph is one of the easiest ways to con a reader. 
 
-## Truncated
+## Truncated axes
 
 Shortening the proper range of y-axis values is often used to exaggerate the difference between two groups that are being compared.
 
@@ -108,7 +109,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
-## Discontinuous
+## Discontinuous axes
 
 Condensing a small portion of the x-axis can be used to falsely emphasise a few data points. 
 
@@ -126,7 +127,7 @@ tibble(Year = c("2009", "2010", "2011", "2012", "2013", "2014", "2019"),
 
 However, the apparent spike in burglaries is just an artefact of the fact that 5 year's worth of increases have been squeezed into one notch on the x-axis. 
 
-## Elongated
+## Elongated axes
 
 Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by elongating an axis using irrelevant blank values. 
 
@@ -155,11 +156,13 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
 ```
 Include axis space beyond the range of your data to make changes look more extreme. 
 
-## Duplicate
+## Duplicate axes
 
 If they measure the same thing then you can fudge the graph however you want. Only use if they're different units and you want to make within axis comparisons not between. E.g. planned parenthood Jason Chaffetz. 
 
+<center>
 ![Alt text](/images/double_y_axis.jpeg)
+</center>
 
 ```{r planned parenthood}
 tibble(Year = c(2006, 2013), 
