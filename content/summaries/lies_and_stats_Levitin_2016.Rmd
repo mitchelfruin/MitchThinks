@@ -106,7 +106,8 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   scale_fill_discrete(guide = "none") +
   scale_y_continuous("Customer\nRating", limits = c(0, 100)) +
   theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())
 ```
 
 ## Discontinuous axes
@@ -122,7 +123,8 @@ tibble(Year = c("2009", "2010", "2011", "2012", "2013", "2014", "2019"),
   geom_line(group = 1) +
   scale_y_continuous("Burglary\nCount") +
   theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())
 ```
 
 However, the apparent spike in burglaries is just an artefact of the fact that 5 year's worth of increases have been squeezed into one notch on the x-axis. 
@@ -140,7 +142,8 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
   scale_y_continuous("Burglary\nCount") +
   scale_x_continuous(breaks = c(2009, 2011, 2013, 2015, 2017, 2019)) +
   theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())
 ```
 
 However, we can make the same data look much more extreme by including space on the x-axis for years without any data. This narrows the visual space over which the increase in our data must be plotted meaning the line is steeper. Thus, the same increase over the same timespan looks much more drastic:
@@ -152,7 +155,8 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
   scale_y_continuous("Burglary\nCount") +
   coord_cartesian(xlim = c(2004, 2024)) +
   theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())
 ```
 Include axis space beyond the range of your data to make changes look more extreme. 
 
@@ -180,7 +184,8 @@ tibble(Year = c(2006, 2013),
   scale_color_manual("Procedure\nPurpose",
                      values = c("Cancer" = "#FF96A7", "Abortions" = "red")) +
   theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())
 ```
 
 There are still problems with this graph (just plotting two time series and looking for a relationship is setting yourself up to overinterpret a [spurious correlation](http://www.tylervigen.com/spurious-correlations)) but it's better than before.
