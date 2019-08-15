@@ -12,16 +12,13 @@
     
     
     <item>
-      <title>Probability in the real world</title>
+      <title>Probability in the real world*</title>
       <link>/interests/probability_real_world/</link>
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/interests/probability_real_world/</guid>
-      <description>Probability 101 Legal problems Health problems Research problems Statistical cognition   Probability 101 Types of probability Types. Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess.
- Types of events Independent probabilities. Should multiply.
-Conditional probabilities. Should use Bayes law.
- Puzzles Sometimes probability is unintuitive. Birthday puzzle.
-  Legal problems Ignoring dependence Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there’s 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it.</description>
+      <description>1 Probability 101 2 Legal problems 3 Health problems 4 Research problems 5 Statistical cognition   1 Probability 101 1.1 Probability vs. Statistics Probability: Use known state of the world to predict the data we should observe.
+ I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data).  Statistics: Use data we have observed to infer the most likely state of the world.</description>
     </item>
     
     <item>

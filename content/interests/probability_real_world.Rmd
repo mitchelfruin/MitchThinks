@@ -1,10 +1,11 @@
 ---
-title: "Probability in the real world"
+title: "Probability in the real world*"
 date: "2019-08-15"
 output:
   blogdown::html_page:
     toc: true
     toc_depth: 1
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
@@ -13,15 +14,29 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Probability 101
 
+## Probability vs. Statistics
+
+Probability: Use known state of the world to predict the data we should observe.
+
+* I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data). 
+
+Statistics: Use data we have observed to infer the most likely state of the world. 
+
+* I flipped a coin 100 times and got 52 heads and 48 tails (observed data), I'm pretty sure that I have a fair coin (inferred state of the world). 
+
 ## Types of probability
 
-**Types.** Classic, based on symmetry. Frequentist, based on experience. Subjective, based on best guess. 
+Classic, based on symmetry. 
+
+Frequentist, based on experience. 
+
+Subjective, based on best guess. 
 
 ## Types of events
 
 **Independent probabilities.** Should multiply. 
 
-**Conditional probabilities.** Should use Bayes law. 
+**Conditional probabilities.** Should use Bayes law. Visualise Bayesian updating with a contingency table/ infographic. 
 
 ## Puzzles
 
@@ -35,7 +50,7 @@ Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said ther
 
 ## The prosecutor's fallacy
 
-**Prosecutor's fallacy:** False belief that conditional probabilities are invertible when in fact they aren't.
+**Prosecutor's fallacy:** False belief that conditional probabilities are invertible.
 
 $$Pr(A|B) \neq Pr(B|A)$$
 
@@ -50,6 +65,10 @@ $$Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})$$
 # Research problems
 
 # Statistical cognition
+
+## The linda problem
+
+Extra example of how we are intuitive statisticians. 
 
 ## All averages aren't made equal
 
