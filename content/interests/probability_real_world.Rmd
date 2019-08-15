@@ -46,7 +46,7 @@ Sometimes probability is unintuitive. Birthday puzzle.
 
 ## Ignoring dependence
 
-Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there's 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years. Visualise Bayesian updating with a contingency table. Base rate neglect in medical test results. 
+Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there's 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years.
 
 ## The prosecutor's fallacy
 
