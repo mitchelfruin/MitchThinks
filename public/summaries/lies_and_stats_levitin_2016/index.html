@@ -179,7 +179,8 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   scale_y_continuous(&quot;Customer\nRating&quot;) +
   coord_cartesian(ylim = c(67.5, 71.5)) +
   theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))</code></pre>
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())</code></pre>
 <p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/truncated%20bar%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It looks like my product blows my competitor’s out of the water. However, notice where the y-axis starts and ends.</p>
 <p>If we’re being strict, the y-axis should include the full range of values that customers were able to provide (it should at the very least include 0 if that’s a possible value). Once we properly format the graph my product looks a little less impressive:</p>
@@ -230,7 +231,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
         panel.grid.major = element_line())</code></pre>
-<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/elongated%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /> Include axis space beyond the range of your data to make changes look more extreme.</p>
+<p><img src="/summaries/lies_and_stats_Levitin_2016_files/figure-html/elongated%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="duplicate-axes" class="section level2">
 <h2><span class="header-section-number">4.4</span> Duplicate axes</h2>
