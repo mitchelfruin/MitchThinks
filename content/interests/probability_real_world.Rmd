@@ -68,12 +68,25 @@ $$Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})$$
 
 ## Base rate neglect
 
-Disease with 5% prevalence. Test is 95% accurate. 
+Disease with 5% prevalence. Test is 95% accurate.
 
-Say 400 people in our population. 5% prevalence means 20 people have the disease, 380 don't. If we tested everyone in our population, then 95% accucuracy means:
+Let's unpack the two parts of the scenario using an example population of 400 people.
 
-* From the 20 people with the disease, we'll get 19 true positive results
-* From the 380 people with the disease, we'll get 19 false positive results
+Part 1: "The disease has a prevalence of 5%":
+
+* 5% of the 400 people have the disease $\rightarrow$ 20 people
+* 95% of the 400 people don't $\rightarrow$ 380 people
+
+Part 2: "The test is 95% accurate":
+
+* 95% of the 20 people with the disease will be correctly identified as positive $\rightarrow$ 19 people
+    + True positives
+* 5% of the 20 people with the disease will be incorrectly identified as negative $\rightarrow$ 1 person
+    + False negatives
+* 95% of the 380 people without the disease will be correctly identified as negative $\rightarrow$ 361 people
+    + True negatives
+* 5% of the 380 people without the disease will be incorrectly identified as positive $\rightarrow$ 19 people
+    + False positives
 
 So, given a positive result the probability you have the disease is:
 

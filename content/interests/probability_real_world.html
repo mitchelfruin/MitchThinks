@@ -67,10 +67,30 @@ output:
 <div id="base-rate-neglect" class="section level2">
 <h2><span class="header-section-number">3.1</span> Base rate neglect</h2>
 <p>Disease with 5% prevalence. Test is 95% accurate.</p>
-<p>Say 400 people in our population. 5% prevalence means 20 people have the disease, 380 don’t. If we tested everyone in our population, then 95% accucuracy means:</p>
+<p>Let’s unpack the two parts of the scenario using an example population of 400 people.</p>
+<p>Part 1: “The disease has a prevalence of 5%”:</p>
 <ul>
-<li>From the 20 people with the disease, we’ll get 19 true positive results</li>
-<li>From the 380 people with the disease, we’ll get 19 false positive results</li>
+<li>5% of the 400 people have the disease <span class="math inline">\(\rightarrow\)</span> 20 people</li>
+<li>95% of the 400 people don’t <span class="math inline">\(\rightarrow\)</span> 380 people</li>
+</ul>
+<p>Part 2: “The test is 95% accurate”:</p>
+<ul>
+<li>95% of the 20 people with the disease will be correctly identified as positive <span class="math inline">\(\rightarrow\)</span> 19 people
+<ul>
+<li>True positives</li>
+</ul></li>
+<li>5% of the 20 people with the disease will be incorrectly identified as negative <span class="math inline">\(\rightarrow\)</span> 1 person
+<ul>
+<li>False negatives</li>
+</ul></li>
+<li>95% of the 380 people without the disease will be correctly identified as negative <span class="math inline">\(\rightarrow\)</span> 361 people
+<ul>
+<li>True negatives</li>
+</ul></li>
+<li>5% of the 380 people without the disease will be incorrectly identified as positive <span class="math inline">\(\rightarrow\)</span> 19 people
+<ul>
+<li>False positives</li>
+</ul></li>
 </ul>
 <p>So, given a positive result the probability you have the disease is:</p>
 <p><span class="math display">\[\begin{aligned}
