@@ -18,19 +18,19 @@ library(reshape2)
 library(treemapify)
 
 # Data
-treemap_df <- tibble(group_name = c("True Positives",
-                                    "False Positives",
-                                    "True Negatives",
-                                    "False Negatives"),
+treemap_df <- tibble(group_name = c("True Pos.",
+                                    "False Pos.",
+                                    "True Neg.",
+                                    "False Neg."),
                      frequency = c(47.5, 47.5, 902.5, 2.5),
                      test_result = c("Positive", 
                                      "Positive",
                                      "Negative", 
                                      "Negative"),
-                     disease_status = c("Disease",
-                                        "Healthy",
-                                        "Healthy",
-                                        "Disease"),
+                     disease_status = c("ILL",
+                                        "HEALTHY",
+                                        "HEALTHY",
+                                        "ILL"),
                      decision = c("Correct", 
                                   "Incorrect",
                                   "Correct",
@@ -109,6 +109,28 @@ Part 2: "The test is 95% accurate":
     + 5% of them will be incorrectly identified as positive $\rightarrow$ 19 people
         - False positives
 
+```{r base rate neglect, fig.height=16, fig.width=20}
+# Treemap
+ggplot(treemap_df, aes(area = frequency, 
+                       label = group_name,
+                       fill = test_result,
+                       subgroup = disease_status),
+       start = "topright") +
+  geom_treemap() +
+  geom_treemap_text(aes(colour = decision),
+                    reflow = T,
+                    place = "centre",
+                    size = 40) +
+  geom_treemap_subgroup_text(size = 80, reflow = T) +
+  geom_treemap_subgroup_border(size = 10) +
+  scale_fill_manual("Test Result", values = c("Negative" = "#ff8b94",
+                                              "Positive" = "#a8e6cf")) +
+  scale_colour_manual(values = c("Correct" = "#00b159", "Incorrect" = "#d11141")) +
+  theme(legend.key.size = unit(0.75, "inches"),
+        legend.text = element_text(size = 16),
+        legend.title = element_text(size = 20))
+```
+
 So, given you receive a positive result the probability you actually have the disease is:
 
 $$\begin{aligned}
@@ -116,27 +138,6 @@ $$\begin{aligned}
 &= \frac{19}{19 + 19} \\
 &= 0.5
 \end{aligned}$$
-
-```{r base rate neglect}
-# Treemap
-ggplot(treemap_df, 
-       aes(area = frequency,
-           label = group_name,
-           fill = test_result,
-           subgroup = disease_status), 
-       start = "bottomleft") +
-  geom_treemap() +
-  geom_treemap_text(aes(colour = decision),
-                    grow = T, 
-                    place = "centre",
-                    min.size = 1) +
-  geom_treemap_subgroup_text(grow = F) +
-  scale_fill_manual("Test Result", 
-                    values = c("Negative" = "blue", 
-                               "Positive" = "yellow")) +
-  scale_colour_manual(values = c("Correct" = "green", 
-                                 "Incorrect" = "red"))
-```
 
 # Research problems
 
