@@ -10,12 +10,31 @@ output:
 
 ```{r setup, include=FALSE}
 # Rmarkdown
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
 
 # Packages
 library(tidyverse)
-library(waffle) # Need to add Font Awesome using extrafont::
 library(reshape2)
+library(treemapify)
+
+# Data
+treemap_df <- tibble(group_name = c("True Positives",
+                                    "False Positives",
+                                    "True Negatives",
+                                    "False Negatives"),
+                     frequency = c(47.5, 47.5, 902.5, 2.5),
+                     test_result = c("Positive", 
+                                     "Positive",
+                                     "Negative", 
+                                     "Negative"),
+                     disease_status = c("Disease",
+                                        "Healthy",
+                                        "Healthy",
+                                        "Disease"),
+                     decision = c("Correct", 
+                                  "Incorrect",
+                                  "Correct",
+                                  "Incorrect"))
 ```
 
 # Probability 101
@@ -99,25 +118,24 @@ $$\begin{aligned}
 \end{aligned}$$
 
 ```{r base rate neglect}
-# Waffle chart 400 people
-example <- c("True pos" = 19, "False pos" = 19, "True neg" = 361, "False neg" = 1)
-
-waffle(example,
-       rows = 20)
-
-# Bar chart 1000 people
-tibble(disease = c("Positive", "Negative"),
-       test_pos = c(47.5, 47.5),
-       test_neg = c(2.5, 902.5)) %>%
-  melt(id.vars = "disease") %>%
-  ggplot(aes(x = disease, y = value, fill = variable)) +
-  geom_col() +
-  scale_x_discrete("Disease\nStatus") +
-  scale_y_continuous("No. of People", limits = c(0, 1000)) +
-  coord_flip() +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())
+# Treemap
+ggplot(treemap_df, 
+       aes(area = frequency,
+           label = group_name,
+           fill = test_result,
+           subgroup = disease_status), 
+       start = "bottomleft") +
+  geom_treemap() +
+  geom_treemap_text(aes(colour = decision),
+                    grow = T, 
+                    place = "centre",
+                    min.size = 1) +
+  geom_treemap_subgroup_text(grow = F) +
+  scale_fill_manual("Test Result", 
+                    values = c("Negative" = "blue", 
+                               "Positive" = "yellow")) +
+  scale_colour_manual(values = c("Correct" = "green", 
+                                 "Incorrect" = "red"))
 ```
 
 # Research problems

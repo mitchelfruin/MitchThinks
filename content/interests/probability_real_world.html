@@ -104,26 +104,25 @@ output:
 &amp;= \frac{19}{19 + 19} \\
 &amp;= 0.5
 \end{aligned}\]</span></p>
-<pre class="r"><code># Waffle chart 400 people
-example &lt;- c(&quot;True pos&quot; = 19, &quot;False pos&quot; = 19, &quot;True neg&quot; = 361, &quot;False neg&quot; = 1)
-
-waffle(example,
-       rows = 20)</code></pre>
-<p><img src="/interests/probability_real_world_files/figure-html/base%20rate%20neglect-1.png" width="672" /></p>
-<pre class="r"><code># Bar chart 1000 people
-tibble(disease = c(&quot;Positive&quot;, &quot;Negative&quot;),
-       test_pos = c(47.5, 47.5),
-       test_neg = c(2.5, 902.5)) %&gt;%
-  melt(id.vars = &quot;disease&quot;) %&gt;%
-  ggplot(aes(x = disease, y = value, fill = variable)) +
-  geom_col() +
-  scale_x_discrete(&quot;Disease\nStatus&quot;) +
-  scale_y_continuous(&quot;No. of People&quot;, limits = c(0, 1000)) +
-  coord_flip() +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
-<p><img src="/interests/probability_real_world_files/figure-html/base%20rate%20neglect-2.png" width="672" /></p>
+<pre class="r"><code># Treemap
+ggplot(treemap_df, 
+       aes(area = frequency,
+           label = group_name,
+           fill = test_result,
+           subgroup = disease_status), 
+       start = &quot;bottomleft&quot;) +
+  geom_treemap() +
+  geom_treemap_text(aes(colour = decision),
+                    grow = T, 
+                    place = &quot;centre&quot;,
+                    min.size = 1) +
+  geom_treemap_subgroup_text(grow = F) +
+  scale_fill_manual(&quot;Test Result&quot;, 
+                    values = c(&quot;Negative&quot; = &quot;blue&quot;, 
+                               &quot;Positive&quot; = &quot;yellow&quot;)) +
+  scale_colour_manual(values = c(&quot;Correct&quot; = &quot;green&quot;, 
+                                 &quot;Incorrect&quot; = &quot;red&quot;))</code></pre>
+<p><img src="/interests/probability_real_world_files/figure-html/base%20rate%20neglect-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="research-problems" class="section level1">
