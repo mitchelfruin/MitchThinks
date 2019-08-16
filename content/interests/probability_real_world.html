@@ -66,6 +66,38 @@ output:
 <h1><span class="header-section-number">3</span> Health problems</h1>
 <div id="base-rate-neglect" class="section level2">
 <h2><span class="header-section-number">3.1</span> Base rate neglect</h2>
+<p>Disease with 5% prevalence. Test is 95% accurate.</p>
+<p>Say 400 people in our population. 5% prevalence means 20 people have the disease, 380 don’t. If we tested everyone in our population, then 95% accucuracy means:</p>
+<ul>
+<li>From the 20 people with the disease, we’ll get 19 true positive results</li>
+<li>From the 380 people with the disease, we’ll get 19 false positive results</li>
+</ul>
+<p>So, given a positive result the probability you have the disease is:</p>
+<p><span class="math display">\[\begin{aligned}
+\text{Pr}(D|+) &amp;= \frac{\text{True pos.}}{\text{Total pos.}} \\
+&amp;= \frac{19}{19 + 19} \\
+&amp;= 0.5
+\end{aligned}\]</span></p>
+<pre class="r"><code># Waffle chart 400 people
+example &lt;- c(&quot;True pos&quot; = 19, &quot;False pos&quot; = 19, &quot;True neg&quot; = 361, &quot;False neg&quot; = 1)
+
+waffle(example,
+       rows = 20)</code></pre>
+<p><img src="/interests/probability_real_world_files/figure-html/base%20rate%20neglect-1.png" width="672" /></p>
+<pre class="r"><code># Bar chart 1000 people
+tibble(disease = c(&quot;Positive&quot;, &quot;Negative&quot;),
+       test_pos = c(47.5, 47.5),
+       test_neg = c(2.5, 902.5)) %&gt;%
+  melt(id.vars = &quot;disease&quot;) %&gt;%
+  ggplot(aes(x = disease, y = value, fill = variable)) +
+  geom_col() +
+  scale_x_discrete(&quot;Disease\nStatus&quot;) +
+  scale_y_continuous(&quot;No. of People&quot;, limits = c(0, 1000)) +
+  coord_flip() +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())</code></pre>
+<p><img src="/interests/probability_real_world_files/figure-html/base%20rate%20neglect-2.png" width="672" /></p>
 </div>
 </div>
 <div id="research-problems" class="section level1">
@@ -75,7 +107,7 @@ output:
 <h1><span class="header-section-number">5</span> Statistical cognition</h1>
 <div id="the-linda-problem" class="section level2">
 <h2><span class="header-section-number">5.1</span> The linda problem</h2>
-<p>Extra example of how we are intuitive statisticians.</p>
+<p>Extra example of how we aren’t intuitive statisticians.</p>
 </div>
 <div id="all-averages-arent-made-equal" class="section level2">
 <h2><span class="header-section-number">5.2</span> All averages aren’t made equal</h2>

@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Packages
 library(tidyverse)
 library(waffle) # Need to add Font Awesome using extrafont::
+library(reshape2)
 ```
 
 # Probability 101
@@ -69,26 +70,39 @@ $$Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})$$
 
 Disease with 5% prevalence. Test is 95% accurate. 
 
-Say 100 people in our population. 5% prevalence means 5 people have the disease, 95 don't. If we tested everyone in our population then 95% accucuracy means:
+Say 400 people in our population. 5% prevalence means 20 people have the disease, 380 don't. If we tested everyone in our population, then 95% accucuracy means:
 
-* From the 5 people with the disease, we'll get 4.75 true positive results
-* From the 95 people with the disease, we'll get 4.75 false positive results
+* From the 20 people with the disease, we'll get 19 true positive results
+* From the 380 people with the disease, we'll get 19 false positive results
 
 So, given a positive result the probability you have the disease is:
 
 $$\begin{aligned}
 \text{Pr}(D|+) &= \frac{\text{True pos.}}{\text{Total pos.}} \\
-&= \frac{47.5}{47.5 + 47.5} \\
+&= \frac{19}{19 + 19} \\
 &= 0.5
 \end{aligned}$$
 
 ```{r base rate neglect}
-example <- c("True pos" = 4.75, "False pos" = 4.75, "True neg" = 90.25, "False neg" = .25)
+# Waffle chart 400 people
+example <- c("True pos" = 19, "False pos" = 19, "True neg" = 361, "False neg" = 1)
 
-waffle(example)
+waffle(example,
+       rows = 20)
 
-parts <- c(80, 30, 20, 10)
-waffle(parts, rows=8)
+# Bar chart 1000 people
+tibble(disease = c("Positive", "Negative"),
+       test_pos = c(47.5, 47.5),
+       test_neg = c(2.5, 902.5)) %>%
+  melt(id.vars = "disease") %>%
+  ggplot(aes(x = disease, y = value, fill = variable)) +
+  geom_col() +
+  scale_x_discrete("Disease\nStatus") +
+  scale_y_continuous("No. of People", limits = c(0, 1000)) +
+  coord_flip() +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())
 ```
 
 # Research problems
@@ -97,7 +111,7 @@ waffle(parts, rows=8)
 
 ## The linda problem
 
-Extra example of how we are intuitive statisticians. 
+Extra example of how we aren't intuitive statisticians. 
 
 ## All averages aren't made equal
 
