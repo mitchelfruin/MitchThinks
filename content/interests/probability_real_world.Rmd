@@ -79,16 +79,18 @@ Part 1: "The disease has a prevalence of 5%":
 
 Part 2: "The test is 95% accurate":
 
-* 95% of the 20 people with the disease will be correctly identified as positive $\rightarrow$ 19 people
-    + True positives
-* 5% of the 20 people with the disease will be incorrectly identified as negative $\rightarrow$ 1 person
-    + False negatives
-* 95% of the 380 people without the disease will be correctly identified as negative $\rightarrow$ 361 people
-    + True negatives
-* 5% of the 380 people without the disease will be incorrectly identified as positive $\rightarrow$ 19 people
-    + False positives
+* For the 20 people with the disease
+    + 95% of them will be correctly identified as positive $\rightarrow$ 19 people
+        - True positives
+    + 5% of them will be incorrectly identified as negative $\rightarrow$ 1 person
+        - False negatives
+* For the 380 people without the disease
+    + 95% of them will be correctly identified as negative $\rightarrow$ 361 people
+        - True negatives
+    + 5% of them will be incorrectly identified as positive $\rightarrow$ 19 people
+        - False positives
 
-So, given a positive result the probability you have the disease is:
+So, given you receive a positive result the probability you actually have the disease is:
 
 $$\begin{aligned}
 \text{Pr}(D|+) &= \frac{\text{True pos.}}{\text{Total pos.}} \\
