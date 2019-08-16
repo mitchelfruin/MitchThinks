@@ -66,33 +66,33 @@ output:
 <h1><span class="header-section-number">3</span> Health problems</h1>
 <div id="base-rate-neglect" class="section level2">
 <h2><span class="header-section-number">3.1</span> Base rate neglect</h2>
-<p>Disease with 5% prevalence. Test is 95% accurate.</p>
-<p>Let’s unpack the two parts of the scenario using an example population of 400 people.</p>
-<p>Part 1: “The disease has a prevalence of 5%”:</p>
+<p>Disease with 10% prevalence. Test is 90% accurate.</p>
+<p>Let’s unpack the two parts of the scenario using an example population of 100 people.</p>
+<p>Part 1: “The disease has a prevalence of 10%”:</p>
 <ul>
-<li>5% of the 400 people have the disease <span class="math inline">\(\rightarrow\)</span> 20 people</li>
-<li>95% of the 400 people don’t <span class="math inline">\(\rightarrow\)</span> 380 people</li>
+<li>10% of the 100 people have the disease <span class="math inline">\(\rightarrow\)</span> 10 people</li>
+<li>90% of the 100 people don’t <span class="math inline">\(\rightarrow\)</span> 90 people</li>
 </ul>
-<p>Part 2: “The test is 95% accurate”:</p>
+<p>Part 2: “The test is 90% accurate”:</p>
 <ul>
-<li>For the 20 people with the disease
+<li>For the 10 people with the disease
 <ul>
-<li>95% of them will be correctly identified as positive <span class="math inline">\(\rightarrow\)</span> 19 people
+<li>90% of them will be correctly identified as positive <span class="math inline">\(\rightarrow\)</span> 9 people
 <ul>
 <li>True positives</li>
 </ul></li>
-<li>5% of them will be incorrectly identified as negative <span class="math inline">\(\rightarrow\)</span> 1 person
+<li>10% of them will be incorrectly identified as negative <span class="math inline">\(\rightarrow\)</span> 1 person
 <ul>
 <li>False negatives</li>
 </ul></li>
 </ul></li>
-<li>For the 380 people without the disease
+<li>For the 90 people without the disease
 <ul>
-<li>95% of them will be correctly identified as negative <span class="math inline">\(\rightarrow\)</span> 361 people
+<li>90% of them will be correctly identified as negative <span class="math inline">\(\rightarrow\)</span> 81 people
 <ul>
 <li>True negatives</li>
 </ul></li>
-<li>5% of them will be incorrectly identified as positive <span class="math inline">\(\rightarrow\)</span> 19 people
+<li>10% of them will be incorrectly identified as positive <span class="math inline">\(\rightarrow\)</span> 9 people
 <ul>
 <li>False positives</li>
 </ul></li>
@@ -118,6 +118,38 @@ ggplot(treemap_df, aes(area = frequency,
         legend.text = element_text(size = 16),
         legend.title = element_text(size = 20))</code></pre>
 <p><img src="/interests/probability_real_world_files/figure-html/base%20rate%20neglect-1.png" width="1920" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Waffle chart 
+iron(
+  waffle(
+    c(&#39;Test positive&#39; = 19, &#39;Test negative&#39; = 1),
+    colors = c(&quot;black&quot;, &quot;grey70&quot;),
+    size = 0.5,
+    pad = 20,
+    legend_pos = &quot;none&quot;,
+    title = &quot;Ill&quot;
+  ),
+  waffle(
+    c(&#39;Test positive&#39; = 19, &#39;Test negative&#39; = 361),
+    colors = c(&quot;black&quot;, &quot;grey70&quot;),
+    size = 0.5,
+    legend_pos = &quot;bottom&quot;,
+    title = &quot;Healthy&quot;
+  )
+)</code></pre>
+<p><img src="/interests/probability_real_world_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(pictogram_df, aes(label = disease_status, values = frequency, colour = test_result)) +
+  geom_pictogram(n_rows = 10, flip = T) +
+  scale_colour_manual(name = &quot;Test Result&quot;,
+                      values = c(&quot;Positive&quot; = &quot;Red&quot;, &quot;Negative&quot; = &quot;Grey75&quot;)) +
+  scale_label_pictogram(name = NULL,
+                        values = c(&quot;Disease&quot; = &quot;user-md&quot;, &quot;Healthy&quot; = &quot;smile&quot;)) +
+  coord_equal() +
+  theme(panel.background = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.background = element_blank(),
+        legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/interests/probability_real_world_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>So, given you receive a positive result the probability you actually have the disease is:</p>
 <p><span class="math display">\[\begin{aligned}
 \text{Pr}(D|+) &amp;= \frac{\text{True pos.}}{\text{Total pos.}} \\
