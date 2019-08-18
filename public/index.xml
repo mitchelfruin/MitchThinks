@@ -17,8 +17,8 @@
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/interests/probability_real_world/</guid>
-      <description>1 Probability 101 2 Legal problems 3 Health problems 4 Research problems 5 Statistical cognition   1 Probability 101 1.1 Probability vs. Statistics Probability: Use known state of the world to predict the data we should observe.
- I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data).  Statistics: Use data we have observed to infer the most likely state of the world.</description>
+      <description>1 Probability refresher 2 Objection! Mathematical error your honour 3 Health problems 4 Scientists have discovered…   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Probability refresher 1.1 What even is it? Probability: Use known state of the world to predict the data we should observe.
+ I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data).</description>
     </item>
     
     <item>
@@ -43,16 +43,14 @@ Goal: GDP growth \(\rightarrow\) The Doughnut.   Summarise chapter.  Big Picture
     </item>
     
     <item>
-      <title>Lizards &amp; Rock, Paper, Scissors: Agent-based modelling*</title>
+      <title>Lizards playing rock, paper, scissors*</title>
       <link>/interests/abm_intro/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/interests/abm_intro/</guid>
-      <description>Rock, paper, scissors Side Blotched Lizards Agent-based modeling   This article was inspired by this post, which I attempted to recreate and extend.
+      <description>1 Rock, paper, scissors 2 Side Blotched Lizards 3 Agent-based modeling   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  This article was inspired by this post, which I attempted to recreate and extend.
 If you want to see the full code for this post then you can find the .Rmd file here.
-Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.
-Simple Game Rules:
- Individuals are organised on a lattice network.</description>
+1 Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.</description>
     </item>
     
     <item>

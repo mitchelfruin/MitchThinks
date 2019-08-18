@@ -8,6 +8,15 @@ output:
     number_sections: true
 ---
 
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+
 ```{r setup, include=FALSE}
 # Rmarkdown
 knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
@@ -56,9 +65,9 @@ pictogram_df <- tibble(group_name = c("True Pos.",
                                            "Incorrect"))
 ```
 
-# Probability 101
+# Probability refresher
 
-## Probability vs. Statistics
+## What even is it?
 
 Probability: Use known state of the world to predict the data we should observe.
 
@@ -68,7 +77,7 @@ Statistics: Use data we have observed to infer the most likely state of the worl
 
 * I flipped a coin 100 times and got 52 heads and 48 tails (observed data), I'm pretty sure that I have a fair coin (inferred state of the world). 
 
-## Types of probability
+**Types.**
 
 Classic, based on symmetry. 
 
@@ -76,21 +85,27 @@ Frequentist, based on experience.
 
 Subjective, based on best guess. 
 
-## Types of events
+## Probability problems
 
-**Independent probabilities.** Should multiply. 
+Probability can be unintuitive. 
 
-**Conditional probabilities.** Should use Bayes law. Visualise Bayesian updating with a contingency table/ infographic. 
+**The Linda problem.**
 
-## Puzzles
+**Birthday puzzle.**
 
-Sometimes probability is unintuitive. Birthday puzzle. 
+But these two examples are weird and contrived, why should you care? Well, it could win you your freedom or save your life. 
 
-# Legal problems
+# Objection! Mathematical error your honour 
+
+Problems in law. 
 
 ## Ignoring dependence
 
 Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there's 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years.
+
+Discuss independence vs. dependence here. 
+
+Introduce Bayes' rule. 
 
 ## The prosecutor's fallacy
 
@@ -102,7 +117,15 @@ Forensics may compute that probability of blood at scene matching the defendent'
 
 $$Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})$$
 
+## The Feynman conjecture 
+
+Paintball analogy. 
+
+Losing the lottery: Dutch nurse example. 
+
 # Health problems
+
+Problems in medicine. 
 
 ## Base rate neglect
 
@@ -140,7 +163,9 @@ $$\begin{aligned}
 Visualising our example population makes it clear why the answer is 0.5. There are exactly the same number of positive results from the healthy portion of the population as there are from the diseased portion: 
 
 ```{r}
-ggplot(pictogram_df, aes(label = disease_status, values = frequency, colour = test_result)) +
+ggplot(pictogram_df, aes(label = disease_status,
+                         values = frequency,
+                         colour = test_result)) +
   geom_pictogram(n_rows = 9, flip = T) +
   scale_colour_manual(name = "Test Result",
                       values = c("Positive" = "Red", "Negative" = "Grey75")) +
@@ -153,16 +178,18 @@ ggplot(pictogram_df, aes(label = disease_status, values = frequency, colour = te
         legend.key = element_blank())
 ```
 
+We can also do it the 'proper' way using Bayes' rule discussed previously:
 
+add bayes here
 
-# Research problems
+This isn't a contrived or unimportant example. Breast cancer example. 
 
-# Statistical cognition
+# Scientists have discovered...
 
-## The linda problem
+Problems in research and how research is communicated. 
 
-Extra example of how we aren't intuitive statisticians. 
+## p-value problems 
 
-## All averages aren't made equal
+## Changes in probability
 
 Relative percentage change vs. absolute percentage change (i.e. percentage points) vs. natural frequencies. 
