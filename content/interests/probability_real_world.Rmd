@@ -106,7 +106,7 @@ $$Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})$$
 
 ## Base rate neglect
 
-Disease with 10% prevalence. Test is 90% accurate.
+Imagine there's a disease with 10% prevalence in the population. The screening test to identify the disease has 90% accuracy. You go to the doctor's and get a positive result on the test, what is the probability you have the disease?
 
 Let's unpack the two parts of the scenario using an example population of 100 people.
 
@@ -128,52 +128,20 @@ Part 2: "The test is 90% accurate":
     + 10% of them will be incorrectly identified as positive $\rightarrow$ 9 people
         - False positives
 
-```{r base rate neglect, fig.height=16, fig.width=20}
-# Treemap
-ggplot(treemap_df, aes(area = frequency, 
-                       label = group_name,
-                       fill = test_result,
-                       subgroup = disease_status),
-       start = "topright") +
-  geom_treemap() +
-  geom_treemap_text(aes(colour = decision),
-                    reflow = T,
-                    place = "centre",
-                    size = 40) +
-  geom_treemap_subgroup_text(size = 80, reflow = T) +
-  geom_treemap_subgroup_border(size = 10) +
-  scale_fill_manual("Test Result", values = c("Negative" = "#ff8b94",
-                                              "Positive" = "#a8e6cf")) +
-  scale_colour_manual(values = c("Correct" = "#00b159", "Incorrect" = "#d11141")) +
-  theme(legend.key.size = unit(0.75, "inches"),
-        legend.text = element_text(size = 16),
-        legend.title = element_text(size = 20))
-```
+Now we can use this breakdown to figure out the probability we're looking for. The probability you have the disease given you receive a positive result is just the fraction of all positive results that are true positives:
 
-```{r}
-# Waffle chart 
-iron(
-  waffle(
-    c('Test positive' = 19, 'Test negative' = 1),
-    colors = c("black", "grey70"),
-    size = 0.5,
-    pad = 20,
-    legend_pos = "none",
-    title = "Ill"
-  ),
-  waffle(
-    c('Test positive' = 19, 'Test negative' = 361),
-    colors = c("black", "grey70"),
-    size = 0.5,
-    legend_pos = "bottom",
-    title = "Healthy"
-  )
-)
-```
+$$\begin{aligned}
+\text{Pr}(D|+) &= \frac{\text{True pos.}}{\text{Total pos.}} \\
+&= \frac{\text{True pos.}}{\text{True pos.} + \text{False pos.}} \\
+&= \frac{9}{9 + 9} \\
+&= 0.5
+\end{aligned}$$
+
+Visualising our example population makes it clear why the answer is 0.5. There are exactly the same number of positive results from the healthy portion of the population as there are from the diseased portion: 
 
 ```{r}
 ggplot(pictogram_df, aes(label = disease_status, values = frequency, colour = test_result)) +
-  geom_pictogram(n_rows = 10, flip = T) +
+  geom_pictogram(n_rows = 9, flip = T) +
   scale_colour_manual(name = "Test Result",
                       values = c("Positive" = "Red", "Negative" = "Grey75")) +
   scale_label_pictogram(name = NULL,
@@ -182,17 +150,10 @@ ggplot(pictogram_df, aes(label = disease_status, values = frequency, colour = te
   theme(panel.background = element_blank(),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
-        legend.background = element_blank(),
-        legend.position = "none")
+        legend.key = element_blank())
 ```
 
-So, given you receive a positive result the probability you actually have the disease is:
 
-$$\begin{aligned}
-\text{Pr}(D|+) &= \frac{\text{True pos.}}{\text{Total pos.}} \\
-&= \frac{19}{19 + 19} \\
-&= 0.5
-\end{aligned}$$
 
 # Research problems
 
