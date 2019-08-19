@@ -1,0 +1,151 @@
+---
+title: "Probability in the real world*"
+date: "2019-08-15"
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 1
+    number_sections: true
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#probability-refresher"><span class="toc-section-number">1</span> Probability refresher</a></li>
+<li><a href="#objection-mathematical-error-your-honour"><span class="toc-section-number">2</span> Objection! Mathematical error your honour</a></li>
+<li><a href="#health-problems"><span class="toc-section-number">3</span> Health problems</a></li>
+<li><a href="#scientists-have-discovered"><span class="toc-section-number">4</span> Scientists have discovered…</a></li>
+</ul>
+</div>
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+<div id="probability-refresher" class="section level1">
+<h1><span class="header-section-number">1</span> Probability refresher</h1>
+<div id="what-even-is-it" class="section level2">
+<h2><span class="header-section-number">1.1</span> What even is it?</h2>
+<p>Probability: Use known state of the world to predict the data we should observe.</p>
+<ul>
+<li>I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data).</li>
+</ul>
+<p>Statistics: Use data we have observed to infer the most likely state of the world.</p>
+<ul>
+<li>I flipped a coin 100 times and got 52 heads and 48 tails (observed data), I’m pretty sure that I have a fair coin (inferred state of the world).</li>
+</ul>
+<p><strong>Types.</strong></p>
+<p>Classic, based on symmetry.</p>
+<p>Frequentist, based on experience.</p>
+<p>Subjective, based on best guess.</p>
+</div>
+<div id="probability-problems" class="section level2">
+<h2><span class="header-section-number">1.2</span> Probability problems</h2>
+<p>Probability can be unintuitive.</p>
+<p><strong>The Linda problem.</strong></p>
+<p><strong>Birthday puzzle.</strong></p>
+<p>But these two examples are weird and contrived, why should you care? Well, it could win you your freedom or save your life.</p>
+</div>
+</div>
+<div id="objection-mathematical-error-your-honour" class="section level1">
+<h1><span class="header-section-number">2</span> Objection! Mathematical error your honour</h1>
+<p>Problems in law.</p>
+<div id="ignoring-dependence" class="section level2">
+<h2><span class="header-section-number">2.1</span> Ignoring dependence</h2>
+<p>Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there’s 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years.</p>
+<p>Discuss independence vs. dependence here.</p>
+<p>Introduce Bayes’ rule.</p>
+</div>
+<div id="the-prosecutors-fallacy" class="section level2">
+<h2><span class="header-section-number">2.2</span> The prosecutor’s fallacy</h2>
+<p><strong>Prosecutor’s fallacy:</strong> False belief that conditional probabilities are invertible.</p>
+<p><span class="math display">\[Pr(A|B) \neq Pr(B|A)\]</span></p>
+<p>Forensics may compute that probability of blood at scene matching the defendent’s by chance is 1%. That doesn’t mean there’s a 1% chance the defendent is innocent. We have been told the probability of a match given innocence, we want the probability of innocence given a match, but they don’t equate:</p>
+<p><span class="math display">\[Pr(\text{match}|\text{innocent}) \neq Pr(\text{innocent}|\text{match})\]</span></p>
+</div>
+<div id="the-feynman-conjecture" class="section level2">
+<h2><span class="header-section-number">2.3</span> The Feynman conjecture</h2>
+<p>Paintball analogy.</p>
+<p>Losing the lottery: Dutch nurse example.</p>
+</div>
+</div>
+<div id="health-problems" class="section level1">
+<h1><span class="header-section-number">3</span> Health problems</h1>
+<p>Problems in medicine.</p>
+<div id="base-rate-neglect" class="section level2">
+<h2><span class="header-section-number">3.1</span> Base rate neglect</h2>
+<p>Imagine there’s a disease with 10% prevalence in the population. The screening test to identify the disease has 90% accuracy. You go to the doctor’s and get a positive result on the test, what is the probability you have the disease?</p>
+<p>Let’s unpack the two parts of the scenario using an example population of 100 people.</p>
+<p>Part 1: “The disease has a prevalence of 10%”:</p>
+<ul>
+<li>10% of the 100 people have the disease <span class="math inline">\(\rightarrow\)</span> 10 people</li>
+<li>90% of the 100 people don’t <span class="math inline">\(\rightarrow\)</span> 90 people</li>
+</ul>
+<p>Part 2: “The test is 90% accurate”:</p>
+<ul>
+<li>For the 10 people with the disease
+<ul>
+<li>90% of them will be correctly identified as positive <span class="math inline">\(\rightarrow\)</span> 9 people
+<ul>
+<li>True positives</li>
+</ul></li>
+<li>10% of them will be incorrectly identified as negative <span class="math inline">\(\rightarrow\)</span> 1 person
+<ul>
+<li>False negatives</li>
+</ul></li>
+</ul></li>
+<li>For the 90 people without the disease
+<ul>
+<li>90% of them will be correctly identified as negative <span class="math inline">\(\rightarrow\)</span> 81 people
+<ul>
+<li>True negatives</li>
+</ul></li>
+<li>10% of them will be incorrectly identified as positive <span class="math inline">\(\rightarrow\)</span> 9 people
+<ul>
+<li>False positives</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Now we can use this breakdown to figure out the probability we’re looking for. The probability you have the disease given you receive a positive result is just the fraction of all positive results that are true positives:</p>
+<p><span class="math display">\[\begin{aligned}
+\text{Pr}(D|+) &amp;= \frac{\text{True pos.}}{\text{Total pos.}} \\
+&amp;= \frac{\text{True pos.}}{\text{True pos.} + \text{False pos.}} \\
+&amp;= \frac{9}{9 + 9} \\
+&amp;= 0.5
+\end{aligned}\]</span></p>
+<p>Visualising our example population makes it clear why the answer is 0.5. There are exactly the same number of positive results from the healthy portion of the population as there are from the diseased portion:</p>
+<pre class="r"><code>ggplot(pictogram_df, aes(label = disease_status,
+                         values = frequency,
+                         colour = test_result)) +
+  geom_pictogram(n_rows = 9, flip = T) +
+  scale_colour_manual(name = &quot;Test Result&quot;,
+                      values = c(&quot;Positive&quot; = &quot;Red&quot;, &quot;Negative&quot; = &quot;Grey75&quot;)) +
+  scale_label_pictogram(name = NULL,
+                        values = c(&quot;Disease&quot; = &quot;user-md&quot;, &quot;Healthy&quot; = &quot;smile&quot;)) +
+  coord_equal() +
+  theme(panel.background = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.key = element_blank())</code></pre>
+<p><img src="/posts/probability_real_world_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This is because the 10% inaccuracy that generates false positive results is applied to the larger segment of the population (the 90 people who are healthy). The tendency to overestimate this probability is referred to as ‘base rate neglect’ because we’re underweighting the base probability of having the diseaese, 10%, when calculating our answer.</p>
+<p>We can also do it the ‘proper’ way using Bayes’ rule discussed previously:</p>
+<p>add bayes here</p>
+<p>This isn’t a contrived or unimportant example. Breast cancer example.</p>
+</div>
+</div>
+<div id="scientists-have-discovered" class="section level1">
+<h1><span class="header-section-number">4</span> Scientists have discovered…</h1>
+<p>Problems in research and how research is communicated.</p>
+<div id="p-value-problems" class="section level2">
+<h2><span class="header-section-number">4.1</span> p-value problems</h2>
+</div>
+<div id="changes-in-probability" class="section level2">
+<h2><span class="header-section-number">4.2</span> Changes in probability</h2>
+<p>Relative percentage change vs. absolute percentage change (i.e. percentage points) vs. natural frequencies.</p>
+</div>
+</div>

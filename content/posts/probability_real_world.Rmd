@@ -178,6 +178,8 @@ ggplot(pictogram_df, aes(label = disease_status,
         legend.key = element_blank())
 ```
 
+This is because the 10% inaccuracy that generates false positive results is applied to the larger segment of the population (the 90 people who are healthy). The tendency to overestimate this probability is referred to as 'base rate neglect' because we're underweighting the base probability of having the diseaese, 10%, when calculating our answer. 
+
 We can also do it the 'proper' way using Bayes' rule discussed previously:
 
 add bayes here

@@ -82,7 +82,7 @@ math = true
         [[languages.en.menu.main]]
         name = "Posts"
         weight = 2
-        url = "interests/"
+        url = "posts/"
         
         [[languages.en.menu.main]]
         name = "Summaries"
