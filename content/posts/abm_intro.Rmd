@@ -6,6 +6,7 @@ output:
     toc: true
     toc_depth: 1
     number_sections: true
+description: "An introduction to agent-based modelling and evolutionary simulation."
 ---
 
 <style type="text/css">
