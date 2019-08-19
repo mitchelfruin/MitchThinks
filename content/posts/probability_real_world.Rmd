@@ -106,7 +106,7 @@ Third, and most relevant for this post, uncertainty is inherent in the process o
 * What is the probability that the blood at the scene would match the defendent by chance? 
 * How should the jury incorporate new evidence into their pre-exisiting beliefs about a defendent's guilt or innocence? 
 
-Whether through genuine ignorance or manipulation, when statements about probability are mistaken in a setting where the stakes are so high there can be dire consequences. 
+Whether through genuine ignorance or manipulation, when statements about probability are incorrect in a setting where the stakes are so high there can be dire consequences. 
 
 ## Ignoring dependence
 
