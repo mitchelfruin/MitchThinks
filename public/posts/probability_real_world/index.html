@@ -11,12 +11,12 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Probability in the real world*"/>
-<meta name="twitter:description" content="1 Probability refresher 2 Objection! Mathematical error your honour 3 Health problems 4 Scientists have discovered…   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Probability refresher 1.1 What even is it? Probability: Use known state of the world to predict the data we should observe.
- I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data)."/>
+<meta name="twitter:description" content="1 Probability refresher 2 Objection! Mathematical error your honour 3 Health problems 4 Scientists have discovered…   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Probability refresher 1.1 What even is it? First, let’s get a feeling for what probability is by contrasting it with statistics:
+ Probability: Use known state of the world to predict the data we should observe.  E.g. I have a fair coin (known state of the world) and expect 50 heads and 50 tails, on average, from 100 flips (predicted data)."/>
 
     <meta property="og:title" content="Probability in the real world*" />
-<meta property="og:description" content="1 Probability refresher 2 Objection! Mathematical error your honour 3 Health problems 4 Scientists have discovered…   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Probability refresher 1.1 What even is it? Probability: Use known state of the world to predict the data we should observe.
- I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data)." />
+<meta property="og:description" content="1 Probability refresher 2 Objection! Mathematical error your honour 3 Health problems 4 Scientists have discovered…   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Probability refresher 1.1 What even is it? First, let’s get a feeling for what probability is by contrasting it with statistics:
+ Probability: Use known state of the world to predict the data we should observe.  E.g. I have a fair coin (known state of the world) and expect 50 heads and 50 tails, on average, from 100 flips (predicted data)." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/probability_real_world/" />
 <meta property="article:published_time" content="2019-08-15T00:00:00+00:00" />
@@ -116,7 +116,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              4 minutes read
+              5 minutes read
             </span>
           </div>
           
@@ -148,30 +148,44 @@ div#TOC li {
 <h1><span class="header-section-number">1</span> Probability refresher</h1>
 <div id="what-even-is-it" class="section level2">
 <h2><span class="header-section-number">1.1</span> What even is it?</h2>
-<p>Probability: Use known state of the world to predict the data we should observe.</p>
+<p>First, let’s get a feeling for what probability is by contrasting it with statistics:</p>
 <ul>
-<li>I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data).</li>
-</ul>
-<p>Statistics: Use data we have observed to infer the most likely state of the world.</p>
+<li><strong>Probability:</strong> Use known state of the world to predict the data we should observe.
 <ul>
-<li>I flipped a coin 100 times and got 52 heads and 48 tails (observed data), I’m pretty sure that I have a fair coin (inferred state of the world).</li>
+<li>E.g. I have a fair coin (known state of the world) and expect 50 heads and 50 tails, on average, from 100 flips (predicted data).</li>
+</ul></li>
+<li><strong>Statistics:</strong> Use data we have observed to infer the most likely state of the world.
+<ul>
+<li>E.g. I flipped a coin 100 times and got 52 heads and 48 tails (observed data), I’m pretty sure that I have a fair coin (inferred state of the world).</li>
+</ul></li>
 </ul>
-<p><strong>Types.</strong></p>
-<p>Classic, based on symmetry.</p>
-<p>Frequentist, based on experience.</p>
-<p>Subjective, based on best guess.</p>
+<p>Second, let’s review the <em>types</em> of probability:</p>
+<ul>
+<li><strong>Classic:</strong>based on symmetry.</li>
+<li><strong>Frequentist:</strong> based on observation/experience.</li>
+<li><strong>Subjective:</strong> based on best guess.</li>
+</ul>
 </div>
 <div id="probability-problems" class="section level2">
 <h2><span class="header-section-number">1.2</span> Probability problems</h2>
 <p>Probability can be unintuitive.</p>
 <p><strong>The Linda problem.</strong></p>
 <p><strong>Birthday puzzle.</strong></p>
-<p>But these two examples are weird and contrived, why should you care? Well, it could win you your freedom or save your life.</p>
+<p>But these two examples are weird and contrived, why should you care? Well, it could save your freedom or even your life.</p>
 </div>
 </div>
 <div id="objection-mathematical-error-your-honour" class="section level1">
 <h1><span class="header-section-number">2</span> Objection! Mathematical error your honour</h1>
-<p>Problems in law.</p>
+<p>Probability and statistics are far more involved in the practice of law than one might first think.</p>
+<p>For one thing, a courtroom trial represents the prototypical statistical test. We have the null hypothesis, <span class="math inline">\(H_0\)</span>, that the defendent is innocent. This is the null because of the presumption of innocence (i.e. innocent until proven guilty). We have the alternative hypothesis, <span class="math inline">\(H_1\)</span>, that the defendent is guilty. And the trial involves the presentation of evidence to help the jury decide whether they should reject <span class="math inline">\(H_0\)</span> and convict.</p>
+<p>Second, a courtroom analogy is often used to teach the types of potential error when conducting a hypothesis test. In fact, I still remind myself that a type 1 error involves ‘sending an innocent man to prison’ (incorrectly rejecting a true null hypothesis) whilst a type 2 error involves ‘letting a guilty man go free’ (incorrectly accepting a false null hypothesis).</p>
+<p>Third, and most relevant for this post, uncertainty is inherent in the process of a courtroom trial. This uncertainty means that crucial issues in a trial can hinge on questions of probability, for example:</p>
+<ul>
+<li>How plausible is the version of events presented by the defence?</li>
+<li>What is the probability that the blood at the scene would match the defendent by chance?</li>
+<li>How should the jury incorporate new evidence into their pre-exisiting beliefs about a defendent’s guilt or innocence?</li>
+</ul>
+<p>Whether through genuine ignorance or manipulation, when statements about probability are mistaken in a setting where the stakes are so high there can be dire consequences.</p>
 <div id="ignoring-dependence" class="section level2">
 <h2><span class="header-section-number">2.1</span> Ignoring dependence</h2>
 <p>Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there’s 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years.</p>

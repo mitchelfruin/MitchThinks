@@ -69,21 +69,18 @@ pictogram_df <- tibble(group_name = c("True Pos.",
 
 ## What even is it?
 
-Probability: Use known state of the world to predict the data we should observe.
+First, let's get a feeling for what probability is by contrasting it with statistics:
 
-* I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data). 
+* **Probability:** Use known state of the world to predict the data we should observe.
+    + E.g. I have a fair coin (known state of the world) and expect 50 heads and 50 tails, on average, from 100 flips (predicted data). 
+* **Statistics:** Use data we have observed to infer the most likely state of the world.
+    + E.g. I flipped a coin 100 times and got 52 heads and 48 tails (observed data), I'm pretty sure that I have a fair coin (inferred state of the world). 
 
-Statistics: Use data we have observed to infer the most likely state of the world. 
+Second, let's review the *types* of probability:
 
-* I flipped a coin 100 times and got 52 heads and 48 tails (observed data), I'm pretty sure that I have a fair coin (inferred state of the world). 
-
-**Types.**
-
-Classic, based on symmetry. 
-
-Frequentist, based on experience. 
-
-Subjective, based on best guess. 
+* **Classic:**based on symmetry. 
+* **Frequentist:** based on observation/experience. 
+* **Subjective:** based on best guess. 
 
 ## Probability problems
 
@@ -93,11 +90,23 @@ Probability can be unintuitive.
 
 **Birthday puzzle.**
 
-But these two examples are weird and contrived, why should you care? Well, it could win you your freedom or save your life. 
+But these two examples are weird and contrived, why should you care? Well, it could save your freedom or even your life. 
 
 # Objection! Mathematical error your honour 
 
-Problems in law. 
+Probability and statistics are far more involved in the practice of law than one might first think. 
+
+For one thing, a courtroom trial represents the prototypical statistical test. We have the null hypothesis, $H_0$, that the defendent is innocent. This is the null because of the presumption of innocence (i.e. innocent until proven guilty). We have the alternative hypothesis, $H_1$, that the defendent is guilty. And the trial involves the presentation of evidence to help the jury decide whether they should reject $H_0$ and convict. 
+
+Second, a courtroom analogy is often used to teach the types of potential error when conducting a hypothesis test. In fact, I still remind myself that a type 1 error involves 'sending an innocent man to prison' (incorrectly rejecting a true null hypothesis) whilst a type 2 error involves 'letting a guilty man go free' (incorrectly accepting a false null hypothesis). 
+
+Third, and most relevant for this post, uncertainty is inherent in the process of a courtroom trial. This uncertainty means that crucial issues in a trial can hinge on questions of probability, for example:
+
+* How plausible is the version of events presented by the defence? 
+* What is the probability that the blood at the scene would match the defendent by chance? 
+* How should the jury incorporate new evidence into their pre-exisiting beliefs about a defendent's guilt or innocence? 
+
+Whether through genuine ignorance or manipulation, when statements about probability are mistaken in a setting where the stakes are so high there can be dire consequences. 
 
 ## Ignoring dependence
 

@@ -17,8 +17,8 @@
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/probability_real_world/</guid>
-      <description>1 Probability refresher 2 Objection! Mathematical error your honour 3 Health problems 4 Scientists have discovered…   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Probability refresher 1.1 What even is it? Probability: Use known state of the world to predict the data we should observe.
- I have a fair coin (known state of the world) and can expect 50 heads and 50 tails, on average, from 100 flips (predicted data).</description>
+      <description>1 Probability refresher 2 Objection! Mathematical error your honour 3 Health problems 4 Scientists have discovered…   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Probability refresher 1.1 What even is it? First, let’s get a feeling for what probability is by contrasting it with statistics:
+ Probability: Use known state of the world to predict the data we should observe.  E.g. I have a fair coin (known state of the world) and expect 50 heads and 50 tails, on average, from 100 flips (predicted data).</description>
     </item>
     
     <item>
