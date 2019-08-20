@@ -65,52 +65,41 @@ pictogram_df <- tibble(group_name = c("True Pos.",
                                            "Incorrect"))
 ```
 
-# Probability refresher
+# Linda's birthday
 
-## What even is it?
+## The Linda problem
 
-First, let's get a feeling for what probability is by contrasting it with statistics:
+## The Birthday puzzle
 
-* **Probability:** Use known state of the world to predict the data we should observe.
-    + E.g. I have a fair coin (known state of the world) and expect 50 heads and 50 tails, on average, from 100 flips (predicted data). 
-* **Statistics:** Use data we have observed to infer the most likely state of the world.
-    + E.g. I flipped a coin 100 times and got 52 heads and 48 tails (observed data), I'm pretty sure that I have a fair coin (inferred state of the world). 
+## Bad intuitions
 
-Second, let's review the *types* of probability:
+These are just two examples from many which illustrate how our gut reactions can lead us astray. 
 
-* **Classic:**based on symmetry. 
-* **Frequentist:** based on observation/experience. 
-* **Subjective:** based on best guess. 
+But these examples were artificial, and contrived, and designed to flummox us, so why should you care about the odd mistaken probability? Well, it could save your life.
 
-## Probability problems
-
-Probability can be unintuitive. 
-
-**The Linda problem.**
-
-**Birthday puzzle.**
-
-But these two examples are weird and contrived, why should you care? Well, it could save your freedom or even your life. 
-
-# Objection! Mathematical error your honour 
+# Legal problems 
 
 Probability and statistics are far more involved in the practice of law than one might first think. 
 
-For one thing, a courtroom trial represents the prototypical statistical test. We have the null hypothesis, $H_0$, that the defendent is innocent. This is the null because of the presumption of innocence (i.e. innocent until proven guilty). We have the alternative hypothesis, $H_1$, that the defendent is guilty. And the trial involves the presentation of evidence to help the jury decide whether they should reject $H_0$ and convict. 
+For one thing, a courtroom trial represents the prototypical hypothesis test. We have the null hypothesis, $H_0$, that the defendent is innocent (this is the null because of the presumption of innocence). We have the alternative hypothesis, $H_1$, that the defendent is guilty. And the trial involves the presentation of evidence to help the jury decide whether they should reject $H_0$ and convict. 
 
-Second, a courtroom analogy is often used to teach the types of potential error when conducting a hypothesis test. In fact, I still remind myself that a type 1 error involves 'sending an innocent man to prison' (incorrectly rejecting a true null hypothesis) whilst a type 2 error involves 'letting a guilty man go free' (incorrectly accepting a false null hypothesis). 
+Second, a courtroom analogy is often used to teach the types of potential error when conducting hypothesis tests. In fact, I still remind myself that a type 1 error involves 'sending an innocent man to prison' (rejecting a true null hypothesis) whilst a type 2 error involves 'letting a guilty man go free' (failing to reject a false null hypothesis). 
 
 Third, and most relevant for this post, uncertainty is inherent in the process of a courtroom trial. This uncertainty means that crucial issues in a trial can hinge on questions of probability, for example:
 
 * How plausible is the version of events presented by the defence? 
 * What is the probability that the blood at the scene would match the defendent by chance? 
-* How should the jury incorporate new evidence into their pre-exisiting beliefs about a defendent's guilt or innocence? 
+* How should the jury incorporate new evidence into their pre-existing beliefs about a defendent's guilt or innocence? 
 
-Whether through genuine ignorance or manipulation, when statements about probability are incorrect in a setting where the stakes are so high there can be dire consequences. 
+Whether through genuine ignorance or manipulation, incorrect statements about probability when the stakes are so high can have dire consequences. 
 
 ## Ignoring dependence
 
-Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there's 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years.
+In 1996, the infant son of Sally Clark, a solicitor in Manchester, died suddenly when he was 11 weeks old. She had another baby boy the following year who tragically also died, this time at 8 weeks old. Suspecting the two deaths weren't a coincidence the police charged Clark with two counts of murder. As an expert witness for prosecution, the pediatrician Dr. Roy Meadow claimed it was vanishingly unlikely that two children in the same family would die from Sudden Infant Death Syndrome (SIDS). He estimated a 1 in 8543 chance of a representative child dying from SIDS and testified that this gave a 1 in 73 million chance of having two children die from it. Clark was sentenced to life in prison.
+
+There are a variety of problems with his calculation but we'll focus on the easiest one first: Dr. Meadow assumed the two events were independent. 
+
+Potential genetic, environmental dependence ignored and she was sentenced for 3 years.
 
 Discuss independence vs. dependence here. 
 
@@ -187,15 +176,15 @@ ggplot(pictogram_df, aes(label = disease_status,
         legend.key = element_blank())
 ```
 
-This is because the 10% inaccuracy that generates false positive results is applied to the larger segment of the population (the 90 people who are healthy). The tendency to overestimate this probability is referred to as 'base rate neglect' because we're underweighting the base probability of having the diseaese, 10%, when calculating our answer. 
+This is because the 10% inaccuracy that generates false positive results is applied to the larger segment of the population (the 90 people who are healthy). The tendency to overestimate this probability is referred to as 'base rate neglect' because we're under-weighting the base probability of having the disease, 10%, when calculating our answer. 
 
 We can also do it the 'proper' way using Bayes' rule discussed previously:
 
-add bayes here
+add Bayes here
 
 This isn't a contrived or unimportant example. Breast cancer example. 
 
-# Scientists have discovered...
+# Research problems
 
 Problems in research and how research is communicated. 
 

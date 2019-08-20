@@ -11,10 +11,10 @@ output:
 
 <div id="TOC">
 <ul>
-<li><a href="#probability-refresher"><span class="toc-section-number">1</span> Probability refresher</a></li>
-<li><a href="#objection-mathematical-error-your-honour"><span class="toc-section-number">2</span> Objection! Mathematical error your honour</a></li>
+<li><a href="#lindas-birthday"><span class="toc-section-number">1</span> Linda’s birthday</a></li>
+<li><a href="#legal-problems"><span class="toc-section-number">2</span> Legal problems</a></li>
 <li><a href="#health-problems"><span class="toc-section-number">3</span> Health problems</a></li>
-<li><a href="#scientists-have-discovered"><span class="toc-section-number">4</span> Scientists have discovered…</a></li>
+<li><a href="#research-problems"><span class="toc-section-number">4</span> Research problems</a></li>
 </ul>
 </div>
 
@@ -26,51 +26,37 @@ div#TOC li {
     background-position:0; 
 }
 </style>
-<div id="probability-refresher" class="section level1">
-<h1><span class="header-section-number">1</span> Probability refresher</h1>
-<div id="what-even-is-it" class="section level2">
-<h2><span class="header-section-number">1.1</span> What even is it?</h2>
-<p>First, let’s get a feeling for what probability is by contrasting it with statistics:</p>
-<ul>
-<li><strong>Probability:</strong> Use known state of the world to predict the data we should observe.
-<ul>
-<li>E.g. I have a fair coin (known state of the world) and expect 50 heads and 50 tails, on average, from 100 flips (predicted data).</li>
-</ul></li>
-<li><strong>Statistics:</strong> Use data we have observed to infer the most likely state of the world.
-<ul>
-<li>E.g. I flipped a coin 100 times and got 52 heads and 48 tails (observed data), I’m pretty sure that I have a fair coin (inferred state of the world).</li>
-</ul></li>
-</ul>
-<p>Second, let’s review the <em>types</em> of probability:</p>
-<ul>
-<li><strong>Classic:</strong>based on symmetry.</li>
-<li><strong>Frequentist:</strong> based on observation/experience.</li>
-<li><strong>Subjective:</strong> based on best guess.</li>
-</ul>
+<div id="lindas-birthday" class="section level1">
+<h1><span class="header-section-number">1</span> Linda’s birthday</h1>
+<div id="the-linda-problem" class="section level2">
+<h2><span class="header-section-number">1.1</span> The Linda problem</h2>
 </div>
-<div id="probability-problems" class="section level2">
-<h2><span class="header-section-number">1.2</span> Probability problems</h2>
-<p>Probability can be unintuitive.</p>
-<p><strong>The Linda problem.</strong></p>
-<p><strong>Birthday puzzle.</strong></p>
-<p>But these two examples are weird and contrived, why should you care? Well, it could save your freedom or even your life.</p>
+<div id="the-birthday-puzzle" class="section level2">
+<h2><span class="header-section-number">1.2</span> The Birthday puzzle</h2>
+</div>
+<div id="bad-intuitions" class="section level2">
+<h2><span class="header-section-number">1.3</span> Bad intuitions</h2>
+<p>These are just two examples from many which illustrate how our gut reactions can lead us astray.</p>
+<p>But these examples were artificial, and contrived, and designed to flummox us, so why should you care about the odd mistaken probability? Well, it could save your life.</p>
 </div>
 </div>
-<div id="objection-mathematical-error-your-honour" class="section level1">
-<h1><span class="header-section-number">2</span> Objection! Mathematical error your honour</h1>
+<div id="legal-problems" class="section level1">
+<h1><span class="header-section-number">2</span> Legal problems</h1>
 <p>Probability and statistics are far more involved in the practice of law than one might first think.</p>
-<p>For one thing, a courtroom trial represents the prototypical statistical test. We have the null hypothesis, <span class="math inline">\(H_0\)</span>, that the defendent is innocent. This is the null because of the presumption of innocence (i.e. innocent until proven guilty). We have the alternative hypothesis, <span class="math inline">\(H_1\)</span>, that the defendent is guilty. And the trial involves the presentation of evidence to help the jury decide whether they should reject <span class="math inline">\(H_0\)</span> and convict.</p>
-<p>Second, a courtroom analogy is often used to teach the types of potential error when conducting a hypothesis test. In fact, I still remind myself that a type 1 error involves ‘sending an innocent man to prison’ (incorrectly rejecting a true null hypothesis) whilst a type 2 error involves ‘letting a guilty man go free’ (incorrectly accepting a false null hypothesis).</p>
+<p>For one thing, a courtroom trial represents the prototypical hypothesis test. We have the null hypothesis, <span class="math inline">\(H_0\)</span>, that the defendent is innocent (this is the null because of the presumption of innocence). We have the alternative hypothesis, <span class="math inline">\(H_1\)</span>, that the defendent is guilty. And the trial involves the presentation of evidence to help the jury decide whether they should reject <span class="math inline">\(H_0\)</span> and convict.</p>
+<p>Second, a courtroom analogy is often used to teach the types of potential error when conducting hypothesis tests. In fact, I still remind myself that a type 1 error involves ‘sending an innocent man to prison’ (rejecting a true null hypothesis) whilst a type 2 error involves ‘letting a guilty man go free’ (failing to reject a false null hypothesis).</p>
 <p>Third, and most relevant for this post, uncertainty is inherent in the process of a courtroom trial. This uncertainty means that crucial issues in a trial can hinge on questions of probability, for example:</p>
 <ul>
 <li>How plausible is the version of events presented by the defence?</li>
 <li>What is the probability that the blood at the scene would match the defendent by chance?</li>
-<li>How should the jury incorporate new evidence into their pre-exisiting beliefs about a defendent’s guilt or innocence?</li>
+<li>How should the jury incorporate new evidence into their pre-existing beliefs about a defendent’s guilt or innocence?</li>
 </ul>
-<p>Whether through genuine ignorance or manipulation, when statements about probability are incorrect in a setting where the stakes are so high there can be dire consequences.</p>
+<p>Whether through genuine ignorance or manipulation, incorrect statements about probability when the stakes are so high can have dire consequences.</p>
 <div id="ignoring-dependence" class="section level2">
 <h2><span class="header-section-number">2.1</span> Ignoring dependence</h2>
-<p>Sally Clark had two children dies from SIDS. Dr. Meadow, pediatrician, said there’s 1 in 8543 chance of having a child die from SIDS giving a 1 in 73mil chance of having two children die from it. Potential genetic, environmental dependence ignored and she was sentenced for 3 years.</p>
+<p>In 1996, the infant son of Sally Clark, a solicitor in Manchester, died suddenly when he was 11 weeks old. She had another baby boy the following year who tragically also died, this time at 8 weeks old. Suspecting the two deaths weren’t a coincidence the police charged Clark with two counts of murder. As an expert witness for prosecution, the pediatrician Dr. Roy Meadow claimed it was vanishingly unlikely that two children in the same family would die from Sudden Infant Death Syndrome (SIDS). He estimated a 1 in 8543 chance of a representative child dying from SIDS and testified that this gave a 1 in 73 million chance of having two children die from it. Clark was sentenced to life in prison.</p>
+<p>There are a variety of problems with his calculation but we’ll focus on the easiest one first: Dr. Meadow assumed the two events were independent.</p>
+<p>Potential genetic, environmental dependence ignored and she was sentenced for 3 years.</p>
 <p>Discuss independence vs. dependence here.</p>
 <p>Introduce Bayes’ rule.</p>
 </div>
@@ -146,14 +132,14 @@ div#TOC li {
         axis.ticks = element_blank(),
         legend.key = element_blank())</code></pre>
 <p><img src="/posts/probability_real_world_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>This is because the 10% inaccuracy that generates false positive results is applied to the larger segment of the population (the 90 people who are healthy). The tendency to overestimate this probability is referred to as ‘base rate neglect’ because we’re underweighting the base probability of having the diseaese, 10%, when calculating our answer.</p>
+<p>This is because the 10% inaccuracy that generates false positive results is applied to the larger segment of the population (the 90 people who are healthy). The tendency to overestimate this probability is referred to as ‘base rate neglect’ because we’re under-weighting the base probability of having the disease, 10%, when calculating our answer.</p>
 <p>We can also do it the ‘proper’ way using Bayes’ rule discussed previously:</p>
-<p>add bayes here</p>
+<p>add Bayes here</p>
 <p>This isn’t a contrived or unimportant example. Breast cancer example.</p>
 </div>
 </div>
-<div id="scientists-have-discovered" class="section level1">
-<h1><span class="header-section-number">4</span> Scientists have discovered…</h1>
+<div id="research-problems" class="section level1">
+<h1><span class="header-section-number">4</span> Research problems</h1>
 <p>Problems in research and how research is communicated.</p>
 <div id="p-value-problems" class="section level2">
 <h2><span class="header-section-number">4.1</span> p-value problems</h2>
