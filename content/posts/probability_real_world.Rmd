@@ -79,13 +79,7 @@ But these examples were artificial, and contrived, and designed to flummox us, s
 
 # Legal problems 
 
-Probability and statistics are far more involved in the practice of law than one might first think. 
-
-For one thing, a courtroom trial represents the prototypical hypothesis test. We have the null hypothesis, $H_0$, that the defendent is innocent (this is the null because of the presumption of innocence). We have the alternative hypothesis, $H_1$, that the defendent is guilty. And the trial involves the presentation of evidence to help the jury decide whether they should reject $H_0$ and convict. 
-
-Second, a courtroom analogy is often used to teach the types of potential error when conducting hypothesis tests. In fact, I still remind myself that a type 1 error involves 'sending an innocent man to prison' (rejecting a true null hypothesis) whilst a type 2 error involves 'letting a guilty man go free' (failing to reject a false null hypothesis). 
-
-Third, and most relevant for this post, uncertainty is inherent in the process of a courtroom trial. This uncertainty means that crucial issues in a trial can hinge on questions of probability, for example:
+Uncertainty is inherent in the process of a courtroom trial. This means that crucial issues in a trial can hinge on questions of probability, for example:
 
 * How plausible is the version of events presented by the defence? 
 * What is the probability that the blood at the scene would match the defendent by chance? 
