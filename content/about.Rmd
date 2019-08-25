@@ -8,6 +8,15 @@ output:
     toc_depth: 2
 ---
 
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -26,11 +35,12 @@ The site is still very much a work-in-progress (unfinished articles are marked w
     + Random articles at the intersection of topics that I'm interested in and trying to learn more about, including:
         - Programming. 
         - Data Science (analytics, statistics, and machine learning).
-        - Alternative approaches to economics (e.g. behavioural, complexity).
+        - Alternative approaches to economics (behavioural, complexity).
         - Evolutionary biology.
 * Summaries.
     + Summaries of non-fiction books and academic papers. 
-    + They're focused on trying to illustrate concepts (using R where possible), with a few of my thoughts thrown in, and won't always be exhaustive. 
+        - Focused on illustrating concepts using R (with a few of my thoughts thrown in)
+        - Won't be exhaustive. 
 
 # Education
 
