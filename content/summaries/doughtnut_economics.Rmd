@@ -5,6 +5,7 @@ output:
   blogdown::html_page:
     toc: true
     toc_depth: 1
+    draft: true
 ---
 
 ```{r setup, include=FALSE}
