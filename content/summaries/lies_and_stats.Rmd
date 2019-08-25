@@ -20,7 +20,7 @@ div#TOC li {
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center", cache = T)
 
 # Packages
 library(tidyverse)
@@ -226,7 +226,45 @@ It's now apparent that in the past quarter you sold 60% of the volume that you d
 
 ## Irrelevant differences
 
-Just increase N enough to lower the p-value until it's 'significant'.
+Statistical significance is a widely misunderstood concept and I'll cover the flaws in the null hypothesis significance testing (NHST) approach, of which it is a component, in more detail in a different post. 
+
+For now, I'll just touch on the flawed aspect which Levitin mentions, that **statistical significance does not imply real world significance**. In simple terms, researchers use a *p-value* to indicate whether a result is statistically significant (generally if $p < 0.05$) or not (generally if $p \geq 0.05$). But just because a result passes this, often arbitrary, test it doesn't mean it's actually important. 
+
+One reason for this is that with a large enough sample size then any difference between two groups will be *statistically significant*. For example, say I compare two alternative journeys to work which differ by only 30 seconds. The mean journey time for route A is 30.5 mins whilst for route B it's 31 mins. If I used a sample size of 5, then I don't get statistically significant results (as shown by $p = 0.638$ in the output below):
+
+```{r n5}
+# Simulate data
+set.seed(23)
+n_5 <- tibble(journey_A = rnorm(5, # 5 normally distributed observations
+                                30.5, # mean = 30.5
+                                2), # sd = 2
+              journey_B = rnorm(5, # 5 normally distributed observations
+                                31, # mean = 31
+                                2)) # sd = 2
+
+# Test the difference between the two journeys
+t.test(x = n_5$journey_A,
+       y = n_5$journey_B)
+```
+
+But if I increase my sample size to 500 then I get results which easily pass the test for statistical significance (shown by $p=0.000068$ in the output below).  
+
+```{r n500}
+# Simulate data
+set.seed(23)
+n_500 <- tibble(journey_A = rnorm(500, # 500 normally distributed observations
+                                30.5, # mean = 30.5
+                                2), # sd = 10
+              journey_B = rnorm(500, # 5 normally distributed observations
+                                31, # mean = 31
+                                2)) # sd = 10
+
+# Test the difference between the two journeys
+t.test(x = n_500$journey_A,
+       y = n_500$journey_B)
+```
+
+This illustrates the idea that researchers can always just increase there sample size enough to lower the p-value until it's 'significant'. Be careful not to substitute the question you're actually interested in (is there an important difference relevant to my business/my life/ science?) with the question the test answers (is there any statistical difference?). As I mentioned, I'll cover this more in a difference post, so if it's not clear yet then wait with baited breath. 
 
 ## Comparing apples and oranges 
 

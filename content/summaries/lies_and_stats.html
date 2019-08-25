@@ -193,7 +193,57 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 </div>
 <div id="irrelevant-differences" class="section level2">
 <h2><span class="header-section-number">4.2</span> Irrelevant differences</h2>
-<p>Just increase N enough to lower the p-value until it’s ‘significant’.</p>
+<p>Statistical significance is a widely misunderstood concept and I’ll cover the flaws in the null hypothesis significance testing (NHST) approach, of which it is a component, in more detail in a different post.</p>
+<p>For now, I’ll just touch on the flawed aspect which Levitin mentions, that <strong>statistical significance does not imply real world significance</strong>. In simple terms, researchers use a <em>p-value</em> to indicate whether a result is statistically significant (generally if <span class="math inline">\(p &lt; 0.05\)</span>) or not (generally if <span class="math inline">\(p \geq 0.05\)</span>). But just because a result passes this, often arbitrary, test it doesn’t mean it’s actually important.</p>
+<p>One reason for this is that with a large enough sample size then any difference between two groups will be <em>statistically significant</em>. For example, say I compare two alternative journeys to work which differ by only 30 seconds. The mean journey time for route A is 30.5 mins whilst for route B it’s 31 mins. If I used a sample size of 5, then I don’t get statistically significant results (as shown by <span class="math inline">\(p = 0.638\)</span> in the output below):</p>
+<pre class="r"><code># Simulate data
+set.seed(23)
+n_5 &lt;- tibble(journey_A = rnorm(5, # 5 normally distributed observations
+                                30.5, # mean = 30.5
+                                2), # sd = 2
+              journey_B = rnorm(5, # 5 normally distributed observations
+                                31, # mean = 31
+                                2)) # sd = 2
+
+# Test the difference between the two journeys
+t.test(x = n_5$journey_A,
+       y = n_5$journey_B)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  n_5$journey_A and n_5$journey_B
+## t = -0.48909, df = 7.9418, p-value = 0.638
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -2.878820  1.872392
+## sample estimates:
+## mean of x mean of y 
+##  31.88472  32.38793</code></pre>
+<p>But if I increase my sample size to 500 then I get results which easily pass the test for statistical significance (shown by <span class="math inline">\(p=0.000068\)</span> in the output below).</p>
+<pre class="r"><code># Simulate data
+set.seed(23)
+n_500 &lt;- tibble(journey_A = rnorm(500, # 500 normally distributed observations
+                                30.5, # mean = 30.5
+                                2), # sd = 10
+              journey_B = rnorm(500, # 5 normally distributed observations
+                                31, # mean = 31
+                                2)) # sd = 10
+
+# Test the difference between the two journeys
+t.test(x = n_500$journey_A,
+       y = n_500$journey_B)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  n_500$journey_A and n_500$journey_B
+## t = -3.9812, df = 997.88, p-value = 7.353e-05
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.7598206 -0.2580927
+## sample estimates:
+## mean of x mean of y 
+##  30.56944  31.07840</code></pre>
+<p>This illustrates the idea that researchers can always just increase there sample size enough to lower the p-value until it’s ‘significant’. Be careful not to substitute the question you’re actually interested in (is there an important difference relevant to my business/my life/ science?) with the question the test answers (is there any statistical difference?). As I mentioned, I’ll cover this more in a difference post, so if it’s not clear yet then wait with baited breath.</p>
 </div>
 <div id="comparing-apples-and-oranges" class="section level2">
 <h2><span class="header-section-number">4.3</span> Comparing apples and oranges</h2>
