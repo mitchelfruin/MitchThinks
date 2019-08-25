@@ -264,7 +264,7 @@ t.test(x = n_500$journey_A,
        y = n_500$journey_B)
 ```
 
-This illustrates the idea that researchers can always just increase there sample size enough to lower the p-value until it's 'significant'. Be careful not to substitute the question you're actually interested in (is there an important difference relevant to my business/my life/ science?) with the question the test answers (is there any statistical difference?). As I mentioned, I'll cover this more in a difference post, so if it's not clear yet then wait with baited breath. 
+This illustrates the idea that researchers can always just increase their sample size enough to lower the p-value until it's 'significant'. Be careful not to substitute the question you're actually interested in (is there an important difference relevant to my business/my life/ science?) with the question the test answers (is there any statistical difference?). As I mentioned, I'll cover this more in a difference post, so if it's not clear yet then wait with baited breath. 
 
 ## Comparing apples and oranges 
 
