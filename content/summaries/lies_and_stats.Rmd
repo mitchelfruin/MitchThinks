@@ -230,7 +230,7 @@ Statistical significance is a widely misunderstood concept and I'll cover the fl
 
 For now, I'll just touch on the flawed aspect which Levitin mentions, that **statistical significance does not imply real world significance**. In simple terms, researchers use a *p-value* to indicate whether a result is statistically significant (generally if $p < 0.05$) or not (generally if $p \geq 0.05$). But just because a result passes this, often arbitrary, test it doesn't mean it's actually important. 
 
-One reason for this is that with a large enough sample size then any difference between two groups will be *statistically significant*. For example, say I compare two alternative journeys to work which differ by only 30 seconds. The mean journey time for route A is 30.5 mins whilst for route B it's 31 mins. If I used a sample size of 5, then I don't get statistically significant results (as shown by $p = 0.638$ in the output below):
+One reason for this is that with a large enough sample size then any difference between two groups *will be statistically significant*. For example, say I compare two alternative journeys to work which differ by only 30 seconds. The mean journey time for route A is 30.5 mins whilst for route B it's 31 mins. If I used a sample size of 5, then I don't get statistically significant results (as shown by $p = 0.638$ in the output below):
 
 ```{r n5}
 # Simulate data
