@@ -222,7 +222,7 @@ ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
         panel.grid.major.y = element_line())
 ```
 
-It's now apparent that you're selling 60% of the volume that you were last year. 
+It's now apparent that in the past quarter you sold 60% of the volume that you did in the same period last year. 
 
 ## Irrelevant differences
 
