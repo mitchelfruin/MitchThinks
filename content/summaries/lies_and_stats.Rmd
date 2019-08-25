@@ -1,12 +1,23 @@
 ---
-title: "A Field Guide to Lies & Stats - Levitin 2016*"
-date: "2019-08-10"
+title: "A Field Guide to Lies and Statistics (Daniel Levitin, 2016)"
+author: "Mitchel Fruin"
+date: "2019-08-25"
+slug: lies_and_stats
 output:
   blogdown::html_page:
     toc: true
     toc_depth: 1
     number_sections: true
 ---
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
