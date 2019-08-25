@@ -6,19 +6,19 @@
     <description>Recent content in Summaries on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 10 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/summaries/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>A Field Guide to Lies &amp; Stats - Levitin 2016*</title>
-      <link>/summaries/lies_and_stats_levitin_2016/</link>
-      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      <title>A Field Guide to Lies and Statistics (Daniel Levitin, 2016)</title>
+      <link>/summaries/lies_and_stats/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/summaries/lies_and_stats_levitin_2016/</guid>
-      <description>1 Summary 2 Is the stat plausible? 3 What does the average mean? 4 Are the axes leading you astray? 5 Dodgy reporting   If you want to see the full code for this post then you can find the .Rmd file here.
-1 Summary Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning why the human brain is ‘fooled’ by particular ways of presenting information rather than just what those presentations are.</description>
+      <guid>/summaries/lies_and_stats/</guid>
+      <description>1 Summary 2 Is the stat plausible? 3 Are the axes leading you astray? 4 Dodgy reporting   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the full code for this post then you can find the .Rmd file here.
+1 Summary Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively.</description>
     </item>
     
     <item>
