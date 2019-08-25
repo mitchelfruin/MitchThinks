@@ -133,7 +133,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <h2><span class="header-section-number">3.4</span> Duplicate axes</h2>
 <p>Duplicating the y-axis allows you to tell any story you fancy with the data. If they measure the same thing then you can fudge the graph however you want. A prominent example of this kind of manipulation is a graph presented by U.S. Representative Jason Chaffetz during a hearing on planned parenthood:</p>
 <center>
-<img src="/Users/mitchelfruin/Documents/Website/MitchThinks/static/images/double_y_axis.jpeg" alt="Jason Chaffetz’s graphical car crash" />
+<img src="/Users/mitchelfruin/Documents/Website/MitchThinks/static/images/double_y_axis.jpeg" alt="Jason Chaffetz’s graphical disaster" />
 </center>
 <p>A good general rule is ‘when you want to use a double y-axis, use two graphs instead’. There are some instances when it’s defensible, I like a <a href="https://duckduckgo.com/?q=pareto+chart&amp;t=ffab&amp;atb=v170-1&amp;iax=images&amp;ia=images">pareto chart</a> as much as the next guy, if you’re using two different measures (i.e. different units) and only making ‘within-axis’ comparisons (rather than just shifting the left-hand y-axis up or down and to make your point).</p>
 <p>If we plot Chaffetz’s chart properly it looks a little less like doctors are too busy with abortions to treat cancer:</p>
@@ -159,18 +159,32 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <p>A few miscellaneous tactics that people use to fudge their reporting.</p>
 <div id="hiding-a-decrease-in-the-cumulative" class="section level2">
 <h2><span class="header-section-number">4.1</span> Hiding a decrease in the cumulative</h2>
-<p>Tim Cook iPhone sales.</p>
-</div>
-<div id="unrelated-plotting" class="section level2">
-<h2><span class="header-section-number">4.2</span> Unrelated plotting</h2>
-<p>Spurious time series.</p>
+<p>Say you run a company where sales have decreased every quarter this year. You desperately need to show your board an impressive looking sales chart to quell their fears. Just hide the decrease in the cumulative total for the past few years (you’d be in <a href="https://www.phonearena.com/news/Apples-Cumulative-iPhone-Sales-chart-is-spinning-data-hard_id47332">good company</a>):</p>
+<pre class="r"><code>ggplot(quarterly_sales, aes(x = quarter, y = cum_sales)) +
+  geom_area() +
+  scale_y_continuous(&quot;Sales\n(cumulative)&quot;) +
+  scale_x_continuous(&quot;Quarter&quot;, expand = c(0.005, 0)) +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())</code></pre>
+<p><img src="/summaries/lies_and_stats_files/figure-html/cumulative-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The decrease in the cumulative chart barely even registers, nothing to worry about here. The individual quarterly sales tell a slightly less rosy story:</p>
+<pre class="r"><code>ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
+  geom_col() +
+  scale_y_continuous(&quot;Sales&quot;) +
+  labs(x = &quot;Quarter&quot;) +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major.y = element_line())</code></pre>
+<p><img src="/summaries/lies_and_stats_files/figure-html/quarterly-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>It’s now apparent that you’re selling 60% of the volume that you were last year.</p>
 </div>
 <div id="irrelevant-differences" class="section level2">
-<h2><span class="header-section-number">4.3</span> Irrelevant differences</h2>
+<h2><span class="header-section-number">4.2</span> Irrelevant differences</h2>
 <p>Just increase N enough to lower the p-value until it’s ‘significant’.</p>
 </div>
 <div id="comparing-apples-and-oranges" class="section level2">
-<h2><span class="header-section-number">4.4</span> Comparing apples and oranges</h2>
+<h2><span class="header-section-number">4.3</span> Comparing apples and oranges</h2>
 <p><strong>Amalgamating</strong>: group samples that differ on an important dimension to make the stat more shocking. “50% of 10-18 year olds are sexually active”.</p>
 <p><strong>Subdividing</strong>: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).</p>
 </div>
