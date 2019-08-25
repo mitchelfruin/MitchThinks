@@ -15,9 +15,8 @@ output:
 <ul>
 <li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
 <li><a href="#is-the-stat-plausible"><span class="toc-section-number">2</span> Is the stat plausible?</a></li>
-<li><a href="#what-does-the-average-mean"><span class="toc-section-number">3</span> What does the average mean?</a></li>
-<li><a href="#are-the-axes-leading-you-astray"><span class="toc-section-number">4</span> Are the axes leading you astray?</a></li>
-<li><a href="#dodgy-reporting"><span class="toc-section-number">5</span> Dodgy reporting</a></li>
+<li><a href="#are-the-axes-leading-you-astray"><span class="toc-section-number">3</span> Are the axes leading you astray?</a></li>
+<li><a href="#dodgy-reporting"><span class="toc-section-number">4</span> Dodgy reporting</a></li>
 </ul>
 </div>
 
@@ -33,7 +32,7 @@ div#TOC li {
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
 <p>Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning <em>why</em> the human brain is ‘fooled’ by particular ways of presenting information rather than just <em>what</em> those presentations are.</p>
-<p>The book’s main strength was illustrative examples some of which comprise the rest of this post.</p>
+<p>The book’s main strength was illustrative examples, some of which comprise the rest of this post.</p>
 </div>
 <div id="is-the-stat-plausible" class="section level1">
 <h1><span class="header-section-number">2</span> Is the stat plausible?</h1>
@@ -62,21 +61,11 @@ div#TOC li {
 <p>These kind of ‘wait, but we’re still talking about the real world’ checks can sometimes help assess the plausibility of a statistic. For example, in 1993 New Jersey adopted a ‘family cap’ law that denied additional benefits to mothers who had children whilst already on welfare. After two months, legislators were celebrating its success as births had already fallen by 16%. The only problem being that human pregnancies generally take a bit longer than that.</p>
 </div>
 </div>
-<div id="what-does-the-average-mean" class="section level1">
-<h1><span class="header-section-number">3</span> What does the average mean?</h1>
-<div id="mean-median-and-mode" class="section level2">
-<h2><span class="header-section-number">3.1</span> Mean, median and mode</h2>
-</div>
-<div id="bimodal-distributions" class="section level2">
-<h2><span class="header-section-number">3.2</span> Bimodal distributions</h2>
-<p>Humans on average have one testicle. Meaningless to compute an average on a metric over a whole population where there are important differences.</p>
-</div>
-</div>
 <div id="are-the-axes-leading-you-astray" class="section level1">
-<h1><span class="header-section-number">4</span> Are the axes leading you astray?</h1>
+<h1><span class="header-section-number">3</span> Are the axes leading you astray?</h1>
 <p>Manipulating the axes on a graph is one of the easiest ways to con a reader.</p>
 <div id="truncated-axes" class="section level2">
-<h2><span class="header-section-number">4.1</span> Truncated axes</h2>
+<h2><span class="header-section-number">3.1</span> Truncated axes</h2>
 <p>Shortening the proper range of y-axis values is often used to exaggerate the difference between two groups that are being compared.</p>
 <p>For example, if I wanted to convince you that my product was way better than a competitor’s I might show you a bar chart reporting the average customer rating like this:</p>
 <pre class="r"><code># Bar chart with truncated y-axis
@@ -102,7 +91,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <p><img src="/summaries/lies_and_stats_files/figure-html/full%20range%20bar%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="discontinuous-axes" class="section level2">
-<h2><span class="header-section-number">4.2</span> Discontinuous axes</h2>
+<h2><span class="header-section-number">3.2</span> Discontinuous axes</h2>
 <p>Condensing a small portion of the x-axis can be used to falsely emphasise a few data points.</p>
 <p>For example, say I’m selling security systems and I want to put a scary graph on the leaflet I drop through people’s letterboxes. I might include a line graph like this one that exaggerates the recent increase in the number of burglaries:</p>
 <pre class="r"><code>tibble(Year = c(&quot;2009&quot;, &quot;2010&quot;, &quot;2011&quot;, &quot;2012&quot;, &quot;2013&quot;, &quot;2014&quot;, &quot;2019&quot;),
@@ -117,7 +106,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <p>However, the apparent spike in burglaries is just an artefact of the fact that 5 year’s worth of increases have been squeezed into one notch on the x-axis.</p>
 </div>
 <div id="elongated-axes" class="section level2">
-<h2><span class="header-section-number">4.3</span> Elongated axes</h2>
+<h2><span class="header-section-number">3.3</span> Elongated axes</h2>
 <p>Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by elongating an axis using irrelevant blank values.</p>
 <p>For example, take a similar line graph to the one discussed above. If we plot the graph without any trickery then the data seem to show a steady increase in the number of burglaries:</p>
 <pre class="r"><code>tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
@@ -141,10 +130,10 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <p><img src="/summaries/lies_and_stats_files/figure-html/elongated%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="duplicate-axes" class="section level2">
-<h2><span class="header-section-number">4.4</span> Duplicate axes</h2>
+<h2><span class="header-section-number">3.4</span> Duplicate axes</h2>
 <p>Duplicating the y-axis allows you to tell any story you fancy with the data. If they measure the same thing then you can fudge the graph however you want. A prominent example of this kind of manipulation is a graph presented by U.S. Representative Jason Chaffetz during a hearing on planned parenthood:</p>
 <center>
-<img src="/images/double_y_axis.jpeg" alt="Jason Chaffetz’s graphical car crash" />
+<img src="/Users/mitchelfruin/Documents/Website/MitchThinks/static/images/double_y_axis.jpeg" alt="Jason Chaffetz’s graphical car crash" />
 </center>
 <p>A good general rule is ‘when you want to use a double y-axis, use two graphs instead’. There are some instances when it’s defensible, I like a <a href="https://duckduckgo.com/?q=pareto+chart&amp;t=ffab&amp;atb=v170-1&amp;iax=images&amp;ia=images">pareto chart</a> as much as the next guy, if you’re using two different measures (i.e. different units) and only making ‘within-axis’ comparisons (rather than just shifting the left-hand y-axis up or down and to make your point).</p>
 <p>If we plot Chaffetz’s chart properly it looks a little less like doctors are too busy with abortions to treat cancer:</p>
@@ -166,22 +155,22 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 </div>
 </div>
 <div id="dodgy-reporting" class="section level1">
-<h1><span class="header-section-number">5</span> Dodgy reporting</h1>
+<h1><span class="header-section-number">4</span> Dodgy reporting</h1>
 <p>A few miscellaneous tactics that people use to fudge their reporting.</p>
 <div id="hiding-a-decrease-in-the-cumulative" class="section level2">
-<h2><span class="header-section-number">5.1</span> Hiding a decrease in the cumulative</h2>
+<h2><span class="header-section-number">4.1</span> Hiding a decrease in the cumulative</h2>
 <p>Tim Cook iPhone sales.</p>
 </div>
 <div id="unrelated-plotting" class="section level2">
-<h2><span class="header-section-number">5.2</span> Unrelated plotting</h2>
+<h2><span class="header-section-number">4.2</span> Unrelated plotting</h2>
 <p>Spurious time series.</p>
 </div>
 <div id="irrelevant-differences" class="section level2">
-<h2><span class="header-section-number">5.3</span> Irrelevant differences</h2>
+<h2><span class="header-section-number">4.3</span> Irrelevant differences</h2>
 <p>Just increase N enough to lower the p-value until it’s ‘significant’.</p>
 </div>
 <div id="comparing-apples-and-oranges" class="section level2">
-<h2><span class="header-section-number">5.4</span> Comparing apples and oranges</h2>
+<h2><span class="header-section-number">4.4</span> Comparing apples and oranges</h2>
 <p><strong>Amalgamating</strong>: group samples that differ on an important dimension to make the stat more shocking. “50% of 10-18 year olds are sexually active”.</p>
 <p><strong>Subdividing</strong>: split things inconsistently to make your point more impressive. Divide all causes of death into subcategories apart from the one you want to promote. Should be equal bins (either by percentile of absolute).</p>
 </div>
