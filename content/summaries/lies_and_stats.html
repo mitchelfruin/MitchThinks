@@ -6,7 +6,7 @@ slug: lies_and_stats
 output:
   blogdown::html_page:
     toc: true
-    toc_depth: 1
+    toc_depth: 2
     number_sections: true
 ---
 
@@ -14,9 +14,21 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
-<li><a href="#is-the-stat-plausible"><span class="toc-section-number">2</span> Is the stat plausible?</a></li>
-<li><a href="#are-the-axes-leading-you-astray"><span class="toc-section-number">3</span> Are the axes leading you astray?</a></li>
-<li><a href="#dodgy-reporting"><span class="toc-section-number">4</span> Dodgy reporting</a></li>
+<li><a href="#is-the-stat-plausible"><span class="toc-section-number">2</span> Is the stat plausible?</a><ul>
+<li><a href="#back-of-the-napkin-calculations"><span class="toc-section-number">2.1</span> Back of the napkin calculations</a></li>
+<li><a href="#youve-taken-a-bath-before"><span class="toc-section-number">2.2</span> You’ve taken a bath before</a></li>
+</ul></li>
+<li><a href="#are-the-axes-leading-you-astray"><span class="toc-section-number">3</span> Are the axes leading you astray?</a><ul>
+<li><a href="#truncated-axes"><span class="toc-section-number">3.1</span> Truncated axes</a></li>
+<li><a href="#discontinuous-axes"><span class="toc-section-number">3.2</span> Discontinuous axes</a></li>
+<li><a href="#elongated-axes"><span class="toc-section-number">3.3</span> Elongated axes</a></li>
+<li><a href="#duplicate-axes"><span class="toc-section-number">3.4</span> Duplicate axes</a></li>
+</ul></li>
+<li><a href="#dodgy-reporting"><span class="toc-section-number">4</span> Dodgy reporting</a><ul>
+<li><a href="#hiding-a-decrease-in-the-cumulative"><span class="toc-section-number">4.1</span> Hiding a decrease in the cumulative</a></li>
+<li><a href="#irrelevant-differences"><span class="toc-section-number">4.2</span> Irrelevant differences</a></li>
+<li><a href="#comparing-apples-and-oranges"><span class="toc-section-number">4.3</span> Comparing apples and oranges</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -133,7 +145,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <h2><span class="header-section-number">3.4</span> Duplicate axes</h2>
 <p>Duplicating the y-axis allows you to tell any story you fancy with the data. If they measure the same thing then you can fudge the graph however you want. A prominent example of this kind of manipulation is a graph presented by U.S. Representative Jason Chaffetz during a hearing on planned parenthood:</p>
 <center>
-<img src="/Users/mitchelfruin/Documents/Website/MitchThinks/static/images/double_y_axis.jpeg" alt="Jason Chaffetz’s graphical disaster" />
+<img src="/images/double_y_axis.jpeg" alt="Jason Chaffetz’s graphical disaster" />
 </center>
 <p>A good general rule is ‘when you want to use a double y-axis, use two graphs instead’. There are some instances when it’s defensible, I like a <a href="https://duckduckgo.com/?q=pareto+chart&amp;t=ffab&amp;atb=v170-1&amp;iax=images&amp;ia=images">pareto chart</a> as much as the next guy, if you’re using two different measures (i.e. different units) and only making ‘within-axis’ comparisons (rather than just shifting the left-hand y-axis up or down and to make your point).</p>
 <p>If we plot Chaffetz’s chart properly it looks a little less like doctors are too busy with abortions to treat cancer:</p>
@@ -177,7 +189,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
         panel.grid.major.y = element_line())</code></pre>
 <p><img src="/summaries/lies_and_stats_files/figure-html/quarterly-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>It’s now apparent that you’re selling 60% of the volume that you were last year.</p>
+<p>It’s now apparent that in the past quarter you sold 60% of the volume that you did in the same period last year.</p>
 </div>
 <div id="irrelevant-differences" class="section level2">
 <h2><span class="header-section-number">4.2</span> Irrelevant differences</h2>

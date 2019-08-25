@@ -6,7 +6,7 @@ slug: lies_and_stats
 output:
   blogdown::html_page:
     toc: true
-    toc_depth: 1
+    toc_depth: 2
     number_sections: true
 ---
 
@@ -167,7 +167,7 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
 Duplicating the y-axis allows you to tell any story you fancy with the data. If they measure the same thing then you can fudge the graph however you want. A prominent example of this kind of manipulation is a graph presented by U.S. Representative Jason Chaffetz during a hearing on planned parenthood:
 
 <center>
-![Jason Chaffetz's graphical disaster](~/Documents/Website/MitchThinks/static/images/double_y_axis.jpeg)
+![Jason Chaffetz's graphical disaster](/images/double_y_axis.jpeg)
 </center>
 
 A good general rule is 'when you want to use a double y-axis, use two graphs instead'. There are some instances when it's defensible, I like a [pareto chart](https://duckduckgo.com/?q=pareto+chart&t=ffab&atb=v170-1&iax=images&ia=images) as much as the next guy, if you're using two different measures (i.e. different units) and only making 'within-axis' comparisons (rather than just shifting the left-hand y-axis up or down and to make your point). 
