@@ -29,17 +29,17 @@ I built the site using the R package [`blogdown`](https://bookdown.org/yihui/blo
 * To encourage myself to read (and actually think about what I've learned). 
 * To use R for something that didn't feel like work. 
 
-The site is still very much a work-in-progress (unfinished articles are marked with a *) but is broadly split into two sections:
+The site is still very much a work-in-progress but is split into two sections based loosely on whether I've had an idea or I'm just recapping someone else's:
 
-* Blog posts.
-    + Random articles at the intersection of topics that I'm interested in and trying to learn more about, including:
+* Posts.
+    + Traditional blog posts at the intersection of topics that I'm interested in and trying to learn more about, including:
         - Programming. 
         - Data Science (analytics, statistics, and machine learning).
         - Alternative approaches to economics (behavioural, complexity).
         - Evolutionary biology.
 * Summaries.
-    + Summaries of non-fiction books and academic papers. 
-        - Focused on illustrating concepts using R (with a few of my thoughts thrown in)
+    + Short notes on non-fiction books, academic papers, and textbooks. 
+        - Focused on illustrating concepts using R.
         - Won't be exhaustive. 
 
 # Education
