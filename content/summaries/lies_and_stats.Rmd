@@ -38,7 +38,7 @@ maths_test <- tibble(student = c(1:100),
                      score = rtruncnorm(100, 0, 100, 40, 20))
 ```
 
-If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/summaries/lies_and_stats_Levitin_2016.Rmd).
+If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/summaries/lies_and_stats.Rmd).
 
 # Summary
 
