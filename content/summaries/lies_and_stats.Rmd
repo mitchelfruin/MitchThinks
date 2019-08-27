@@ -244,13 +244,17 @@ For instance, say your parents were on your case about your latest maths test an
 ```{r favourable grouping}
 # Histogram with favourable grouping
 ggplot(maths_test, aes(x = score)) +
-  geom_histogram(breaks = c(seq(10, 74, 4), 100)) +
+  geom_histogram(breaks = c(seq(10, 74, 4), 85)) +
   scale_y_continuous("Count") +
   scale_x_continuous("Score") +
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
         panel.grid.major = element_line())
 ```
+
+Your parents will be pleased that you're in the group of your class' very top scorers. 
+
+However, if we plot the same data with equal bin widths the little bit of fudging becomes apparent. 
 
 ```{r honest grouping}
 # Histogram with fair grouping
@@ -262,6 +266,8 @@ ggplot(maths_test, aes(x = score)) +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
         panel.grid.major = element_line())
 ```
+
+Anyway, be on the look out for unequal bin widths. 
 
 ### Subdividing
 
