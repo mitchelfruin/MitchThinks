@@ -105,7 +105,8 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <h2><span class="header-section-number">3.2</span> Discontinuous axes</h2>
 <p>Condensing a small portion of the x-axis can be used to falsely emphasise a few data points.</p>
 <p>For example, say I’m selling security systems and I want to put a scary graph on the leaflet I drop through people’s letterboxes. I might include a line graph like this one that exaggerates the recent increase in the number of burglaries:</p>
-<pre class="r"><code>tibble(Year = c(&quot;2009&quot;, &quot;2010&quot;, &quot;2011&quot;, &quot;2012&quot;, &quot;2013&quot;, &quot;2014&quot;, &quot;2019&quot;),
+<pre class="r"><code># Discontinuous line graph
+tibble(Year = c(&quot;2009&quot;, &quot;2010&quot;, &quot;2011&quot;, &quot;2012&quot;, &quot;2013&quot;, &quot;2014&quot;, &quot;2019&quot;),
        burglary_count = c(100, 102.5, 105, 107.5, 110, 112.5, 125)) %&gt;%
   ggplot(aes(x = Year, y = burglary_count)) +
   geom_line(group = 1) +
@@ -120,7 +121,8 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <h2><span class="header-section-number">3.3</span> Elongated axes</h2>
 <p>Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by elongating an axis using irrelevant blank values.</p>
 <p>For example, take a similar line graph to the one discussed above. If we plot the graph without any trickery, then the data seem to show a steady increase in the number of burglaries:</p>
-<pre class="r"><code>tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
+<pre class="r"><code># Regular x-axis line graph
+tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
   ggplot(aes(x = Year, y = burglary_count)) +
   geom_line(group = 1) +
   scale_y_continuous(&quot;Burglary\nCount&quot;) +
@@ -130,7 +132,8 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
         panel.grid.major = element_line())</code></pre>
 <p><img src="/summaries/lies_and_stats_files/figure-html/normal%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>However, we can make the same data look much more extreme by including space on the x-axis for years without any data. This narrows the visual space over which the same increase in our data must be plotted (meaning the line must be steeper). Thus, the same increase over the same timespan looks much more drastic:</p>
-<pre class="r"><code>tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
+<pre class="r"><code># Elongated x-axis line graph
+tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
   ggplot(aes(x = Year, y = burglary_count)) +
   geom_line(group = 1) +
   scale_y_continuous(&quot;Burglary\nCount&quot;) +
@@ -148,7 +151,8 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 </center>
 <p>A good general rule is ‘when you want to use a double y-axis, use two graphs instead’. There are some instances when it’s defensible, I like a <a href="https://duckduckgo.com/?q=pareto+chart&amp;t=ffab&amp;atb=v170-1&amp;iax=images&amp;ia=images">pareto chart</a> as much as the next guy, if you’re using two different measures (i.e. different units) and only making ‘within-axis’ comparisons (rather than just shifting the left-hand y-axis up or down and to make your point).</p>
 <p>If we plot Chaffetz’s chart properly it looks a little less like doctors are too busy with abortions to treat cancer:</p>
-<pre class="r"><code>tibble(Year = c(2006, 2013), 
+<pre class="r"><code># Correcting Chaffetz
+tibble(Year = c(2006, 2013), 
        Cancer = c(2007371, 935573), 
        Abortions = c(289750, 327000)) %&gt;%
   melt(id.vars = &quot;Year&quot;) %&gt;%
@@ -171,7 +175,8 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <div id="hiding-a-decrease-in-the-cumulative" class="section level2">
 <h2><span class="header-section-number">4.1</span> Hiding a decrease in the cumulative</h2>
 <p>Say you run a company where sales have decreased every quarter this year. You desperately need to show your board an impressive looking sales chart to quell their fears. Just hide the decrease in the cumulative total for the past few years (you’d be in <a href="https://www.phonearena.com/news/Apples-Cumulative-iPhone-Sales-chart-is-spinning-data-hard_id47332">good company</a>):</p>
-<pre class="r"><code>ggplot(quarterly_sales, aes(x = quarter, y = cum_sales)) +
+<pre class="r"><code># Cumulative sales line graph
+ggplot(quarterly_sales, aes(x = quarter, y = cum_sales)) +
   geom_area() +
   scale_y_continuous(&quot;Sales\n(cumulative)&quot;) +
   scale_x_continuous(&quot;Quarter&quot;, expand = c(0.005, 0)) +
@@ -180,7 +185,8 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
         panel.grid.major = element_line())</code></pre>
 <p><img src="/summaries/lies_and_stats_files/figure-html/cumulative-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The decrease in the cumulative chart barely even registers, nothing to worry about here. The individual quarterly sales tell a slightly less rosy story:</p>
-<pre class="r"><code>ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
+<pre class="r"><code># Quarterly sales bar chart 
+ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
   geom_col() +
   scale_y_continuous(&quot;Sales&quot;) +
   labs(x = &quot;Quarter&quot;) +
@@ -195,7 +201,13 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <div id="amalgamating" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Amalgamating</h3>
 <p>The way data is grouped has an impact on the conclusions readers draw from it. One tactic to watch out for is when data has been binned into groups with unequal ranges.</p>
-<p>For instance, say your parents were on your case about your latest school report and you were so committed to deceiving them that you whipped up a histogram of your class’ latest maths test:</p>
+<p>For instance, say your parents were on your case about your latest maths test and you were so committed to deceiving them that you whipped up a histogram that showed your score of 70 pretty favourably:</p>
+<pre class="r"><code># Histogram with favourable grouping
+ggplot(maths_test, aes(x = score)) +
+  geom_histogram()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/summaries/lies_and_stats_files/figure-html/favourable%20grouping-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Histogram with fair grouping</code></pre>
 </div>
 <div id="subdividing" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Subdividing</h3>

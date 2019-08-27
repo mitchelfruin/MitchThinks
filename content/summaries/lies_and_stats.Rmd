@@ -32,6 +32,9 @@ product_ratings <- tibble(Product = c("Mine", "Competitor's"),
 quarterly_sales <- tibble(quarter = c(1:16),
                           sales = c(rep(100, 12), 90, 80, 70, 60),
                           cum_sales = cumsum(sales))
+set.seed(23)
+maths_test <- tibble(student = c(1:30), 
+                     score = rnorm(30, 50, 20))
 ```
 
 If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/summaries/lies_and_stats_Levitin_2016.Rmd).
@@ -120,6 +123,7 @@ Condensing a small portion of the x-axis can be used to falsely emphasise a few 
 For example, say I'm selling security systems and I want to put a scary graph on the leaflet I drop through people's letterboxes. I might include a line graph like this one that exaggerates the recent increase in the number of burglaries: 
 
 ```{r discontinuous line graph}
+# Discontinuous line graph
 tibble(Year = c("2009", "2010", "2011", "2012", "2013", "2014", "2019"),
        burglary_count = c(100, 102.5, 105, 107.5, 110, 112.5, 125)) %>%
   ggplot(aes(x = Year, y = burglary_count)) +
@@ -139,6 +143,7 @@ Discontinuous axes make a change look more extreme by removing some values, but 
 For example, take a similar line graph to the one discussed above. If we plot the graph without any trickery, then the data seem to show a steady increase in the number of burglaries: 
 
 ```{r normal line graph}
+# Regular x-axis line graph
 tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
   ggplot(aes(x = Year, y = burglary_count)) +
   geom_line(group = 1) +
@@ -152,6 +157,7 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
 However, we can make the same data look much more extreme by including space on the x-axis for years without any data. This narrows the visual space over which the same increase in our data must be plotted (meaning the line must be steeper). Thus, the same increase over the same timespan looks much more drastic:
 
 ```{r elongated line graph}
+# Elongated x-axis line graph
 tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %>%
   ggplot(aes(x = Year, y = burglary_count)) +
   geom_line(group = 1) +
@@ -175,6 +181,7 @@ A good general rule is 'when you want to use a double y-axis, use two graphs ins
 If we plot Chaffetz's chart properly it looks a little less like doctors are too busy with abortions to treat cancer:
 
 ```{r planned parenthood}
+# Correcting Chaffetz
 tibble(Year = c(2006, 2013), 
        Cancer = c(2007371, 935573), 
        Abortions = c(289750, 327000)) %>%
@@ -201,6 +208,7 @@ A few miscellaneous tactics that people use to fudge their reporting.
 Say you run a company where sales have decreased every quarter this year. You desperately need to show your board an impressive looking sales chart to quell their fears. Just hide the decrease in the cumulative total for the past few years (you'd be in [good company](https://www.phonearena.com/news/Apples-Cumulative-iPhone-Sales-chart-is-spinning-data-hard_id47332)): 
 
 ```{r cumulative}
+# Cumulative sales line graph
 ggplot(quarterly_sales, aes(x = quarter, y = cum_sales)) +
   geom_area() +
   scale_y_continuous("Sales\n(cumulative)") +
@@ -213,6 +221,7 @@ ggplot(quarterly_sales, aes(x = quarter, y = cum_sales)) +
 The decrease in the cumulative chart barely even registers, nothing to worry about here. The individual quarterly sales tell a slightly less rosy story:
 
 ```{r quarterly}
+# Quarterly sales bar chart 
 ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
   geom_col() +
   scale_y_continuous("Sales") +
@@ -230,9 +239,18 @@ It's now apparent that in the past quarter you sold 60% of the volume that you d
 
 The way data is grouped has an impact on the conclusions readers draw from it. One tactic to watch out for is when data has been binned into groups with unequal ranges.
 
-For instance, say your parents were on your case about your latest school report and you were so committed to deceiving them that you whipped up a histogram of your class' latest maths test:
+For instance, say your parents were on your case about your latest maths test and you were so committed to deceiving them that you whipped up a histogram that showed your score of 70 pretty favourably:
 
+```{r favourable grouping}
+# Histogram with favourable grouping
+ggplot(maths_test, aes(x = score)) +
+  geom_histogram()
+```
 
+```{r honest grouping}
+# Histogram with fair grouping
+
+```
 
 ### Subdividing
 
