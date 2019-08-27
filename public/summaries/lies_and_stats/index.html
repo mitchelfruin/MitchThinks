@@ -301,7 +301,7 @@ ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
 ggplot(maths_test, aes(x = score, fill = ..count..)) +
   geom_histogram(breaks = c(seq(10, 74, 4), 90)) +
   scale_y_continuous(&quot;Count&quot;) +
-  scale_x_continuous(&quot;Score&quot;) +
+  scale_x_continuous(&quot;Score&quot;, breaks = c(0, 25, 50, 75)) +
   scale_fill_continuous(guide = &quot;none&quot;) +
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
@@ -313,7 +313,7 @@ ggplot(maths_test, aes(x = score, fill = ..count..)) +
 ggplot(maths_test, aes(x = score, fill = ..count..)) +
   geom_histogram(bins = 25) +
   scale_y_continuous(&quot;Count&quot;) +
-  scale_x_continuous(&quot;Score&quot;) +
+  scale_x_continuous(&quot;Score&quot;, breaks = c(0, 25, 50, 75)) +
   scale_fill_continuous(guide = &quot;none&quot;) +
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),

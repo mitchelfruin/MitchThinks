@@ -247,7 +247,7 @@ For instance, say your parents were on your case about your latest maths test an
 ggplot(maths_test, aes(x = score, fill = ..count..)) +
   geom_histogram(breaks = c(seq(10, 74, 4), 90)) +
   scale_y_continuous("Count") +
-  scale_x_continuous("Score") +
+  scale_x_continuous("Score", breaks = c(0, 25, 50, 75)) +
   scale_fill_continuous(guide = "none") +
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
@@ -263,7 +263,7 @@ However, if we plot the same data with equal bin widths the little bit of fudgin
 ggplot(maths_test, aes(x = score, fill = ..count..)) +
   geom_histogram(bins = 25) +
   scale_y_continuous("Count") +
-  scale_x_continuous("Score") +
+  scale_x_continuous("Score", breaks = c(0, 25, 50, 75)) +
   scale_fill_continuous(guide = "none") +
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
