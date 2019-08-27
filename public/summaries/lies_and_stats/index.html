@@ -210,7 +210,7 @@ tibble(Year = c(&quot;2009&quot;, &quot;2010&quot;, &quot;2011&quot;, &quot;2012
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
         panel.grid.major = element_line())</code></pre>
 <p><img src="/summaries/lies_and_stats_files/figure-html/discontinuous%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>However, the apparent spike in burglaries is just an artefact of the fact that 5 year’s worth of increases have been squeezed into one notch on the x-axis.</p>
+<p>However, the apparent spike in burglaries is just a result of the fact that 5 year’s worth of increases have been squeezed into one notch on the x-axis.</p>
 </div>
 <div id="elongated-axes" class="section level2">
 <h2><span class="header-section-number">3.3</span> Elongated axes</h2>
@@ -261,7 +261,7 @@ tibble(Year = c(2006, 2013),
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
         panel.grid.major = element_line())</code></pre>
 <p><img src="/summaries/lies_and_stats_files/figure-html/planned%20parenthood-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>There are still problems with this graph (just plotting two time series and looking for a relationship is setting yourself up to overinterpret a <a href="http://www.tylervigen.com/spurious-correlations">spurious correlation</a>) but it’s better than before.</p>
+<p>There are still problems with this graph (just plotting two time series and looking for a relationship is setting yourself up to over-interpret a <a href="http://www.tylervigen.com/spurious-correlations">spurious correlation</a>) but it’s better than before.</p>
 </div>
 </div>
 <div id="dodgy-reporting" class="section level1">
@@ -319,7 +319,7 @@ ggplot(maths_test, aes(x = score, fill = ..count..)) +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
         panel.grid.major = element_line())</code></pre>
 <p><img src="/summaries/lies_and_stats_files/figure-html/honest%20grouping-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Anyway, be on the look out for unequal bin widths.</p>
+<p>If you’re writing your own reports then use equal bins widths, either in percentile or absolute terms. If you’re reading someone else’s, then make sure they do too.</p>
 </div>
 <div id="subdividing" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Subdividing</h3>
@@ -332,12 +332,12 @@ ggplot(maths_test, aes(x = score, fill = ..count..)) +
 <p>But, both of these are actually groups of conditions. So, say you’re trying to get more funding for cancer research you might subdivide the heart disease category but not the cancer one. Then you could, honestly but misleadingly, report that the top causes of death were:</p>
 <ul>
 <li>Cancer = 584,881</li>
-<li>Heart failure = 65,120</li>
 <li>Acute myocardial infarction = 116,793</li>
+<li>Heart failure = 65,120</li>
 <li>Hypertensive heart disease = 37,144</li>
 <li>Acute rheumatic fever and chronic rheumatic heart disease = 3,260</li>
 </ul>
-<p>If you’re writing your own reports then use equal bins widths, either in percentile or absolute terms.</p>
+<p>So, be cautious of suspicious subdividing.</p>
 </div>
 </div>
 </div>

@@ -135,7 +135,7 @@ tibble(Year = c("2009", "2010", "2011", "2012", "2013", "2014", "2019"),
         panel.grid.major = element_line())
 ```
 
-However, the apparent spike in burglaries is just an artefact of the fact that 5 year's worth of increases have been squeezed into one notch on the x-axis. 
+However, the apparent spike in burglaries is just a result of the fact that 5 year's worth of increases have been squeezed into one notch on the x-axis. 
 
 ## Elongated axes
 
@@ -198,7 +198,7 @@ tibble(Year = c(2006, 2013),
         panel.grid.major = element_line())
 ```
 
-There are still problems with this graph (just plotting two time series and looking for a relationship is setting yourself up to overinterpret a [spurious correlation](http://www.tylervigen.com/spurious-correlations)) but it's better than before.
+There are still problems with this graph (just plotting two time series and looking for a relationship is setting yourself up to over-interpret a [spurious correlation](http://www.tylervigen.com/spurious-correlations)) but it's better than before.
 
 # Dodgy reporting 
 
@@ -270,7 +270,7 @@ ggplot(maths_test, aes(x = score, fill = ..count..)) +
         panel.grid.major = element_line())
 ```
 
-Anyway, be on the look out for unequal bin widths. 
+If you're writing your own reports then use equal bins widths, either in percentile or absolute terms. If you're reading someone else's, then make sure they do too. 
 
 ### Subdividing
 
@@ -284,10 +284,9 @@ For instance, the U.S. CDC listed the top 2 causes of death in 2013 as:
 But, both of these are actually groups of conditions. So, say you're trying to get more funding for cancer research you might subdivide the heart disease category but not the cancer one. Then you could, honestly but misleadingly, report that the top causes of death were:
 
 * Cancer = 584,881
-* Heart failure = 65,120
 * Acute myocardial infarction = 116,793
+* Heart failure = 65,120
 * Hypertensive heart disease = 37,144
 * Acute rheumatic fever and chronic rheumatic heart disease = 3,260
 
-If you're writing your own reports then use equal bins widths, either in percentile or absolute terms. 
-
+So, be cautious of suspicious subdividing. 
