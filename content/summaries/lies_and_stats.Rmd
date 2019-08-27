@@ -20,11 +20,12 @@ div#TOC li {
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = "center", cache = T)
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
 
 # Packages
 library(tidyverse)
 library(reshape2)
+library(truncnorm)
 
 # Data
 product_ratings <- tibble(Product = c("Mine", "Competitor's"),
@@ -34,7 +35,7 @@ quarterly_sales <- tibble(quarter = c(1:16),
                           cum_sales = cumsum(sales))
 set.seed(23)
 maths_test <- tibble(student = c(1:100), 
-                     score = rnorm(100, 40, 20))
+                     score = rtruncnorm(100, 0, 100, 40, 20))
 ```
 
 If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/summaries/lies_and_stats_Levitin_2016.Rmd).
@@ -243,10 +244,11 @@ For instance, say your parents were on your case about your latest maths test an
 
 ```{r favourable grouping}
 # Histogram with favourable grouping
-ggplot(maths_test, aes(x = score)) +
-  geom_histogram(breaks = c(seq(10, 74, 4), 85)) +
+ggplot(maths_test, aes(x = score, fill = ..count..)) +
+  geom_histogram(breaks = c(seq(10, 74, 4), 90)) +
   scale_y_continuous("Count") +
   scale_x_continuous("Score") +
+  scale_fill_continuous(guide = "none") +
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
         panel.grid.major = element_line())
@@ -258,10 +260,11 @@ However, if we plot the same data with equal bin widths the little bit of fudgin
 
 ```{r honest grouping}
 # Histogram with fair grouping
-ggplot(maths_test, aes(x = score)) +
+ggplot(maths_test, aes(x = score, fill = ..count..)) +
   geom_histogram(bins = 25) +
   scale_y_continuous("Count") +
   scale_x_continuous("Score") +
+  scale_fill_continuous(guide = "none") +
   theme_classic() +
   theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
         panel.grid.major = element_line())
