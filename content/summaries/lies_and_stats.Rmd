@@ -33,8 +33,8 @@ quarterly_sales <- tibble(quarter = c(1:16),
                           sales = c(rep(100, 12), 90, 80, 70, 60),
                           cum_sales = cumsum(sales))
 set.seed(23)
-maths_test <- tibble(student = c(1:30), 
-                     score = rnorm(30, 50, 20))
+maths_test <- tibble(student = c(1:100), 
+                     score = rnorm(100, 40, 20))
 ```
 
 If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/summaries/lies_and_stats_Levitin_2016.Rmd).
@@ -239,17 +239,28 @@ It's now apparent that in the past quarter you sold 60% of the volume that you d
 
 The way data is grouped has an impact on the conclusions readers draw from it. One tactic to watch out for is when data has been binned into groups with unequal ranges.
 
-For instance, say your parents were on your case about your latest maths test and you were so committed to deceiving them that you whipped up a histogram that showed your score of 70 pretty favourably:
+For instance, say your parents were on your case about your latest maths test and you were so committed to deceiving them that you whipped up a histogram that showed your score of 75 pretty favourably:
 
 ```{r favourable grouping}
 # Histogram with favourable grouping
 ggplot(maths_test, aes(x = score)) +
-  geom_histogram()
+  geom_histogram(breaks = c(seq(10, 74, 4), 100)) +
+  scale_y_continuous("Count") +
+  scale_x_continuous("Score") +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())
 ```
 
 ```{r honest grouping}
 # Histogram with fair grouping
-
+ggplot(maths_test, aes(x = score)) +
+  geom_histogram(bins = 25) +
+  scale_y_continuous("Count") +
+  scale_x_continuous("Score") +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())
 ```
 
 ### Subdividing

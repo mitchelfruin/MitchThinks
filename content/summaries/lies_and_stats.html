@@ -201,13 +201,25 @@ ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
 <div id="amalgamating" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Amalgamating</h3>
 <p>The way data is grouped has an impact on the conclusions readers draw from it. One tactic to watch out for is when data has been binned into groups with unequal ranges.</p>
-<p>For instance, say your parents were on your case about your latest maths test and you were so committed to deceiving them that you whipped up a histogram that showed your score of 70 pretty favourably:</p>
+<p>For instance, say your parents were on your case about your latest maths test and you were so committed to deceiving them that you whipped up a histogram that showed your score of 75 pretty favourably:</p>
 <pre class="r"><code># Histogram with favourable grouping
 ggplot(maths_test, aes(x = score)) +
-  geom_histogram()</code></pre>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+  geom_histogram(breaks = c(seq(10, 74, 4), 100)) +
+  scale_y_continuous(&quot;Count&quot;) +
+  scale_x_continuous(&quot;Score&quot;) +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())</code></pre>
 <p><img src="/summaries/lies_and_stats_files/figure-html/favourable%20grouping-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code># Histogram with fair grouping</code></pre>
+<pre class="r"><code># Histogram with fair grouping
+ggplot(maths_test, aes(x = score)) +
+  geom_histogram(bins = 25) +
+  scale_y_continuous(&quot;Count&quot;) +
+  scale_x_continuous(&quot;Score&quot;) +
+  theme_classic() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
+        panel.grid.major = element_line())</code></pre>
+<p><img src="/summaries/lies_and_stats_files/figure-html/honest%20grouping-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="subdividing" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Subdividing</h3>
