@@ -6,10 +6,21 @@
     <description>Recent content in Summaries on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/summaries/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The New Statistics: why and how?</title>
+      <link>/summaries/the_new_statistics/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/summaries/the_new_statistics/</guid>
+      <description>0.1 Irrelevant differences   If you want to see the code for this post then you can find the .Rmd file here.
+0.1 Irrelevant differences Statistical significance is a widely misunderstood concept and I’ll cover the flaws in the null hypothesis significance testing (NHST) approach, of which it is a component, in more detail in a different post.
+For now, I’ll just touch on the flawed aspect which Levitin mentions, that statistical significance does not imply real world significance.</description>
+    </item>
     
     <item>
       <title>A Field Guide to Lies and Statistics (Daniel Levitin, 2016)</title>
@@ -17,7 +28,7 @@
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/summaries/lies_and_stats/</guid>
-      <description>1 Summary 2 Is the stat plausible? 2.1 Back of the napkin calculations 2.2 You’ve taken a bath before  3 Are the axes leading you astray? 3.1 Truncated axes 3.2 Discontinuous axes 3.3 Elongated axes 3.4 Duplicate axes  4 Dodgy reporting 4.1 Hiding a decrease in the cumulative 4.2 Irrelevant differences 4.3 Comparing apples and oranges    div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the full code for this post then you can find the .</description>
+      <description>1 Summary 2 Is the stat plausible? 2.1 Back of the napkin calculations 2.2 You’ve taken a bath before  3 Are the axes leading you astray? 3.1 Truncated axes 3.2 Discontinuous axes 3.3 Elongated axes 3.4 Duplicate axes  4 Dodgy reporting 4.1 Hiding a decrease in the cumulative 4.2 Comparing apples and oranges    div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the full code for this post then you can find the .</description>
     </item>
     
     <item>
