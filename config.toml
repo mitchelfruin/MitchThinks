@@ -85,6 +85,9 @@ math = true
     name = "Posts"
     weight = 1
     url = "posts/"
+    [[menu.sub]]
+        name = "Tags"
+        url = "tags/"
 [[menu.main]]
     name = "About"
     weight = 2
