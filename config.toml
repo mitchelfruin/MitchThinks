@@ -42,45 +42,48 @@ math = true
 
     # Series see also post count
     maxSeeAlsoItems = 5
+    
+    # options for highlight.js (version, additional languages, and theme)
+    highlightjsVersion = "9.12.0"
+    highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    highlightjsLang = ["r", "yaml"]
+    highlightjsTheme = "github"
+
+    MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    MathJaxVersion = "2.7.5"
+
+    [[params.social]]
+        name = "Github"
+        icon = "fab fa-github"
+        weight = 1
+        url = "https://github.com/mitchelfruin"
+    [[params.social]]
+        name = "LinkedIn"
+        icon = "fab fa-linkedin"
+        weight = 2
+        url = "https://www.linkedin.com/in/mitchelfruin/"
+    [[params.social]]
+        name = "Kaggle"
+        icon = "fab fa-kaggle"
+        weight = 3
+        url = "https://www.kaggle.com/mitchelfruin"
+    [[params.social]]
+        name = "DataCamp"
+        icon = "fas fa-database"
+        weight = 4
+        url = "https://www.datacamp.com/profile/mitchelfruin"
 
 [taxonomies]
   category = "categories"
   series = "series"
   tag = "tags"
 
-[[params.social]]
-    name = "Github"
-    icon = "fab fa-github"
+[[menu.main]]
+    name = "Posts"
     weight = 1
-    url = "https://github.com/mitchelfruin"
-[[params.social]]
-    name = "LinkedIn"
-    icon = "fab fa-linkedin"
+    url = "posts/"
+[[menu.main]]
+    name = "About"
     weight = 2
-    url = "https://www.linkedin.com/in/mitchelfruin/"
-[[params.social]]
-    name = "Kaggle"
-    icon = "fab fa-kaggle"
-    weight = 3
-    url = "https://www.kaggle.com/mitchelfruin"
-[[params.social]]
-    name = "DataCamp"
-    icon = "fas fa-database"
-    weight = 4
-    url = "https://www.datacamp.com/profile/mitchelfruin"
-
-
-[languages]
-    [languages.en]
-        languagename = "English"
-
-        [[languages.en.menu.main]]
-        name = "Posts"
-        weight = 1
-        url = "posts/"
-        
-        [[languages.en.menu.main]]
-        name = "About"
-        weight = 2
-        url = "about/"
+    url = "about/"
         
