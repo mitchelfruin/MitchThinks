@@ -3,7 +3,7 @@ title: "A field guide to lies and statistics (Daniel Levitin, 2016)"
 author: "Mitchel Fruin"
 date: "2019-08-25"
 description: "Partial book summary."
-tags: ["Probability & Statistics", "Book Summary"]
+tags: ["Probability and statistics", "Book summary"]
 slug: lies_and_stats
 output:
   blogdown::html_page:

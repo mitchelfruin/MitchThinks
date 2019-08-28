@@ -22,23 +22,5 @@
 For now, I’ll just touch on the flawed aspect which Levitin mentions, that statistical significance does not imply real world significance.</description>
     </item>
     
-    <item>
-      <title>A field guide to lies and statistics (Daniel Levitin, 2016)</title>
-      <link>/posts/lies_and_stats/</link>
-      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/lies_and_stats/</guid>
-      <description>1 Summary 2 Is the stat plausible? 2.1 Back of the napkin calculations 2.2 You’ve taken a bath before  3 Are the axes leading you astray? 3.1 Truncated axes 3.2 Discontinuous axes 3.3 Elongated axes 3.4 Duplicate axes  4 Dodgy reporting 4.1 Hiding a decrease in the cumulative 4.2 Comparing apples and oranges    div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the full code for this post then you can find the .</description>
-    </item>
-    
-    <item>
-      <title>Probability in the real world*</title>
-      <link>/posts/probability_real_world/</link>
-      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/probability_real_world/</guid>
-      <description>1 Linda’s birthday 1.1 The Linda problem 1.2 The Birthday puzzle 1.3 Bad intuitions  2 Legal problems 2.1 Ignoring dependence 2.2 The prosecutor’s fallacy 2.3 The Feynman conjecture  3 Health problems 3.1 Base rate neglect  4 Research problems 4.1 p-value problems 4.2 Changes in probability    div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Linda’s birthday 1.1 The Linda problem  1.</description>
-    </item>
-    
   </channel>
 </rss>
