@@ -1,5 +1,5 @@
 ---
-title: "A Field Guide to Lies and Statistics (Daniel Levitin, 2016)"
+title: "A field guide to lies and statistics (Daniel Levitin, 2016)"
 author: "Mitchel Fruin"
 date: "2019-08-25"
 slug: lies_and_stats
