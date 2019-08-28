@@ -6,13 +6,24 @@
     <description>Recent content in Posts on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>The New Statistics: why and how?</title>
+      <title>Lizards playing rock, paper, scissors*</title>
+      <link>/posts/abm_intro/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/abm_intro/</guid>
+      <description>1 Rock, paper, scissors 2 Side Blotched Lizards 3 Agent-based modeling   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  This article was inspired by this post, which I attempted to recreate and extend.
+If you want to see the full code for this post then you can find the .Rmd file here.
+1 Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.</description>
+    </item>
+    
+    <item>
+      <title>The new statistics: why and how?*</title>
       <link>/posts/the_new_statistics/</link>
       <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
       
@@ -37,41 +48,29 @@ For now, I’ll just touch on the flawed aspect which Levitin mentions, that sta
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/probability_real_world/</guid>
-      <description>1 Linda’s birthday 2 Legal problems 3 Health problems 4 Research problems   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Linda’s birthday 1.1 The Linda problem  1.2 The Birthday puzzle  1.3 Bad intuitions These are just two examples from many which illustrate how our gut reactions can lead us astray.
-But these examples were artificial, and contrived, and designed to flummox us, so why should you care about the odd mistaken probability?</description>
+      <description>1 Linda’s birthday 1.1 The Linda problem 1.2 The Birthday puzzle 1.3 Bad intuitions  2 Legal problems 2.1 Ignoring dependence 2.2 The prosecutor’s fallacy 2.3 The Feynman conjecture  3 Health problems 3.1 Base rate neglect  4 Research problems 4.1 p-value problems 4.2 Changes in probability    div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Linda’s birthday 1.1 The Linda problem  1.</description>
     </item>
     
     <item>
-      <title>Doughnut Economics - Raworth 2017*</title>
-      <link>/posts/doughtnut_economics/</link>
-      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      <title>The origin of wealth: complexity economics (Eric Beinhocker 2007)*</title>
+      <link>/posts/origin_wealth_complexity_economics/</link>
+      <pubDate>Sun, 11 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/doughtnut_economics/</guid>
-      <description>Summary Illustration 1: Complexity Illustration 2: Growth   If you want to see the full code for this post then you can find the .Rmd file here.
-Summary Raworth proposes 7 changes to bring economics into the 21st century.
-Goal: GDP growth \(\rightarrow\) The Doughnut.   Summarise chapter.  Big Picture: Self contained market \(\rightarrow\) Embedded economy.   Summarise chapter.  Behavioural: Rational economic man \(\rightarrow\) Social, adaptable humans.</description>
-    </item>
-    
-    <item>
-      <title>Lizards playing rock, paper, scissors*</title>
-      <link>/posts/abm_intro/</link>
-      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/abm_intro/</guid>
-      <description>1 Rock, paper, scissors 2 Side Blotched Lizards 3 Agent-based modeling   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  This article was inspired by this post, which I attempted to recreate and extend.
-If you want to see the full code for this post then you can find the .Rmd file here.
-1 Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.</description>
-    </item>
-    
-    <item>
-      <title>The Origin of Wealth: Complexity Economics - Beinhocker 2007*</title>
-      <link>/posts/origin_of_wealth/</link>
-      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/origin_of_wealth/</guid>
-      <description>Summary 1st difference: Dynamics 2nd difference: Agents 3rd difference: Networks 4th difference: Emergence 5th difference: Evolution   If you want to see the code for this post then you can find the .Rmd file here.
-Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
+      <guid>/posts/origin_wealth_complexity_economics/</guid>
+      <description>1 Summary 2 1st difference: Dynamics 3 2nd difference: Agents 4 3rd difference: Networks 5 4th difference: Emergence 6 5th difference: Evolution   If you want to see the code for this post then you can find the .Rmd file here.
+1 Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
 Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation).</description>
+    </item>
+    
+    <item>
+      <title>Doughnut economics (Kate Raworth 2017)*</title>
+      <link>/posts/lies_and_stats/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/lies_and_stats/</guid>
+      <description>1 Summary 2 Illustration 1: Complexity 3 Illustration 2: Growth   If you want to see the full code for this post then you can find the .Rmd file here.
+1 Summary Raworth proposes 7 changes to bring economics into the 21st century.
+Goal: GDP growth \(\rightarrow\) The Doughnut.   Summarise chapter.  Big Picture: Self contained market \(\rightarrow\) Embedded economy.   Summarise chapter.  Behavioural: Rational economic man \(\rightarrow\) Social, adaptable humans.</description>
     </item>
     
   </channel>

@@ -1,11 +1,15 @@
 ---
-title: "Doughnut Economics - Raworth 2017*"
+title: "Doughnut economics (Kate Raworth 2017)*"
+author: "Mitchel Fruin"
 date: "2019-08-10"
-draft: true
+description: "Partial summary of doughnut economics by Kate Raworth."
+tags: ["Economics", "Book Summary"]
+slug: lies_and_stats
 output:
   blogdown::html_page:
     toc: true
-    toc_depth: 1
+    toc_depth: 2
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}

@@ -1,11 +1,14 @@
 ---
 title: "Probability in the real world*"
+author: "Mitchel Fruin"
 date: "2019-08-15"
-draft: true
+description: "Article with real world examples of probability mistakes."
+tags: ["Probability & Statistics"]
+slug: probability_real_world
 output:
   blogdown::html_page:
     toc: true
-    toc_depth: 1
+    toc_depth: 2
     number_sections: true
 ---
 

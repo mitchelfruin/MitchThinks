@@ -6,10 +6,37 @@
     <description>Recent content in Tags on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Agent-based modelling</title>
+      <link>/tags/agent-based-modelling/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/agent-based-modelling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Evolution</title>
+      <link>/tags/evolution/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/evolution/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Probability &amp; Statistics</title>
+      <link>/tags/probability-statistics/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/probability-statistics/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Book Summary</title>
@@ -21,11 +48,11 @@
     </item>
     
     <item>
-      <title>Statistics</title>
-      <link>/tags/statistics/</link>
-      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      <title>Economics</title>
+      <link>/tags/economics/</link>
+      <pubDate>Sun, 11 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/statistics/</guid>
+      <guid>/tags/economics/</guid>
       <description></description>
     </item>
     

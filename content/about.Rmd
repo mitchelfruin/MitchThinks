@@ -33,7 +33,6 @@ The site is still very much a work-in-progress but I plan to write:
 
 * Traditional blog posts 
     + Self-contained articles at the intersection of topics that I'm interested in and trying to learn more about, including:
-        - Programming. 
         - Data Science (analytics, statistics, and machine learning).
         - Alternative approaches to economics (behavioural, complexity).
         - Evolutionary biology.

@@ -3,13 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tags/agent-based-modelling/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/evolution/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/abm_intro/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/</loc>
-    <lastmod>2019-08-27T00:00:00+00:00</lastmod>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/posts/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/probability-statistics/</loc>
     <lastmod>2019-08-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -31,34 +60,23 @@
   </url>
   
   <url>
-    <loc>/tags/statistics/</loc>
-    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/posts/probability_real_world/</loc>
     <lastmod>2019-08-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/doughtnut_economics/</loc>
-    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
+    <loc>/tags/economics/</loc>
+    <lastmod>2019-08-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/posts/abm_intro/</loc>
-    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
+    <loc>/posts/origin_wealth_complexity_economics/</loc>
+    <lastmod>2019-08-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/origin_of_wealth/</loc>
+    <loc>/posts/lies_and_stats/</loc>
     <lastmod>2019-08-10T00:00:00+00:00</lastmod>
   </url>
   

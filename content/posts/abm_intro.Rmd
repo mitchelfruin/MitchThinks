@@ -1,12 +1,14 @@
 ---
 title: "Lizards playing rock, paper, scissors*"
-date: "2019-08-10"
+date: "2019-08-28"
+description: "An introduction to agent-based modelling and evolutionary simulation."
+tags: ["Agent-based modelling", "Evolution"]
+slug: abm_intro
 output:
   blogdown::html_page:
     toc: true
     toc_depth: 1
     number_sections: true
-description: "An introduction to agent-based modelling and evolutionary simulation."
 ---
 
 <style type="text/css">
