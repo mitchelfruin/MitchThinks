@@ -32,7 +32,7 @@ I built the site using the R package [`blogdown`](https://bookdown.org/yihui/blo
 The site is still very much a work-in-progress but I plan to write:
 
 * Traditional blog posts 
-    + Will be at the intersection of topics that I'm interested in and trying to learn more about, including:
+    + Self-contained articles at the intersection of topics that I'm interested in and trying to learn more about, including:
         - Programming. 
         - Data Science (analytics, statistics, and machine learning).
         - Alternative approaches to economics (behavioural, complexity).
