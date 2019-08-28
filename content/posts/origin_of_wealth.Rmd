@@ -1,5 +1,5 @@
 ---
-title: "The origin of wealth: complexity economics (Eric Beinhocker 2007)*"
+title: "The origin of wealth: complexity economics (Eric Beinhocker, 2007)."
 author: "Mitchel Fruin"
 date: "2019-08-11"
 description: "Partial summary of The Origin of Wealth by Eric Beinhocker."
