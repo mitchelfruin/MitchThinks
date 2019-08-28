@@ -6,10 +6,30 @@
     <description>Recent content in Posts on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The New Statistics: why and how?</title>
+      <link>/posts/the_new_statistics/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/the_new_statistics/</guid>
+      <description>0.1 Irrelevant differences   If you want to see the code for this post then you can find the .Rmd file here.
+0.1 Irrelevant differences Statistical significance is a widely misunderstood concept and I’ll cover the flaws in the null hypothesis significance testing (NHST) approach, of which it is a component, in more detail in a different post.
+For now, I’ll just touch on the flawed aspect which Levitin mentions, that statistical significance does not imply real world significance.</description>
+    </item>
+    
+    <item>
+      <title>A Field Guide to Lies and Statistics (Daniel Levitin, 2016)</title>
+      <link>/posts/lies_and_stats/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/lies_and_stats/</guid>
+      <description>1 Summary 2 Is the stat plausible? 2.1 Back of the napkin calculations 2.2 You’ve taken a bath before  3 Are the axes leading you astray? 3.1 Truncated axes 3.2 Discontinuous axes 3.3 Elongated axes 3.4 Duplicate axes  4 Dodgy reporting 4.1 Hiding a decrease in the cumulative 4.2 Comparing apples and oranges    div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the full code for this post then you can find the .</description>
+    </item>
     
     <item>
       <title>Probability in the real world*</title>
@@ -22,6 +42,17 @@ But these examples were artificial, and contrived, and designed to flummox us, s
     </item>
     
     <item>
+      <title>Doughnut Economics - Raworth 2017*</title>
+      <link>/posts/doughtnut_economics/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/doughtnut_economics/</guid>
+      <description>Summary Illustration 1: Complexity Illustration 2: Growth   If you want to see the full code for this post then you can find the .Rmd file here.
+Summary Raworth proposes 7 changes to bring economics into the 21st century.
+Goal: GDP growth \(\rightarrow\) The Doughnut.   Summarise chapter.  Big Picture: Self contained market \(\rightarrow\) Embedded economy.   Summarise chapter.  Behavioural: Rational economic man \(\rightarrow\) Social, adaptable humans.</description>
+    </item>
+    
+    <item>
       <title>Lizards playing rock, paper, scissors*</title>
       <link>/posts/abm_intro/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
@@ -30,6 +61,17 @@ But these examples were artificial, and contrived, and designed to flummox us, s
       <description>1 Rock, paper, scissors 2 Side Blotched Lizards 3 Agent-based modeling   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  This article was inspired by this post, which I attempted to recreate and extend.
 If you want to see the full code for this post then you can find the .Rmd file here.
 1 Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.</description>
+    </item>
+    
+    <item>
+      <title>The Origin of Wealth: Complexity Economics - Beinhocker 2007*</title>
+      <link>/posts/origin_of_wealth/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/origin_of_wealth/</guid>
+      <description>Summary 1st difference: Dynamics 2nd difference: Agents 3rd difference: Networks 4th difference: Emergence 5th difference: Evolution   If you want to see the code for this post then you can find the .Rmd file here.
+Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
+Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation).</description>
     </item>
     
   </channel>

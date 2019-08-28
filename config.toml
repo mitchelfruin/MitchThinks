@@ -85,11 +85,6 @@ math = true
         url = "posts/"
         
         [[languages.en.menu.main]]
-        name = "Summaries"
+        name = "Contact"
         weight = 3
-        url = "summaries/"
-        
-        [[languages.en.menu.main]]
-        name = "Contact me"
-        weight = 5
         url = "contact/"
