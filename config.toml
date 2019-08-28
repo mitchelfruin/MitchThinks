@@ -86,7 +86,7 @@ math = true
     weight = 1
     url = "posts/"
 [[menu.main]]
-    name = "Topics"
+    name = "Tags"
     weight = 2
     url = "tags/"
 [[menu.main]]
