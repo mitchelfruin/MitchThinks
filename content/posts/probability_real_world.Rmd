@@ -10,6 +10,7 @@ output:
     toc: true
     toc_depth: 2
     number_sections: true
+draft: true
 ---
 
 <style type="text/css">
@@ -181,13 +182,3 @@ We can also do it the 'proper' way using Bayes' rule discussed previously:
 add Bayes here
 
 This isn't a contrived or unimportant example. Breast cancer example. 
-
-# Research problems
-
-Problems in research and how research is communicated. 
-
-## p-value problems 
-
-## Changes in probability
-
-Relative percentage change vs. absolute percentage change (i.e. percentage points) vs. natural frequencies. 

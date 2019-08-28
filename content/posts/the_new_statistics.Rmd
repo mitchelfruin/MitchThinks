@@ -10,6 +10,7 @@ output:
     toc: true
     toc_depth: 2
     number_sections: true
+draft: true
 ---
 
 ```{r setup, include=FALSE}
@@ -65,3 +66,13 @@ t.test(x = n_500$journey_A,
 ```
 
 This illustrates the idea that researchers can always just increase their sample size enough to lower the p-value until it's 'significant'. Be careful not to substitute the question you're actually interested in (is there an important difference relevant to my business/my life/ science?) with the question the test answers (is there any statistical difference?). As I mentioned, I'll cover this more in a difference post, so if it's not clear yet then wait with baited breath.
+
+# Research problems
+
+Problems in research and how research is communicated. 
+
+## p-value problems 
+
+## Changes in probability
+
+Relative percentage change vs. absolute percentage change (i.e. percentage points) vs. natural frequencies. 

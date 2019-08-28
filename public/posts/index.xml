@@ -28,9 +28,8 @@ If you want to see the full code for this post then you can find the .Rmd file h
       <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/the_new_statistics/</guid>
-      <description>0.1 Irrelevant differences   If you want to see the code for this post then you can find the .Rmd file here.
-0.1 Irrelevant differences Statistical significance is a widely misunderstood concept and I’ll cover the flaws in the null hypothesis significance testing (NHST) approach, of which it is a component, in more detail in a different post.
-For now, I’ll just touch on the flawed aspect which Levitin mentions, that statistical significance does not imply real world significance.</description>
+      <description>0.1 Irrelevant differences 1 Research problems 1.1 p-value problems 1.2 Changes in probability    If you want to see the code for this post then you can find the .Rmd file here.
+0.1 Irrelevant differences Statistical significance is a widely misunderstood concept and I’ll cover the flaws in the null hypothesis significance testing (NHST) approach, of which it is a component, in more detail in a different post.</description>
     </item>
     
     <item>
@@ -48,7 +47,7 @@ For now, I’ll just touch on the flawed aspect which Levitin mentions, that sta
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/probability_real_world/</guid>
-      <description>1 Linda’s birthday 1.1 The Linda problem 1.2 The Birthday puzzle 1.3 Bad intuitions  2 Legal problems 2.1 Ignoring dependence 2.2 The prosecutor’s fallacy 2.3 The Feynman conjecture  3 Health problems 3.1 Base rate neglect  4 Research problems 4.1 p-value problems 4.2 Changes in probability    div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Linda’s birthday 1.1 The Linda problem  1.</description>
+      <description>1 Linda’s birthday 1.1 The Linda problem 1.2 The Birthday puzzle 1.3 Bad intuitions  2 Legal problems 2.1 Ignoring dependence 2.2 The prosecutor’s fallacy 2.3 The Feynman conjecture  3 Health problems 3.1 Base rate neglect    div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Linda’s birthday 1.1 The Linda problem  1.2 The Birthday puzzle  1.3 Bad intuitions These are just two examples from many which illustrate how our gut reactions can lead us astray.</description>
     </item>
     
     <item>
