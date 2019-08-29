@@ -26,9 +26,8 @@
       <pubDate>Sun, 11 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/origin_wealth_complexity_economics/</guid>
-      <description>1 Summary 2 1st difference: Dynamics 3 2nd difference: Agents 4 3rd difference: Networks 5 4th difference: Emergence 6 5th difference: Evolution   If you want to see the code for this post then you can find the .Rmd file here.
-1 Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
-Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation).</description>
+      <description>1 Summary 2 1st difference: Dynamics 3 2nd difference: Agents 4 3rd difference: Networks 5 4th difference: Emergence 6 5th difference: Evolution   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the code for this post then you can find the .Rmd file here.
+1 Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:</description>
     </item>
     
     <item>
@@ -37,7 +36,7 @@ Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in t
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/doughnut_economics/</guid>
-      <description>1 Goal: GDP growth \(\rightarrow\) The Doughnut. 2 Big Picture: Self contained market \(\rightarrow\) Embedded economy. 3 Behavioural: Rational economic man \(\rightarrow\) Social, adaptable humans. 4 Complexity: Mechanical equilibrium \(\rightarrow\) Dynamic complexity. 5 Inequality: Growth will even it up \(\rightarrow\) Distributive by design. 6 Environment: Growth will clean it up \(\rightarrow\) Regenerative by design. 7 Growth: Growth addicted \(\rightarrow\) Growth agnostic.   If you want to see the full code for this post then you can find the .</description>
+      <description>1 Goal: GDP growth \(\rightarrow\) The Doughnut. 2 Big Picture: Self contained market \(\rightarrow\) Embedded economy. 3 Behavioural: Rational economic man \(\rightarrow\) Social, adaptable humans. 4 Complexity: Mechanical equilibrium \(\rightarrow\) Dynamic complexity. 5 Inequality: Growth will even it up \(\rightarrow\) Distributive by design. 6 Environment: Growth will clean it up \(\rightarrow\) Regenerative by design. 7 Growth: Growth addicted \(\rightarrow\) Growth agnostic.   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the full code for this post then you can find the .</description>
     </item>
     
   </channel>

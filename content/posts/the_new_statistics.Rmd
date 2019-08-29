@@ -13,6 +13,15 @@ output:
 draft: true
 ---
 
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+
 ```{r setup, include=FALSE}
 # Rmarkdown
 knitr::opts_chunk$set(echo = TRUE)

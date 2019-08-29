@@ -17,7 +17,7 @@
       <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/the_new_statistics/</guid>
-      <description>0.1 Irrelevant differences 1 Research problems 1.1 p-value problems 1.2 Changes in probability    If you want to see the code for this post then you can find the .Rmd file here.
+      <description>0.1 Irrelevant differences 1 Research problems 1.1 p-value problems 1.2 Changes in probability    div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the code for this post then you can find the .Rmd file here.
 0.1 Irrelevant differences Statistical significance is a widely misunderstood concept and I’ll cover the flaws in the null hypothesis significance testing (NHST) approach, of which it is a component, in more detail in a different post.</description>
     </item>
     
