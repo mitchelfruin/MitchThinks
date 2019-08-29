@@ -4,7 +4,7 @@ author: "Mitchel Fruin"
 date: "2019-08-10"
 description: "Partial summary of doughnut economics by Kate Raworth."
 tags: ["Economics", "Book summary"]
-slug: lies_and_stats
+slug: doughnut_economics
 output:
   blogdown::html_page:
     toc: true
