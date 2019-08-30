@@ -2,7 +2,7 @@
 title: "The new statistics: why and how?*"
 author: "Mitchel Fruin"
 date: "2019-08-27"
-description: "An introduction to the 'New Statistics' philosophy."
+description: "An introduction to 'estimation thinking' in inferential statistics."
 tags: ["Probability and statistics"]
 slug: the_new_statistics
 output:

@@ -2,7 +2,7 @@
 title: "Doughnut economics (Kate Raworth, 2017)."
 author: "Mitchel Fruin"
 date: "2019-08-10"
-description: "Partial summary of doughnut economics by Kate Raworth."
+description: "7 changes to update economics for the 21st century."
 tags: ["Economics", "Book summary"]
 slug: doughnut_economics
 output:

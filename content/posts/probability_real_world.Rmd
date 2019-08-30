@@ -2,7 +2,7 @@
 title: "Probability in the real world*"
 author: "Mitchel Fruin"
 date: "2019-08-15"
-description: "Article with real world examples of probability mistakes."
+description: "Real world examples of common probabilistic mistakes."
 tags: ["Probability and statistics"]
 slug: probability_real_world
 output:
