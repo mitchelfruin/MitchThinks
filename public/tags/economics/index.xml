@@ -6,10 +6,21 @@
     <description>Recent content in Economics on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 11 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/economics/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nobody goes there anymore, it&#39;s too busy.</title>
+      <link>/posts/el_farol_bar_problem/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/el_farol_bar_problem/</guid>
+      <description>1 Rock, paper, scissors 2 Side Blotched Lizards 3 Agent-based modeling   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  This article was inspired by this post, which I attempted to recreate and extend.
+If you want to see the full code for this post then you can find the .Rmd file here.
+1 Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.</description>
+    </item>
     
     <item>
       <title>The Origin of Wealth (Eric Beinhocker, 2007).</title>

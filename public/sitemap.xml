@@ -9,6 +9,18 @@
   </url>
   
   <url>
+    <loc>/tags/complexity/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/economics/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/evolution/</loc>
     <lastmod>2019-08-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -23,6 +35,11 @@
     <loc>/</loc>
     <lastmod>2019-08-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/el_farol_bar_problem/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -62,18 +79,6 @@
   <url>
     <loc>/posts/probability_real_world/</loc>
     <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/complexity/</loc>
-    <lastmod>2019-08-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/economics/</loc>
-    <lastmod>2019-08-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
