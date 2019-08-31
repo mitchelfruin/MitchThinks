@@ -6,19 +6,20 @@
     <description>Recent content in Complexity on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 10 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 11 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/complexity/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Agent-based modelling: lizards &amp; rock, paper, scissors.</title>
-      <link>/interests/agent-based-modelling-lizards-rock-paper-scissors/</link>
-      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      <title>The Origin of Wealth (Eric Beinhocker, 2007).</title>
+      <link>/posts/origin_wealth_complexity_economics/</link>
+      <pubDate>Sun, 11 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/interests/agent-based-modelling-lizards-rock-paper-scissors/</guid>
-      <description>Rock Paper Scissors   NEED TO UPDATE WITH MY CODE, THIS IS SOMEONE ELSE’S. JUST A PLACEHOLDER.
-Rock Paper Scissors In this second example we are going to use the same game, but this time several individuals will play against each other. To make it more interesting individuals are organised on a lattice network. Thus, they can only play with their direct neighbors. If they lose, they have to take over the strategy of the winner and vice versa.</description>
+      <guid>/posts/origin_wealth_complexity_economics/</guid>
+      <description>1 Summary 2 Dynamics 3 Agents 4 Networks 5 Emergence 6 Evolution   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the code for this post then you can find the .Rmd file here.
+1 Summary In the first section of The Origin of Wealth Beinhocker outlines 5 key differences between traditional (neoclassical) economics and complexity economics:
+Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation).</description>
     </item>
     
   </channel>
