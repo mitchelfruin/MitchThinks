@@ -39,7 +39,7 @@ In the first section of *The Origin of Wealth* Beinhocker outlines 5 key differe
 
 I'll try to illustrate each in turn (the emphasised summaries heading each section are taken from Beinhocker without adaptation). 
 
-# 1st difference: Dynamics
+# Dynamics
 
 > Traditional: 
 > 
@@ -49,11 +49,11 @@ I'll try to illustrate each in turn (the emphasised summaries heading each secti
 > 
 > * Open, dynamic, non-linear systems far from equilibrium
 
-# 2nd difference: Agents
+# Agents
 
 > Traditional: 
 >
->* Modeled collectively (homogenous)
+>* Modelled collectively (homogenous)
 >* Use complex deductive calculations to make decisions
 >* Have complete information
 >* Random errors (no biases)
@@ -61,13 +61,13 @@ I'll try to illustrate each in turn (the emphasised summaries heading each secti
 >
 > Complexity:
 >
->* Modeled individually (heterogenous)
+>* Modelled individually (heterogenous)
 >* Use inductive heuristics to make decisions
 >* Have incomplete information
 >* Some biases
 >* Learn and adapt over time
 
-# 3rd difference: Networks
+# Networks
 
 > Traditional:
 >
@@ -78,7 +78,7 @@ I'll try to illustrate each in turn (the emphasised summaries heading each secti
 >* Explicitly model interactions between individual agents
 >* Networks of relationships change over time 
 
-# 4th difference: Emergence
+# Emergence
 
 > Traditional:
 >
@@ -89,7 +89,7 @@ I'll try to illustrate each in turn (the emphasised summaries heading each secti
 >* No hard distinction between micro- and macro-
 >* Macro patterns are emergent result of mirco-level behaviours and interactions 
 
-# 5th difference: Evolution 
+# Evolution 
 
 > Traditional:
 >
