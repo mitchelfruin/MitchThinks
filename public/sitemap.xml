@@ -9,6 +9,11 @@
   </url>
   
   <url>
+    <loc>/posts/chaos_logistic_map/</loc>
+    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/complexity/</loc>
     <lastmod>2019-08-28T00:00:00+00:00</lastmod>
     <priority>0</priority>

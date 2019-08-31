@@ -1,0 +1,41 @@
+---
+title: "Chaos with a pocket calculator."
+author: "Mitchel Fruin"
+date: "2019-08-28"
+description: "Introduction to chaos using the simple population growth example from Robert May's classic paper."
+tags: ["Complexity"]
+slug: chaos_logistic_map
+draft: true
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 1
+    number_sections: true
+---
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+
+```{r setup, include=FALSE}
+# RMarkdown
+knitr::opts_chunk$set(echo = TRUE)
+
+# Packages
+library(igraph)
+library(reshape2)
+library(ggplot2)
+```
+
+Gleick's quote in Chaos about the pocket calculator.
+
+So I played around with it. 
+
+Read the original May paper.
+
+Thought I'd try to summarise the key aspects of the behaviour to see how well I actually understood them.  

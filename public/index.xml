@@ -12,6 +12,18 @@
     
     
     <item>
+      <title>Chaos with a pocket calculator.</title>
+      <link>/posts/chaos_logistic_map/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/chaos_logistic_map/</guid>
+      <description>div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Gleick’s quote in Chaos about the pocket calculator.
+So I played around with it.
+Read the original May paper.
+Thought I’d try to summarise the key aspects of the behaviour to see how well I actually understood them.</description>
+    </item>
+    
+    <item>
       <title>Lizards playing rock, paper, scissors.</title>
       <link>/posts/abm_intro/</link>
       <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>

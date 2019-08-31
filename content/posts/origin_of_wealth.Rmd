@@ -5,6 +5,7 @@ date: "2019-08-11"
 description: "An introduction to complexity economics."
 tags: ["Economics", "Complexity", "Book summary"]
 slug: origin_wealth_complexity_economics
+draft: true
 output:
   blogdown::html_page:
     toc: true
