@@ -24,12 +24,12 @@ Thought I’d try to summarise the key aspects of the behaviour to see how well 
     </item>
     
     <item>
-      <title>Nobody goes there anymore, it&#39;s too busy.</title>
+      <title>Nobody goes there anymore. It&#39;s too crowded.</title>
       <link>/posts/el_farol_bar_problem/</link>
       <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/el_farol_bar_problem/</guid>
-      <description> div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  </description>
+      <description>1 Introduction 2 The El Farol bar problem 2.1 Background 2.2 Model 2.3 Results  3 Why should you care?   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  1 Introduction I’m currently making my way through Complexity and the Economy by W. Brian Arthur. The book’s second chapter is a paper from 1994 called Inductive Reasoning and Bounded Rationality: The El Farol Problem. It’s a fantastic example of how marrying psychological insights and a computational (rather than analytic) approach can produce novel, interesting, and intuive research in economics.</description>
     </item>
     
     <item>
