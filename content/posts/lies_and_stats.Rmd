@@ -42,10 +42,6 @@ maths_test <- tibble(student = c(1:100),
 
 If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/posts/lies_and_stats.Rmd).
 
-# Summary
-
-Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in  psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning *why* the human brain is 'fooled' by particular ways of presenting information rather than just *what* those presentations are.
-
 The book's main strength was illustrative examples, some of which comprise the rest of this post.
 
 # Is the stat plausible?
@@ -291,4 +287,8 @@ But, both of these are actually groups of conditions. So, say you're trying to g
 * Hypertensive heart disease = 37,144
 * Acute rheumatic fever and chronic rheumatic heart disease = 3,260
 
-So, be cautious of suspicious subdividing. 
+So, be on the look out for suspicious subdividing.
+
+# Conclusion
+
+Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in  psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning *why* the human brain is 'fooled' by particular ways of presenting information rather than just *what* those presentations are.

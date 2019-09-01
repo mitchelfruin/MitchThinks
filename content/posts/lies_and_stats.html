@@ -15,21 +15,21 @@ output:
 
 <div id="TOC">
 <ul>
-<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
-<li><a href="#is-the-stat-plausible"><span class="toc-section-number">2</span> Is the stat plausible?</a><ul>
-<li><a href="#back-of-the-napkin-calculations"><span class="toc-section-number">2.1</span> Back of the napkin calculations</a></li>
-<li><a href="#youve-taken-a-bath-before"><span class="toc-section-number">2.2</span> You’ve taken a bath before</a></li>
+<li><a href="#is-the-stat-plausible"><span class="toc-section-number">1</span> Is the stat plausible?</a><ul>
+<li><a href="#back-of-the-napkin-calculations"><span class="toc-section-number">1.1</span> Back of the napkin calculations</a></li>
+<li><a href="#youve-taken-a-bath-before"><span class="toc-section-number">1.2</span> You’ve taken a bath before</a></li>
 </ul></li>
-<li><a href="#are-the-axes-leading-you-astray"><span class="toc-section-number">3</span> Are the axes leading you astray?</a><ul>
-<li><a href="#truncated-axes"><span class="toc-section-number">3.1</span> Truncated axes</a></li>
-<li><a href="#discontinuous-axes"><span class="toc-section-number">3.2</span> Discontinuous axes</a></li>
-<li><a href="#elongated-axes"><span class="toc-section-number">3.3</span> Elongated axes</a></li>
-<li><a href="#duplicate-axes"><span class="toc-section-number">3.4</span> Duplicate axes</a></li>
+<li><a href="#are-the-axes-leading-you-astray"><span class="toc-section-number">2</span> Are the axes leading you astray?</a><ul>
+<li><a href="#truncated-axes"><span class="toc-section-number">2.1</span> Truncated axes</a></li>
+<li><a href="#discontinuous-axes"><span class="toc-section-number">2.2</span> Discontinuous axes</a></li>
+<li><a href="#elongated-axes"><span class="toc-section-number">2.3</span> Elongated axes</a></li>
+<li><a href="#duplicate-axes"><span class="toc-section-number">2.4</span> Duplicate axes</a></li>
 </ul></li>
-<li><a href="#dodgy-reporting"><span class="toc-section-number">4</span> Dodgy reporting</a><ul>
-<li><a href="#hiding-a-decrease-in-the-cumulative"><span class="toc-section-number">4.1</span> Hiding a decrease in the cumulative</a></li>
-<li><a href="#comparing-apples-and-oranges"><span class="toc-section-number">4.2</span> Comparing apples and oranges</a></li>
+<li><a href="#dodgy-reporting"><span class="toc-section-number">3</span> Dodgy reporting</a><ul>
+<li><a href="#hiding-a-decrease-in-the-cumulative"><span class="toc-section-number">3.1</span> Hiding a decrease in the cumulative</a></li>
+<li><a href="#comparing-apples-and-oranges"><span class="toc-section-number">3.2</span> Comparing apples and oranges</a></li>
 </ul></li>
+<li><a href="#conclusion"><span class="toc-section-number">4</span> Conclusion</a></li>
 </ul>
 </div>
 
@@ -42,16 +42,12 @@ div#TOC li {
 }
 </style>
 <p>If you want to see the full code for this post then you can find the .Rmd file <a href="https://github.com/mitchelfruin/MitchThinks/blob/master/content/posts/lies_and_stats.Rmd">here</a>.</p>
-<div id="summary" class="section level1">
-<h1><span class="header-section-number">1</span> Summary</h1>
-<p>Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning <em>why</em> the human brain is ‘fooled’ by particular ways of presenting information rather than just <em>what</em> those presentations are.</p>
 <p>The book’s main strength was illustrative examples, some of which comprise the rest of this post.</p>
-</div>
 <div id="is-the-stat-plausible" class="section level1">
-<h1><span class="header-section-number">2</span> Is the stat plausible?</h1>
+<h1><span class="header-section-number">1</span> Is the stat plausible?</h1>
 <p>The first thing to check when presented with a statistic, especially out of context, is whether the claim is even vaguely reasonable.</p>
 <div id="back-of-the-napkin-calculations" class="section level2">
-<h2><span class="header-section-number">2.1</span> Back of the napkin calculations</h2>
+<h2><span class="header-section-number">1.1</span> Back of the napkin calculations</h2>
 <p>One way to check plausibility is a quick on-the-fly calculation.</p>
 <p>Say, for example, we run into someone claiming that “in the 35 years since marijuana laws stopped being enforced in California, the number of marijuana smokers has doubled every year”.</p>
 <p>Well, even if we start with the most generous estimate that initially there was only 1 lonely pothead in California, then if that number doubled every year for 35 years:</p>
@@ -69,16 +65,16 @@ div#TOC li {
 <p>Just over 17.1 billion people, which seems more than a little high.</p>
 </div>
 <div id="youve-taken-a-bath-before" class="section level2">
-<h2><span class="header-section-number">2.2</span> You’ve taken a bath before</h2>
+<h2><span class="header-section-number">1.2</span> You’ve taken a bath before</h2>
 <p>In a differential equations lecture at uni the professor began by writing a complicated looking formula on the board and told us that it described the time taken for a bath to empty as a function of its volume and the diameter of the plughole. He then asked us to raise our hand if we believed the bath would ever empty. When only a few people sheepishly did so, he shouted up into the lecture theatre, “have you taken a fucking bath before?”. His point has stuck with me, just because we’re dealing with supposedly scary maths doesn’t mean you should ignore common sense. You’ve taken a bath before, you know the answer, whether you understand the formula or not.</p>
 <p>These kind of ‘wait, but we’re still talking about the real world’ checks can sometimes help assess the plausibility of a statistic. For example, in 1993 New Jersey adopted a ‘family cap’ law that denied additional benefits to mothers who had children whilst already on welfare. After two months legislators were celebrating its success, as births had already fallen by 16%. The only problem being that human pregnancies generally take a bit longer than that.</p>
 </div>
 </div>
 <div id="are-the-axes-leading-you-astray" class="section level1">
-<h1><span class="header-section-number">3</span> Are the axes leading you astray?</h1>
+<h1><span class="header-section-number">2</span> Are the axes leading you astray?</h1>
 <p>Manipulating the axes on a graph is one of the easiest ways to con a reader.</p>
 <div id="truncated-axes" class="section level2">
-<h2><span class="header-section-number">3.1</span> Truncated axes</h2>
+<h2><span class="header-section-number">2.1</span> Truncated axes</h2>
 <p>Shortening the proper range of y-axis values is often used to exaggerate the difference between two groups that are being compared.</p>
 <p>For example, if I wanted to convince you that my product was way better than a competitor’s I might show you a bar chart reporting the average customer rating like this:</p>
 <pre class="r"><code># Bar chart with truncated y-axis
@@ -104,7 +100,7 @@ ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
 <p><img src="/posts/lies_and_stats_files/figure-html/full%20range%20bar%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="discontinuous-axes" class="section level2">
-<h2><span class="header-section-number">3.2</span> Discontinuous axes</h2>
+<h2><span class="header-section-number">2.2</span> Discontinuous axes</h2>
 <p>Condensing a small portion of the x-axis can be used to falsely emphasise a few data points.</p>
 <p>For example, say I’m selling security systems and I want to put a scary graph on the leaflet I drop through people’s letterboxes. I might include a line graph like this one that exaggerates the recent increase in the number of burglaries:</p>
 <pre class="r"><code># Discontinuous line graph
@@ -120,7 +116,7 @@ tibble(Year = c(&quot;2009&quot;, &quot;2010&quot;, &quot;2011&quot;, &quot;2012
 <p>However, the apparent spike in burglaries is just a result of the fact that 5 year’s worth of increases have been squeezed into one notch on the x-axis.</p>
 </div>
 <div id="elongated-axes" class="section level2">
-<h2><span class="header-section-number">3.3</span> Elongated axes</h2>
+<h2><span class="header-section-number">2.3</span> Elongated axes</h2>
 <p>Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by elongating an axis using irrelevant blank values.</p>
 <p>For example, take a similar line graph to the one discussed above. If we plot the graph without any trickery, then the data seem to show a steady increase in the number of burglaries:</p>
 <pre class="r"><code># Regular x-axis line graph
@@ -146,7 +142,7 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
 <p><img src="/posts/lies_and_stats_files/figure-html/elongated%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="duplicate-axes" class="section level2">
-<h2><span class="header-section-number">3.4</span> Duplicate axes</h2>
+<h2><span class="header-section-number">2.4</span> Duplicate axes</h2>
 <p>Duplicating the y-axis allows you to tell any story you like with the data. If the two axes measure quantities in the same units then you can shift them without limit. A prominent example of this kind of manipulation is a graph presented by U.S. Representative Jason Chaffetz during a hearing on planned parenthood:</p>
 <center>
 <img src="/images/double_y_axis.jpeg" alt="Jason Chaffetz’s graphical disaster" />
@@ -172,10 +168,10 @@ tibble(Year = c(2006, 2013),
 </div>
 </div>
 <div id="dodgy-reporting" class="section level1">
-<h1><span class="header-section-number">4</span> Dodgy reporting</h1>
+<h1><span class="header-section-number">3</span> Dodgy reporting</h1>
 <p>A few miscellaneous tactics that people use to fudge their reporting.</p>
 <div id="hiding-a-decrease-in-the-cumulative" class="section level2">
-<h2><span class="header-section-number">4.1</span> Hiding a decrease in the cumulative</h2>
+<h2><span class="header-section-number">3.1</span> Hiding a decrease in the cumulative</h2>
 <p>Say you run a company where sales have decreased every quarter this year. You desperately need to show your board an impressive looking sales chart to quell their fears. Just hide the decrease in the cumulative total for the past few years (you’d be in <a href="https://www.phonearena.com/news/Apples-Cumulative-iPhone-Sales-chart-is-spinning-data-hard_id47332">good company</a>):</p>
 <pre class="r"><code># Cumulative sales line graph
 ggplot(quarterly_sales, aes(x = quarter, y = cum_sales)) +
@@ -199,9 +195,9 @@ ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
 <p>It’s now apparent that in the past quarter you sold 60% of the volume that you did in the same period last year.</p>
 </div>
 <div id="comparing-apples-and-oranges" class="section level2">
-<h2><span class="header-section-number">4.2</span> Comparing apples and oranges</h2>
+<h2><span class="header-section-number">3.2</span> Comparing apples and oranges</h2>
 <div id="amalgamating" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Amalgamating</h3>
+<h3><span class="header-section-number">3.2.1</span> Amalgamating</h3>
 <p>The way data is grouped has an impact on the conclusions readers draw from it. One tactic to watch out for is when data has been binned into groups with unequal ranges.</p>
 <p>For instance, say your parents were on your case about your latest maths test and you were so committed to deceiving them that you whipped up a histogram that showed your score of 75 pretty favourably:</p>
 <pre class="r"><code># Histogram with favourable grouping
@@ -229,7 +225,7 @@ ggplot(maths_test, aes(x = score, fill = ..count..)) +
 <p>If you’re writing your own reports then use equal bins widths, either in percentile or absolute terms. If you’re reading someone else’s, then make sure they do too.</p>
 </div>
 <div id="subdividing" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> Subdividing</h3>
+<h3><span class="header-section-number">3.2.2</span> Subdividing</h3>
 <p>Amalgamating involves people using suspect grouping decisions to make their point. Subdividing is the opposite. It involves misleadingly splitting the data until it implies what you want it to.</p>
 <p>For instance, the U.S. CDC listed the top 2 causes of death in 2013 as:</p>
 <ul>
@@ -244,7 +240,11 @@ ggplot(maths_test, aes(x = score, fill = ..count..)) +
 <li>Hypertensive heart disease = 37,144</li>
 <li>Acute rheumatic fever and chronic rheumatic heart disease = 3,260</li>
 </ul>
-<p>So, be cautious of suspicious subdividing.</p>
+<p>So, be on the look out for suspicious subdividing.</p>
 </div>
 </div>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">4</span> Conclusion</h1>
+<p>Levitin provides a solid compilation of mistakes to avoid and tricks to look out for when producing and reading research respectively. However, given his background in psychology and neuroscience, I was hoping for a more general thread pulling the examples together concerning <em>why</em> the human brain is ‘fooled’ by particular ways of presenting information rather than just <em>what</em> those presentations are.</p>
 </div>
