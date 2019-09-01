@@ -30,13 +30,13 @@ library(tidyverse)
 library(truncnorm)
 ```
 
-I'm currently making my way through *Complexity and the Economy* by W. Brian Arthur. The book's second chapter is a paper from 1994 called [*Inductive Reasoning and Bounded Rationality: The El Farol Problem*](http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf). It's a fantastic example of how marrying psychological insights and a computational (rather than analytic) approach can produce novel, interesting, and intuive research in economics. So, I thought I'd have a go at using R to reproduce the model described in the paper.   
+I'm currently making my way through *Complexity and the Economy* by W. Brian Arthur. The book's second chapter is a paper from 1994 called [*Inductive Reasoning and Bounded Rationality: The El Farol Problem*](http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf). It's a fantastic example of how marrying psychological insights and a computational (rather than analytic) approach can produce novel, interesting, and intuive research in economics. So, I thought I'd have a go at using R to reproduce my own (simpler) version of the model described in the paper. 
 
 # Background 
 
 When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol where there was Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This problem is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If people expect many others to attend, then few will show up and the bar will be empty. If people expect nobody to attend, then everyone will show up and it'll be packed. In both cases the original belief causes behaviour that means the belief ends up being incorrect.
 
-Let's generalise this phenomenon in Arthur's toy model and see if we can gain any insight into the dynamics of attendance over time.  
+Let's generalise this phenomenon in a toy model similar to Arthur's and see if we can gain any insight into the dynamics of attendance over time.  
 
 # Model 
 
@@ -76,7 +76,7 @@ Mention ecology?
 
 # Why should you care?
 
-It exemplifies a common type of problem. 
+It exemplifies a common type of problem. Seems like the model is unrealistic but link to 'busy at these times' info on google, in exactly the situation the model describes. You know based on previous data, Tesco is usually empty at 3pm on a tuesday, but so does everyone else. 
 
 It shows the value of numerical solutions to problems when analytical ones become too hard or are impossible (in this case because of inductive reasoning). 
 

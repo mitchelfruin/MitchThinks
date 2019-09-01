@@ -37,11 +37,11 @@ div#TOC li {
     background-position:0; 
 }
 </style>
-<p>I’m currently making my way through <em>Complexity and the Economy</em> by W. Brian Arthur. The book’s second chapter is a paper from 1994 called <a href="http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf"><em>Inductive Reasoning and Bounded Rationality: The El Farol Problem</em></a>. It’s a fantastic example of how marrying psychological insights and a computational (rather than analytic) approach can produce novel, interesting, and intuive research in economics. So, I thought I’d have a go at using R to reproduce the model described in the paper.</p>
+<p>I’m currently making my way through <em>Complexity and the Economy</em> by W. Brian Arthur. The book’s second chapter is a paper from 1994 called <a href="http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf"><em>Inductive Reasoning and Bounded Rationality: The El Farol Problem</em></a>. It’s a fantastic example of how marrying psychological insights and a computational (rather than analytic) approach can produce novel, interesting, and intuive research in economics. So, I thought I’d have a go at using R to reproduce my own (simpler) version of the model described in the paper.</p>
 <div id="background" class="section level1">
 <h1><span class="header-section-number">1</span> Background</h1>
 <p>When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol where there was Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This problem is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If people expect many others to attend, then few will show up and the bar will be empty. If people expect nobody to attend, then everyone will show up and it’ll be packed. In both cases the original belief causes behaviour that means the belief ends up being incorrect.</p>
-<p>Let’s generalise this phenomenon in Arthur’s toy model and see if we can gain any insight into the dynamics of attendance over time.</p>
+<p>Let’s generalise this phenomenon in a toy model similar to Arthur’s and see if we can gain any insight into the dynamics of attendance over time.</p>
 </div>
 <div id="model" class="section level1">
 <h1><span class="header-section-number">2</span> Model</h1>
@@ -81,7 +81,7 @@ round(rtruncnorm(10, 0, 100, 50, 20), 0)</code></pre>
 </div>
 <div id="why-should-you-care" class="section level1">
 <h1><span class="header-section-number">4</span> Why should you care?</h1>
-<p>It exemplifies a common type of problem.</p>
+<p>It exemplifies a common type of problem. Seems like the model is unrealistic but link to ‘busy at these times’ info on google, in exactly the situation the model describes. You know based on previous data, Tesco is usually empty at 3pm on a tuesday, but so does everyone else.</p>
 <p>It shows the value of numerical solutions to problems when analytical ones become too hard or are impossible (in this case because of inductive reasoning).</p>
 <p>Conclusion should relate to the Yogi Berra quote about his favourite restaurant in St. Louis, Ruggeri’s.</p>
 </div>
