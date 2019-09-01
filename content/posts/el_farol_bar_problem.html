@@ -15,13 +15,17 @@ output:
 
 <div id="TOC">
 <ul>
-<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
-<li><a href="#the-el-farol-bar-problem"><span class="toc-section-number">2</span> The El Farol bar problem</a><ul>
-<li><a href="#background"><span class="toc-section-number">2.1</span> Background</a></li>
-<li><a href="#model"><span class="toc-section-number">2.2</span> Model</a></li>
-<li><a href="#results"><span class="toc-section-number">2.3</span> Results</a></li>
+<li><a href="#background"><span class="toc-section-number">1</span> Background</a></li>
+<li><a href="#model"><span class="toc-section-number">2</span> Model</a><ul>
+<li><a href="#set-up"><span class="toc-section-number">2.1</span> Set-up</a></li>
+<li><a href="#r-function"><span class="toc-section-number">2.2</span> R function</a></li>
 </ul></li>
-<li><a href="#why-should-you-care"><span class="toc-section-number">3</span> Why should you care?</a></li>
+<li><a href="#simulations"><span class="toc-section-number">3</span> Simulations</a><ul>
+<li><a href="#if-we-start-low"><span class="toc-section-number">3.1</span> If we start low</a></li>
+<li><a href="#if-we-start-high"><span class="toc-section-number">3.2</span> If we start high</a></li>
+<li><a href="#results"><span class="toc-section-number">3.3</span> Results</a></li>
+</ul></li>
+<li><a href="#why-should-you-care"><span class="toc-section-number">4</span> Why should you care?</a></li>
 </ul>
 </div>
 
@@ -33,26 +37,51 @@ div#TOC li {
     background-position:0; 
 }
 </style>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<p>I’m currently making my way through <em>Complexity and the Economy</em> by W. Brian Arthur. The book’s second chapter is a paper from 1994 called <a href="http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf"><em>Inductive Reasoning and Bounded Rationality: The El Farol Problem</em></a>. It’s a fantastic example of how marrying psychological insights and a computational (rather than analytic) approach can produce novel, interesting, and intuive research in economics. So, I thought I’d have a go at reproducing the model described in the paper.</p>
+<p>I’m currently making my way through <em>Complexity and the Economy</em> by W. Brian Arthur. The book’s second chapter is a paper from 1994 called <a href="http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf"><em>Inductive Reasoning and Bounded Rationality: The El Farol Problem</em></a>. It’s a fantastic example of how marrying psychological insights and a computational (rather than analytic) approach can produce novel, interesting, and intuive research in economics. So, I thought I’d have a go at using R to reproduce the model described in the paper.</p>
+<div id="background" class="section level1">
+<h1><span class="header-section-number">1</span> Background</h1>
+<p>When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol where there was Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This problem is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If people expect many others to attend, then few will show up and the bar will be empty. If people expect nobody to attend, then everyone will show up and it’ll be packed. In both cases the original belief causes behaviour that means the belief ends up being incorrect.</p>
+<p>Let’s generalise this phenomenon in Arthur’s toy model and see if we can gain any insight into the dynamics of attendance over time.</p>
 </div>
-<div id="the-el-farol-bar-problem" class="section level1">
-<h1><span class="header-section-number">2</span> The El Farol bar problem</h1>
-<div id="background" class="section level2">
-<h2><span class="header-section-number">2.1</span> Background</h2>
-<p>When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol where people would go on a thursday night if they expected few people to be there, but would avoid if they expected it to be busy. This problem is interesting because it describes something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If people expect many others to attend, then few will show up and the bar will be empty. If people expect nobody to attend, then everyone will show up and it’ll be packed. In both cases the original belief causes behaviour that means the belief ends up being incorrect.</p>
-<p>Let’s generalise this phenomenon in Arthur’s toy model and see if we can gain any insight.</p>
+<div id="model" class="section level1">
+<h1><span class="header-section-number">2</span> Model</h1>
+<div id="set-up" class="section level2">
+<h2><span class="header-section-number">2.1</span> Set-up</h2>
+<p>100 people decide independently each week whether or not to attend a bar that offers music on a certain night. The music is enjoyable if the bar isn’t too busy, specifically if fewer than 60% of the possible 100 people attend. There’s no way to tell in advance how many people will show up. So, each person goes if they expect fewer than 60 people to attend but stays home if they think more than 60 people will be there.</p>
+<p>There’s no collusion or prior communication between possible attendees and the choice isn’t affected by whether the person was right or wrong in their beliefs about previous visits. The only info available is a list of the number of people who came in the past weeks.</p>
+<p>For example, the past 10 weeks’ attendance might be:</p>
+<pre class="r"><code># Example attendance
+set.seed(23)
+round(rtruncnorm(10, 0, 100, 50, 20), 0)</code></pre>
+<pre><code>##  [1] 54 41 68 86 70 72 44 70 51 82</code></pre>
+<p>Each of the 100 people can individually form <span class="math inline">\(k\)</span> hypotheses they could use to predict the next week’s attendance based on the figures for the past <span class="math inline">\(d\)</span> weeks. For example, their hypotheses could include:</p>
+<ul>
+<li>Predict the same as last week <span class="math inline">\(\rightarrow\)</span> 82 people</li>
+<li>Predict a mirror image around 50 of last week <span class="math inline">\(\rightarrow\)</span> 28 people</li>
+<li>Predict the average of the past four weeks <span class="math inline">\(\rightarrow\)</span> 62 people</li>
+</ul>
+<p>Each person decides to go out or stay in according to the currently most accurate prediction hypothesis in their individual set.</p>
 </div>
-<div id="model" class="section level2">
-<h2><span class="header-section-number">2.2</span> Model</h2>
+<div id="r-function" class="section level2">
+<h2><span class="header-section-number">2.2</span> R function</h2>
+</div>
+</div>
+<div id="simulations" class="section level1">
+<h1><span class="header-section-number">3</span> Simulations</h1>
+<div id="if-we-start-low" class="section level2">
+<h2><span class="header-section-number">3.1</span> If we start low</h2>
+</div>
+<div id="if-we-start-high" class="section level2">
+<h2><span class="header-section-number">3.2</span> If we start high</h2>
 </div>
 <div id="results" class="section level2">
-<h2><span class="header-section-number">2.3</span> Results</h2>
+<h2><span class="header-section-number">3.3</span> Results</h2>
+<p>Mention ecology?</p>
 </div>
 </div>
 <div id="why-should-you-care" class="section level1">
-<h1><span class="header-section-number">3</span> Why should you care?</h1>
+<h1><span class="header-section-number">4</span> Why should you care?</h1>
 <p>It exemplifies a common type of problem.</p>
 <p>It shows the value of numerical solutions to problems when analytical ones become too hard or are impossible (in this case because of inductive reasoning).</p>
+<p>Conclusion should relate to the Yogi Berra quote about his favourite restaurant in St. Louis, Ruggeri’s.</p>
 </div>
