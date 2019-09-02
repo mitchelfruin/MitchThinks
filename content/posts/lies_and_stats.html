@@ -41,7 +41,7 @@ div#TOC li {
     background-position:0; 
 }
 </style>
-<p>If you want to see the full code for this post then you can find the .Rmd file <a href="https://github.com/mitchelfruin/MitchThinks/blob/master/content/posts/lies_and_stats.Rmd">here</a>.</p>
+<p>If you want to see the full code for this post then you can find it <a href="https://github.com/mitchelfruin/MitchThinks/blob/master/content/posts/lies_and_stats.Rmd">here</a>.</p>
 <p>The book’s main strength was illustrative examples, some of which comprise the rest of this post.</p>
 <div id="is-the-stat-plausible" class="section level1">
 <h1><span class="header-section-number">1</span> Is the stat plausible?</h1>
@@ -59,8 +59,6 @@ div#TOC li {
 \text{Year 35:} \;\; &amp;= 2^{34} \\
 \end{aligned}\]</span></p>
 <p>So let’s see just how many marijuana smokers we’ve currently got if that stat holds:</p>
-<pre class="r"><code># Too high to count that high
-2^34</code></pre>
 <pre><code>## [1] 17179869184</code></pre>
 <p>Just over 17.1 billion people, which seems more than a little high.</p>
 </div>
@@ -77,41 +75,15 @@ div#TOC li {
 <h2><span class="header-section-number">2.1</span> Truncated axes</h2>
 <p>Shortening the proper range of y-axis values is often used to exaggerate the difference between two groups that are being compared.</p>
 <p>For example, if I wanted to convince you that my product was way better than a competitor’s I might show you a bar chart reporting the average customer rating like this:</p>
-<pre class="r"><code># Bar chart with truncated y-axis
-ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
-  geom_col() +
-  scale_fill_discrete(guide = &quot;none&quot;) +
-  scale_y_continuous(&quot;Customer\nRating&quot;) +
-  coord_cartesian(ylim = c(67.5, 71.5)) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/truncated%20bar%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It looks like my product blows my competitor’s out of the water. However, notice where the y-axis starts and ends.</p>
 <p>If we’re being strict, the y-axis should include the full range of values that customers were able to provide (it should at the very least include 0 if that’s a possible value). Once we properly format the graph my product looks a little less impressive:</p>
-<pre class="r"><code># Bar chart with truncated y-axis
-ggplot(product_ratings, aes(x = Product, y = mean_rating, fill = Product)) +
-  geom_col() +
-  scale_fill_discrete(guide = &quot;none&quot;) +
-  scale_y_continuous(&quot;Customer\nRating&quot;, limits = c(0, 100)) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/full%20range%20bar%20chart-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="discontinuous-axes" class="section level2">
 <h2><span class="header-section-number">2.2</span> Discontinuous axes</h2>
 <p>Condensing a small portion of the x-axis can be used to falsely emphasise a few data points.</p>
 <p>For example, say I’m selling security systems and I want to put a scary graph on the leaflet I drop through people’s letterboxes. I might include a line graph like this one that exaggerates the recent increase in the number of burglaries:</p>
-<pre class="r"><code># Discontinuous line graph
-tibble(Year = c(&quot;2009&quot;, &quot;2010&quot;, &quot;2011&quot;, &quot;2012&quot;, &quot;2013&quot;, &quot;2014&quot;, &quot;2019&quot;),
-       burglary_count = c(100, 102.5, 105, 107.5, 110, 112.5, 125)) %&gt;%
-  ggplot(aes(x = Year, y = burglary_count)) +
-  geom_line(group = 1) +
-  scale_y_continuous(&quot;Burglary\nCount&quot;) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/discontinuous%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>However, the apparent spike in burglaries is just a result of the fact that 5 year’s worth of increases have been squeezed into one notch on the x-axis.</p>
 </div>
@@ -119,26 +91,8 @@ tibble(Year = c(&quot;2009&quot;, &quot;2010&quot;, &quot;2011&quot;, &quot;2012
 <h2><span class="header-section-number">2.3</span> Elongated axes</h2>
 <p>Discontinuous axes make a change look more extreme by removing some values, but changes can also be exaggerated by elongating an axis using irrelevant blank values.</p>
 <p>For example, take a similar line graph to the one discussed above. If we plot the graph without any trickery, then the data seem to show a steady increase in the number of burglaries:</p>
-<pre class="r"><code># Regular x-axis line graph
-tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
-  ggplot(aes(x = Year, y = burglary_count)) +
-  geom_line(group = 1) +
-  scale_y_continuous(&quot;Burglary\nCount&quot;) +
-  scale_x_continuous(breaks = c(2009, 2011, 2013, 2015, 2017, 2019)) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/normal%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>However, we can make the same data look much more extreme by including space on the x-axis for years without any data. This narrows the visual space over which the same increase in our data must be plotted (meaning the line must be steeper). Thus, the same increase over the same timespan looks much more drastic:</p>
-<pre class="r"><code># Elongated x-axis line graph
-tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
-  ggplot(aes(x = Year, y = burglary_count)) +
-  geom_line(group = 1) +
-  scale_y_continuous(&quot;Burglary\nCount&quot;) +
-  coord_cartesian(xlim = c(2004, 2024)) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/elongated%20line%20graph-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="duplicate-axes" class="section level2">
@@ -149,20 +103,6 @@ tibble(Year = c(2009:2019), burglary_count = c(seq(100, 112.5, 1.25))) %&gt;%
 </center>
 <p>A good general rule is ‘when you want to use a double y-axis, use two graphs instead’. There are some instances when it’s defensible, I like a <a href="https://duckduckgo.com/?q=pareto+chart&amp;t=ffab&amp;atb=v170-1&amp;iax=images&amp;ia=images">pareto chart</a> as much as the next guy, if you’re using two different measures (i.e. different units) and only making ‘within-axis’ comparisons (rather than just shifting the left-hand y-axis up or down and to make your point).</p>
 <p>If we plot Chaffetz’s chart properly it looks a little less like doctors are too busy with abortions to treat cancer:</p>
-<pre class="r"><code># Correcting Chaffetz
-tibble(Year = c(2006, 2013), 
-       Cancer = c(2007371, 935573), 
-       Abortions = c(289750, 327000)) %&gt;%
-  melt(id.vars = &quot;Year&quot;) %&gt;%
-  ggplot(aes(x = Year, y = value, col = variable)) +
-  geom_line(arrow = arrow(length = unit(0.15, &quot;inches&quot;), type = &quot;closed&quot;)) +
-  scale_y_continuous(&quot;Freq.&quot;, labels = scales::comma) +
-  scale_x_continuous(breaks = c(2006:2013)) +
-  scale_color_manual(&quot;Procedure\nPurpose&quot;,
-                     values = c(&quot;Cancer&quot; = &quot;#FF96A7&quot;, &quot;Abortions&quot; = &quot;red&quot;)) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/planned%20parenthood-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>There are still problems with this graph (just plotting two time series and looking for a relationship is setting yourself up to over-interpret a <a href="http://www.tylervigen.com/spurious-correlations">spurious correlation</a>) but it’s better than before.</p>
 </div>
@@ -173,24 +113,8 @@ tibble(Year = c(2006, 2013),
 <div id="hiding-a-decrease-in-the-cumulative" class="section level2">
 <h2><span class="header-section-number">3.1</span> Hiding a decrease in the cumulative</h2>
 <p>Say you run a company where sales have decreased every quarter this year. You desperately need to show your board an impressive looking sales chart to quell their fears. Just hide the decrease in the cumulative total for the past few years (you’d be in <a href="https://www.phonearena.com/news/Apples-Cumulative-iPhone-Sales-chart-is-spinning-data-hard_id47332">good company</a>):</p>
-<pre class="r"><code># Cumulative sales line graph
-ggplot(quarterly_sales, aes(x = quarter, y = cum_sales)) +
-  geom_area() +
-  scale_y_continuous(&quot;Sales\n(cumulative)&quot;) +
-  scale_x_continuous(&quot;Quarter&quot;, expand = c(0.005, 0)) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/cumulative-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The decrease in the cumulative chart barely even registers, nothing to worry about here. The individual quarterly sales tell a slightly less rosy story:</p>
-<pre class="r"><code># Quarterly sales bar chart 
-ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
-  geom_col() +
-  scale_y_continuous(&quot;Sales&quot;) +
-  labs(x = &quot;Quarter&quot;) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major.y = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/quarterly-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It’s now apparent that in the past quarter you sold 60% of the volume that you did in the same period last year.</p>
 </div>
@@ -200,27 +124,9 @@ ggplot(quarterly_sales, aes(x = quarter, y = sales)) +
 <h3><span class="header-section-number">3.2.1</span> Amalgamating</h3>
 <p>The way data is grouped has an impact on the conclusions readers draw from it. One tactic to watch out for is when data has been binned into groups with unequal ranges.</p>
 <p>For instance, say your parents were on your case about your latest maths test and you were so committed to deceiving them that you whipped up a histogram that showed your score of 75 pretty favourably:</p>
-<pre class="r"><code># Histogram with favourable grouping
-ggplot(maths_test, aes(x = score, fill = ..count..)) +
-  geom_histogram(breaks = c(seq(10, 74, 4), 90)) +
-  scale_y_continuous(&quot;Count&quot;) +
-  scale_x_continuous(&quot;Score&quot;, breaks = c(0, 25, 50, 75)) +
-  scale_fill_continuous(guide = &quot;none&quot;) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/favourable%20grouping-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Your parents will be pleased that you’re in the group of your class’ very top scorers.</p>
 <p>However, if we plot the same data with equal bin widths the little bit of fudging becomes apparent.</p>
-<pre class="r"><code># Histogram with fair grouping
-ggplot(maths_test, aes(x = score, fill = ..count..)) +
-  geom_histogram(bins = 25) +
-  scale_y_continuous(&quot;Count&quot;) +
-  scale_x_continuous(&quot;Score&quot;, breaks = c(0, 25, 50, 75)) +
-  scale_fill_continuous(guide = &quot;none&quot;) +
-  theme_classic() +
-  theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
-        panel.grid.major = element_line())</code></pre>
 <p><img src="/posts/lies_and_stats_files/figure-html/honest%20grouping-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>If you’re writing your own reports then use equal bins widths, either in percentile or absolute terms. If you’re reading someone else’s, then make sure they do too.</p>
 </div>

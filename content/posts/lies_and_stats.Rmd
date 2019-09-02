@@ -22,7 +22,7 @@ div#TOC li {
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
 
 # Packages
 library(tidyverse)
@@ -40,7 +40,7 @@ maths_test <- tibble(student = c(1:100),
                      score = rtruncnorm(100, 0, 100, 40, 20))
 ```
 
-If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/posts/lies_and_stats.Rmd).
+If you want to see the full code for this post then you can find it [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/posts/lies_and_stats.Rmd).
 
 The book's main strength was illustrative examples, some of which comprise the rest of this post.
 
