@@ -133,7 +133,7 @@ tibble(Year = c("2009", "2010", "2011", "2012", "2013", "2014", "2019"),
         panel.grid.major = element_line())
 ```
 
-However, the apparent spike in burglaries is just a result of the fact that 5 year's worth of increases have been squeezed into one notch on the x-axis. 
+However, the apparent spike in burglaries is just a result of the fact that 5 years of increases have been squeezed into one notch on the x-axis. 
 
 ## Elongated axes
 
