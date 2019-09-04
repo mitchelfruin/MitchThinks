@@ -23,7 +23,7 @@ div#TOC li {
 
 ```{r setup, include=FALSE}
 # RMarkdown
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center", fig.width = 11)
 
 # Packages
 library(tidyverse)
@@ -42,7 +42,7 @@ Let's generalise this phenomenon in a toy model similar to Arthur's and see if w
 
 ## Set-up
 
-100 people decide independently each week whether or not to attend a bar that offers music on a certain night. The music is enjoyable if the bar isn't too busy, specifically if fewer than 60% of the possible 100 people attend. There's no way to tell in advance how many people will show up. So, each person goes if they expect fewer than 60 people to attend but stays home if they think more than 60 people will be there.
+100 people decide independently each week whether or not to attend a bar that offers music on a certain night. The music is enjoyable if the bar isn't too busy, specifically if fewer than $X\%$ of the possible 100 people attend. There's no way to tell in advance how many people will show up. So, each person goes if they expect fewer than $X$ people to attend but stays home if they think more than $X$ people will be there.
 
 There's no collusion or prior communication between possible attendees and the choice isn't affected by whether the person was right or wrong in their beliefs about previous visits. The only info available is a list of the number of people who came in the past weeks.
 
@@ -51,28 +51,314 @@ For example, the past 10 weeks' attendance might be:
 ```{r attendance eg}
 # Example attendance
 set.seed(23)
-round(rtruncnorm(10, 0, 100, 50, 20), 0)
+round(truncnorm::rtruncnorm(10, 0, 100, 50, 20), 0)
 ```
 
 Each of the 100 people can individually form $k$ hypotheses they could use to predict the next week's attendance based on the figures for the past $d$ weeks. For example, their hypotheses could include:
 
 * Predict the same as last week $\rightarrow$ 82 people
-* Predict a mirror image around 50 of last week $\rightarrow$ 28 people
+* Predict a mirror image around 50 of last week $\rightarrow$ 18 people
 * Predict the average of the past four weeks $\rightarrow$ 62 people
 
-Each person decides to go out or stay in according to the currently most accurate prediction hypothesis in their individual set. 
+Each person decides to go out or stay in according to the currently most accurate prediction hypothesis in their individual set. If their best predictor says that fewer than $X$ people will go, then they go. If their best predictor says that more than $X$ people go, then they don't. 
 
 ## R function 
 
+For brevity I've hidden the code where I create the `sim_el_farol()` function but you can find it [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/posts/el_farol_bar_problem.Rmd). 
+
+```{r define sim function}
+sim_el_farol <- function(threshold = 60, n_rounds = 100) {
+  ## Define mean-based hypotheses -----
+  
+  # Mean of previous 1 week
+  mean_1 <- function(x) {
+    if(length(x) < 1) {sample(c(1:100), 1)} 
+    else{mean(x[length(x)])}
+  }
+  
+  # Mean of previous 2 weeks
+  mean_2 <- function(x) {
+    if(length(x) < 2) {sample(c(1:100), 1)} 
+    else{mean(c(x[length(x)], x[length(x) - 1]))}
+  }
+  
+  # Mean of previous 3 weeks
+  mean_3 <- function(x) {
+    if(length(x) < 3) {sample(c(1:100), 1)} 
+    else{mean(c(x[length(x)], x[length(x) - 1], x[length(x) - 2]))}
+  }
+  
+  # Mean of previous 4 weeks
+  mean_4 <- function(x) {
+    if(length(x) < 4) {sample(c(1:100), 1)} 
+    else{mean(c(x[length(x)],
+                x[length(x) - 1],
+                x[length(x) - 2],
+                x[length(x) - 3]))}
+  }
+
+  # Mean of previous 5 weeks
+  mean_5 <- function(x) {
+    if(length(x) < 4) {sample(c(1:100), 1)} 
+    else{mean(c(x[length(x)],
+                x[length(x) - 1],
+                x[length(x) - 2],
+                x[length(x) - 3],
+                x[length(x) - 4]))}
+  }
+  
+  ## Define cycle-based hypotheses -----
+  
+  # 1 week cycle 
+  cycle_1 <- function(x){
+    if(length(x) < 1) {sample(c(1:100), 1)} 
+    else{x[length(x)]}
+  }
+  
+  # 2 week cycle 
+  cycle_2 <- function(x){
+    if(length(x) < 2) {sample(c(1:100), 1)} 
+    else{x[length(x) - 1]}
+  }
+  
+  # 3 week cycle 
+  cycle_3 <- function(x){
+    if(length(x) < 3) {sample(c(1:100), 1)} 
+    else{x[length(x) - 2]}
+  }
+  
+  # 4 week cycle 
+  cycle_4 <- function(x){
+    if(length(x) < 4) {sample(c(1:100), 1)} 
+    else{x[length(x) - 3]}
+  }
+  
+  # 5 week cycle 
+  cycle_5 <- function(x){
+    if(length(x) < 5) {sample(c(1:100), 1)} 
+    else{x[length(x) - 4]}
+  }
+  
+  ## Define mirror-based hypotheses -----
+  
+  # 1 week mirror 
+  mirror_1 <- function(x) {
+    if(length(x) < 1) {sample(c(1:100), 1)} 
+    else{
+      mirror <- x[length(x)] - 50
+      ifelse(mirror > 0, return(50 - mirror), return(50 + abs(mirror)))
+    }
+  }
+  
+  # 2 week mirror 
+  mirror_2 <- function(x) {
+    if(length(x) < 2) {sample(c(1:100), 1)} 
+    else{
+      mirror <- x[length(x) - 1] - 50
+      ifelse(mirror > 0, return(50 - mirror), return(50 + abs(mirror)))
+    }
+  }
+  
+  # 3 week mirror 
+  mirror_3 <- function(x) {
+    if(length(x) < 3) {sample(c(1:100), 1)} 
+    else{
+      mirror <- x[length(x) - 2] - 50
+      ifelse(mirror > 0, return(50 - mirror), return(50 + abs(mirror)))
+    }
+  }
+  
+  # 4 week mirror 
+  mirror_4 <- function(x) {
+    if(length(x) < 4) {sample(c(1:100), 1)} 
+    else{
+      mirror <- x[length(x) - 3] - 50
+      ifelse(mirror > 0, return(50 - mirror), return(50 + abs(mirror)))
+    }
+  }
+  
+  # 5 week mirror 
+  mirror_5 <- function(x) {
+    if(length(x) < 5) {sample(c(1:100), 1)} 
+    else{
+      mirror <- x[length(x) - 4] - 50
+      ifelse(mirror > 0, return(50 - mirror), return(50 + abs(mirror)))
+    }
+  }
+  
+  ## Group hypotheses -----
+  
+  hypotheses <- list("1wk cycle" = cycle_1,
+                     "2wk cycle" = cycle_2,
+                     "3wk cycle" = cycle_3,
+                     "4wk cycle" = cycle_4,
+                     "5wk cycle" = cycle_5,
+                     "1wk mean" = mean_1,
+                     "2wk mean" = mean_2,
+                     "3wk mean" = mean_3,
+                     "4wk mean" = mean_4,
+                     "5wk mean" = mean_5,
+                     "1wk mirror" = mirror_1,
+                     "2wk mirror" = mirror_2,
+                     "3wk mirror" = mirror_3,
+                     "4wk mirror" = mirror_4,
+                     "5wk mirror" = mirror_5)
+  
+  
+  ## Sim -----
+  
+  # Assign 3 hypotheses to each individual
+  predictors_df <- 
+    tibble(id = rep(c(1:100), 3),
+           predictor = sample(hypotheses, 300, replace = T)) %>%
+    arrange(id) %>%
+    mutate(current_accuracy = 0)
+  
+  # Define function for finding current most accurate predictor
+  find_predictor <- function(predictors_df) {
+    best_predictors <- predictors_df %>%
+      group_by(id) %>%
+      summarise(best_accuracy = min(current_accuracy),
+                predictor = predictor[which.min(current_accuracy)])
+  }
+  
+  # Empty df for predictions
+  predictions_df <- tibble(id = c(1:100))
+  
+  # Empty vector for weekly attendance
+  attendance <- NULL
+
+  # Run it
+  for (i in 1:n_rounds) {
+    
+    # Find best_predictors (accuracy = mean diff predict - attendance)
+    best_predictors <- find_predictor(predictors_df)
+    
+    # Make predictions using individuals' best hypotheses
+    predictions_ls <- lapply(best_predictors$predictor,
+                             function(f) f(attendance))
+    predictions <- unlist(predictions_ls)
+    
+    # Add these predictions to the predictions_df in the right week
+    predictions_df[, 1+i] <- predictions
+    
+    # Count how many individuals will go to the bar that week 
+    present_attendance <- sum(predictions <= threshold)
+    
+    # Add present attendance to the attendance vector
+    attendance <- c(attendance, present_attendance)
+    
+    # Update the current accuracy for the predictors used this round
+    best_predictors <- best_predictors %>%
+      mutate(prediction = predictions,
+             current_accuracy = (best_accuracy + 
+                                   abs(prediction - present_attendance))) %>%
+      select(-prediction, -best_accuracy)
+    
+    # Remove the rows used this round
+    predictors_df <- predictors_df %>%
+      group_by(id) %>%
+      slice(-which.min(current_accuracy))
+    
+    # Add the used rows back in with new accuracy scores
+    predictors_df <- bind_rows(predictors_df, best_predictors) %>%
+      arrange(id)
+    
+  }
+  ## Output -----
+  
+  attendance_df <- tibble(week_no = 1:n_rounds, attendance = attendance)
+  
+}
+```
+
+All you need to know is that it takes two arguments. `threshold = ` specifies the crucial cut-off at which people believe the bar is or isn't too busy. `n_rounds = ` specifies the number of weeks to run the simulation for. The function outputs a dataframe with weekly attendance figures. 
+
 # Simulations
 
-## If we start low
+## First glance 
 
-## If we start high
+Talk about average behaviour. 
+
+## Default options
+
+Re-running with same parameters changes the fluctuation but not the mean. 
+
+E.g. Run two simulations A and B
+
+```{r two default sims, echo = TRUE}
+# Sim A
+default_A <- sim_el_farol()
+
+# Sim B
+default_B <- sim_el_farol()
+```
+
+```{r}
+# Viz A
+plot_A <- ggplot(default_A, aes(x = week_no, y = attendance)) +
+  geom_line() +
+  geom_smooth(method = "lm", se = F) +
+  scale_x_continuous("Week No.") +
+  scale_y_continuous("Attendance", limits = c(0, 100)) +
+  theme_classic() +
+  theme(panel.grid.major = element_line())
+
+# Viz B
+plot_B <- ggplot(default_B, aes(x = week_no, y = attendance)) +
+  geom_line() +
+  geom_smooth(method = "lm", se = F) +
+  scale_x_continuous("Week No.") +
+  scale_y_continuous("Attendance", limits = c(0, 100)) +
+  theme_classic() +
+  theme(panel.grid.major = element_line())
+
+# Plot side by side
+cowplot::plot_grid(plot_A, plot_B, labels = "AUTO")
+```
+
+## Changing the threshold
+
+```{r two 40 sims, echo = TRUE}
+# Sim A
+forty_A <- sim_el_farol(threshold = 40)
+
+# Sim B
+forty_B <- sim_el_farol(threshold = 40)
+```
+
+```{r}
+# Viz A
+plot_A <- ggplot(forty_A, aes(x = week_no, y = attendance)) +
+  geom_line() +
+  geom_smooth(method = "lm", se = F) +
+  scale_x_continuous("Week No.") +
+  scale_y_continuous("Attendance", limits = c(0, 100)) +
+  theme_classic() +
+  theme(panel.grid.major = element_line())
+
+# Viz B
+plot_B <- ggplot(forty_B, aes(x = week_no, y = attendance)) +
+  geom_line() +
+  geom_smooth(method = "lm", se = F) +
+  scale_x_continuous("Week No.") +
+  scale_y_continuous("Attendance", limits = c(0, 100)) +
+  theme_classic() +
+  theme(panel.grid.major = element_line())
+
+# Plot side by side
+cowplot::plot_grid(plot_A, plot_B, labels = "AUTO")
+```
+
+## Changing the timespan
+
+Zooming in looks almost fractal 
 
 ## Results
 
 Mention ecology?
+
+It's different people each time. 
 
 # Why should you care?
 

@@ -110,7 +110,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              3 minutes read
+              4 minutes read
             </span>
           </div>
           
@@ -136,9 +136,11 @@
 <li><a href="#r-function"><span class="toc-section-number">2.2</span> R function</a></li>
 </ul></li>
 <li><a href="#simulations"><span class="toc-section-number">3</span> Simulations</a><ul>
-<li><a href="#if-we-start-low"><span class="toc-section-number">3.1</span> If we start low</a></li>
-<li><a href="#if-we-start-high"><span class="toc-section-number">3.2</span> If we start high</a></li>
-<li><a href="#results"><span class="toc-section-number">3.3</span> Results</a></li>
+<li><a href="#first-glance"><span class="toc-section-number">3.1</span> First glance</a></li>
+<li><a href="#default-options"><span class="toc-section-number">3.2</span> Default options</a></li>
+<li><a href="#changing-the-threshold"><span class="toc-section-number">3.3</span> Changing the threshold</a></li>
+<li><a href="#changing-the-timespan"><span class="toc-section-number">3.4</span> Changing the timespan</a></li>
+<li><a href="#results"><span class="toc-section-number">3.5</span> Results</a></li>
 </ul></li>
 <li><a href="#why-should-you-care"><span class="toc-section-number">4</span> Why should you care?</a></li>
 </ul>
@@ -162,36 +164,58 @@ div#TOC li {
 <h1><span class="header-section-number">2</span> Model</h1>
 <div id="set-up" class="section level2">
 <h2><span class="header-section-number">2.1</span> Set-up</h2>
-<p>100 people decide independently each week whether or not to attend a bar that offers music on a certain night. The music is enjoyable if the bar isn’t too busy, specifically if fewer than 60% of the possible 100 people attend. There’s no way to tell in advance how many people will show up. So, each person goes if they expect fewer than 60 people to attend but stays home if they think more than 60 people will be there.</p>
+<p>100 people decide independently each week whether or not to attend a bar that offers music on a certain night. The music is enjoyable if the bar isn’t too busy, specifically if fewer than <span class="math inline">\(X\%\)</span> of the possible 100 people attend. There’s no way to tell in advance how many people will show up. So, each person goes if they expect fewer than <span class="math inline">\(X\)</span> people to attend but stays home if they think more than <span class="math inline">\(X\)</span> people will be there.</p>
 <p>There’s no collusion or prior communication between possible attendees and the choice isn’t affected by whether the person was right or wrong in their beliefs about previous visits. The only info available is a list of the number of people who came in the past weeks.</p>
 <p>For example, the past 10 weeks’ attendance might be:</p>
-<pre class="r"><code># Example attendance
-set.seed(23)
-round(rtruncnorm(10, 0, 100, 50, 20), 0)</code></pre>
 <pre><code>##  [1] 54 41 68 86 70 72 44 70 51 82</code></pre>
 <p>Each of the 100 people can individually form <span class="math inline">\(k\)</span> hypotheses they could use to predict the next week’s attendance based on the figures for the past <span class="math inline">\(d\)</span> weeks. For example, their hypotheses could include:</p>
 <ul>
 <li>Predict the same as last week <span class="math inline">\(\rightarrow\)</span> 82 people</li>
-<li>Predict a mirror image around 50 of last week <span class="math inline">\(\rightarrow\)</span> 28 people</li>
+<li>Predict a mirror image around 50 of last week <span class="math inline">\(\rightarrow\)</span> 18 people</li>
 <li>Predict the average of the past four weeks <span class="math inline">\(\rightarrow\)</span> 62 people</li>
 </ul>
-<p>Each person decides to go out or stay in according to the currently most accurate prediction hypothesis in their individual set.</p>
+<p>Each person decides to go out or stay in according to the currently most accurate prediction hypothesis in their individual set. If their best predictor says that fewer than <span class="math inline">\(X\)</span> people will go, then they go. If their best predictor says that more than <span class="math inline">\(X\)</span> people go, then they don’t.</p>
 </div>
 <div id="r-function" class="section level2">
 <h2><span class="header-section-number">2.2</span> R function</h2>
+<p>For brevity I’ve hidden the code where I create the <code>sim_el_farol()</code> function but you can find it <a href="https://github.com/mitchelfruin/MitchThinks/blob/master/content/posts/el_farol_bar_problem.Rmd">here</a>.</p>
+<p>All you need to know is that it takes two arguments. <code>threshold =</code> specifies the crucial cut-off at which people believe the bar is or isn’t too busy. <code>n_rounds =</code> specifies the number of weeks to run the simulation for. The function outputs a dataframe with weekly attendance figures.</p>
 </div>
 </div>
 <div id="simulations" class="section level1">
 <h1><span class="header-section-number">3</span> Simulations</h1>
-<div id="if-we-start-low" class="section level2">
-<h2><span class="header-section-number">3.1</span> If we start low</h2>
+<div id="first-glance" class="section level2">
+<h2><span class="header-section-number">3.1</span> First glance</h2>
+<p>Talk about average behaviour.</p>
 </div>
-<div id="if-we-start-high" class="section level2">
-<h2><span class="header-section-number">3.2</span> If we start high</h2>
+<div id="default-options" class="section level2">
+<h2><span class="header-section-number">3.2</span> Default options</h2>
+<p>Re-running with same parameters changes the fluctuation but not the mean.</p>
+<p>E.g. Run two simulations A and B</p>
+<pre class="r"><code># Sim A
+default_A &lt;- sim_el_farol()
+
+# Sim B
+default_B &lt;- sim_el_farol()</code></pre>
+<p><img src="/posts/el_farol_bar_problem_files/figure-html/unnamed-chunk-1-1.png" width="1056" style="display: block; margin: auto;" /></p>
+</div>
+<div id="changing-the-threshold" class="section level2">
+<h2><span class="header-section-number">3.3</span> Changing the threshold</h2>
+<pre class="r"><code># Sim A
+forty_A &lt;- sim_el_farol(threshold = 40)
+
+# Sim B
+forty_B &lt;- sim_el_farol(threshold = 40)</code></pre>
+<p><img src="/posts/el_farol_bar_problem_files/figure-html/unnamed-chunk-2-1.png" width="1056" style="display: block; margin: auto;" /></p>
+</div>
+<div id="changing-the-timespan" class="section level2">
+<h2><span class="header-section-number">3.4</span> Changing the timespan</h2>
+<p>Zooming in looks almost fractal</p>
 </div>
 <div id="results" class="section level2">
-<h2><span class="header-section-number">3.3</span> Results</h2>
+<h2><span class="header-section-number">3.5</span> Results</h2>
 <p>Mention ecology?</p>
+<p>It’s different people each time.</p>
 </div>
 </div>
 <div id="why-should-you-care" class="section level1">
