@@ -272,7 +272,12 @@ sim_el_farol <- function(threshold = 60, n_rounds = 100) {
 }
 ```
 
-All you need to know is that it takes two arguments. `threshold = ` specifies the crucial cut-off at which people believe the bar is or isn't too busy. `n_rounds = ` specifies the number of weeks to run the simulation for. The function outputs a dataframe with weekly attendance figures. 
+All that's crucial to know is that it takes two arguments.
+
+* `threshold = ` specifies the crucial cut-off at which people believe the bar is or isn't too busy.
+* `n_rounds = ` specifies the number of weeks to run the simulation for. 
+
+The function outputs a dataframe with weekly attendance figures. 
 
 # Simulations
 
