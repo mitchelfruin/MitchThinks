@@ -34,12 +34,11 @@ I'm currently making my way through *Complexity and the Economy* by W. Brian Art
 
 # Background 
 
-When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol where there was Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This problem is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If people expect many others to attend, then few will show up and the bar will be empty. If people expect nobody to attend, then everyone will show up and it'll be packed. In both cases the original belief causes behaviour that means the belief ends up being incorrect.
+When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol where there was Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If most people expect many others to attend, then few will show up and the bar will be empty. If most people expect nobody to attend, then everyone will show up and it'll be packed. In both cases the original belief causes behaviour that means the belief ends up being incorrect.
 
-Let's generalise this phenomenon in a toy model similar to Arthur's and see if we can gain any insight into the dynamics of attendance over time.  
+If we generalise this phenomenon in a toy model similar to Arthur's we can gain some insight into the dynamics of attendance over time.  
 
 # Model 
-
 ## Set-up
 
 100 people decide independently each week whether or not to attend a bar that offers music on a certain night. The music is enjoyable if the bar isn't too busy, specifically if fewer than $X\%$ of the possible 100 people attend. There's no way to tell in advance how many people will show up. So, each person goes if they expect fewer than $X$ people to attend but stays home if they think more than $X$ people will be there.
@@ -54,13 +53,13 @@ set.seed(23)
 round(truncnorm::rtruncnorm(10, 0, 100, 50, 20), 0)
 ```
 
-Each of the 100 people can individually form $k$ hypotheses they could use to predict the next week's attendance based on the figures for the past $d$ weeks. For example, their hypotheses could include:
+Each of the 100 people can individually form different hypotheses they could use to predict the next week's attendance based on the figures for the past weeks. For example, their hypotheses could include:
 
 * Predict the same as last week $\rightarrow$ 82 people
 * Predict a mirror image around 50 of last week $\rightarrow$ 18 people
 * Predict the average of the past four weeks $\rightarrow$ 62 people
 
-Each person decides to go out or stay in according to the currently most accurate prediction hypothesis in their individual set. If their best predictor says that fewer than $X$ people will go, then they go. If their best predictor says that more than $X$ people go, then they don't. 
+Each person decides to go out or stay in according to the currently most accurate hypothesis in their individual set. If their best predictor says that fewer than $X$ people will go, then they go. If their best predictor says that more than $X$ people go, then they don't. 
 
 ## R function 
 
@@ -68,6 +67,7 @@ For brevity I've hidden the code where I create the `sim_el_farol()` function bu
 
 ```{r define sim function}
 sim_el_farol <- function(threshold = 60, n_rounds = 100) {
+  
   ## Define mean-based hypotheses -----
   
   # Mean of previous 1 week
@@ -231,65 +231,86 @@ sim_el_farol <- function(threshold = 60, n_rounds = 100) {
   # Run it
   for (i in 1:n_rounds) {
     
-    # Find best_predictors (accuracy = mean diff predict - attendance)
+    # Make predictions using all hypotheses
+    all_predictions <- lapply(predictors_df$predictor,
+                              function(f) f(attendance))
+    all_predictions <- unlist(all_predictions)
+    
+    # Find best_predictors
     best_predictors <- find_predictor(predictors_df)
     
-    # Make predictions using individuals' best hypotheses
-    predictions_ls <- lapply(best_predictors$predictor,
-                             function(f) f(attendance))
-    predictions <- unlist(predictions_ls)
+    # Make predictions using best hypotheses
+    best_predictions <- lapply(best_predictors$predictor,
+                               function(f) f(attendance))
+    best_predictions <- unlist(best_predictions)
     
-    # Add these predictions to the predictions_df in the right week
-    predictions_df[, 1+i] <- predictions
+    # Add best predictions to the predictions_df in the right week
+    predictions_df[, 1+i] <- best_predictions
     
     # Count how many individuals will go to the bar that week 
-    present_attendance <- sum(predictions <= threshold)
+    present_attendance <- sum(best_predictions <= threshold)
     
     # Add present attendance to the attendance vector
     attendance <- c(attendance, present_attendance)
     
-    # Update the current accuracy for the predictors used this round
-    best_predictors <- best_predictors %>%
-      mutate(prediction = predictions,
-             current_accuracy = (best_accuracy + 
-                                   abs(prediction - present_attendance))) %>%
-      select(-prediction, -best_accuracy)
-    
-    # Remove the rows used this round
+    # Update the current accuracy for the predictors
     predictors_df <- predictors_df %>%
-      group_by(id) %>%
-      slice(-which.min(current_accuracy))
-    
-    # Add the used rows back in with new accuracy scores
-    predictors_df <- bind_rows(predictors_df, best_predictors) %>%
-      arrange(id)
+      mutate(prediction = all_predictions,
+             current_accuracy = current_accuracy + 
+               abs(prediction - present_attendance)) %>%
+      select(-prediction)
     
   }
   ## Output -----
   
+  # Overall attendance
   attendance_df <- tibble(week_no = 1:n_rounds, attendance = attendance)
+  
+  # Add attendance and individual predictions to environment
+  list("predictions" = predictions_df, "attendance" = attendance_df)
   
 }
 ```
 
-All that's crucial to know is that it takes two arguments.
+What's important to know is that the function takes two arguments:
 
-* `threshold = ` specifies the crucial cut-off at which people believe the bar is or isn't too busy.
-* `n_rounds = ` specifies the number of weeks to run the simulation for. 
+* `threshold = ` specifies the crucial cut-off at which people believe the bar is or isn't too busy. By default this value is 60.
+* `n_rounds = ` specifies the number of weeks to run the simulation for. By default this value is 100. 
 
-The function outputs a dataframe with weekly attendance figures. 
+When you run the function it randomly allocates 3 hypotheses like the ones previously described to each of the 100 people. For the first week (when there are no past attendance figures to work with) all of these hypotheses make random predictions for how many people will attend and each person uses a random hypothesis as their 'best' prediction. Those who (based on this random 'best' prediction) believe fewer than the `threshold` value will attend go to the bar. Those who believe more than the `threshold` value will attend stay home. 
+
+Now we have a figure for the first week's attendance the accuracy of each of the 300 hypotheses (remember there are 3 for each person) is calculated as the difference between its predicted attendance and the true figure. Each person then uses their most accurate hypothesis so far to make a prediction for the next week's attendance and the cycle repeats for `n_rounds`. 
+
+The function outputs a list of two dataframes. One contains the weekly attendance figures and the other contains each of the 100 individuals' predictions for each round. 
 
 # Simulations
-
 ## First glance 
 
-Talk about average behaviour. 
+OK, let's see what the simulation spits out with its default settings. 
 
-## Default options
+```{r first glance, echo=TRUE}
+set.seed(23)
+default <- sim_el_farol()
+```
 
-Re-running with same parameters changes the fluctuation but not the mean. 
+```{r default viz}
+ggplot(default$attendance, aes(x = week_no, y = attendance)) +
+  geom_line() +
+  geom_point() +
+  geom_smooth(method = "lm", se = F) +
+  scale_x_continuous("Week No.",
+                     breaks = c(seq(0, 100, 20))) +
+  scale_y_continuous("Attendance", 
+                     breaks = c(seq(0, 100, 10)),
+                     limits = c(0, 100)) +
+  theme_classic() +
+  theme(panel.grid.major = element_line())
+```
+The blue line in the graph is a linear model of attendance over time. It shows us that whilst weekly attendance fluctuates the mean attendance converges on the default threshold value of 60.
 
-E.g. Run two simulations A and B
+## Comparing simulations
+
+What if we compare two default simulations? How consistent is this apparent convergence on the threshold value?
 
 ```{r two default sims, echo = TRUE}
 # Sim A
@@ -301,20 +322,30 @@ default_B <- sim_el_farol()
 
 ```{r}
 # Viz A
-plot_A <- ggplot(default_A, aes(x = week_no, y = attendance)) +
+plot_A <- ggplot(default_A$attendance,
+                 aes(x = week_no, y = attendance)) +
   geom_line() +
+  geom_point() +
   geom_smooth(method = "lm", se = F) +
-  scale_x_continuous("Week No.") +
-  scale_y_continuous("Attendance", limits = c(0, 100)) +
+  scale_x_continuous("Week No.",
+                     breaks = c(seq(0, 100, 20))) +
+  scale_y_continuous("Attendance", 
+                     breaks = c(seq(0, 100, 10)),
+                     limits = c(0, 100)) +
   theme_classic() +
   theme(panel.grid.major = element_line())
 
 # Viz B
-plot_B <- ggplot(default_B, aes(x = week_no, y = attendance)) +
+plot_B <- ggplot(default_B$attendance,
+                 aes(x = week_no, y = attendance)) +
   geom_line() +
+  geom_point() +
   geom_smooth(method = "lm", se = F) +
-  scale_x_continuous("Week No.") +
-  scale_y_continuous("Attendance", limits = c(0, 100)) +
+  scale_x_continuous("Week No.",
+                     breaks = c(seq(0, 100, 20))) +
+  scale_y_continuous("Attendance", 
+                     breaks = c(seq(0, 100, 10)),
+                     limits = c(0, 100)) +
   theme_classic() +
   theme(panel.grid.major = element_line())
 
@@ -322,7 +353,11 @@ plot_B <- ggplot(default_B, aes(x = week_no, y = attendance)) +
 cowplot::plot_grid(plot_A, plot_B, labels = "AUTO")
 ```
 
+Re-running with same default parameters changes the fluctuation but average attendance still converges on the threshold value. The different fluctuations are due to the initial random allocation of hypotheses amongst individuals. But we see that no matter how these fluctuations differ the same average behaviour emerges. 
+
 ## Changing the threshold
+
+So, from our simulations so far, it seems like the average attendance converges on the threshold value. Let's test this by altering the threshold value to 40.  
 
 ```{r two 40 sims, echo = TRUE}
 # Sim A
@@ -334,26 +369,38 @@ forty_B <- sim_el_farol(threshold = 40)
 
 ```{r}
 # Viz A
-plot_A <- ggplot(forty_A, aes(x = week_no, y = attendance)) +
+plot_A <- ggplot(forty_A$attendance,
+                 aes(x = week_no, y = attendance)) +
   geom_line() +
+  geom_point() +
   geom_smooth(method = "lm", se = F) +
-  scale_x_continuous("Week No.") +
-  scale_y_continuous("Attendance", limits = c(0, 100)) +
+  scale_x_continuous("Week No.",
+                     breaks = c(seq(0, 100, 20))) +
+  scale_y_continuous("Attendance", 
+                     breaks = c(seq(0, 100, 10)),
+                     limits = c(0, 100)) +
   theme_classic() +
   theme(panel.grid.major = element_line())
 
 # Viz B
-plot_B <- ggplot(forty_B, aes(x = week_no, y = attendance)) +
+plot_B <- ggplot(forty_B$attendance,
+                 aes(x = week_no, y = attendance)) +
   geom_line() +
+  geom_point() +
   geom_smooth(method = "lm", se = F) +
-  scale_x_continuous("Week No.") +
-  scale_y_continuous("Attendance", limits = c(0, 100)) +
+  scale_x_continuous("Week No.",
+                     breaks = c(seq(0, 100, 20))) +
+  scale_y_continuous("Attendance", 
+                     breaks = c(seq(0, 100, 10)),
+                     limits = c(0, 100)) +
   theme_classic() +
   theme(panel.grid.major = element_line())
 
 # Plot side by side
 cowplot::plot_grid(plot_A, plot_B, labels = "AUTO")
 ```
+
+The same behaviour persists but now at the new threshold value.
 
 ## Changing the timespan
 
@@ -364,6 +411,31 @@ Zooming in looks almost fractal
 Mention ecology?
 
 It's different people each time. 
+
+```{r ecology}
+set.seed(45)
+id_index <- sample(1:100, 5)
+individuals <- default$predictions[id_index, ]
+names(individuals) <- c("id", 1:100)
+individuals_plot <- reshape2::melt(individuals,
+                                   id.vars = "id",
+                                   variable.name = "week") %>%
+  mutate(id = as.factor(id),
+         week = as.numeric(week))
+
+ggplot(individuals_plot, aes(x = week, y = value, col = id)) +
+  geom_line() +
+  geom_point(size = 0.75) +
+  geom_hline(yintercept = 60, lty = 2) +
+  scale_color_discrete("ID") +
+  scale_x_continuous("Week No.",
+                     breaks = c(seq(0, 100, 20))) +
+  scale_y_continuous("Predicted Attendance", 
+                     breaks = c(seq(0, 100, 10)),
+                     limits = c(0, 100)) +
+  theme_classic() +
+  theme(panel.grid.major = element_line())
+```
 
 # Why should you care?
 

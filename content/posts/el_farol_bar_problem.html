@@ -22,7 +22,7 @@ output:
 </ul></li>
 <li><a href="#simulations"><span class="toc-section-number">3</span> Simulations</a><ul>
 <li><a href="#first-glance"><span class="toc-section-number">3.1</span> First glance</a></li>
-<li><a href="#default-options"><span class="toc-section-number">3.2</span> Default options</a></li>
+<li><a href="#comparing-simulations"><span class="toc-section-number">3.2</span> Comparing simulations</a></li>
 <li><a href="#changing-the-threshold"><span class="toc-section-number">3.3</span> Changing the threshold</a></li>
 <li><a href="#changing-the-timespan"><span class="toc-section-number">3.4</span> Changing the timespan</a></li>
 <li><a href="#results"><span class="toc-section-number">3.5</span> Results</a></li>
@@ -42,8 +42,8 @@ div#TOC li {
 <p>I’m currently making my way through <em>Complexity and the Economy</em> by W. Brian Arthur. The book’s second chapter is a paper from 1994 called <a href="http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf"><em>Inductive Reasoning and Bounded Rationality: The El Farol Problem</em></a>. It’s a fantastic example of how marrying psychological insights and a computational (rather than analytic) approach can produce novel, interesting, and intuive research in economics. So, I thought I’d have a go at using R to reproduce my own (simpler) version of the model described in the paper.</p>
 <div id="background" class="section level1">
 <h1><span class="header-section-number">1</span> Background</h1>
-<p>When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol where there was Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This problem is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If people expect many others to attend, then few will show up and the bar will be empty. If people expect nobody to attend, then everyone will show up and it’ll be packed. In both cases the original belief causes behaviour that means the belief ends up being incorrect.</p>
-<p>Let’s generalise this phenomenon in a toy model similar to Arthur’s and see if we can gain any insight into the dynamics of attendance over time.</p>
+<p>When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol where there was Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If most people expect many others to attend, then few will show up and the bar will be empty. If most people expect nobody to attend, then everyone will show up and it’ll be packed. In both cases the original belief causes behaviour that means the belief ends up being incorrect.</p>
+<p>If we generalise this phenomenon in a toy model similar to Arthur’s we can gain some insight into the dynamics of attendance over time.</p>
 </div>
 <div id="model" class="section level1">
 <h1><span class="header-section-number">2</span> Model</h1>
@@ -53,50 +53,57 @@ div#TOC li {
 <p>There’s no collusion or prior communication between possible attendees and the choice isn’t affected by whether the person was right or wrong in their beliefs about previous visits. The only info available is a list of the number of people who came in the past weeks.</p>
 <p>For example, the past 10 weeks’ attendance might be:</p>
 <pre><code>##  [1] 54 41 68 86 70 72 44 70 51 82</code></pre>
-<p>Each of the 100 people can individually form <span class="math inline">\(k\)</span> hypotheses they could use to predict the next week’s attendance based on the figures for the past <span class="math inline">\(d\)</span> weeks. For example, their hypotheses could include:</p>
+<p>Each of the 100 people can individually form different hypotheses they could use to predict the next week’s attendance based on the figures for the past weeks. For example, their hypotheses could include:</p>
 <ul>
 <li>Predict the same as last week <span class="math inline">\(\rightarrow\)</span> 82 people</li>
 <li>Predict a mirror image around 50 of last week <span class="math inline">\(\rightarrow\)</span> 18 people</li>
 <li>Predict the average of the past four weeks <span class="math inline">\(\rightarrow\)</span> 62 people</li>
 </ul>
-<p>Each person decides to go out or stay in according to the currently most accurate prediction hypothesis in their individual set. If their best predictor says that fewer than <span class="math inline">\(X\)</span> people will go, then they go. If their best predictor says that more than <span class="math inline">\(X\)</span> people go, then they don’t.</p>
+<p>Each person decides to go out or stay in according to the currently most accurate hypothesis in their individual set. If their best predictor says that fewer than <span class="math inline">\(X\)</span> people will go, then they go. If their best predictor says that more than <span class="math inline">\(X\)</span> people go, then they don’t.</p>
 </div>
 <div id="r-function" class="section level2">
 <h2><span class="header-section-number">2.2</span> R function</h2>
 <p>For brevity I’ve hidden the code where I create the <code>sim_el_farol()</code> function but you can find it <a href="https://github.com/mitchelfruin/MitchThinks/blob/master/content/posts/el_farol_bar_problem.Rmd">here</a>.</p>
-<p>All that’s crucial to know is that it takes two arguments.</p>
+<p>What’s important to know is that the function takes two arguments:</p>
 <ul>
-<li><code>threshold =</code> specifies the crucial cut-off at which people believe the bar is or isn’t too busy.</li>
-<li><code>n_rounds =</code> specifies the number of weeks to run the simulation for.</li>
+<li><code>threshold =</code> specifies the crucial cut-off at which people believe the bar is or isn’t too busy. By default this value is 60.</li>
+<li><code>n_rounds =</code> specifies the number of weeks to run the simulation for. By default this value is 100.</li>
 </ul>
-<p>The function outputs a dataframe with weekly attendance figures.</p>
+<p>When you run the function it randomly allocates 3 hypotheses like the ones previously described to each of the 100 people. For the first week (when there are no past attendance figures to work with) all of these hypotheses make random predictions for how many people will attend and each person uses a random hypothesis as their ‘best’ prediction. Those who (based on this random ‘best’ prediction) believe fewer than the <code>threshold</code> value will attend go to the bar. Those who believe more than the <code>threshold</code> value will attend stay home.</p>
+<p>Now we have a figure for the first week’s attendance the accuracy of each of the 300 hypotheses (remember there are 3 for each person) is calculated as the difference between its predicted attendance and the true figure. Each person then uses their most accurate hypothesis so far to make a prediction for the next week’s attendance and the cycle repeats for <code>n_rounds</code>.</p>
+<p>The function outputs a list of two dataframes. One contains the weekly attendance figures and the other contains each of the 100 individuals’ predictions for each round.</p>
 </div>
 </div>
 <div id="simulations" class="section level1">
 <h1><span class="header-section-number">3</span> Simulations</h1>
 <div id="first-glance" class="section level2">
 <h2><span class="header-section-number">3.1</span> First glance</h2>
-<p>Talk about average behaviour.</p>
+<p>OK, let’s see what the simulation spits out with its default settings.</p>
+<pre class="r"><code>set.seed(23)
+default &lt;- sim_el_farol()</code></pre>
+<p><img src="/posts/el_farol_bar_problem_files/figure-html/default%20viz-1.png" width="1056" style="display: block; margin: auto;" /> The blue line in the graph is a linear model of attendance over time. It shows us that whilst weekly attendance fluctuates the mean attendance converges on the default threshold value of 60.</p>
 </div>
-<div id="default-options" class="section level2">
-<h2><span class="header-section-number">3.2</span> Default options</h2>
-<p>Re-running with same parameters changes the fluctuation but not the mean.</p>
-<p>E.g. Run two simulations A and B</p>
+<div id="comparing-simulations" class="section level2">
+<h2><span class="header-section-number">3.2</span> Comparing simulations</h2>
+<p>What if we compare two default simulations? How consistent is this apparent convergence on the threshold value?</p>
 <pre class="r"><code># Sim A
 default_A &lt;- sim_el_farol()
 
 # Sim B
 default_B &lt;- sim_el_farol()</code></pre>
 <p><img src="/posts/el_farol_bar_problem_files/figure-html/unnamed-chunk-1-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<p>Re-running with same default parameters changes the fluctuation but average attendance still converges on the threshold value. The different fluctuations are due to the initial random allocation of hypotheses amongst individuals. But we see that no matter how these fluctuations differ the same average behaviour emerges.</p>
 </div>
 <div id="changing-the-threshold" class="section level2">
 <h2><span class="header-section-number">3.3</span> Changing the threshold</h2>
+<p>So, from our simulations so far, it seems like the average attendance converges on the threshold value. Let’s test this by altering the threshold value to 40.</p>
 <pre class="r"><code># Sim A
 forty_A &lt;- sim_el_farol(threshold = 40)
 
 # Sim B
 forty_B &lt;- sim_el_farol(threshold = 40)</code></pre>
 <p><img src="/posts/el_farol_bar_problem_files/figure-html/unnamed-chunk-2-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<p>The same behaviour persists but now at the new threshold value.</p>
 </div>
 <div id="changing-the-timespan" class="section level2">
 <h2><span class="header-section-number">3.4</span> Changing the timespan</h2>
@@ -106,6 +113,7 @@ forty_B &lt;- sim_el_farol(threshold = 40)</code></pre>
 <h2><span class="header-section-number">3.5</span> Results</h2>
 <p>Mention ecology?</p>
 <p>It’s different people each time.</p>
+<p><img src="/posts/el_farol_bar_problem_files/figure-html/ecology-1.png" width="1056" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="why-should-you-care" class="section level1">

@@ -28,7 +28,7 @@ If you want to see the full code for this post then you can find the .Rmd file h
       <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/el_farol_bar_problem/</guid>
-      <description>1 Background 2 Model 2.1 Set-up 2.2 R function  3 Simulations 3.1 First glance 3.2 Default options 3.3 Changing the threshold 3.4 Changing the timespan 3.5 Results  4 Why should you care?   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  I’m currently making my way through Complexity and the Economy by W. Brian Arthur. The book’s second chapter is a paper from 1994 called Inductive Reasoning and Bounded Rationality: The El Farol Problem.</description>
+      <description>1 Background 2 Model 2.1 Set-up 2.2 R function  3 Simulations 3.1 First glance 3.2 Comparing simulations 3.3 Changing the threshold 3.4 Changing the timespan 3.5 Results  4 Why should you care?   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  I’m currently making my way through Complexity and the Economy by W. Brian Arthur. The book’s second chapter is a paper from 1994 called Inductive Reasoning and Bounded Rationality: The El Farol Problem.</description>
     </item>
     
   </channel>
