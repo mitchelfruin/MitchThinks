@@ -11,10 +11,10 @@
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nobody goes there anymore. It&#39;s too crowded."/>
-<meta name="twitter:description" content="Introduction to the &#39;El-Farol Bar Problem&#39;, a staple of complexity economics."/>
+<meta name="twitter:description" content="Introduction to the &#39;El-Farol Bar Problem&#39;, a staple of complexity economics, using an agent-based model in R."/>
 
     <meta property="og:title" content="Nobody goes there anymore. It&#39;s too crowded." />
-<meta property="og:description" content="Introduction to the &#39;El-Farol Bar Problem&#39;, a staple of complexity economics." />
+<meta property="og:description" content="Introduction to the &#39;El-Farol Bar Problem&#39;, a staple of complexity economics, using an agent-based model in R." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/el_farol_bar_problem/" />
 <meta property="article:published_time" content="2019-08-28T00:00:00+00:00" />
@@ -162,7 +162,7 @@ div#TOC li {
 <li><p>First, there is no ‘correct’ deductively rational solution for someone trying to decide whether or not to attend based on their prediction for this week’s attendance. This is because their prediction is based on what they believe other people will do. But, what those other people will do is simultaneously based on their predictions of what everyone except themselves will do. Thus, our focal agent ends up in a kind of reflexive preference loop in which their prediction is a function of every other agent’s prediction which is itself a function of every other agent’s prediction, and so on and so on for as long as you can be bothered to think about it.</p></li>
 <li><p>Second, it creates something of a paradox where common beliefs lead to outcomes that cause those beliefs to be proved false. If most people expect many others to attend, then few will show up and the bar will be almost empty. If most people expect nobody to attend, then everyone will show up and it’ll be packed. In both cases the original common belief causes behaviour that means that belief ends up being incorrect.</p></li>
 </ul>
-<p>These two interesting aspects of the problem should be incorporated in our model if we want it to be useful. So, we need to allow agents to reason inductively by testing a set of hypotheses against reality and choosing to use the one that seems to work best at the present time. We also need to allow our agents to have different sets of hypotheses from one another i.e. different inductive rules about the world they’re testing.</p>
+<p>These two interesting aspects of the problem should be incorporated in our model if we want it to be useful. So, we need to allow agents to reason inductively by testing a set of hypotheses against reality and choosing to use the one that seems to work best at the present time. We also need to allow our agents to have different sets of hypotheses from one another i.e. different inductive rules about the world that they’re testing.</p>
 <p>But if everyone is inductively reasoning from a multitude of different starting beliefs, then won’t we just get completely random attendance over time? Let’s generalise the problem in a toy model similar to Arthur’s to gain some insight into the dynamics of attendance and find out.</p>
 </div>
 <div id="model" class="section level1">
@@ -189,8 +189,8 @@ div#TOC li {
 <li><code>threshold =</code> specifies the crucial cut-off at which people believe the bar is or isn’t too busy. By default this value is 60.</li>
 <li><code>n_rounds =</code> specifies the number of weeks to run the simulation for. By default this value is 100.</li>
 </ul>
-<p>When you run the function it randomly allocates 3 hypotheses like the ones previously described to each of the 100 people. For the first week (when there are no past attendance figures to work with) all of these hypotheses make random predictions for how many people will attend and each person uses a random hypothesis as their ‘best’ prediction. Those who predict fewer than the <code>threshold</code> value will attend go to the bar. Those who predict more than the <code>threshold</code> value will attend stay home.</p>
-<p>Now we have a figure for the first week’s attendance the accuracy of each of the 300 hypotheses (remember there are 3 for each person) is calculated as the difference between its predicted attendance and the true figure. Each person then uses their most accurate hypothesis so far to make a prediction for the next week’s attendance and the cycle repeats for <code>n_rounds</code>.</p>
+<p>When you run the function it randomly allocates 3 hypotheses like the ones previously described to each of the 100 people. For the first week (when there are no past attendance figures to work with) all of these hypotheses make random predictions for how many people will attend and each person uses a random hypothesis as their ‘best’ prediction. Those who predict that fewer than the <code>threshold</code> value will attend then go out to the bar. Those who predict more that than the <code>threshold</code> value will attend stay home.</p>
+<p>Now that we have a figure for the first week’s attendance, the accuracy of each of the 300 hypotheses (remember there are 3 for each person) is calculated as the difference between its predicted attendance and the true figure. Each person then uses their most accurate hypothesis to make a prediction for the next week’s attendance and either goes out or stays home. This cycle repeats for <code>n_rounds</code>.</p>
 <p>The function outputs a list of two dataframes. One contains the weekly attendance figures and the other contains each of the 100 individuals’ predictions for every round.</p>
 </div>
 </div>
@@ -201,7 +201,7 @@ div#TOC li {
 <p>OK, let’s see what the simulation spits out with its default settings.</p>
 <pre class="r"><code>set.seed(23)
 default &lt;- sim_el_farol()</code></pre>
-<p><img src="/posts/el_farol_bar_problem_files/figure-html/default%20viz-1.png" width="1056" style="display: block; margin: auto;" /> The blue line in the graph is a linear model of attendance over time. It shows us that whilst weekly attendance fluctuates the mean attendance converges on the default threshold value of 60.</p>
+<p><img src="/posts/el_farol_bar_problem_files/figure-html/default%20viz-1.png" width="1056" style="display: block; margin: auto;" /> The blue line in the graph is a linear model of attendance over time. It shows us that, whilst weekly attendance fluctuates, the mean attendance converges on the default threshold value of 60.</p>
 </div>
 <div id="comparing-simulations" class="section level2">
 <h2><span class="header-section-number">3.2</span> Comparing simulations</h2>
@@ -212,7 +212,7 @@ default_A &lt;- sim_el_farol()
 # Sim B
 default_B &lt;- sim_el_farol()</code></pre>
 <p><img src="/posts/el_farol_bar_problem_files/figure-html/unnamed-chunk-1-1.png" width="1056" style="display: block; margin: auto;" /></p>
-<p>Re-running with same default parameters changes the fluctuation but average attendance still converges on the threshold value. The different fluctuations are due to the initial random allocation of hypotheses amongst individuals. But we see that no matter how these fluctuations differ the same average behaviour emerges.</p>
+<p>Re-running with same default parameters changes the fluctuation but average attendance still converges on the threshold value. The different fluctuations are due to the initial random allocation of hypotheses to the individuals. But crucially, we see that no matter how these fluctuations differ the same average behaviour emerges.</p>
 </div>
 <div id="changing-the-threshold" class="section level2">
 <h2><span class="header-section-number">3.3</span> Changing the threshold</h2>
@@ -224,21 +224,21 @@ forty_A &lt;- sim_el_farol(threshold = 40)
 # Sim B
 forty_B &lt;- sim_el_farol(threshold = 40)</code></pre>
 <p><img src="/posts/el_farol_bar_problem_files/figure-html/unnamed-chunk-2-1.png" width="1056" style="display: block; margin: auto;" /></p>
-<p>The same behaviour persists but now at the new threshold value.</p>
+<p>The same behaviour persists but now at the new lower threshold value.</p>
 </div>
 <div id="results" class="section level2">
 <h2><span class="header-section-number">3.4</span> Results</h2>
-<p>We’ve seen that the mean attendance converges on the threshold value. It’s not immediately obvious why this occurs. It turns out to be because the hypotheses (with the selection pressure of agents choosing their most accurate hypothesis) co-evolve into an ecology in which <span class="math inline">\((100-X)\%\)</span> predict values above the threshold and <span class="math inline">\(X\%\)</span> predict values below the threshold.</p>
-<p>To illustrate this co-evolutionary process consider the default case with 60 as the threshold value, how do we get <span class="math inline">\(40:60\)</span> above:below prediction ratio? Well imagine that instead 50% of hypotheses predicted over 60 for a few weeks in a row. As a result of these consistently high predictions average attendance would fall a little below the threshold. This low attendance would make the hypotheses predicting over 60 less accurate and thus less likely to be chosen as an agent’s current best hypothesis. Simultaneously, the low attendance would make hypotheses predicting low values more likely to be accurate and thus more likely to be chosen for use by an agent. As more agents use hypotheses predicting low values, more agents will choose to attend the bar. Thus causing attendance to rise back toward the threshold value of 60.</p>
+<p>We’ve seen that the mean attendance seems to converge on the threshold value as Arthur documented in his paper. It’s not immediately obvious why this occurs. It turns out to be because the hypotheses (with the selection pressure provided by agents choosing their most accurate hypothesis) co-evolve into an ecology in which <span class="math inline">\((100-X)\%\)</span> predict values above the threshold and <span class="math inline">\(X\%\)</span> predict values below the threshold.</p>
+<p>To illustrate this co-evolutionary process consider the default case with 60 as the threshold value, how do we get <span class="math inline">\(40:60\)</span> above:below prediction ratio? Well, imagine that instead 50% of hypotheses predicted above 60 for a few weeks in a row. As a result of these consistently high predictions average attendance would fall a little. This lower attendance would make the hypotheses predicting over 60 less accurate and thus less likely to be chosen as an agent’s current best hypothesis. Simultaneously, the lower attendance would make hypotheses predicting low values more likely to be accurate and thus more likely to be chosen for use by an agent. As more agents use hypotheses predicting low values, more agents will choose to attend the bar. Thus causing attendance to rise back up toward the threshold value of 60.</p>
 <p>One interesting result which Arthur highlights is that whilst the population of active hypotheses (the ones that are most accurate and thus used in a given round) splits into this <span class="math inline">\((100-X):X\)</span> ratio, it keeps changing its membership continually. He likens this to a forest whose “contours do not change, but whose individual trees do”. To partially illustrate this point I chose 10 individuals randomly from the original default simulation and plotted their individual predictions over the 100 weeks.</p>
 <p><img src="/posts/el_farol_bar_problem_files/figure-html/ecology-1.png" width="1056" style="display: block; margin: auto;" /></p>
-<p>This plot hints at Arthur’s point that the <span class="math inline">\(40:60\)</span> ratio of hypotheses that results in the average attendance of 60 is a consequence of different people being above and below the threshold each round. The trees change, but the forest remains the same.</p>
+<p>This plot hints at Arthur’s point that the <span class="math inline">\(40:60\)</span> ratio of hypotheses that results in an average attendance of 60 is a consequence of different people being above and below the threshold each round. The trees change, but the forest remains the same.</p>
 </div>
 </div>
 <div id="why-should-you-care" class="section level1">
 <h1><span class="header-section-number">4</span> Why should you care?</h1>
-<p>One reason you might care is that this example neatly illustrates the value of numerical approaches to problems and the usefulness agent-based modelling particularly when studying complex systems.</p>
-<p>A second reason is that the toy model epitomises a common type of problem: a coordination problem with a desired limit to coordination. Think about trying to time when you go to the lunchroom each day at work. You want it to be busy enough that there are people to talk to (i.e. you want some coordination) but not so busy that you struggle to find a seat or there’s a huge queue for the microwave (i.e. there’s a desired limit to the coordination). Some of this problem is solved by communication. You can text your mates and arrange to all go to lunch at 14.00 together. In less familiar settings, search engines often try to help us solve problems like these by displaying information about when a destination is usually busiest. But this extra information doesn’t completely neutralise the El Farol problem. Yes, you do know based on previous data that Tesco is usually empty at 3pm on a Tuesday, but, then again, so does everyone else. The commonplace nature of this phenomena is most evident in a quip from the legendary baseball player Yogi Berra about his favourite restaurant Ruggeri’s in St. Louis, “Nobody goes there anymore. It’s too busy.”</p>
+<p>If you’re a bit of a nerd, one reason you might care about the El Farol problem is that it neatly illustrates the value of numerical approaches to problems where analytical ones are intractable, and the usefulness agent-based modelling, particularly when studying complex systems.</p>
+<p>However, a more tangible reason you might care is that this toy model epitomises a surprisingly common type of problem: a coordination problem with a desired limit to coordination. Think about trying to time when you go to the lunchroom each day at work. You want it to be busy enough that there are enough people to talk to (i.e. you want some coordination), but not so busy that you struggle to find a seat or there’s a huge queue for the microwave (i.e. there’s a desired limit to the coordination). Some of this problem is solved by communication. You can text your mates and arrange to all go to lunch at 14.00 together. In less familiar settings, search engines often try to help us solve problems like these by displaying information about when a destination is usually busiest. But, this extra information doesn’t completely neutralise the El Farol problem. Yes, you do know that based on previous data Tesco is usually pretty empty at 3pm on a Tuesday, but then again so does everyone else. The commonplace nature of this phenomenon is most evident in a quip from the legendary baseball player Yogi Berra about his favourite restaurant Ruggeri’s in St. Louis, “Nobody goes there anymore. It’s too busy.”</p>
 </div>
 
       </div>
