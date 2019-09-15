@@ -30,13 +30,13 @@ library(tidyverse)
 library(truncnorm)
 ```
 
-I'm currently making my way through *Complexity and the Economy* by W. Brian Arthur. The book's second chapter is a paper from 1994 called [*Inductive Reasoning and Bounded Rationality: The El Farol Problem*](http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf). It's a fantastic example of how marrying psychological insights and a computational (rather than analytic) approach can produce novel, interesting, and intuive research in economics. So, I thought I'd have a go at using R to reproduce my own (simpler) version of the model described in the paper. 
+I'm currently making my way through *Complexity and the Economy* by W. Brian Arthur. The book's second chapter is a paper from 1994 called [*Inductive Reasoning and Bounded Rationality: The El Farol Problem*](http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf). It's a fantastic example of how marrying psychological insights and a computational approach can produce novel and intuive research in economics. So, I thought I'd have a go at using R to reproduce my own (simpler) version of the model described in the paper. 
 
 # Background 
 
-When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol where there was Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If most people expect many others to attend, then few will show up and the bar will be empty. If most people expect nobody to attend, then everyone will show up and it'll be packed. In both cases the original belief causes behaviour that means the belief ends up being incorrect.
+When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol with Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If most people expect many others to attend, then few will show up and the bar will be empty. If most people expect nobody to attend, then everyone will show up and it'll be packed. In both cases the original belief causes behaviour that means that belief ends up being incorrect.
 
-If we generalise this phenomenon in a toy model similar to Arthur's we can gain some insight into the dynamics of attendance over time.  
+Something about how there's no deductively rational correct answer here. So even a human acting as closely as possible to the Homo Economicus ideal is forced to use inductive reasoning. But if everyone is inductively reasoning from a multitude of differnt starting beliefs then do we just get completely random attendance over time? If we generalise this phenomenon in a toy model similar to Arthur's we can gain some insight into the dynamics of attendance.  
 
 # Model 
 ## Set-up
@@ -277,11 +277,11 @@ What's important to know is that the function takes two arguments:
 * `threshold = ` specifies the crucial cut-off at which people believe the bar is or isn't too busy. By default this value is 60.
 * `n_rounds = ` specifies the number of weeks to run the simulation for. By default this value is 100. 
 
-When you run the function it randomly allocates 3 hypotheses like the ones previously described to each of the 100 people. For the first week (when there are no past attendance figures to work with) all of these hypotheses make random predictions for how many people will attend and each person uses a random hypothesis as their 'best' prediction. Those who (based on this random 'best' prediction) believe fewer than the `threshold` value will attend go to the bar. Those who believe more than the `threshold` value will attend stay home. 
+When you run the function it randomly allocates 3 hypotheses like the ones previously described to each of the 100 people. For the first week (when there are no past attendance figures to work with) all of these hypotheses make random predictions for how many people will attend and each person uses a random hypothesis as their 'best' prediction. Those who predict fewer than the `threshold` value will attend go to the bar. Those who predict more than the `threshold` value will attend stay home. 
 
 Now we have a figure for the first week's attendance the accuracy of each of the 300 hypotheses (remember there are 3 for each person) is calculated as the difference between its predicted attendance and the true figure. Each person then uses their most accurate hypothesis so far to make a prediction for the next week's attendance and the cycle repeats for `n_rounds`. 
 
-The function outputs a list of two dataframes. One contains the weekly attendance figures and the other contains each of the 100 individuals' predictions for each round. 
+The function outputs a list of two dataframes. One contains the weekly attendance figures and the other contains each of the 100 individuals' predictions for every round. 
 
 # Simulations
 ## First glance 
