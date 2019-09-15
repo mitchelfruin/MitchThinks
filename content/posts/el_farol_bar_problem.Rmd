@@ -1,6 +1,6 @@
 ---
 title: "Nobody goes there anymore. It's too crowded."
-date: "2019-08-28"
+date: "2019-09-15"
 description: "Introduction to the 'El-Farol Bar Problem', a staple of complexity economics, using an agent-based model in R."
 tags: ["Agent-based modelling", "Complexity", "Economics"]
 slug: el_farol_bar_problem
