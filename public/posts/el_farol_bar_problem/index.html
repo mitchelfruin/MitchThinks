@@ -110,7 +110,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              7 minutes read
+              8 minutes read
             </span>
           </div>
           
@@ -153,10 +153,10 @@ div#TOC li {
     background-position:0; 
 }
 </style>
-<p>I’m currently making my way through <em>Complexity and the Economy</em> by W. Brian Arthur. The book’s second chapter is a paper from 1994 called <a href="http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf"><em>Inductive Reasoning and Bounded Rationality: The El Farol Problem</em></a>. It’s a fantastic example of how marrying psychological insights and a computational approach can produce novel and intuive research in economics. So, I thought I’d have a go at using R to reproduce my own (simpler) version of the model described in the paper.</p>
+<p>I’m currently making my way through <em>Complexity and the Economy</em> by W. Brian Arthur. The book’s second chapter is a paper from 1994 called <a href="http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf"><em>Inductive Reasoning and Bounded Rationality: The El Farol Problem</em></a>. It’s a fantastic example of how marrying psychological insights and a computational approach can produce novel and intuitive research in economics. So, I thought I’d have a go at using R to reproduce my own (simpler) version of the model described in the paper.</p>
 <div id="background" class="section level1">
 <h1><span class="header-section-number">1</span> Background</h1>
-<p>When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol with Irish music on thursday nights. He noticed that people would go if they expected few people to be there, but avoided it if they expected it to be too busy.</p>
+<p>When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol with Irish music on Thursday nights. He noticed that people would go if they expected few people to be there, but avoided it if they expected it to be too busy.</p>
 <p>This is interesting on two fronts.</p>
 <ul>
 <li><p>First, there is no ‘correct’ deductively rational solution for someone trying to decide whether or not to attend based on their prediction for this week’s attendance. This is because their prediction is based on what they believe other people will do. But, what those other people will do is simultaneously based on their predictions of what everyone except themselves will do. Thus, our focal agent ends up in a kind of reflexive preference loop in which their prediction is a function of every other agent’s prediction which is itself a function of every other agent’s prediction, and so on and so on for as long as you can be bothered to think about it.</p></li>
@@ -228,15 +228,16 @@ forty_B &lt;- sim_el_farol(threshold = 40)</code></pre>
 </div>
 <div id="results" class="section level2">
 <h2><span class="header-section-number">3.4</span> Results</h2>
-<p>We’ve seen that the mean attendance converges on the threshold value. It’s not immediately obvious why this occurs. It turns out to be because the hypotheses (with the selection pressure of agents choosing their most accurate hypothesis) coevolve into an ecology in which <span class="math inline">\((100-X)\%\)</span> predict values above the threshold and <span class="math inline">\(X\%\)</span> predict values below the threshold. To illustrate this consider 70:30 example with default threshold of 60.</p>
-<p>One interesting result which Arthur highlights is that whilst the population of active hypotheses (the ones that are most accurate and thus used in a given round) splits into this <span class="math inline">\((100-X):X\)</span> ratio, it keeps changing its membership continually. He liken this to a forest whose “contours do not change, but whose individual trees do”. To illustrate this point I chose 5 individuals randomly from the original default simulation and plotted their individual predictions over the 100 weeks.</p>
+<p>We’ve seen that the mean attendance converges on the threshold value. It’s not immediately obvious why this occurs. It turns out to be because the hypotheses (with the selection pressure of agents choosing their most accurate hypothesis) co-evolve into an ecology in which <span class="math inline">\((100-X)\%\)</span> predict values above the threshold and <span class="math inline">\(X\%\)</span> predict values below the threshold.</p>
+<p>To illustrate this co-evolutionary process consider the default case with 60 as the threshold value, how do we get <span class="math inline">\(40:60\)</span> above:below prediction ratio? Well imagine that instead 50% of hypotheses predicted over 60 for a few weeks in a row. As a result of these consistently high predictions average attendance would fall a little below the threshold. This low attendance would make the hypotheses predicting over 60 less accurate and thus less likely to be chosen as an agent’s current best hypothesis. Simultaneously, the low attendance would make hypotheses predicting low values more likely to be accurate and thus more likely to be chosen for use by an agent. As more agents use hypotheses predicting low values, more agents will choose to attend the bar. Thus causing attendance to rise back toward the threshold value of 60.</p>
+<p>One interesting result which Arthur highlights is that whilst the population of active hypotheses (the ones that are most accurate and thus used in a given round) splits into this <span class="math inline">\((100-X):X\)</span> ratio, it keeps changing its membership continually. He likens this to a forest whose “contours do not change, but whose individual trees do”. To partially illustrate this point I chose 10 individuals randomly from the original default simulation and plotted their individual predictions over the 100 weeks.</p>
 <p><img src="/posts/el_farol_bar_problem_files/figure-html/ecology-1.png" width="1056" style="display: block; margin: auto;" /></p>
-<p>It’s different people below the threshold each time.</p>
+<p>This plot hints at Arthur’s point that the <span class="math inline">\(40:60\)</span> ratio of hypotheses that results in the average attendance of 60 is a consequence of different people being above and below the threshold each round. The trees change, but the forest remains the same.</p>
 </div>
 </div>
 <div id="why-should-you-care" class="section level1">
 <h1><span class="header-section-number">4</span> Why should you care?</h1>
-<p>It exemplifies a common type of problem. Seems like the model is unrealistic but link to ‘busy at these times’ info on google, in exactly the situation the model describes. You know based on previous data, Tesco is usually empty at 3pm on a tuesday, but so does everyone else.</p>
+<p>It exemplifies a common type of problem. Seems like the model is unrealistic but link to ‘busy at these times’ info on google, in exactly the situation the model describes. You know based on previous data, Tesco is usually empty at 3pm on a Tuesday, but so does everyone else.</p>
 <p>It shows the value of numerical solutions to problems when analytical ones become too hard or are impossible (in this case because of inductive reasoning).</p>
 <p>Conclusion should relate to the Yogi Berra quote about his favourite restaurant in St. Louis, Ruggeri’s.</p>
 </div>
