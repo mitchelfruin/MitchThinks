@@ -35,7 +35,7 @@ I'm currently making my way through *Complexity and the Economy* by W. Brian Art
 
 # Background 
 
-When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol with Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy.
+When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol with Irish music on thursday nights. He noticed that people would go if they expected few people to be there, but avoided it if they expected it to be too busy.
 
 This is interesting on two fronts. 
 
@@ -421,7 +421,7 @@ One interesting result which Arthur highlights is that whilst the population of 
 
 ```{r ecology}
 set.seed(13)
-id_index <- sample(1:100, 5)
+id_index <- sample(1:100, 10)
 individuals <- default$predictions[id_index, ]
 names(individuals) <- c("id", 1:100)
 individuals_plot <- reshape2::melt(individuals,
@@ -431,10 +431,10 @@ individuals_plot <- reshape2::melt(individuals,
          week = as.numeric(week))
 
 ggplot(individuals_plot, aes(x = week, y = value, col = id)) +
-  #geom_line() +
-  geom_point(size = 0.75) +
+  geom_line(size = 0.5) +
+  geom_point() +
   geom_hline(yintercept = 60, lty = 2) +
-  scale_color_brewer("ID", palette = "Set1") +
+  scale_color_viridis_d("ID") +
   scale_x_continuous("Week No.",
                      breaks = c(seq(0, 100, 20))) +
   scale_y_continuous("Predicted Attendance", 
