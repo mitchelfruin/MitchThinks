@@ -110,7 +110,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              6 minutes read
+              7 minutes read
             </span>
           </div>
           
@@ -139,8 +139,7 @@
 <li><a href="#first-glance"><span class="toc-section-number">3.1</span> First glance</a></li>
 <li><a href="#comparing-simulations"><span class="toc-section-number">3.2</span> Comparing simulations</a></li>
 <li><a href="#changing-the-threshold"><span class="toc-section-number">3.3</span> Changing the threshold</a></li>
-<li><a href="#changing-the-timespan"><span class="toc-section-number">3.4</span> Changing the timespan</a></li>
-<li><a href="#results"><span class="toc-section-number">3.5</span> Results</a></li>
+<li><a href="#results"><span class="toc-section-number">3.4</span> Results</a></li>
 </ul></li>
 <li><a href="#why-should-you-care"><span class="toc-section-number">4</span> Why should you care?</a></li>
 </ul>
@@ -157,8 +156,14 @@ div#TOC li {
 <p>I’m currently making my way through <em>Complexity and the Economy</em> by W. Brian Arthur. The book’s second chapter is a paper from 1994 called <a href="http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf"><em>Inductive Reasoning and Bounded Rationality: The El Farol Problem</em></a>. It’s a fantastic example of how marrying psychological insights and a computational approach can produce novel and intuive research in economics. So, I thought I’d have a go at using R to reproduce my own (simpler) version of the model described in the paper.</p>
 <div id="background" class="section level1">
 <h1><span class="header-section-number">1</span> Background</h1>
-<p>When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol with Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If most people expect many others to attend, then few will show up and the bar will be empty. If most people expect nobody to attend, then everyone will show up and it’ll be packed. In both cases the original belief causes behaviour that means that belief ends up being incorrect.</p>
-<p>Something about how there’s no deductively rational correct answer here. So even a human acting as closely as possible to the Homo Economicus ideal is forced to use inductive reasoning. But if everyone is inductively reasoning from a multitude of differnt starting beliefs then do we just get completely random attendance over time? If we generalise this phenomenon in a toy model similar to Arthur’s we can gain some insight into the dynamics of attendance.</p>
+<p>When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol with Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy.</p>
+<p>This is interesting on two fronts.</p>
+<ul>
+<li><p>First, there is no ‘correct’ deductively rational solution for someone trying to decide whether or not to attend based on their prediction for this week’s attendance. This is because their prediction is based on what they believe other people will do. But, what those other people will do is simultaneously based on their predictions of what everyone except themselves will do. Thus, our focal agent ends up in a kind of reflexive preference loop in which their prediction is a function of every other agent’s prediction which is itself a function of every other agent’s prediction, and so on and so on for as long as you can be bothered to think about it.</p></li>
+<li><p>Second, it creates something of a paradox where common beliefs lead to outcomes that cause those beliefs to be proved false. If most people expect many others to attend, then few will show up and the bar will be almost empty. If most people expect nobody to attend, then everyone will show up and it’ll be packed. In both cases the original common belief causes behaviour that means that belief ends up being incorrect.</p></li>
+</ul>
+<p>These two interesting aspects of the problem should be incorporated in our model if we want it to be useful. So, we need to allow agents to reason inductively by testing a set of hypotheses against reality and choosing to use the one that seems to work best at the present time. We also need to allow our agents to have different sets of hypotheses from one another i.e. different inductive rules about the world they’re testing.</p>
+<p>But if everyone is inductively reasoning from a multitude of different starting beliefs, then won’t we just get completely random attendance over time? Let’s generalise the problem in a toy model similar to Arthur’s to gain some insight into the dynamics of attendance and find out.</p>
 </div>
 <div id="model" class="section level1">
 <h1><span class="header-section-number">2</span> Model</h1>
@@ -211,7 +216,8 @@ default_B &lt;- sim_el_farol()</code></pre>
 </div>
 <div id="changing-the-threshold" class="section level2">
 <h2><span class="header-section-number">3.3</span> Changing the threshold</h2>
-<p>So, from our simulations so far, it seems like the average attendance converges on the threshold value. Let’s test this by altering the threshold value to 40.</p>
+<p>So, from our simulations so far, it seems like the average attendance converges on the threshold value.</p>
+<p>Let’s test this by lowering the threshold value to 40.</p>
 <pre class="r"><code># Sim A
 forty_A &lt;- sim_el_farol(threshold = 40)
 
@@ -220,15 +226,12 @@ forty_B &lt;- sim_el_farol(threshold = 40)</code></pre>
 <p><img src="/posts/el_farol_bar_problem_files/figure-html/unnamed-chunk-2-1.png" width="1056" style="display: block; margin: auto;" /></p>
 <p>The same behaviour persists but now at the new threshold value.</p>
 </div>
-<div id="changing-the-timespan" class="section level2">
-<h2><span class="header-section-number">3.4</span> Changing the timespan</h2>
-<p>Zooming in looks almost fractal</p>
-</div>
 <div id="results" class="section level2">
-<h2><span class="header-section-number">3.5</span> Results</h2>
-<p>Mention ecology?</p>
-<p>It’s different people each time.</p>
+<h2><span class="header-section-number">3.4</span> Results</h2>
+<p>We’ve seen that the mean attendance converges on the threshold value. It’s not immediately obvious why this occurs. It turns out to be because the hypotheses (with the selection pressure of agents choosing their most accurate hypothesis) coevolve into an ecology in which <span class="math inline">\((100-X)\%\)</span> predict values above the threshold and <span class="math inline">\(X\%\)</span> predict values below the threshold. To illustrate this consider 70:30 example with default threshold of 60.</p>
+<p>One interesting result which Arthur highlights is that whilst the population of active hypotheses (the ones that are most accurate and thus used in a given round) splits into this <span class="math inline">\((100-X):X\)</span> ratio, it keeps changing its membership continually. He liken this to a forest whose “contours do not change, but whose individual trees do”. To illustrate this point I chose 5 individuals randomly from the original default simulation and plotted their individual predictions over the 100 weeks.</p>
 <p><img src="/posts/el_farol_bar_problem_files/figure-html/ecology-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<p>It’s different people below the threshold each time.</p>
 </div>
 </div>
 <div id="why-should-you-care" class="section level1">

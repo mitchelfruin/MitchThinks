@@ -28,15 +28,24 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = "center", fig.width = 11)
 # Packages
 library(tidyverse)
 library(truncnorm)
+library(RColorBrewer)
 ```
 
 I'm currently making my way through *Complexity and the Economy* by W. Brian Arthur. The book's second chapter is a paper from 1994 called [*Inductive Reasoning and Bounded Rationality: The El Farol Problem*](http://tuvalu.santafe.edu/~wbarthur/Papers/El_Farol.pdf). It's a fantastic example of how marrying psychological insights and a computational approach can produce novel and intuive research in economics. So, I thought I'd have a go at using R to reproduce my own (simpler) version of the model described in the paper. 
 
 # Background 
 
-When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol with Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy. This is interesting because it creates something of a paradox where beliefs lead to outcomes that cause those beliefs to be proved false. If most people expect many others to attend, then few will show up and the bar will be empty. If most people expect nobody to attend, then everyone will show up and it'll be packed. In both cases the original belief causes behaviour that means that belief ends up being incorrect.
+When Arthur was working at the Santa Fe Institute in 1993, there was a bar called El Farol with Irish music on thursday nights. He noted that people would go if they expected few people to be there, but avoided it if they expected it to be too busy.
 
-Something about how there's no deductively rational correct answer here. So even a human acting as closely as possible to the Homo Economicus ideal is forced to use inductive reasoning. But if everyone is inductively reasoning from a multitude of differnt starting beliefs then do we just get completely random attendance over time? If we generalise this phenomenon in a toy model similar to Arthur's we can gain some insight into the dynamics of attendance.  
+This is interesting on two fronts. 
+
+* First, there is no 'correct' deductively rational solution for someone trying to decide whether or not to attend based on their prediction for this week's attendance. This is because their prediction is based on what they believe other people will do. But, what those other people will do is simultaneously based on their predictions of what everyone except themselves will do. Thus, our focal agent ends up in a kind of reflexive preference loop in which their prediction is a function of every other agent's prediction which is itself a function of every other agent's prediction, and so on and so on for as long as you can be bothered to think about it.  
+
+* Second, it creates something of a paradox where common beliefs lead to outcomes that cause those beliefs to be proved false. If most people expect many others to attend, then few will show up and the bar will be almost empty. If most people expect nobody to attend, then everyone will show up and it'll be packed. In both cases the original common belief causes behaviour that means that belief ends up being incorrect.
+
+These two interesting aspects of the problem should be incorporated in our model if we want it to be useful. So, we need to allow agents to reason inductively by testing a set of hypotheses against reality and choosing to use the one that seems to work best at the present time. We also need to allow our agents to have different sets of hypotheses from one another i.e. different inductive rules about the world they're testing. 
+
+But if everyone is inductively reasoning from a multitude of different starting beliefs, then won't we just get completely random attendance over time? Let's generalise the problem in a toy model similar to Arthur's to gain some insight into the dynamics of attendance and find out.  
 
 # Model 
 ## Set-up
@@ -357,7 +366,9 @@ Re-running with same default parameters changes the fluctuation but average atte
 
 ## Changing the threshold
 
-So, from our simulations so far, it seems like the average attendance converges on the threshold value. Let's test this by altering the threshold value to 40.  
+So, from our simulations so far, it seems like the average attendance converges on the threshold value.
+
+Let's test this by lowering the threshold value to 40.  
 
 ```{r two 40 sims, echo = TRUE}
 # Sim A
@@ -402,18 +413,14 @@ cowplot::plot_grid(plot_A, plot_B, labels = "AUTO")
 
 The same behaviour persists but now at the new threshold value.
 
-## Changing the timespan
-
-Zooming in looks almost fractal 
-
 ## Results
 
-Mention ecology?
+We've seen that the mean attendance converges on the threshold value. It's not immediately obvious why this occurs. It turns out to be because the hypotheses (with the selection pressure of agents choosing their most accurate hypothesis) coevolve into an ecology in which $(100-X)\%$ predict values above the threshold and $X\%$ predict values below the threshold. To illustrate this consider 70:30 example with default threshold of 60.
 
-It's different people each time. 
+One interesting result which Arthur highlights is that whilst the population of active hypotheses (the ones that are most accurate and thus used in a given round) splits into this $(100-X):X$ ratio, it keeps changing its membership continually. He liken this to a forest whose "contours do not change, but whose individual trees do". To illustrate this point I chose 5 individuals randomly from the original default simulation and plotted their individual predictions over the 100 weeks.
 
 ```{r ecology}
-set.seed(45)
+set.seed(13)
 id_index <- sample(1:100, 5)
 individuals <- default$predictions[id_index, ]
 names(individuals) <- c("id", 1:100)
@@ -424,10 +431,10 @@ individuals_plot <- reshape2::melt(individuals,
          week = as.numeric(week))
 
 ggplot(individuals_plot, aes(x = week, y = value, col = id)) +
-  geom_line() +
+  #geom_line() +
   geom_point(size = 0.75) +
   geom_hline(yintercept = 60, lty = 2) +
-  scale_color_discrete("ID") +
+  scale_color_brewer("ID", palette = "Set1") +
   scale_x_continuous("Week No.",
                      breaks = c(seq(0, 100, 20))) +
   scale_y_continuous("Predicted Attendance", 
@@ -436,6 +443,8 @@ ggplot(individuals_plot, aes(x = week, y = value, col = id)) +
   theme_classic() +
   theme(panel.grid.major = element_line())
 ```
+
+It's different people below the threshold each time.
 
 # Why should you care?
 
