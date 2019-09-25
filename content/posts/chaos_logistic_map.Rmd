@@ -27,7 +27,9 @@ div#TOC li {
 knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE,
                       message = FALSE,
-                      fig.align = "center")
+                      fig.align = "center",
+                      fig.width = 8,
+                      fig.height = 5.33)
 
 # Packages
 library(tidyverse)
@@ -150,7 +152,9 @@ for (i in 1:length(r_options)) {
 
 # Convert r into factor to use for frame
 vary_r <- mutate(vary_r, r = as.factor(r))
+```
 
+```{r, fig.width=11, fig.height=7.33}
 # Viz
 vary_r %>%
   plot_ly(x = ~generation,
