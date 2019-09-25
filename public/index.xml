@@ -6,10 +6,21 @@
     <description>Recent content on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chaos with a pocket calculator.</title>
+      <link>/posts/chaos_logistic_map/</link>
+      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/chaos_logistic_map/</guid>
+      <description>div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Title options:
+ Chaos with a pocket calculator. The study of nonelephant animals.  At the start of this year I read James Gleick’s Chaos. It’s fantastic and everyone even remotely interested in science should read it.
+At uni my college tutor Martin was extremely focused on the idea that his goal wasn’t to teach us what to think, but instead to teach us how to think.</description>
+    </item>
     
     <item>
       <title>Nobody goes there anymore. It&#39;s too crowded.</title>
@@ -21,26 +32,13 @@
     </item>
     
     <item>
-      <title>Chaos with a pocket calculator.</title>
-      <link>/posts/chaos_logistic_map/</link>
-      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/chaos_logistic_map/</guid>
-      <description>div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Gleick’s quote in Chaos about the pocket calculator.
-So I played around with it.
-Read the original May paper.
-Thought I’d try to summarise the key aspects of the behaviour to see how well I actually understood them.</description>
-    </item>
-    
-    <item>
       <title>Lizards playing rock, paper, scissors.</title>
       <link>/posts/abm_intro/</link>
       <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/abm_intro/</guid>
-      <description>1 Rock, paper, scissors 2 Side Blotched Lizards 3 Agent-based modeling   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  This article was inspired by this post, which I attempted to recreate and extend.
-If you want to see the full code for this post then you can find the .Rmd file here.
-1 Rock, paper, scissors Aim: Simulate simple rock, paper, scissors game to visualise a simple evolutionary process.</description>
+      <description>1 Rock, paper, scissors 2 Side Blotched Lizards 3 Agent-based modeling   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Do it yourself. Don’t use some other guy’s code.
+The code for the simulations in this article was inspired by this post, which I attempted to recreate and extend. If you want to see the full code for this post then you can find the .Rmd file here.</description>
     </item>
     
     <item>

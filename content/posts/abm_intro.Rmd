@@ -31,9 +31,9 @@ library(reshape2)
 library(ggplot2)
 ```
 
-This article was inspired by this [post](https://marcosmolla.com/2015/07/16/an-introduction-to-agent-based-modelling-in-r/), which I attempted to recreate and extend.  
+Do it yourself. Don't use some other guy's code. 
 
-If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/interests/abm_intro.Rmd).
+The code for the simulations in this article was inspired by this [post](https://marcosmolla.com/2015/07/16/an-introduction-to-agent-based-modelling-in-r/), which I attempted to recreate and extend. If you want to see the full code for this post then you can find the .Rmd file [here](https://github.com/mitchelfruin/MitchThinks/blob/master/content/interests/abm_intro.Rmd).
 
 # Rock, paper, scissors
 

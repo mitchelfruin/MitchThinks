@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interactive Visualisation on MitchThinks</title>
+    <link>/tags/interactive-visualisation/</link>
+    <description>Recent content in Interactive Visualisation on MitchThinks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/interactive-visualisation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chaos with a pocket calculator.</title>
+      <link>/posts/chaos_logistic_map/</link>
+      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/chaos_logistic_map/</guid>
+      <description>div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Title options:
+ Chaos with a pocket calculator. The study of nonelephant animals.  At the start of this year I read James Gleick’s Chaos. It’s fantastic and everyone even remotely interested in science should read it.
+At uni my college tutor Martin was extremely focused on the idea that his goal wasn’t to teach us what to think, but instead to teach us how to think.</description>
+    </item>
+    
+  </channel>
+</rss>

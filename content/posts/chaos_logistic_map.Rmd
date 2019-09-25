@@ -1,9 +1,9 @@
 ---
 title: "Chaos with a pocket calculator."
 author: "Mitchel Fruin"
-date: "2019-08-28"
-description: "Introduction to chaos using the simple population growth example from Robert May's classic paper."
-tags: ["Complexity"]
+date: "2019-09-25"
+description: "Introduction to chaos theory using the simple population growth example from Robert May's classic paper."
+tags: ["Complexity", "Interactive Visualisation"]
 slug: chaos_logistic_map
 draft: true
 output:
@@ -24,13 +24,26 @@ div#TOC li {
 
 ```{r setup, include=FALSE}
 # RMarkdown
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center")
 
 # Packages
-library(igraph)
-library(reshape2)
-library(ggplot2)
+library(tidyverse)
+library(plotly)
 ```
+
+Title options:
+
+* Chaos with a pocket calculator.
+* The study of nonelephant animals. 
+
+At the start of this year I read James Gleick's *Chaos*. It's fantastic and everyone even remotely interested in science should read it. 
+
+At uni my college tutor Martin was extremely focused on the idea that his goal wasn't to teach us *what* to think, but instead to teach us *how* to think. Unfortunately, most non-fiction books fall into the former camp. They provide you with a new set of facts to trot out when someone brings up pop psychology at the pub or they let you feel smart because you managed to parrot back some econ 101 theory when someone asks why the Bank of England cut interest rates. But, every now and then, I read a book which falls squarely into the latter category. It teaches you *how* to think, it helps you see things way beyond the scope of its few hundred pages in a completely different light. 
+
+When I was reading it I could feel that the information was important but I couldn't fully grasp its magnitude. Something about limited to understanding the story of it. Couldn't really remember my differential equations lectures (or didn't pay enough attention to them in the first place). The book sent me on a bit of pilgrimage to find out more. When For me, it destroyed the idea that a reductionist approach to scientific problems would yield solutions with enough patience and hard work. The reason it had such an impact is neatly summed up by my favourite quip from the book from the mathematician Stanislaw Ulam that "to call the study the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'".  
 
 Gleick's quote in Chaos about the pocket calculator.
 
@@ -38,4 +51,129 @@ So I played around with it.
 
 Read the original May paper.
 
-Thought I'd try to summarise the key aspects of the behaviour to see how well I actually understood them.  
+Thought I'd try to summarise the key aspects of the behaviour to see how well I actually understood them. 
+
+Define basic function. 
+
+```{r}
+# Define basic function
+logistic_map <- function(start_x = 0.5, r, n = 100) {
+  
+  # Empty dataframe
+  pop_df <- tibble(generation = 1:n,
+                   x = numeric(n))
+  
+  # Add first generation proportion
+  pop_df$x[1] <- start_x
+  
+  # Simulate n generations
+  for (i in 2:n) {
+    pop_df$x[i] <- r*pop_df$x[i-1]*(1 - pop_df$x[i-1])
+  }
+  
+  # Plot
+  pop_plot <- ggplot(pop_df, aes(x = generation, y = x)) +
+    geom_point() +
+    geom_line() +
+    theme_classic() +
+    theme(panel.grid.major = element_line(),
+          axis.title.y = element_text(angle = 0, vjust = 0.5))
+  
+  # Output dataframe
+  output_ls <- list(pop_df, pop_plot)
+  names(output_ls) <- c(paste("x",
+                              start_x,
+                              "r",
+                              r,
+                              "n",
+                              n,
+                              "df",
+                              sep = "_"),
+                        paste("x",
+                              start_x,
+                              "r",
+                              r,
+                              "n",
+                              n,
+                              "plot",
+                              sep = "_"))
+  list2env(output_ls, envir = .GlobalEnv)
+  
+  # Viz as final output
+  pop_plot
+}
+```
+
+Vary r:
+
+```{r}
+# Use function
+logistic_map(r = 1) # Extinction
+logistic_map(r = 2.5) # Equilibrium
+logistic_map(r = 3.2) # Two period
+logistic_map(r = 3.5) # Four period
+logistic_map(r = 3.6) # Chaos?
+```
+
+We've seen that r = 3.6 gives us something that looks like chaos. Let's see if the systems exhibits sensitive dependence on initial conditions ('butterfly effect'). 
+
+Keep r = 3.6, vary `start_x`:
+
+```{r}
+logistic_map(start_x = 0.25, r = 3.6)
+logistic_map(start_x = 0.26, r = 3.6)
+```
+
+Use function in for loop to get dataframe with results from varying the value of r.
+
+```{r}
+# Empty container
+vary_r <- tibble(r = numeric(0),
+                 generation = numeric(0),
+                 x = numeric(0))
+
+# Values of r
+r_options <- c(seq(2, 4, 0.1))
+
+# Sim for all values
+for (i in 1:length(r_options)) {
+  
+  current_env <- logistic_map(r = r_options[i])
+  
+  sim_data <- current_env$data
+  r <- tibble(r = c(rep(r_options[i], 100)))
+  
+  to_add <- bind_cols(r, sim_data)
+  
+  vary_r <- bind_rows(vary_r, to_add)
+}
+
+# Convert r into factor to use for frame
+vary_r <- mutate(vary_r, r = as.factor(r))
+
+# Viz
+vary_r %>%
+  plot_ly(x = ~generation,
+          y = ~x,
+          hoverinfo = "text",
+          text = ~paste("Generation:", generation, "<br>",
+                        "Population:", x)) %>%
+  add_text(x = 105,
+           y = 0.1,
+           id = ~1,
+           text = ~r,
+           frame = ~r,
+           textfont = list(color = toRGB("gray80"),
+                           size = 20),
+           showlegend = FALSE) %>%
+  add_lines(frame = ~r,
+            showlegend = FALSE,
+            color = I("blue")) %>%
+  animation_opts(frame = 1000,
+                 transition = 300,
+                 easing = "linear") %>%
+  animation_slider(currentvalue = list(prefix = "r = "),
+                   hide = FALSE) %>%
+  layout(xaxis = list(title = "Generation"),
+         yaxis = list(title = "Pop. Prop."))
+```

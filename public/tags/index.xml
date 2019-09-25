@@ -6,10 +6,28 @@
     <description>Recent content in Tags on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Complexity</title>
+      <link>/tags/complexity/</link>
+      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/complexity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interactive Visualisation</title>
+      <link>/tags/interactive-visualisation/</link>
+      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/interactive-visualisation/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Agent-based modelling</title>
@@ -17,15 +35,6 @@
       <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/agent-based-modelling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Complexity</title>
-      <link>/tags/complexity/</link>
-      <pubDate>Sun, 15 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/complexity/</guid>
       <description></description>
     </item>
     
