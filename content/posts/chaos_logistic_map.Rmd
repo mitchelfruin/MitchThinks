@@ -36,31 +36,31 @@ library(tidyverse)
 library(plotly)
 ```
 
-Most non-fiction books teach you *what* to think. They provide you with a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smart when you parrot back some Econ101 theory to 'explain' why the Bank of England cut interest rates. But, every now and then, a book instead teaches you *how* to think. That is, it helps you see things beyond the scope of its few hundred pages in a markedly different light than you did before. That's what James Gleick's *Chaos* did when I read it earlier this year. It's fantastic, I wish I'd read it much, much sooner, and anyone even remotely interested in science should make it the next book they pick up.
+Most non-fiction books teach you *what* to think. They provide you with a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smart when you parrot some Econ101 theory to 'explain' why the Bank of England cut interest rates. Every now and then, however, a book instead teaches you *how* to think. That is, it helps you see things beyond the scope of its few hundred pages in a markedly different light than you did before. That's what James Gleick's *Chaos* did when I read it earlier this year. It's fantastic, I wish I'd read it much, much sooner, and anyone even remotely interested in science should make it the next book they pick up.
 
-Sent you on pilgrimage. The chapter which cut through to you most was one on population biology which concerned the work of someone you'd heard a guest lecture from one, Sir Robert May. The lecture was about appling insights from studying the ecology of complex systems to re-design the banking system following the 2008 crisis. It went completely over my head. The reason the chapter cut through to you is because you had some familiarity with models of population change, it twigged something in the back of your mind.  
-
-It prompted me to go read the paper. In chapter 3 Gleick summarises the essence of May's argument,
+The chapter which stuck in my mind most was one on population biology recounting the work of someone I'd heard a guest lecture from once, Sir Robert May. His lecture was about appling insights gained from studying the ecology of complex systems to re-design the banking system following the 2008 crisis. It, like much of *Chaos* when I first read it, went a fair distance over my head. But, I think a combination of recognising his name, having some familiarity with modelling populations over time, and the memory of the deference with which faculty members spoke about May, meant that when I finished the book I immediately read his seminal paper. At the close of chapter 3 Gleick summarises both the essence of May's argument and the path that his book has sent me down:
 
 > The world would be a better place... if every young student were given a pocket calculator and encouraged to play with the logistic difference difference equation. That simple calculation... could counter the distorted sense of the world's possibilities that comes from a standard scientific education.
 
-Well, R can be used as a fancy pocket calculator, so let's start playing.
+Well, R is just a fancy pocket calculator. So, let's start playing, and see if you unlearn as much as I did.
 
-# The Logistic Difference Equation
+# Introducing A Simple System
 
-Simplest discrete non-linear system. 
+The Logistic Difference Equation: simplest discrete non-linear system. 
 
 Make clear the distinction between linear and non-linear dynamics. It's not just about having a curved line, e.g. exponential growth is linear dynamics. 
 
-# Bifurcation
+# Summarising A Simple System
 
 Goal: Make bifurcation diagram from May's paper.
 
-# Nonlinear Intuitions
+# Understanding A Simple System
+
+Building Nonlinear Intuitions
 
 Goal: Make interactive graph so that the reader can actually understand the bifurcation diagram. 
 
-Make it shiny so they can choose the starting population proportion they want. 
+Make it shiny so they can choose the starting population proportion they want.
 
 ```{r define functions}
 # Single input function
@@ -162,12 +162,14 @@ plot_df %>%
 
 Question: Why do mirrors around 0.5 behave the same?
 
-# Conclusion
+# The Study of Non-Elephant Animals
 
 In the conclusion of his paper, May argues that Chaos should be taught, and taught early. As he saw it, learning to extend linear mathemetics with Fourier transforms, orthogonal functions, and regression techniques, misleads scientists about the world they're trying to understand. "The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems.", he wrote. "Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences."
 
 The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from *Chaos* which comes from the mathematician Stanislaw Ulam. He quipped that "to call the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'". Defining an entire subject in opposition to a niche class. 
 
-The fact that vast swathes of science emphasise linearity has important implications. Something about people thinking in immediate causes from misunderstanding economics book. Poor at incorporating feedback loops or interative thinking. May's final sentence from over 40 years ago still rings disappointingly true:
+The fact that vast swathes of science emphasise linearity has important implications. Something about people thinking in immediate causes from misunderstanding economics book. Poor at incorporating feedback loops or interative thinking. May's final sentence from over 40 years ago still rings true:
 
 > "Not only in research, but also in the everday world of politics and economics, we would all be better off if more people realized that simple nonlinear systems do not necessarily possess simple dynamical properties."
+
+For me, *Chaos*, and May's paper subsequently, were like finding a peeling bit of wallpaper I just couldn't help but tug at. Once you do, it leaves another little upward curved edge that you, again, can't resist. Pretty soon your neatly plastered scientific worldview is looking pretty fucking messy. It turns out that you can't just break things down into their component parts, understand how they interact, and then add them back together to understand the system as a whole.
