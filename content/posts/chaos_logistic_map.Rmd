@@ -36,30 +36,35 @@ library(tidyverse)
 library(plotly)
 ```
 
-Title options:
+Most non-fiction books teach you *what* to think. They provide you with a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smart when you parrot back some Econ101 theory to 'explain' why the Bank of England cut interest rates. But, every now and then, a book instead teaches you *how* to think. That is, it helps you see things beyond the scope of its few hundred pages in a markedly different light than you did before. That's what James Gleick's *Chaos* did when I read it earlier this year. It's fantastic, I wish I'd read it much, much sooner, and anyone even remotely interested in science should make it the next book they pick up.
 
-* Chaos with a pocket calculator.
-* The study of nonelephant animals. 
+Sent you on pilgrimage. The chapter which cut through to you most was one on population biology which concerned the work of someone you'd heard a guest lecture from one, Sir Robert May. The lecture was about appling insights from studying the ecology of complex systems to re-design the banking system following the 2008 crisis. It went completely over my head. The reason the chapter cut through to you is because you had some familiarity with models of population change, it twigged something in the back of your mind.  
 
-At the start of this year I read James Gleick's *Chaos*. It's fantastic and everyone even remotely interested in science should read it. 
+It prompted me to go read the paper. In chapter 3 Gleick summarises the essence of May's argument,
 
-At uni my college tutor Martin was extremely focused on the idea that his goal wasn't to teach us *what* to think, but instead to teach us *how* to think. Unfortunately, most non-fiction books fall into the former camp. They provide you with a new set of facts to trot out when someone brings up pop psychology at the pub or they let you feel smart because you managed to parrot back some econ 101 theory when someone asks why the Bank of England cut interest rates. But, every now and then, I read a book which falls squarely into the latter category. It teaches you *how* to think, it helps you see things way beyond the scope of its few hundred pages in a completely different light. 
+> The world would be a better place... if every young student were given a pocket calculator and encouraged to play with the logistic difference difference equation. That simple calculation... could counter the distorted sense of the world's possibilities that comes from a standard scientific education.
 
-When I was reading it I could feel that the information was important but I couldn't fully grasp its magnitude. Something about limited to understanding the story of it. Couldn't really remember my differential equations lectures (or didn't pay enough attention to them in the first place). The book sent me on a bit of pilgrimage to find out more. When For me, it destroyed the idea that a reductionist approach to scientific problems would yield solutions with enough patience and hard work. The reason it had such an impact is neatly summed up by my favourite quip from the book from the mathematician Stanislaw Ulam that "to call the study the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'".  
+Well, R can be used as a fancy pocket calculator, so let's start playing.
 
-Gleick's quote in Chaos about the pocket calculator.
+# The Logistic Difference Equation
 
-So I played around with it. 
+Simplest discrete non-linear system. 
 
-Read the original May paper.
+Make clear the distinction between linear and non-linear dynamics. It's not just about having a curved line, e.g. exponential growth is linear dynamics. 
 
-Thought I'd try to summarise the key aspects of the behaviour to see how well I actually understood them. 
+# Bifurcation
 
-Define basic function. 
+Goal: Make bifurcation diagram from May's paper.
 
-```{r}
-# Define basic function
-logistic_map <- function(start_x = 0.5, r, n = 100) {
+# Nonlinear Intuitions
+
+Goal: Make interactive graph so that the reader can actually understand the bifurcation diagram. 
+
+Make it shiny so they can choose the starting population proportion they want. 
+
+```{r define functions}
+# Single input function
+single_map <- function(start_x, r, n) {
   
   # Empty dataframe
   pop_df <- tibble(generation = 1:n,
@@ -73,111 +78,96 @@ logistic_map <- function(start_x = 0.5, r, n = 100) {
     pop_df$x[i] <- r*pop_df$x[i-1]*(1 - pop_df$x[i-1])
   }
   
-  # Plot
-  pop_plot <- ggplot(pop_df, aes(x = generation, y = x)) +
-    geom_point() +
-    geom_line() +
-    theme_classic() +
-    theme(panel.grid.major = element_line(),
-          axis.title.y = element_text(angle = 0, vjust = 0.5))
+  # Final dataframe
+  pop_df
+}
+
+# Multiple input function
+multiple_map <- function(x_opts, r_opts, n_opts) {
   
-  # Output dataframe
-  output_ls <- list(pop_df, pop_plot)
-  names(output_ls) <- c(paste("x",
-                              start_x,
-                              "r",
-                              r,
-                              "n",
-                              n,
-                              "df",
-                              sep = "_"),
-                        paste("x",
-                              start_x,
-                              "r",
-                              r,
-                              "n",
-                              n,
-                              "plot",
-                              sep = "_"))
-  list2env(output_ls, envir = .GlobalEnv)
+  # Inputs should all be vectors
   
-  # Viz as final output
-  pop_plot
+  # Find all possible input permutations
+  inputs_df <- expand.grid("start_x" = x_opts,
+                           "r" = r_opts,
+                           "n" = n_opts)
+  
+  # Blank outcome df 
+  outcome_df <- tibble(start_x = numeric(),
+                       r = numeric(),
+                       n = numeric(),
+                       generation = numeric(), 
+                       x = numeric())
+  
+  # Use single input function for all permutations
+  for (i in 1:nrow(inputs_df)) {
+    
+    pop_df <- single_map(start_x = inputs_df$start_x[i],
+                           r = inputs_df$r[i],
+                           n = inputs_df$n[i])
+    
+    current_inputs <- tibble(start_x = rep(inputs_df$start_x[i],
+                                           inputs_df$n[i]),
+                             r = rep(inputs_df$r[i],
+                                     inputs_df$n[i]),
+                             n = rep(inputs_df$n[i],
+                                     inputs_df$n[i]))
+    
+    to_add <- bind_cols(current_inputs, pop_df)
+    
+    outcome_df <- bind_rows(outcome_df, to_add)
+  }
+  
+  # Convert inputs into factors
+  outcome_df <- outcome_df %>%
+    mutate(start_x = as.factor(start_x),
+           r = as.factor(r),
+           n = as.factor(n))
+  
+  outcome_df
 }
 ```
 
-Vary r:
-
 ```{r}
+# Choose input options
+x_rand <- round(runif(3), 2)
+r_opts <- c(seq(2, 4, 0.05))
+n_opts <- 100
+
 # Use function
-logistic_map(r = 1) # Extinction
-logistic_map(r = 2.5) # Equilibrium
-logistic_map(r = 3.2) # Two period
-logistic_map(r = 3.5) # Four period
-logistic_map(r = 3.6) # Chaos?
+plot_df <- multiple_map(x_rand, r_opts, n_opts)
 ```
 
-We've seen that r = 3.6 gives us something that looks like chaos. Let's see if the systems exhibits sensitive dependence on initial conditions ('butterfly effect'). 
-
-Keep r = 3.6, vary `start_x`:
-
-```{r}
-logistic_map(start_x = 0.25, r = 3.6)
-logistic_map(start_x = 0.26, r = 3.6)
-```
-
-Use function in for loop to get dataframe with results from varying the value of r.
-
-```{r}
-# Empty container
-vary_r <- tibble(r = numeric(0),
-                 generation = numeric(0),
-                 x = numeric(0))
-
-# Values of r
-r_options <- c(seq(2, 4, 0.1))
-
-# Sim for all values
-for (i in 1:length(r_options)) {
-  
-  current_env <- logistic_map(r = r_options[i])
-  
-  sim_data <- current_env$data
-  r <- tibble(r = c(rep(r_options[i], 100)))
-  
-  to_add <- bind_cols(r, sim_data)
-  
-  vary_r <- bind_rows(vary_r, to_add)
-}
-
-# Convert r into factor to use for frame
-vary_r <- mutate(vary_r, r = as.factor(r))
-```
-
-```{r, fig.width=11, fig.height=7.33}
-# Viz
-vary_r %>%
+```{r, fig.width=9, fig.height=6}
+# Vary r
+plot_df %>%
   plot_ly(x = ~generation,
           y = ~x,
-          hoverinfo = "text",
+          color = ~start_x,
+          hoverinfo = "text+name",
           text = ~paste("Generation:", generation, "<br>",
-                        "Population:", x)) %>%
-  add_text(x = 105,
-           y = 0.1,
-           id = ~1,
-           text = ~r,
-           frame = ~r,
-           textfont = list(color = toRGB("gray80"),
-                           size = 20),
-           showlegend = FALSE) %>%
-  add_lines(frame = ~r,
-            showlegend = FALSE,
-            color = I("blue")) %>%
-  animation_opts(frame = 1000,
-                 transition = 300,
+                        "Population:", round(x, 4)),
+          frame = ~r) %>%
+  add_lines() %>%
+  animation_opts(frame = 800,
+                 transition = 100,
                  easing = "linear") %>%
-  animation_slider(currentvalue = list(prefix = "r = "),
+  animation_slider(currentvalue = list(prefix = "r = ",
+                                       color = toRGB("black"),
+                                       size = 25),
                    hide = FALSE) %>%
   layout(xaxis = list(title = "Generation"),
          yaxis = list(title = "Pop. Prop."))
 ```
+
+Question: Why do mirrors around 0.5 behave the same?
+
+# Conclusion
+
+In the conclusion of his paper, May argues that Chaos should be taught, and taught early. As he saw it, learning to extend linear mathemetics with Fourier transforms, orthogonal functions, and regression techniques, misleads scientists about the world they're trying to understand. "The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems.", he wrote. "Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences."
+
+The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from *Chaos* which comes from the mathematician Stanislaw Ulam. He quipped that "to call the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'". Defining an entire subject in opposition to a niche class. 
+
+The fact that vast swathes of science emphasise linearity has important implications. Something about people thinking in immediate causes from misunderstanding economics book. Poor at incorporating feedback loops or interative thinking. May's final sentence from over 40 years ago still rings disappointingly true:
+
+> "Not only in research, but also in the everday world of politics and economics, we would all be better off if more people realized that simple nonlinear systems do not necessarily possess simple dynamical properties."
