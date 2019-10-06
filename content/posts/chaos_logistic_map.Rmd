@@ -44,17 +44,17 @@ The chapter which stuck in my mind most was one on population biology recounting
 
 Well, R is just a fancy pocket calculator. So, let's start playing, and see if you unlearn as much as I did.
 
-# Introducing A Simple System
+# Introducing a simple population
 
 The Logistic Difference Equation: simplest discrete non-linear system. 
 
 Make clear the distinction between linear and non-linear dynamics. It's not just about having a curved line, e.g. exponential growth is linear dynamics. 
 
-# Summarising A Simple System
+# Summarising a simple population
 
 Goal: Make bifurcation diagram from May's paper.
 
-# Understanding A Simple System
+# Understanding a simple population
 
 Building Nonlinear Intuitions
 
@@ -162,7 +162,7 @@ plot_df %>%
 
 Question: Why do mirrors around 0.5 behave the same?
 
-# The Study of Non-Elephant Animals
+# The study of non-elephant animals
 
 In the conclusion of his paper, May argues that Chaos should be taught, and taught early. As he saw it, learning to extend linear mathemetics with Fourier transforms, orthogonal functions, and regression techniques, misleads scientists about the world they're trying to understand. "The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems.", he wrote. "Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences."
 
