@@ -36,35 +36,92 @@ library(tidyverse)
 library(plotly)
 ```
 
-Most non-fiction books teach you *what* to think. They provide you with a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smart when you parrot some Econ101 theory to 'explain' why the Bank of England cut interest rates. Every now and then, however, a book instead teaches you *how* to think. That is, it helps you see things beyond the scope of its few hundred pages in a markedly different light than you did before. That's what James Gleick's *Chaos* did when I read it earlier this year. It's fantastic, I wish I'd read it much, much sooner, and anyone even remotely interested in science should make it the next book they pick up.
+Most non-fiction books teach you **what** to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you 'explain' why the Bank of England cut interest rates, in both cases understanding about as much as a parrot does about a cracker. Every now and then, however, you read a book that changes **how** you think, one that helps you see things beyond its few hundred pages slightly differently. That's what James Gleick's *Chaos* did for me. It's fantastic, I wish I'd read it much, much sooner, and anyone even remotely interested in science should make it their next book.
 
-The chapter which stuck in my mind most was one on population biology recounting the work of someone I'd heard a guest lecture from once, Sir Robert May. His lecture was about appling insights gained from studying the ecology of complex systems to re-design the banking system following the 2008 crisis. It, like much of *Chaos* when I first read it, went a fair distance over my head. But, I think a combination of recognising his name, having some familiarity with modelling populations over time, and the memory of the deference with which faculty members spoke about May, meant that when I finished the book I immediately read his seminal paper. At the close of chapter 3 Gleick summarises both the essence of May's argument and the path that his book has sent me down:
+Single sentence description of chaos here. But a single sentence definition filled with impenetrable language doesn't really do this new approach to science justice. Instead of butchering a fuller explanation, I thought I'd run through an example on my home turf. Chapter 3 discusses chaos in the context of population biology by, in large part, recounting a [1976 paper](http://abel.harvard.edu/archive/118r_spring_05/docs/may.pdf) from Robert May. I heard a guest lecture from him once, describing how studying complex ecosystems had helped him advise on the re-design of the banking system. It all went a fair distance over my head at the time. But, I think a combination of recognising his name, familiarity with population biology, and the memory of faculty members' deference for May, made the chapter stick in my mind. Stickiest of all was Gleick's summary of May's argument:
 
-> The world would be a better place... if every young student were given a pocket calculator and encouraged to play with the logistic difference difference equation. That simple calculation... could counter the distorted sense of the world's possibilities that comes from a standard scientific education.
+> The world would be a better place... if every young student were given a pocket calculator and encouraged to play with the logistic difference equation. That simple calculation... could counter the distorted sense of the world's possibilities that comes from a standard scientific education.
 
-Well, R is just a fancy pocket calculator. So, let's start playing, and see if you unlearn as much as I did.
+Well, R is just a fancy pocket calculator. So, we best start playing.
 
-# Introducing a simple population
+# The logistic map
 
-The Logistic Difference Equation: simplest discrete non-linear system. 
+The Logistic Difference Equation: simplest discrete non-linear system.
 
-Make clear the distinction between linear and non-linear dynamics. It's not just about having a curved line, e.g. exponential growth is linear dynamics. 
+Idea of discrtee time. One generation doesn't overlap with the next. 
 
-# Summarising a simple population
+All of the equations that follow are just rules telling us how we go from the total number of individuals in the population in one generation to the total number in the next.
 
-Goal: Make bifurcation diagram from May's paper.
+Think of them as SPECIES WITH NOGs (maybe seasonal plants?) in your garden. Ignore predators. All that we want to know is if we have for example 5 this year,$N_t$, how many will we have next year, $N_{t+1}$?
 
-# Understanding a simple population
+One simple way we can think about this problem is to say that next year's population only depends on this year's:
 
-Building Nonlinear Intuitions
+Exponential growth
 
-Goal: Make interactive graph so that the reader can actually understand the bifurcation diagram. 
+But if we want a little more realism then we can add in what population biologists call 'density dependence' and what mathematicians call 'non-linearity'. This leaves us with an equation of the form:
 
-Make it shiny so they can choose the starting population proportion they want.
+$$N_{t+1} = N_t(a - bN_{t})$$
+
+In his paper May tells us that we can use a transformation to make the equation simpler to work with. He defines what I'll call the *population proportion* in generation $t$ as
+
+$$x_t = \frac{bN_t}{a}$$
+
+We can re-write this in terms of $N$, 
+
+$$N = \frac{ax}{b}$$
+
+and then substitute it into our equation:
+
+$$\begin{aligned}
+N_{t+1} &= aN_t - bN_{t}^2 \\
+\frac{ax_{t+1}}{b} &= a\frac{ax_t}{b} - b(\frac{ax_t}{b})^2 \\
+\frac{ax_{t+1}}{b} &= \frac{a^2x_t}{b} - \frac{a^2x_t^2}{b} \\
+ax_{t+1} &= a^2x_t - a^2x_t^2 \\
+x_{t+1} &= ax_t - ax_t^2 \\
+x_{t+1} &= ax_t(1-x_t)
+\end{aligned}$$
+
+What we end up with is an equation for the population proportion in generation t+1 as a function of the population proportion in generation t. 
+
+```{r}
+log_map_df <- expand.grid(a = c(seq(0.5, 4.5, 1)), x = c(seq(0, 1, 0.01))) %>%
+  mutate(y = a*x*(1-x),
+         a = as.factor(a))
+
+log_map_df %>%
+  ggplot(aes(x = x, y = y, col = a)) +
+  geom_line() +
+  scale_x_continuous("Pop. prop. at t") +
+  scale_y_continuous("Pop.\nprop\nat t+1", breaks = c(seq(0, 1.25, 0.25))) +
+  scale_color_viridis_d("a") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))
+```
+
+Make clear the distinction between linear and non-linear dynamics. It's not just about having a curved line, e.g. exponential growth is linear dynamics.
+
+Play through the maths slowly. 
+
+# Summarising complexity
+
+Stable point simulation
+
+Stable cycle simulation
+
+Chaos simulation
+
+But, how can we summarise this behaviour in a single graph. Make bifurcation diagram from May's paper.
+
+# Building non-linear intuitions
+
+Bifurcation diagram is not intuitive at first glance because it's showing long run outcomes as a function of a tuning parameter rather than direct outcomes. Fortunately, there's been more than 40 years' worth of technological advancement since May's paper. This means that even a no-name chump who's not a Baron can build an interactive graph that helps make May's point a little easier to grasp.    
+
+Walk through step by step what they can do with the graph. 
 
 ```{r define functions}
 # Single input function
-single_map <- function(start_x, r, n) {
+single_map <- function(start_x, a, n) {
   
   # Empty dataframe
   pop_df <- tibble(generation = 1:n,
@@ -75,7 +132,7 @@ single_map <- function(start_x, r, n) {
   
   # Simulate n generations
   for (i in 2:n) {
-    pop_df$x[i] <- r*pop_df$x[i-1]*(1 - pop_df$x[i-1])
+    pop_df$x[i] <- a*pop_df$x[i-1]*(1 - pop_df$x[i-1])
   }
   
   # Final dataframe
@@ -83,18 +140,18 @@ single_map <- function(start_x, r, n) {
 }
 
 # Multiple input function
-multiple_map <- function(x_opts, r_opts, n_opts) {
+multiple_map <- function(x_opts, a_opts, n_opts) {
   
   # Inputs should all be vectors
   
   # Find all possible input permutations
   inputs_df <- expand.grid("start_x" = x_opts,
-                           "r" = r_opts,
+                           "a" = a_opts,
                            "n" = n_opts)
   
   # Blank outcome df 
   outcome_df <- tibble(start_x = numeric(),
-                       r = numeric(),
+                       a = numeric(),
                        n = numeric(),
                        generation = numeric(), 
                        x = numeric())
@@ -103,12 +160,12 @@ multiple_map <- function(x_opts, r_opts, n_opts) {
   for (i in 1:nrow(inputs_df)) {
     
     pop_df <- single_map(start_x = inputs_df$start_x[i],
-                           r = inputs_df$r[i],
-                           n = inputs_df$n[i])
+                         a = inputs_df$a[i],
+                         n = inputs_df$n[i])
     
     current_inputs <- tibble(start_x = rep(inputs_df$start_x[i],
                                            inputs_df$n[i]),
-                             r = rep(inputs_df$r[i],
+                             a = rep(inputs_df$a[i],
                                      inputs_df$n[i]),
                              n = rep(inputs_df$n[i],
                                      inputs_df$n[i]))
@@ -121,7 +178,7 @@ multiple_map <- function(x_opts, r_opts, n_opts) {
   # Convert inputs into factors
   outcome_df <- outcome_df %>%
     mutate(start_x = as.factor(start_x),
-           r = as.factor(r),
+           a = as.factor(a),
            n = as.factor(n))
   
   outcome_df
@@ -147,12 +204,12 @@ plot_df %>%
           hoverinfo = "text+name",
           text = ~paste("Generation:", generation, "<br>",
                         "Population:", round(x, 4)),
-          frame = ~r) %>%
+          frame = ~a) %>%
   add_lines() %>%
   animation_opts(frame = 800,
                  transition = 100,
                  easing = "linear") %>%
-  animation_slider(currentvalue = list(prefix = "r = ",
+  animation_slider(currentvalue = list(prefix = "a = ",
                                        color = toRGB("black"),
                                        size = 25),
                    hide = FALSE) %>%
@@ -162,14 +219,14 @@ plot_df %>%
 
 Question: Why do mirrors around 0.5 behave the same?
 
-# The study of non-elephant animals
+# Studying non-elephant animals
 
-In the conclusion of his paper, May argues that Chaos should be taught, and taught early. As he saw it, learning to extend linear mathemetics with Fourier transforms, orthogonal functions, and regression techniques, misleads scientists about the world they're trying to understand. "The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems.", he wrote. "Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences."
+In the conclusion of his paper, May argues that non-linearity should be taught, and taught early. As he saw it, learning to extend linear mathemetics with Fourier transforms, orthogonal functions, and regression techniques, misleads scientists about the world they're trying to understand. "The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems.", he wrote. "Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences."
 
-The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from *Chaos* which comes from the mathematician Stanislaw Ulam. He quipped that "to call the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'". Defining an entire subject in opposition to a niche class. 
+The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from *Chaos* which comes from the mathematician Stanislaw Ulam. He quipped that "to call the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'". That is, it's defining an entire subject in contrast to a niche class. 
 
 The fact that vast swathes of science emphasise linearity has important implications. Something about people thinking in immediate causes from misunderstanding economics book. Poor at incorporating feedback loops or interative thinking. May's final sentence from over 40 years ago still rings true:
 
 > "Not only in research, but also in the everday world of politics and economics, we would all be better off if more people realized that simple nonlinear systems do not necessarily possess simple dynamical properties."
 
-For me, *Chaos*, and May's paper subsequently, were like finding a peeling bit of wallpaper I just couldn't help but tug at. Once you do, it leaves another little upward curved edge that you, again, can't resist. Pretty soon your neatly plastered scientific worldview is looking pretty fucking messy. It turns out that you can't just break things down into their component parts, understand how they interact, and then add them back together to understand the system as a whole.
+Most things, especially the important things, are greater than the sum of their parts, and the hierarchical reductionism of much of science isn't going to help us understand them even close to well enough.
