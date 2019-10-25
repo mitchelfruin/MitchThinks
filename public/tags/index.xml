@@ -6,10 +6,28 @@
     <description>Recent content in Tags on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 25 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Behavioural Economics</title>
+      <link>/tags/behavioural-economics/</link>
+      <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/behavioural-economics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Probability and statistics</title>
+      <link>/tags/probability-and-statistics/</link>
+      <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/probability-and-statistics/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Complexity</title>
@@ -53,15 +71,6 @@
       <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/evolution/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Probability and statistics</title>
-      <link>/tags/probability-and-statistics/</link>
-      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/probability-and-statistics/</guid>
       <description></description>
     </item>
     

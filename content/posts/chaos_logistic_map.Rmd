@@ -28,8 +28,8 @@ knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE,
                       message = FALSE,
                       fig.align = "center",
-                      fig.width = 8,
-                      fig.height = 5.33)
+                      fig.width = 8.09,
+                      fig.height = 5)
 
 # Packages
 library(tidyverse)
@@ -66,9 +66,20 @@ In his paper May tells us that we can use a transformation to make the equation 
 
 $$x_t = \frac{bN_t}{a}$$
 
-We can re-write this in terms of $N$, 
+$x_t$ is the population in generation $t$ as a fraction of the maximum possible population. So, if $x_t = 0.5$, then the current population is half as big as the biggest one the environment could support. 
 
-$$N = \frac{ax}{b}$$
+But where does this helpful substitution come from? (probs don't include this)
+
+$$\begin{aligned}
+N_{t+1} &= aN_t - bN_{t}^2 \\
+\frac{\delta N_{t+1}}{\delta N_{t}} &= a - 2bN_t \\
+2bN_t &= a \\
+N_t &= \frac{a}{2b} \\
+\end{aligned}$$
+
+We can re-write the substitution in terms of $N$, 
+
+$$N_t = \frac{ax_t}{b}$$
 
 and then substitute it into our equation:
 
@@ -105,21 +116,7 @@ Play through the maths slowly.
 
 # Summarising complexity
 
-Stable point simulation
-
-Stable cycle simulation
-
-Chaos simulation
-
-But, how can we summarise this behaviour in a single graph. Make bifurcation diagram from May's paper.
-
-# Building non-linear intuitions
-
-Bifurcation diagram is not intuitive at first glance because it's showing long run outcomes as a function of a tuning parameter rather than direct outcomes. Fortunately, there's been more than 40 years' worth of technological advancement since May's paper. This means that even a no-name chump who's not a Baron can build an interactive graph that helps make May's point a little easier to grasp.    
-
-Walk through step by step what they can do with the graph. 
-
-```{r define functions}
+```{r}
 # Single input function
 single_map <- function(start_x, a, n) {
   
@@ -184,6 +181,84 @@ multiple_map <- function(x_opts, a_opts, n_opts) {
   outcome_df
 }
 ```
+
+Stable point simulation, a = 2
+
+```{r}
+stable_sim <- multiple_map(x_opts = c(0.01, 0.2, 0.4, 0.6, 0.8, 0.99),
+                           a_opts = 2,
+                           n_opts = 100)
+
+stable_sim %>%
+  ggplot(aes(x = generation, y = x, col = start_x)) +
+  geom_line() +
+  scale_x_continuous("Generation") +
+  scale_y_continuous("Pop.\nProp.",
+                     limits = c(0, 1),
+                     breaks = c(0, .25, .5, .75, 1)) +
+  scale_color_viridis_d("Starting\nPoint") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))
+```
+
+Stable cycle simulation, a = 3
+
+```{r}
+cycle_sim <- multiple_map(x_opts = c(0.01, 0.2, 0.4, 0.6, 0.8, 0.99),
+                          a_opts = 3,
+                          n_opts = 100)
+
+cycle_sim %>%
+  ggplot(aes(x = generation, y = x, col = start_x)) +
+  geom_line() +
+  scale_x_continuous("Generation") +
+  scale_y_continuous("Pop.\nProp.",
+                     limits = c(0, 1),
+                     breaks = c(0, .25, .5, .75, 1)) +
+  scale_color_viridis_d("Starting\nPoint") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))
+```
+
+Chaos simulation, a = 3.65
+
+```{r}
+chaos_sim <- multiple_map(x_opts = c(0.49, 0.5, 0.51),
+                          a_opts = 3.65,
+                          n_opts = 100)
+
+chaos_sim %>%
+  ggplot(aes(x = generation, y = x, col = start_x)) +
+  geom_line() +
+  scale_x_continuous("Generation") +
+  scale_y_continuous("Pop.\nProp.",
+                     limits = c(0, 1),
+                     breaks = c(0, .25, .5, .75, 1)) +
+  scale_color_viridis_d("Starting\nPoint") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))
+```
+
+But, how can we summarise this behaviour in a single graph. Make bifurcation diagram from May's paper.
+
+Can you make bifurcation diagram interactive so the user can zoom in?
+
+# Building non-linear intuitions
+
+Bifurcation diagram is not intuitive at first glance because it's showing long run outcomes as a function of a tuning parameter rather than direct outcomes. Fortunately, there's been more than 40 years' worth of technological advancement since May's paper. This means that even a no-name chump who's not a Baron can build an interactive graph that helps make May's point a little easier to grasp.    
+
+Walk through step by step what they can do with the graph.
+
+Best way to build intuition is to do it yourself. 
+
+So, I made a shiny app that allows you to choose the starting x point for the population.
+
+Can choose 1 by itself or 2 to compare.
+
+Then click play and watch as we move through different values of the tuning parameter, $a$. Regardless of which starting value(s) you choose, you'll see stability at first with the population converging on a single equilibrium value, then there'll be a transition to 2-period cycling with the population switching between two values, next 4-period cycles, 8-period cycles, and so on, and eventually chaos. 
 
 ```{r}
 # Choose input options

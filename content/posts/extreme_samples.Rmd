@@ -1,0 +1,92 @@
+---
+title: "Small extreme samples."
+author: "Mitchel Fruin"
+date: "2019-10-26"
+description: "Add description."
+tags: ["Behavioural Economics", "Probability and Statistics"]
+slug: extreme_samples
+draft: true
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+
+```{r setup, include=FALSE}
+# RMarkdown
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center",
+                      fig.width = 8.09,
+                      fig.height = 5)
+
+# Packages
+library(tidyverse)
+library(plotly)
+library(funnelR)
+```
+
+K&T hospital scenario. 
+
+The date are discussed in a blog by Paul Barden on the [Understanding Uncertainty site](https://understandinguncertainty.org/three-fold-variation-uk-bowel-cancer-death-rates)
+
+and on his [own blog](https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html). Note that data for Wales is not included, as it was reported for the whole of Wales rather than by region.
+
+Get the data: 
+
+```{r}
+bowel_data <- read.csv("https://raw.githubusercontent.com/dspiegel29/ArtofStatistics/master/09-2-funnel-bowel-cancer/09-2-bowel-cancer-data-x.csv")
+```
+
+Get it all prepped:
+
+```{r}
+head(bowel_data)
+mean_prop <- sum(bowel_data$n)/sum(bowel_data$d)
+max_props <- max(bowel_data$n/bowel_data$d)
+
+# Numerator must be called n, denomnator d
+funnel_limits <- fundata(input = bowel_data,
+                         benchmark = mean_prop,
+                         alpha = 0.95,
+                         alpha2 = 0.998,
+                         method = 'approximate',
+                         step = 100)
+
+glasgow <- subset(bowel_data, District == "Glasgow City")  # identify Glasgow City in data frame
+```
+
+Visualise:
+
+```{r}
+funplot(input = bowel_data, fundata = funnel_limits) +
+  coord_cartesian(ylim = c(0, max_props)) +
+  geom_point(size = 0.05) +
+  scale_y_continuous("Annual bowel cancer mortality rate per 100,000",
+                     breaks = 5*(0:8)/100000,
+                     labels = 5*(0:8),
+                     limits = c(0, max_props)) + 
+  scale_x_continuous("Population (100,000's)",
+                     breaks = 100000*(0:14),
+                     labels = 0:14,
+                     limits = c(0, max(bowel_data$d))) + 
+  annotate("text", 
+           x = glasgow$d,
+           y = glasgow$n/glasgow$d,
+           label = "Glasgow City",
+           hjust = 0,
+           vjust = 0.5)
+```
+
+Bill & Melinda Gates Foundation example of it gone wrong. 
