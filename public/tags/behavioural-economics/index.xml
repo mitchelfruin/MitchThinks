@@ -12,17 +12,14 @@
     
     
     <item>
-      <title>Small extreme samples.</title>
-      <link>/posts/extreme_samples/</link>
+      <title>Slow thinking about small samples.</title>
+      <link>/posts/small_samples/</link>
       <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/extreme_samples/</guid>
-      <description>div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  K&amp;amp;T hospital scenario.
-The date are discussed in a blog by Paul Barden on the Understanding Uncertainty site
-and on his own blog. Note that data for Wales is not included, as it was reported for the whole of Wales rather than by region.
-Get the data:
-Get it all prepped:
-## Country District n ## England :324 Aberdeen City : 1 Min.</description>
+      <guid>/posts/small_samples/</guid>
+      <description>1 Small samples are more extreme 2 Funnel plots to the rescue 3 Stats is just a type of slow thinking   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Wainer and Zwerling cancer example.
+1 Small samples are more extreme Kahneman comments on this paper in Thinking, Fast and Slow. One draws 4, One draws 7
+Adapt his example (is it from one of their actual papers?</description>
     </item>
     
   </channel>

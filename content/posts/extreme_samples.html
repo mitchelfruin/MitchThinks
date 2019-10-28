@@ -1,10 +1,10 @@
 ---
-title: "Small extreme samples."
+title: "Slow thinking about small samples."
 author: "Mitchel Fruin"
 date: "2019-10-26"
 description: "Add description."
 tags: ["Behavioural Economics", "Probability and Statistics"]
-slug: extreme_samples
+slug: small_samples
 draft: true
 output:
   blogdown::html_page:
@@ -14,6 +14,13 @@ output:
 ---
 
 
+<div id="TOC">
+<ul>
+<li><a href="#small-samples-are-more-extreme"><span class="toc-section-number">1</span> Small samples are more extreme</a></li>
+<li><a href="#funnel-plots-to-the-rescue"><span class="toc-section-number">2</span> Funnel plots to the rescue</a></li>
+<li><a href="#stats-is-just-a-type-of-slow-thinking"><span class="toc-section-number">3</span> Stats is just a type of slow thinking</a></li>
+</ul>
+</div>
 
 <style type="text/css">
 div#TOC li {
@@ -23,27 +30,36 @@ div#TOC li {
     background-position:0; 
 }
 </style>
-<p>K&amp;T hospital scenario.</p>
-<p>The date are discussed in a blog by Paul Barden on the <a href="https://understandinguncertainty.org/three-fold-variation-uk-bowel-cancer-death-rates">Understanding Uncertainty site</a></p>
-<p>and on his <a href="https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html">own blog</a>. Note that data for Wales is not included, as it was reported for the whole of Wales rather than by region.</p>
-<p>Get the data:</p>
-<p>Get it all prepped:</p>
-<pre><code>##               Country                District         n        
-##  England          :324   Aberdeen City   :  1   Min.   :  6.0  
-##  Northern Ireland : 24   Aberdeenshire   :  1   1st Qu.: 24.0  
-##  Scotland         : 31   Angus           :  1   Median : 32.0  
-##                          Antrim          :  1   Mean   : 39.6  
-##                          Ards            :  1   3rd Qu.: 45.0  
-##                          Argyll and Bute :  1   Max.   :251.0  
-##                          (Other)         :373                  
-##        d          
-##  Min.   :  31332  
-##  1st Qu.: 140110  
-##  Median : 189202  
-##  Mean   : 224700  
-##  3rd Qu.: 267794  
-##  Max.   :1268959  
-## </code></pre>
-<p>Visualise:</p>
+<p>Wainer and Zwerling cancer example.</p>
+<div id="small-samples-are-more-extreme" class="section level1">
+<h1><span class="header-section-number">1</span> Small samples are more extreme</h1>
+<p>Kahneman comments on this paper in <em>Thinking, Fast and Slow</em>. One draws 4, One draws 7</p>
+<p>Adapt his example (is it from one of their actual papers?).</p>
+<p>Assume sex ratio is 50:50. One hospital maternity ward has 4 births each day, another has 8. We’re interested in extreme results. In this context, that equates to a ‘single-sex day’ where all the babies born are the same sex. Intuitively we understand that single sex days will happen more often on the smaller ward for the same reason that we know instinctively that it’s easier to flip four heads or tails in a row than it is 8. But what we don’t seem to understand so intuitively is how much more often extreme events will happen in the small samples. Actually think about what your guess is for the following question, how much more often will the smaller ward have a single-sex day than the larger ward?</p>
+<p>We can find an exact answer to this question by comparing two different binomial distributions.</p>
+<p>Add equations here.</p>
+<pre><code>## [1] 16</code></pre>
+<p>If that’s too much maths, then we can run a simulation to get an approximate answer instead.</p>
+<p>Say we simulate 1000 days at each ward.</p>
+<p>Plot the frequencies of the number of boys born each day</p>
 <p><img src="/posts/extreme_samples_files/figure-html/unnamed-chunk-3-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>130 days at the small ward, 8 days at the big one. This gives us a ratio of 16.25, which is pretty damn close to the exact answer.</p>
+<p>So, in this instance our fast thinking lead us astray a little and we tend to underestimate the ratio. What can we do about it?</p>
+</div>
+<div id="funnel-plots-to-the-rescue" class="section level1">
+<h1><span class="header-section-number">2</span> Funnel plots to the rescue</h1>
+<p>I recently came across an example from the UK in a similar vein to the one discussed by Wainer and Zwerling.</p>
+<p>In <em>The Art of Statistics</em> David Spiegelhalter discusses a piece of analysis by Paul Barden. Barden saw a BBC news report headlined “3-fold variation in bowel cancer rate” and decided to dig a little deeper.</p>
+<p>The date are discussed in a blog by Paul Barden on the <a href="https://understandinguncertainty.org/three-fold-variation-uk-bowel-cancer-death-rates">Understanding Uncertainty site</a> and on his <a href="https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html">own blog</a>. Note that data for Wales is not included, as it was reported for the whole of Wales rather than by region.</p>
+<p>He found that there is 3-fold variation, but there isn’t anything more interesting going on than the small hospital vs. big hospital example we just played through.</p>
+<p>Plot one graph showing crazy variation (can you find original graph from BBC?):</p>
+<p>But, as we saw above, small samples are more extreme. So, we need to include population size in our analysis. The easiest way to do this is with a ‘funnel plot’.</p>
+<p><img src="/posts/extreme_samples_files/figure-html/unnamed-chunk-7-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>How many of the observations fall within the bounds? Suspiciously good match</p>
+</div>
+<div id="stats-is-just-a-type-of-slow-thinking" class="section level1">
+<h1><span class="header-section-number">3</span> Stats is just a type of slow thinking</h1>
+<p>Relationship between behavioural economics and data science.</p>
+<p>In fact, careful data analysis might be the slowest thinking of all.</p>
 <p>Bill &amp; Melinda Gates Foundation example of it gone wrong.</p>
+</div>
