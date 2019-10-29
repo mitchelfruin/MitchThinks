@@ -78,7 +78,7 @@ sims %>%
   ggplot(aes(x = births)) +
   geom_histogram() +
   facet_wrap(~ hospital, scales = "free_x") +
-  theme_classic() +
+  theme_bw() +
   theme(panel.grid.major = element_line(),
         axis.line.y = element_line())
 ```
@@ -168,7 +168,7 @@ ggplot() +
 
 How many of the observations fall within the bounds? Suspiciously good match 
 
-# Stats is just a type of slow thinking
+# Stats as slow thinking
 
 Relationship between behavioural economics and data science. 
 
