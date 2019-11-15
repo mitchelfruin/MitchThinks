@@ -38,7 +38,7 @@ library(plotly)
 
 Most non-fiction books teach you **what** to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you 'explain' why the Bank of England cut interest rates. Every now and then, however, you read a book that changes **how** you think, one that helps you see things beyond its few hundred pages slightly differently. That's what James Gleick's *Chaos* did for me. It's fantastic, I wish I'd read it much, much sooner, and anyone even remotely interested in science should make it their next book.
 
-Single sentence description of chaos here. But a single sentence definition filled with impenetrable language doesn't really do this new approach to science justice. Instead of butchering a fuller explanation, I thought I'd run through an example on my home turf. Chapter 3 discusses chaos in the context of population biology by, in large part, recounting a [1976 paper](http://abel.harvard.edu/archive/118r_spring_05/docs/may.pdf) from Robert May. I heard a guest lecture from him once, describing how studying complex ecosystems had helped him advise on the re-design of the banking system. It all went a fair distance over my head at the time. But, I think a combination of recognising his name, familiarity with population biology, and the memory of faculty members' deference for May, made the chapter stick in my mind. Stickiest of all was Gleick's summary of May's argument:
+Instead of butchering a full explanation of chaos, I thought I'd run through an example on my home turf. Chapter 3 discusses chaos in the context of population biology by, in large part, recounting a [1976 paper](http://abel.harvard.edu/archive/118r_spring_05/docs/may.pdf) from Robert May. I heard a guest lecture from him once, describing how studying complex ecosystems had helped him advise on the re-design of the banking system. It all went a fair distance over my head at the time. But, I think a combination of recognising his name, familiarity with population biology, and the memory of faculty members' deference for May, made the chapter stick in my mind. Stickiest of all was Gleick's summary of May's argument:
 
 > The world would be a better place... if every young student were given a pocket calculator and encouraged to play with the logistic difference equation. That simple calculation... could counter the distorted sense of the world's possibilities that comes from a standard scientific education.
 
@@ -46,19 +46,106 @@ Well, R is just a fancy pocket calculator. So, we best start playing.
 
 # The logistic map
 
-The Logistic Difference Equation: simplest discrete non-linear system.
+Biologists often explore how a group of individuals of a single species changes over time (a 'population's dynamics'). The simplest way to do this is to consider time as being discrete. This means thinking in terms of the changes from one chunk of time (day, week, season, year) to the next, rather than in continuous underlying time. 
 
-Idea of discrtee time. One generation doesn't overlap with the next. 
+This simplification actually describes species with non-overlapping generations accurately. For example, EXAMPLE. In this case, 'studying dynamics' often means finding the mathemetical rules that tell us what we should expect the total number of individuals in the next generation, $N_{t+1}$, to be given how many individuals there are in this generation, $N_t$. This post does include some equations but just think of them all in this light, they're just rules telling you how many EXAMPLE you'll have next year if this year you've got X.
 
-All of the equations that follow are just rules telling us how we go from the total number of individuals in the population in one generation to the total number in the next.
+So, say we're looking for an equation describing a population's dynamics from one year to the next. The simplest option might be to say that next year's population depends only on this year's and nothing else. This would give us the following equation:
 
-Think of them as SPECIES WITH NOGs (maybe seasonal plants?) in your garden. Ignore predators. All that we want to know is if we have for example 5 this year,$N_t$, how many will we have next year, $N_{t+1}$?
+$$N_{t+1} = rN_t$$
 
-One simple way we can think about this problem is to say that next year's population only depends on this year's:
+which says that the number of individuals next year, $N_{t+1}$, is just the number of individuals this year, $N_t$, multiplied by some parameter that encapsulates the growth rate, $r$. The growth rate $r$ could be influenced by the climate, the species life-history evolution, or anything else you can think of. Just for clarity, if you have 100 individuals this year and $r=0.5$, then next year you'll have 50.   
 
-Exponential growth
+Let's explore three populations starting with 100 individuals which have different growth rates. 
 
-But if we want a little more realism then we can add in what population biologists call 'density dependence' and what mathematicians call 'non-linearity'. This leaves us with an equation of the form:
+```{r}
+# Single input function
+single_growth <- function(start_x, a, n) {
+  
+  # Empty dataframe
+  pop_df <- tibble(generation = 1:n,
+                   x = numeric(n))
+  
+  # Add first generation proportion
+  pop_df$x[1] <- start_x
+  
+  # Simulate n generations
+  for (i in 2:n) {
+    pop_df$x[i] <- a*pop_df$x[i-1]
+  }
+  
+  # Final dataframe
+  pop_df
+}
+
+# Multiple input function
+multiple_growth <- function(x_opts, a_opts, n_opts) {
+  
+  # Inputs should all be vectors
+  
+  # Find all possible input permutations
+  inputs_df <- expand.grid("start_x" = x_opts,
+                           "a" = a_opts,
+                           "n" = n_opts)
+  
+  # Blank outcome df 
+  outcome_df <- tibble(start_x = numeric(),
+                       a = numeric(),
+                       n = numeric(),
+                       generation = numeric(), 
+                       x = numeric())
+  
+  # Use single input function for all permutations
+  for (i in 1:nrow(inputs_df)) {
+    
+    pop_df <- single_growth(start_x = inputs_df$start_x[i],
+                            a = inputs_df$a[i],
+                            n = inputs_df$n[i])
+    
+    current_inputs <- tibble(start_x = rep(inputs_df$start_x[i],
+                                           inputs_df$n[i]),
+                             a = rep(inputs_df$a[i],
+                                     inputs_df$n[i]),
+                             n = rep(inputs_df$n[i],
+                                     inputs_df$n[i]))
+    
+    to_add <- bind_cols(current_inputs, pop_df)
+    
+    outcome_df <- bind_rows(outcome_df, to_add)
+  }
+  
+  # Convert inputs into factors
+  outcome_df <- outcome_df %>%
+    mutate(start_x = as.factor(start_x),
+           a = as.factor(a),
+           n = as.factor(n))
+  
+  outcome_df
+}
+```
+
+```{r}
+blah <- multiple_growth(100, a_opts = c(0.75, 1, 1.25), 10)
+
+blah %>%
+  ggplot(aes(x = generation, y = x, col = a)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous("Generation", breaks = 1:10) +
+  scale_y_continuous("Population") +
+  scale_color_viridis_d("r") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))
+```
+
+This illustrates a general pattern:
+
+* When $r < 1$, population goes to extinction.
+* When $r = 1$, population is constant over time.
+* When $r > 1$, population grows exponentially.  
+
+A prediction of exponential growth is normally a good sign that your model is a little too unrealistic. If we want a little more realism, then we can add in what population biologists call 'density dependence' and what mathematicians call 'non-linearity'. This gives us an equation of the form:
 
 $$N_{t+1} = N_t(a - bN_{t})$$
 
@@ -92,7 +179,7 @@ x_{t+1} &= ax_t - ax_t^2 \\
 x_{t+1} &= ax_t(1-x_t)
 \end{aligned}$$
 
-What we end up with is an equation for the population proportion in generation t+1 as a function of the population proportion in generation t. 
+What we end up with is **the logistic map**: an equation for the population proportion in generation t+1 as a function of the population proportion in generation t. 
 
 ```{r}
 log_map_df <- expand.grid(a = c(seq(0.5, 4.5, 1)), x = c(seq(0, 1, 0.01))) %>%
