@@ -40,6 +40,8 @@ library(funnelR)
 
 Wainer and Zwerling cancer example. 
 
+Do me the favour of thinking about how you would answer these two questions. 
+
 # Small samples are more extreme
 
 Kahneman comments on this paper in *Thinking, Fast and Slow*. One draws 4, One draws 7
@@ -50,10 +52,13 @@ Assume sex ratio is 50:50. One hospital maternity ward has 4 births each day, an
 
 We can find an exact answer to this question by comparing two different binomial distributions.
 
-Add equations here.
+$$\begin{aligned}
+X&\sim \text{B}(4, 0.5) \\
+Y&\sim \text{B}(7, 0.5)
+\end{aligned}$$
 
 ```{r}
-big_exact <- dbinom(8, 8, 0.5)*2
+big_exact <- dbinom(7, 7, 0.5)*2
 small_exact <- dbinom(4, 4, 0.5)*2
 small_exact/big_exact
 ```
@@ -126,7 +131,9 @@ Plot one graph showing crazy variation (can you find original graph from BBC?):
 # plot
 ```
 
-But, as we saw above, small samples are more extreme. So, we need to include population size in our analysis. The easiest way to do this is with a 'funnel plot'. 
+But, as we established above, small samples generate extreme results more often. So, we need to incorporate population size in our analysis somehow. Haven’t we already done that by making it a rate?
+
+The easiest way to do this is with a ‘funnel plot’ which visualises the mean and expected variance from this mean given sample size. As sample size gets bigger, CI gets smaller because it’s calculation uses $\sqrt{n}$ in the denominator.
 
 ```{r}
 bowel_data %<>% mutate(prop_death = n/d)
@@ -170,8 +177,16 @@ How many of the observations fall within the bounds? Suspiciously good match
 
 # Stats as slow thinking
 
-Relationship between behavioural economics and data science. 
+The metaphor of two modes of thinking, one fast and intuitive but prone to some predictable mistakes and the other slow and deliberate but sometimes hard to engage, has become fairly mainstream since Kahneman’s best-seller and the popularisation of behavioural economics. This metaphor is often used when discussing the ‘mistakes’ people are susceptible to. However, accepting the fallibility of our own reasoning is just the start of good decision-making, not an end in itself. The next step is to consider just what kind of slow thinking we should employ in a given situation.
 
-In fact, careful data analysis might be the slowest thinking of all. 
+Simplest pros vs. cons.
 
-Bill & Melinda Gates Foundation example of it gone wrong. 
+Then maybe something like an improper linear model.
+
+But can also be proper statistical analysis.
+
+This is where my interest in behavioural economics meets my interest in data science. Data science is often about painfully slow thought, taking the right care.
+
+Relationship between behavioural economics and data science.
+
+Particularly when making large scale policy decisions, ensuring the right kind of slow thinking is crucial. Bill & Melinda Gates Foundation example of it gone wrong.

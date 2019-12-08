@@ -53,7 +53,7 @@
     <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.56.3" />
   </head>
 
   <body class=" ">
@@ -110,7 +110,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              3 minutes read
+              4 minutes read
             </span>
           </div>
           
@@ -143,14 +143,18 @@ div#TOC li {
 }
 </style>
 <p>Wainer and Zwerling cancer example.</p>
+<p>Do me the favour of thinking about how you would answer these two questions.</p>
 <div id="small-samples-are-more-extreme" class="section level1">
 <h1><span class="header-section-number">1</span> Small samples are more extreme</h1>
 <p>Kahneman comments on this paper in <em>Thinking, Fast and Slow</em>. One draws 4, One draws 7</p>
 <p>Adapt his example (is it from one of their actual papers?).</p>
 <p>Assume sex ratio is 50:50. One hospital maternity ward has 4 births each day, another has 8. We’re interested in extreme results. In this context, that equates to a ‘single-sex day’ where all the babies born are the same sex. Intuitively we understand that single sex days will happen more often on the smaller ward for the same reason that we know instinctively that it’s easier to flip four heads or tails in a row than it is 8. But what we don’t seem to understand so intuitively is how much more often extreme events will happen in the small samples. Actually think about what your guess is for the following question, how much more often will the smaller ward have a single-sex day than the larger ward?</p>
 <p>We can find an exact answer to this question by comparing two different binomial distributions.</p>
-<p>Add equations here.</p>
-<pre><code>## [1] 16</code></pre>
+<p><span class="math display">\[\begin{aligned}
+X&amp;\sim \text{B}(4, 0.5) \\
+Y&amp;\sim \text{B}(7, 0.5)
+\end{aligned}\]</span></p>
+<pre><code>## [1] 8</code></pre>
 <p>If that’s too much maths, then we can run a simulation to get an approximate answer instead.</p>
 <p>Say we simulate 1000 days at each ward.</p>
 <p>Plot the frequencies of the number of boys born each day</p>
@@ -165,15 +169,20 @@ div#TOC li {
 <p>The date are discussed in a blog by Paul Barden on the <a href="https://understandinguncertainty.org/three-fold-variation-uk-bowel-cancer-death-rates">Understanding Uncertainty site</a> and on his <a href="https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html">own blog</a>. Note that data for Wales is not included, as it was reported for the whole of Wales rather than by region.</p>
 <p>He found that there is 3-fold variation, but there isn’t anything more interesting going on than the small hospital vs. big hospital example we just played through.</p>
 <p>Plot one graph showing crazy variation (can you find original graph from BBC?):</p>
-<p>But, as we saw above, small samples are more extreme. So, we need to include population size in our analysis. The easiest way to do this is with a ‘funnel plot’.</p>
+<p>But, as we established above, small samples generate extreme results more often. So, we need to incorporate population size in our analysis somehow. Haven’t we already done that by making it a rate?</p>
+<p>The easiest way to do this is with a ‘funnel plot’ which visualises the mean and expected variance from this mean given sample size. As sample size gets bigger, CI gets smaller because it’s calculation uses <span class="math inline">\(\sqrt{n}\)</span> in the denominator.</p>
 <p><img src="/posts/extreme_samples_files/figure-html/unnamed-chunk-7-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>How many of the observations fall within the bounds? Suspiciously good match</p>
 </div>
 <div id="stats-as-slow-thinking" class="section level1">
 <h1><span class="header-section-number">3</span> Stats as slow thinking</h1>
+<p>The metaphor of two modes of thinking, one fast and intuitive but prone to some predictable mistakes and the other slow and deliberate but sometimes hard to engage, has become fairly mainstream since Kahneman’s best-seller and the popularisation of behavioural economics. This metaphor is often used when discussing the ‘mistakes’ people are susceptible to. However, accepting the fallibility of our own reasoning is just the start of good decision-making, not an end in itself. The next step is to consider just what kind of slow thinking we should employ in a given situation.</p>
+<p>Simplest pros vs. cons.</p>
+<p>Then maybe something like an improper linear model.</p>
+<p>But can also be proper statistical analysis.</p>
+<p>This is where my interest in behavioural economics meets my interest in data science. Data science is often about painfully slow thought, taking the right care.</p>
 <p>Relationship between behavioural economics and data science.</p>
-<p>In fact, careful data analysis might be the slowest thinking of all.</p>
-<p>Bill &amp; Melinda Gates Foundation example of it gone wrong.</p>
+<p>Particularly when making large scale policy decisions, ensuring the right kind of slow thinking is crucial. Bill &amp; Melinda Gates Foundation example of it gone wrong.</p>
 </div>
 
       </div>

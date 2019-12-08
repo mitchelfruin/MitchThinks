@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MitchThinks</title>
@@ -18,9 +18,8 @@
       
       <guid>/posts/small_samples/</guid>
       <description>1 Small samples are more extreme 2 Funnel plots to the rescue 3 Stats as slow thinking   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Wainer and Zwerling cancer example.
-1 Small samples are more extreme Kahneman comments on this paper in Thinking, Fast and Slow. One draws 4, One draws 7
-Adapt his example (is it from one of their actual papers?).
-Assume sex ratio is 50:50.</description>
+Do me the favour of thinking about how you would answer these two questions.
+1 Small samples are more extreme Kahneman comments on this paper in Thinking, Fast and Slow. One draws 4, One draws 7</description>
     </item>
     
     <item>
