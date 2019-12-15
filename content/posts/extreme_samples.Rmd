@@ -38,9 +38,23 @@ library(plotly)
 library(funnelR)
 ```
 
-Wainer and Zwerling cancer example. 
+In 2006, the statistician Howard Wainer and the education researcher Harris Zwerling wrote a short [research paper](https://www.pdkmembers.org/members_online/publications/Archive/pdf/k0612wai.pdf) about school size. In it they present two facts about the rate of Kidney Cancer in counties in the US. Do me the favour of thinking about how you would explain each of them. 
 
-Do me the favour of thinking about how you would answer these two questions. 
+> 1. Counties that are in the lowest decile of the cancer distribution tend to be rural and located in the Midwest, the South, and the West.
+
+If you're like most people, you might have been tempted to explain the low cancer rate with "the clean living of the rural lifestyle - no air pollution, no water pollution, and access to fresh food without additives".
+
+> 2. Counties that are in the highest decile of the cancer distribution tend to be rural and located in the Midwest, the South, and the West.
+
+Again, you might have been tempted to appeal to the rural lifestyle for an explanation. But this time, to suggest that the high cancer rates might be due to "limited access to good medical care, a high-fat diet, too much alcohol, and too much tobacco."
+
+Clearly, something is off with our gut instinct here. The rural lifestyle can't simultaneously explain both high and low incidence of kidney cancer. 
+
+Did Kahneman add the sparsely populated and do their own experiment?
+
+This pair of facts illustrate the sarcastically named 'law of small numbers'. It, tongue-in-cheek, states that the law of large numbers, that samples reflect populations, applies to small numbers too. It is more intuitively referred to as **sample size neglect**. Ignorring the sample size when making inferences. 
+
+The key here isn't the *behaviour* of people who live in rural areas, it's the *number* of people who live in rural areas.   
 
 # Small samples are more extreme
 
