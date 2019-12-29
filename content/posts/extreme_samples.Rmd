@@ -34,130 +34,151 @@ knitr::opts_chunk$set(echo = FALSE,
 # Packages
 library(tidyverse)
 library(magrittr)
-library(plotly)
 library(funnelR)
 ```
 
-In 2006, the statistician Howard Wainer and the education researcher Harris Zwerling wrote a short [research paper](https://www.pdkmembers.org/members_online/publications/Archive/pdf/k0612wai.pdf) about school size. In it they present two facts about the rate of Kidney Cancer in counties in the US. Do me the favour of thinking about how you would explain each of them. 
+In 2006, the statistician Howard Wainer and the education researcher Harris Zwerling wrote a short [research paper](https://www.pdkmembers.org/members_online/publications/Archive/pdf/k0612wai.pdf) about school size. In it they present two facts about the rate of Kidney Cancer in counties in the US. Do me the favour of pausing after reading each and thinking about how you would explain them. 
 
-> 1. Counties that are in the lowest decile of the cancer distribution tend to be rural and located in the Midwest, the South, and the West.
+First, 
+
+> Counties that are in the lowest 10% for Kidney Cancer incidence tend to be rural and located in the Midwest, the South, and the West.
 
 If you're like most people, you might have been tempted to explain the low cancer rate with "the clean living of the rural lifestyle - no air pollution, no water pollution, and access to fresh food without additives".
 
-> 2. Counties that are in the highest decile of the cancer distribution tend to be rural and located in the Midwest, the South, and the West.
+Second,
+
+> Counties that are in the highest 10% for Kidney Cancer incidence tend to be rural and located in the Midwest, the South, and the West.
 
 Again, you might have been tempted to appeal to the rural lifestyle for an explanation. But this time, to suggest that the high cancer rates might be due to "limited access to good medical care, a high-fat diet, too much alcohol, and too much tobacco."
 
-Clearly, something is off with our gut instinct here. The rural lifestyle can't simultaneously explain both high and low incidence of kidney cancer. 
+Clearly, something is off with our gut instinct here. The rural lifestyle can't simultaneously explain both high and low incidence of kidney cancer.
 
-Did Kahneman add the sparsely populated and do their own experiment?
+This pair of facts illustrate the concept of **sample size neglect**, a failure to acccurately account for sample size when making inferences from data. This failing stems from the representativeness heuristic. It manifests when people don't know the process by which the data is being generated (in this case what causes high or low rates of kidney cancer). The outcome is that people tend to believe a small sample will be more representative of the true phenomenon than statistical theory shows.  
 
-This pair of facts illustrate the sarcastically named 'law of small numbers'. It, tongue-in-cheek, states that the law of large numbers, that samples reflect populations, applies to small numbers too. It is more intuitively referred to as **sample size neglect**. Ignorring the sample size when making inferences. 
-
-The key here isn't the *behaviour* of people who live in rural areas, it's the *number* of people who live in rural areas.   
+So, the key here isn't the *behaviour* of people who live in rural areas, it's the *number* of people who live in rural areas.   
 
 # Small samples are more extreme
 
-Kahneman comments on this paper in *Thinking, Fast and Slow*. One draws 4, One draws 7
+Sampling is a foundational concept within statistics. The vast majority of the time the population we're interested in is so large that it's impractical and/or impossible to study it as a whole. Instead, to reduce the burden of the analysis, we take a proportion of the population and use that sample to make inferences. One key to using the sampling process properly is remembering the mantra that small samples generate extreme results more often. 
 
-Adapt his example (is it from one of their actual papers?).
+To see demonstrate this, consider the following example. Imagine we have two maternity wards. One, at Hospital Large, has 8 births each day. The other, at Hospital Small, has 4. We're interested in comparing extreme results. In this context, that equates to a 'single-sex day' where all the babies born are the same sex. Intuitively, we understand *that* single-sex days will happen more often at Hospital Small for the same reason that we know instinctively that it's easier to flip 4 heads in a row than it is 8. However, what we don't seem to grasp so intuitively (which underlies sample size neglect), is *how* much more often single-sex days will happen. 
 
-Assume sex ratio is 50:50. One hospital maternity ward has 4 births each day, another has 8. We're interested in extreme results. In this context, that equates to a 'single-sex day' where all the babies born are the same sex. Intuitively we understand that single sex days will happen more often on the smaller ward for the same reason that we know instinctively that it's easier to flip four heads or tails in a row than it is 8. But what we don't seem to understand so intuitively is how much more often extreme events will happen in the small samples. Actually think about what your guess is for the following question, how much more often will the smaller ward have a single-sex day  than the larger ward?
+Actually consider your answer, how much more often will Hospital Small's maternity ward have a single-sex day than the Hospital Large's?
 
-We can find an exact answer to this question by comparing two different binomial distributions.
+We can find an exact answer to this question by comparing two binomial distributions, $S$ and $L$.
 
 $$\begin{aligned}
-X&\sim \text{B}(4, 0.5) \\
-Y&\sim \text{B}(7, 0.5)
+S&\sim \text{B}(4, 0.5) \\
+L&\sim \text{B}(8, 0.5)
 \end{aligned}$$
 
 ```{r}
-big_exact <- dbinom(7, 7, 0.5)*2
+large_exact <- dbinom(8, 8, 0.5)*2
 small_exact <- dbinom(4, 4, 0.5)*2
-small_exact/big_exact
+small_exact/large_exact
 ```
 
-If that's too much maths, then we can run a simulation to get an approximate answer instead.
+We see that Hospital Small, with its 4 births per day, will have a day when the babies born are either all boys or all girls 16 times as often as Hospital Big. How does that compare with your guess?
 
-Say we simulate 1000 days at each ward. 
+If that was too much maths, then we can run a simulation to get an approximate answer instead.
 
-```{r}
-# Simulate 1000 days at each hospital
-set.seed(23)
-small_hosp <- rbinom(1000, 4, 0.5) #  X is no. of boys
-big_hosp <- rbinom(1000, 8, 0.5)
-sims <- tibble(hospital = c(rep("Small", 1000), rep("Big", 1000)),
-               births = c(small_hosp, big_hosp))
-```
-
-Plot the frequencies of the number of boys born each day
+Say we simulate 1000 days at each ward and plot the frequencies of the number of boys born each day. 
 
 ```{r}
-sims %>%
-  ggplot(aes(x = births)) +
-  geom_histogram() +
-  facet_wrap(~ hospital, scales = "free_x") +
-  theme_bw() +
-  theme(panel.grid.major = element_line(),
-        axis.line.y = element_line())
+# Simulate 1000 days worth of births at each hospital
+set.seed(5)
+small_hosp <- rbinom(1000, 4, 0.5)
+large_hosp <- rbinom(1000, 8, 0.5)
+sims <- tibble(hospital = c(rep("Hospital Small", 1000),
+                            rep("Hospital Large", 1000)),
+               births = c(small_hosp, large_hosp)) %>%
+  count(hospital, births) %>%
+  mutate(extreme = if_else(births %in% c(0, 8),
+                           T,
+                           if_else(hospital == "Hospital Small" & 
+                                   births == 4,
+                                   T, 
+                                   F),
+                           F))
+
+# Plot
+ggplot(sims, aes(x = births, y = n, fill = extreme)) +
+  geom_col() +
+  scale_x_continuous("Number of boys born", breaks = seq(0, 8, 1)) +
+  scale_y_continuous("Number\nof days") +
+  scale_fill_viridis_d("Single-sex\nday") +
+  facet_grid(~ hospital, scales = "free_x", space = "free_x") +
+  theme_light() +
+  theme(title = element_text(size = 14),
+        text = element_text(size = 12),
+        strip.text = element_text(size = 14),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
 ```{r}
 # Find the single sex days
 small_extreme <- sum(small_hosp == 4| small_hosp == 0)
-big_extreme <- sum(big_hosp == 8| big_hosp == 0)
+large_extreme <- sum(large_hosp == 8| large_hosp == 0)
+sim_ratio <- small_extreme/large_extreme
 ```
 
-130 days at the small ward, 8 days at the big one. This gives us a ratio of 16.25, which is pretty damn close to the exact answer. 
+Adding up the yellow bars shows us that there were `r small_extreme` single-sex days at Hospital Small and only `r large_extreme` at Hospital Large. This means that single-sex days occurred roughly `r round(sim_ratio)` times as often at Hospital Small, which isn't too far away from the exact answer of 16.
 
-So, in this instance our fast thinking lead us astray a little and we tend to underestimate the ratio. What can we do about it?
+So, in this instance our fast thinking can lead us astray a little and many of us tend to underestimate the answer. What can we do about it? How can we remind ourselves that we should expect small samples to be more extreme when analysing data?
 
 # Funnel plots to the rescue
 
-I recently came across an example from the UK in a similar vein to the one discussed by Wainer and Zwerling.
-
-In *The Art of Statistics* David Spiegelhalter discusses a piece of analysis by Paul Barden. Barden saw a BBC news report headlined "3-fold variation in bowel cancer rate" and decided to dig a little deeper. 
-
-The date are discussed in a blog by Paul Barden on the [Understanding Uncertainty site](https://understandinguncertainty.org/three-fold-variation-uk-bowel-cancer-death-rates) and on his [own blog](https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html). Note that data for Wales is not included, as it was reported for the whole of Wales rather than by region.
+I recently came across an example from the UK in a similar vein to the one discussed by Wainer and Zwerling. In *The Art of Statistics* David Spiegelhalter discusses a piece of analysis by Paul Barden. Barden saw a BBC news report headlined "3-Fold Variation in Bowel Cancer Rate" and decided to dig a little deeper (discussed on his own blog [here](https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html).
 
 ```{r}
+# Import data
 bowel_data <- read.csv("https://raw.githubusercontent.com/dspiegel29/ArtofStatistics/master/09-2-funnel-bowel-cancer/09-2-bowel-cancer-data-x.csv")
 
-mean_prop <- sum(bowel_data$n)/sum(bowel_data$d)
-max_props <- max(bowel_data$n/bowel_data$d)
+# Add death rate
+bowel_data %<>% mutate(prop_death = n/d)
+mean_prop <- mean(bowel_data$prop_death)
+max_prop <- max(bowel_data$prop_death)
+min_prop <- min(bowel_data$prop_death)
 
 # Numerator must be called n, denomnator d
 funnel_limits <- fundata(input = bowel_data,
-                         benchmark = mean_prop,
+                         #benchmark = mean_prop,
                          alpha = 0.95,
                          alpha2 = 0.998,
-                         method = 'approximate',
-                         step = 100)
+                         method = 'exact',
+                         step = 1)
 
-glasgow <- subset(bowel_data, District == "Glasgow City")  # identify Glasgow City in data frame
+# Identify Glasgow City in data frame
+glasgow <- subset(bowel_data, District == "Glasgow City")
 ```
 
-He found that there is 3-fold variation, but there isn't anything more interesting going on than the small hospital vs. big hospital example we just played through.
-
-Plot one graph showing crazy variation (can you find original graph from BBC?):
+It turns out the headline is true as the boxplot below shows. 
 
 ```{r}
 # plot
+ggplot(bowel_data, aes(y = prop_death*100000)) +
+  geom_boxplot() +
+  coord_flip() +
+  scale_y_continuous("Annual bowel cancer mortality rate per 100,000") +
+  theme_classic() +
+  theme(title = element_text(size = 14),
+        text = element_text(size = 12),
+        panel.grid.major = element_line(),
+        axis.text.y = element_blank())
 ```
 
-But, as we established above, small samples generate extreme results more often. So, we need to incorporate population size in our analysis somehow. Haven’t we already done that by making it a rate?
+In fact, there's more than 3-fold variation. The highest mortality rate of `r round(max(bowel_data$prop_death)*100000)` in 100000 in Glasgow is `r round(max_prop/min_prop, 2)` times that of the minimum rate found in The Borough of Rossendale.
 
-The easiest way to do this is with a ‘funnel plot’ which visualises the mean and expected variance from this mean given sample size. As sample size gets bigger, CI gets smaller because it’s calculation uses $\sqrt{n}$ in the denominator.
+But, as we established above, small samples generate extreme results more often. So, we need to incorporate population size in our analysis. The easiest way to do this is with a ‘funnel plot’ which visualises the mean and expected variation from this mean given sample size.
 
 ```{r}
-bowel_data %<>% mutate(prop_death = n/d)
-
-# Lowest pop 31332, find funnel limits at 31001
-up_limit <- filter(funnel_limits, d == 31001) %>%
+# Find funnel limits for lowest pop of 31332
+up_limit <- filter(funnel_limits, d == 31332) %>%
   pull(up2)
-low_limit <- filter(funnel_limits, d == 31001) %>%
+low_limit <- filter(funnel_limits, d == 31332) %>%
   pull(lo2)
 
+# Funnel plot
 ggplot() +
   geom_point(aes(x = d, y = prop_death), data = bowel_data) +
   geom_hline(yintercept = mean_prop) +
@@ -187,20 +208,16 @@ ggplot() +
            vjust = 1)
 ```
 
-How many of the observations fall within the bounds? Suspiciously good match 
+We have a suspiciously good match to the expected variability with the vast majority of our datapoints falling within the bounds of the confidence intervals. This suggests that there likely isn't anything more interesting going on than in our simulation of the two hospitals above. Perhaps the headline should've instead read, "Variation in Bowel Cancer Rate About Right". 
 
 # Stats as slow thinking
 
-The metaphor of two modes of thinking, one fast and intuitive but prone to some predictable mistakes and the other slow and deliberate but sometimes hard to engage, has become fairly mainstream since Kahneman’s best-seller and the popularisation of behavioural economics. This metaphor is often used when discussing the ‘mistakes’ people are susceptible to. However, accepting the fallibility of our own reasoning is just the start of good decision-making, not an end in itself. The next step is to consider just what kind of slow thinking we should employ in a given situation.
+The metaphor of two modes of thinking, one fast and intuitive but prone to some predictable mistakes and the other slow and deliberate but sometimes hard to engage, has become fairly mainstream since Kahneman’s best-seller and the popularisation of behavioural economics. This metaphor is often used when discussing the ‘mistakes’ people are susceptible to. However, accepting the fallibility of our own reasoning is just the start of good decision-making, not an end in itself. 
 
-Simplest pros vs. cons.
+The next step is to consider just what kind of slow thinking we should employ in a given situation.The simplest option might be a pros and cons list, or we could use an improper linear model if we want to get a little more sophisticated. But often the slow thinking required is formal statistical analysis.
 
-Then maybe something like an improper linear model.
+This is where my interest in behavioural economics meets my interest in data science. Data science is often about painfully slow thought, taking the right care to clean and format the data, choosing an appropriate method, checking statistical assumptions, testing the sensitivity of your results, and ensuring you aren't deluding yourself with your interpretation. 
 
-But can also be proper statistical analysis.
+Particularly when making large scale policy decisions, engaging in such painfully slow thinking is crucial. If you don't then you run the risk of attributing a run-of-the-mill statistical inevitability to the wonders (or horrors) of the rural lifestyle. For example, 
 
-This is where my interest in behavioural economics meets my interest in data science. Data science is often about painfully slow thought, taking the right care.
-
-Relationship between behavioural economics and data science.
-
-Particularly when making large scale policy decisions, ensuring the right kind of slow thinking is crucial. Bill & Melinda Gates Foundation example of it gone wrong.
+Bill & Melinda Gates Foundation example of it gone wrong.
