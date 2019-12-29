@@ -1,18 +1,3 @@
----
-title: "Slow thinking about small samples."
-author: "Mitchel Fruin"
-date: "2019-10-26"
-description: "Add description."
-tags: ["Behavioural Economics", "Probability and Statistics"]
-slug: small_samples
-draft: true
-output:
-  blogdown::html_page:
-    toc: true
-    toc_depth: 2
-    number_sections: true
----
-
 
 <div id="TOC">
 <ul>
@@ -58,23 +43,25 @@ L&amp;\sim \text{B}(8, 0.5)
 <p>We see that Hospital Small, with its 4 births per day, will have a day when the babies born are either all boys or all girls 16 times as often as Hospital Big. How does that compare with your guess?</p>
 <p>If that was too much maths, then we can run a simulation to get an approximate answer instead.</p>
 <p>Say we simulate 1000 days at each ward and plot the frequencies of the number of boys born each day.</p>
-<p><img src="/posts/extreme_samples_files/figure-html/unnamed-chunk-2-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="extreme_samples_files/figure-html/unnamed-chunk-2-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>Adding up the yellow bars shows us that there were 132 single-sex days at Hospital Small and only 9 at Hospital Large. This means that single-sex days occurred roughly 15 times as often at Hospital Small, which isn’t too far away from the exact answer of 16.</p>
 <p>So, in this instance our fast thinking can lead us astray a little and many of us tend to underestimate the answer. What can we do about it? How can we remind ourselves that we should expect small samples to be more extreme when analysing data?</p>
 </div>
 <div id="funnel-plots-to-the-rescue" class="section level1">
 <h1><span class="header-section-number">2</span> Funnel plots to the rescue</h1>
 <p>I recently came across an example from the UK in a similar vein to the one discussed by Wainer and Zwerling. In <em>The Art of Statistics</em> David Spiegelhalter discusses a piece of analysis by Paul Barden. Barden saw a BBC news report headlined “3-Fold Variation in Bowel Cancer Rate” and decided to dig a little deeper (discussed on his own blog <a href="https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html">here</a>.</p>
-<p>He found that there is indeed 3-fold variation.</p>
-<p><img src="/posts/extreme_samples_files/figure-html/unnamed-chunk-5-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>It turns out the headline is true as the boxplot below shows.</p>
+<p><img src="extreme_samples_files/figure-html/unnamed-chunk-5-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>In fact, there’s more than 3-fold variation. The highest mortality rate of 31 in 100000 in Glasgow is 3.39 times that of the minimum rate found in The Borough of Rossendale.</p>
 <p>But, as we established above, small samples generate extreme results more often. So, we need to incorporate population size in our analysis. The easiest way to do this is with a ‘funnel plot’ which visualises the mean and expected variation from this mean given sample size.</p>
-<p><img src="/posts/extreme_samples_files/figure-html/unnamed-chunk-6-1.png" width="776.64" style="display: block; margin: auto;" /></p>
-<p>We have a suspiciously good match to our expected variability with the vast majority of the datapoints falling within the bounds of the confidence intervals. This suggests that there likely isn’t anything more interesting going on than in our simulation of the two hospitals above. Perhaps the headline should’ve instead read, “Variation in Bowel Cancer Rate About Right”.</p>
+<p><img src="extreme_samples_files/figure-html/unnamed-chunk-6-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>We have a suspiciously good match to the expected variability with the vast majority of our datapoints falling within the bounds of the confidence intervals. This suggests that there likely isn’t anything more interesting going on than in our simulation of the two hospitals above. Perhaps the headline should’ve instead read, “Variation in Bowel Cancer Rate About Right”.</p>
 </div>
 <div id="stats-as-slow-thinking" class="section level1">
 <h1><span class="header-section-number">3</span> Stats as slow thinking</h1>
 <p>The metaphor of two modes of thinking, one fast and intuitive but prone to some predictable mistakes and the other slow and deliberate but sometimes hard to engage, has become fairly mainstream since Kahneman’s best-seller and the popularisation of behavioural economics. This metaphor is often used when discussing the ‘mistakes’ people are susceptible to. However, accepting the fallibility of our own reasoning is just the start of good decision-making, not an end in itself.</p>
 <p>The next step is to consider just what kind of slow thinking we should employ in a given situation.The simplest option might be a pros and cons list, or we could use an improper linear model if we want to get a little more sophisticated. But often the slow thinking required is formal statistical analysis.</p>
-<p>This is where my interest in behavioural economics meets my interest in data science. Data science is often about painfully slow thought, taking the right care to clean and format the data, choosing an appropriate method, checking statistical assumptions, testing the sensitivity of your results, and ensuring you aren’t deluding yourself with your interpretation. However, particularly when making large scale policy decisions, using this painfully slow thinking is crucial. If you don’t</p>
+<p>This is where my interest in behavioural economics meets my interest in data science. Data science is often about painfully slow thought, taking the right care to clean and format the data, choosing an appropriate method, checking statistical assumptions, testing the sensitivity of your results, and ensuring you aren’t deluding yourself with your interpretation.</p>
+<p>Particularly when making large scale policy decisions, engaging in such painfully slow thinking is crucial. If you don’t then you run the risk of attributing a run-of-the-mill statistical inevitability to the wonders (or horrors) of the rural lifestyle. For example,</p>
 <p>Bill &amp; Melinda Gates Foundation example of it gone wrong.</p>
 </div>

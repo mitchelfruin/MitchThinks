@@ -27,7 +27,7 @@
   </url>
   
   <url>
-    <loc>/posts/small_samples/</loc>
+    <loc>/posts/slow_thinking_small_samples/</loc>
     <lastmod>2019-10-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -111,6 +111,11 @@
   <url>
     <loc>/posts/doughnut_economics/</loc>
     <lastmod>2019-08-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/extreme_samples/</loc>
+    <priority>0</priority>
   </url>
   
   <url>

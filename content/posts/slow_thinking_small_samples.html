@@ -1,0 +1,80 @@
+---
+title: "Slow thinking about small samples."
+author: "Mitchel Fruin"
+date: "2019-10-26"
+description: "Add description."
+tags: ["Behavioural Economics", "Probability and Statistics"]
+slug: slow_thinking_small_samples
+draft: true
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#small-samples-are-more-extreme"><span class="toc-section-number">1</span> Small samples are more extreme</a></li>
+<li><a href="#visualise-the-expected-variance"><span class="toc-section-number">2</span> Visualise the expected variance</a></li>
+<li><a href="#stats-as-slow-thinking"><span class="toc-section-number">3</span> Stats as slow thinking</a></li>
+</ul>
+</div>
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+<p>In 2006, the statistician Howard Wainer and the education researcher Harris Zwerling wrote a short <a href="https://www.pdkmembers.org/members_online/publications/Archive/pdf/k0612wai.pdf">research paper</a> in which they present two facts about the rate of kidney cancer in US counties. Do me the favour of pausing after reading each and thinking about how you would explain them.</p>
+<p>First,</p>
+<blockquote>
+<p>Counties that are in the lowest 10% for kidney cancer incidence tend to be rural and located in the Midwest, the South, and the West.</p>
+</blockquote>
+<p>If you’re like most people, you might have been tempted to explain the low cancer rate with “the clean living of the rural lifestyle - no air pollution, no water pollution, and access to fresh food without additives”.</p>
+<p>Second,</p>
+<blockquote>
+<p>Counties that are in the highest 10% for kidney cancer incidence tend to be rural and located in the Midwest, the South, and the West.</p>
+</blockquote>
+<p>Again, you might have been tempted to appeal to the rural lifestyle for an explanation. But this time, to suggest that the high cancer rates might be due to “limited access to good medical care, a high-fat diet, too much alcohol, and too much tobacco.”</p>
+<p>Clearly, something is off with our gut instinct here. The rural lifestyle can’t simultaneously explain both high and low incidence of kidney cancer.</p>
+<p>This pair of facts illustrate the concept of <strong>sample size neglect</strong>, a failure to acccurately account for sample size when making inferences from data. This failing stems from the representativeness heuristic. It manifests when people don’t know the process by which the data is being generated (in this case what causes high or low rates of kidney cancer). The outcome is that people tend to believe a small sample will be more representative of the true phenomenon than statistical theory predicts it actually will be.</p>
+<p>So, the key here isn’t the <em>behaviour</em> of people who live in rural areas, it’s the <em>number</em> of people who live in rural areas.</p>
+<div id="small-samples-are-more-extreme" class="section level1">
+<h1><span class="header-section-number">1</span> Small samples are more extreme</h1>
+<p>Sampling is a foundational concept within statistics. The vast majority of the time the population we’re interested in is so large that it’s impractical and/or impossible to study it as a whole. Instead, to reduce the burden of the analysis, we take a proportion of the population and use that sample to make inferences. One key to using the sampling process properly is remembering the mantra that small samples generate extreme results more often.</p>
+<p>To see demonstrate this, consider the following example. Imagine we have two maternity wards. One, at Hospital Large, has 8 births each day. The other, at Hospital Small, has 4. We’re interested in comparing extreme results. In this context, that equates to a ‘single-sex day’ where all the babies born are the same sex. Intuitively, we understand <em>that</em> single-sex days will happen more often at Hospital Small for the same reason that we know instinctively that it’s easier to flip 4 heads in a row than it is 8. However, what we don’t seem to grasp so intuitively (which underlies sample size neglect), is <em>how much</em> more often single-sex days will happen.</p>
+<p>Actually consider your answer, how much more often will Hospital Small’s maternity ward have a single-sex day than the Hospital Large’s?</p>
+<p>We can find an exact answer to this question by comparing two binomial distributions, <span class="math inline">\(S\)</span> and <span class="math inline">\(L\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+S&amp;\sim \text{B}(4, 0.5) \\
+L&amp;\sim \text{B}(8, 0.5)
+\end{aligned}\]</span></p>
+<p>Add in binomial formula here.</p>
+<pre><code>## [1] 16</code></pre>
+<p>We see that Hospital Small, with its 4 births per day, will have 16 times more single-sex days than Hospital Large. How does that compare with your guess?</p>
+<p>If that was too much maths, then we can run a simulation to get an approximate answer instead. Let’s simulate 1000 days at each hospital and plot the frequencies of the number of boys born per day.</p>
+<p><img src="/posts/slow_thinking_small_samples_files/figure-html/unnamed-chunk-2-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>Adding up the yellow bars shows us that there were 132 single-sex days at Hospital Small and only 9 at Hospital Large. This means that single-sex days occurred roughly 15 times as often at Hospital Small, which isn’t too far away from the exact answer of 16.</p>
+<p>So, we’ve established that a smaller sample size (4 rather than 8 in our example) generates extreme results (single-sex days) more often than we naturally expect. This means our fast thinking can lead us astray a little and many of us tend to underestimate just how variable small samples will be. What can we do about it? How can we remind ourselves that we should expect small samples to be more extreme when analysing data?</p>
+</div>
+<div id="visualise-the-expected-variance" class="section level1">
+<h1><span class="header-section-number">2</span> Visualise the expected variance</h1>
+<p>I recently came across an example from the UK in a similar vein to the one discussed by Wainer and Zwerling. In <em>The Art of Statistics</em> David Spiegelhalter discusses a piece of analysis by Paul Barden. Barden saw a BBC news report headlined “3-Fold Variation in Bowel Cancer Rate” and decided to dig a little deeper (discussed on his own blog <a href="https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html">here</a>).</p>
+<p>It turns out the headline is true. In fact, there’s more than 3-fold variation. The highest mortality rate of 31 in 100,000 in Glasgow is 3.39 times that of the minimum rate found in The Borough of Rossendale.</p>
+<p>But, as we established above, small samples generate extreme results more often. So, we need to incorporate population size in our analysis. The easiest way to do this is with a ‘funnel plot’ which visualises the mean and expected variation from this mean given sample size.</p>
+<p><img src="/posts/slow_thinking_small_samples_files/figure-html/unnamed-chunk-5-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>Sentence interpreting graph.</p>
+<p>We have a suspiciously good match to the expected variability with the vast majority of our datapoints falling within the bounds of the confidence intervals (Glasgow is the only apparent outlier). This suggests that there likely isn’t anything more interesting going on in general than in our simulation of the two hospitals above. Perhaps the headline should’ve instead read, “Variation in Bowel Cancer Rate About Right”.</p>
+</div>
+<div id="stats-as-slow-thinking" class="section level1">
+<h1><span class="header-section-number">3</span> Stats as slow thinking</h1>
+<p>The metaphor of two modes of thinking, one fast and intuitive but prone to some predictable mistakes and the other slow and deliberate but sometimes hard to engage, has become fairly mainstream since Kahneman’s <em>Thinking, Fast and Slow</em> and the popularisation of behavioural economics. This metaphor is often used when discussing the ‘mistakes’ people are susceptible to. However, accepting the fallibility of our own reasoning is just the start of good decision-making, not an end in itself.</p>
+<p>The next step is to consider just what kind of slow thinking we should employ in a given situation.The simplest option might be a pros and cons list, or we could use an improper linear model if we want to get a little more sophisticated. However, often the slow thinking required is formal statistical analysis.</p>
+<p>This is where my interest in behavioural economics meets my interest in data science. To me, data science can be cast as painfully slow thought involving taking the right care to clean and format the data, choosing an appropriate method, checking statistical assumptions, testing the sensitivity of your results, and ensuring you aren’t deluding yourself with your interpretation.</p>
+<p>Particularly when making large scale policy decisions, engaging in such painfully slow thinking is crucial. If you don’t, then you run the risk of misattributing run-of-the-mill statistical variation to an incorrect, but compelling, narrative like the wonders (or horrors) of the rural lifestyle. For example, Bill &amp; Melinda Gates Foundation example of it gone wrong.</p>
+</div>

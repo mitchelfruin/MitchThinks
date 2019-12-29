@@ -13,11 +13,11 @@
     
     <item>
       <title>Slow thinking about small samples.</title>
-      <link>/posts/small_samples/</link>
+      <link>/posts/slow_thinking_small_samples/</link>
       <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/small_samples/</guid>
-      <description>1 Small samples are more extreme 2 Funnel plots to the rescue 3 Stats as slow thinking   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  In 2006, the statistician Howard Wainer and the education researcher Harris Zwerling wrote a short research paper about school size. In it they present two facts about the rate of Kidney Cancer in counties in the US. Do me the favour of pausing after reading each and thinking about how you would explain them.</description>
+      <guid>/posts/slow_thinking_small_samples/</guid>
+      <description>1 Small samples are more extreme 2 Visualise the expected variance 3 Stats as slow thinking   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  In 2006, the statistician Howard Wainer and the education researcher Harris Zwerling wrote a short research paper in which they present two facts about the rate of kidney cancer in US counties. Do me the favour of pausing after reading each and thinking about how you would explain them.</description>
     </item>
     
     <item>
@@ -94,6 +94,15 @@ Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in t
       
       <guid>/posts/doughnut_economics/</guid>
       <description>1 Goal: GDP growth \(\rightarrow\) The Doughnut. 2 Big Picture: Self contained market \(\rightarrow\) Embedded economy. 3 Behavioural: Rational economic man \(\rightarrow\) Social, adaptable humans. 4 Complexity: Mechanical equilibrium \(\rightarrow\) Dynamic complexity. 5 Inequality: Growth will even it up \(\rightarrow\) Distributive by design. 6 Environment: Growth will clean it up \(\rightarrow\) Regenerative by design. 7 Growth: Growth addicted \(\rightarrow\) Growth agnostic.   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the full code for this post then you can find the .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/posts/extreme_samples/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/extreme_samples/</guid>
+      <description>1 Small samples are more extreme 2 Funnel plots to the rescue 3 Stats as slow thinking   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  In 2006, the statistician Howard Wainer and the education researcher Harris Zwerling wrote a short research paper about school size. In it they present two facts about the rate of Kidney Cancer in counties in the US. Do me the favour of pausing after reading each and thinking about how you would explain them.</description>
     </item>
     
     <item>
