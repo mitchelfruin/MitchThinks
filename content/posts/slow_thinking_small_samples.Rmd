@@ -49,11 +49,11 @@ Second,
 
 > Counties that are in the highest 10% for kidney cancer incidence tend to be rural and located in the Midwest, the South, and the West.
 
-Again, you might have been tempted to appeal to the rural lifestyle for an explanation. But this time, to suggest that the high cancer rates might be due to "limited access to good medical care, a high-fat diet, too much alcohol, and too much tobacco."
+Again, you might have been tempted to appeal to the rural lifestyle for an explanation. But, this time, to suggest that the high cancer rates might be due to "limited access to good medical care, a high-fat diet, too much alcohol, and too much tobacco."
 
 Clearly, something is off with our gut instinct here. The rural lifestyle can't simultaneously explain both high and low incidence of kidney cancer.
 
-This pair of facts illustrate the concept of **sample size neglect**, a failure to acccurately account for sample size when making inferences from data. This failing stems from the representativeness heuristic. It manifests when people don't know the process by which the data is being generated (in this case what causes high or low rates of kidney cancer). The outcome is that people tend to believe a small sample will be more representative of the true phenomenon than statistical theory predicts it actually will be.  
+This pair of facts illustrate the concept of **sample size neglect**, a failure to acccurately account for sample size when making inferences from data. The outcome is that people tend to believe a small sample will be more representative of the true phenomenon than statistical theory predicts it actually will be.  
 
 So, the key here isn't the *behaviour* of people who live in rural areas, it's the *number* of people who live in rural areas.   
 
@@ -124,7 +124,7 @@ sim_ratio <- small_extreme/large_extreme
 
 Adding up the yellow bars shows us that there were `r small_extreme` single-sex days at Hospital Small and only `r large_extreme` at Hospital Large. This means that single-sex days occurred roughly `r round(sim_ratio)` times as often at Hospital Small, which isn't too far away from the exact answer of 16.
 
-So, we've established that a smaller sample size (4 rather than 8 in our example) generates extreme results (single-sex days) more often than we naturally expect. This means our fast thinking can lead us astray a little and many of us tend to underestimate just how variable small samples will be. What can we do about it? How can we remind ourselves that we should expect small samples to be more extreme when analysing data?
+So, we've established that a smaller sample size (4 rather than 8 in our example) generates extreme results (single-sex days) more often than we might naturally expect. This means our fast thinking can lead us astray a little and many of us tend to underestimate just how variable small samples will be. What can we do about it? How can we remind ourselves that we should expect small samples to be more extreme when analysing data?
 
 # Visualise the expected variance
 
@@ -142,11 +142,10 @@ min_prop <- min(bowel_data$prop_death)
 
 # Numerator must be called n, denomnator d
 funnel_limits <- fundata(input = bowel_data,
-                         #benchmark = mean_prop,
                          alpha = 0.95,
                          alpha2 = 0.998,
-                         method = 'exact',
-                         step = 10)
+                         method = 'approximate',
+                         step = 1)
 
 # Identify Glasgow City in data frame
 glasgow <- subset(bowel_data, District == "Glasgow City")
@@ -154,55 +153,61 @@ glasgow <- subset(bowel_data, District == "Glasgow City")
 
 It turns out the headline is true. In fact, there's more than 3-fold variation. The highest mortality rate of `r round(max(bowel_data$prop_death)*100000)` in 100,000 in Glasgow is `r round(max_prop/min_prop, 2)` times that of the minimum rate found in The Borough of Rossendale.
 
-But, as we established above, small samples generate extreme results more often. So, we need to incorporate population size in our analysis. The easiest way to do this is with a ‘funnel plot’ which visualises the mean and expected variation from this mean given sample size.
+But, as we established above, small samples generate extreme results more often. So, we need to incorporate the idea that the cancer rate will be more variable in areas with smaller population sizes in our analysis. The easiest way to do this is with a ‘funnel plot’ which visualises the expected variation at each sample size given the overall population mean.
 
 ```{r}
 # Find funnel limits for lowest pop of 31332
-up_limit <- filter(funnel_limits, d == 31331) %>%
+up_limit <- funnel_limits %>%
+  filter(d == 31331) %>%
   pull(up2)
-low_limit <- filter(funnel_limits, d == 31331) %>%
+low_limit <- funnel_limits %>%
+  filter(d == 31331) %>%
   pull(lo2)
 
 # Funnel plot
 ggplot() +
-  geom_point(aes(x = d, y = prop_death), data = bowel_data) +
-  geom_hline(yintercept = mean_prop) +
   geom_ribbon(aes(x = d, ymin = lo, ymax = up),
               data = funnel_limits,
-              fill = "blue",
-              alpha = 0.4) +
+              fill = "#440154FF",
+              alpha = 0.3) +
   geom_ribbon(aes(x = d, ymin = lo2, ymax = up2),
               data = funnel_limits,
-              fill = "purple",
-              alpha = 0.2) +
-  scale_y_continuous("Annual bowel cancer mortality rate per 100,000",
-                     breaks = 5*(0:8)/100000,
-                     labels = 5*(0:8),
-                     limits = c(low_limit, up_limit)) + 
-  scale_x_continuous("Population (100,000's)",
+              fill = "#440154FF",
+              alpha = 0.15) +
+  geom_point(aes(x = d, y = prop_death),
+             data = bowel_data) +
+  geom_smooth(aes(x = d, y = prop_death),
+              data = bowel_data,
+              method = "lm",
+              se = F,
+              col = "#FDE725FF", 
+              lty = 2) +
+  geom_text(aes(x = d, y = prop_death, label = "Glasgow"),
+            data = glasgow,
+            hjust = -0.05,
+            vjust = 1) +
+  scale_x_continuous("Population (100,000s)",
                      breaks = 100000*(0:14),
                      labels = 0:14,
                      limits = c(0, max(bowel_data$d))) +
+  scale_y_continuous("Annual bowel cancer mortality rate per 100,000",
+                     breaks = 5*(0:8)/100000,
+                     labels = 5*(0:8),
+                     limits = c(low_limit, up_limit)) +
   theme_classic() +
-  theme(panel.grid.major = element_line()) + 
-  annotate("text", 
-           x = glasgow$d,
-           y = glasgow$n/glasgow$d,
-           label = "Glasgow City",
-           hjust = -0.05,
-           vjust = 1)
+  theme(title = element_text(size = 14),
+        text = element_text(size = 12),
+        panel.grid.major = element_line())
 ```
 
-Sentence interpreting graph. 
-
-We have a suspiciously good match to the expected variability with the vast majority of our datapoints falling within the bounds of the confidence intervals (Glasgow is the only apparent outlier). This suggests that there likely isn't anything more interesting going on in general than in our simulation of the two hospitals above. Perhaps the headline should've instead read, "Variation in Bowel Cancer Rate About Right". 
+The dashed yellow line represents a simple linear model of cancer rate as a function of population size. The fact that it's virtually horizontal suggests there's no relationship. The dark and light purple bands represent 95% and 99.8% confidence intervals respectively. They visualise the variation we expect at each population size simply as a statistical inevitability. We can see that the vast majority of the datapoints fall within these bounds, with Glasgow being the only true outlier. Taken together, this suggests that there likely isn't anything more interesting going on here than in our simulation of the two hospitals above. Perhaps the headline should've instead read, "Variation in Bowel Cancer Rate About Right". 
 
 # Stats as slow thinking
 
 The metaphor of two modes of thinking, one fast and intuitive but prone to some predictable mistakes and the other slow and deliberate but sometimes hard to engage, has become fairly mainstream since Kahneman’s *Thinking, Fast and Slow* and the popularisation of behavioural economics. This metaphor is often used when discussing the ‘mistakes’ people are susceptible to. However, accepting the fallibility of our own reasoning is just the start of good decision-making, not an end in itself. 
 
-The next step is to consider just what kind of slow thinking we should employ in a given situation.The simplest option might be a pros and cons list, or we could use an improper linear model if we want to get a little more sophisticated. However, often the slow thinking required is formal statistical analysis.
+The next step is to consider just what kind of slow thinking we should employ in a given situation. The simplest option might be a pros and cons list, or we could use an improper linear model if we want to get a little more fancy. Often, however, these won't suffice and the slow thinking required is formal statistical analysis.
 
-This is where my interest in behavioural economics meets my interest in data science. To me, data science can be cast as painfully slow thought involving taking the right care to clean and format the data, choosing an appropriate method, checking statistical assumptions, testing the sensitivity of your results, and ensuring you aren't deluding yourself with your interpretation. 
+This is where my interest in behavioural economics meets my interest in data science. To me, a useful way of framing the role of data science is as painfully slow thinking. It requires taking the right care to clean and format the data, choosing an appropriate method, checking the assumptions are valid, testing the sensitivity of your results, and ensuring you aren't deluding yourself with your interpretation. 
 
-Particularly when making large scale policy decisions, engaging in such painfully slow thinking is crucial. If you don't, then you run the risk of misattributing run-of-the-mill statistical variation to an incorrect, but compelling, narrative like the wonders (or horrors) of the rural lifestyle. For example, Bill & Melinda Gates Foundation example of it gone wrong.
+Particularly when making large scale policy decisions, engaging in such painfully slow thinking is crucial. If you don't, then you run the risk of misattributing run-of-the-mill statistical variation to an incorrect, but compelling, narrative like the wonders (and horrors) of the rural lifestyle. For example, the Wainer and Zwerling article I began this post with focused on a $1.7 billion investment by the Bill & Melinda Gates foundation made to follow up on research on what makes schools successful. One apparent finding in such research is that amongst the most successful schools, small schools are overrepresented. This led the foundation along with the U.S Department of Education Smaller Learning Communities Program to make substantial investment in the creation of smaller schools. It's easy to construct a compelling narrative to explain why small schools cause better educational outcomes, perhaps appealing to there being more personal attention or individual encouragement for each student. However, as Wainer and Zwerling point out, small schools are also overrepresented when you look at the worst schools. Why? Because, please remember this mantra if you ever get an important job that affects millions of people's lives, small samples produce extreme results more often.
