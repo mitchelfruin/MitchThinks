@@ -6,7 +6,7 @@
     <description>Recent content in Probability and statistics on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 26 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/probability-and-statistics/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,10 @@
     <item>
       <title>Slow thinking about small samples.</title>
       <link>/posts/slow_thinking_small_samples/</link>
-      <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/slow_thinking_small_samples/</guid>
-      <description>1 Small samples are more extreme 2 Visualise the expected variance 3 Stats as slow thinking   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  In 2006, the statistician Howard Wainer and the education researcher Harris Zwerling wrote a short research paper in which they present two facts about the rate of kidney cancer in US counties. Do me the favour of pausing after reading each and thinking about how you would explain them.</description>
+      <description>1 Small samples are more extreme 2 Visualise the expected variation 3 Stats as slow thinking   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  In 2006, the statistician Howard Wainer and the education researcher Harris Zwerling wrote a short research paper in which they present two facts about the rate of kidney cancer in US counties. Do me the favour of pausing after reading each and thinking about how you would explain them.</description>
     </item>
     
     <item>

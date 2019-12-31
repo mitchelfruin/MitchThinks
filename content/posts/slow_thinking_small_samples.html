@@ -1,11 +1,10 @@
 ---
 title: "Slow thinking about small samples."
 author: "Mitchel Fruin"
-date: "2019-10-26"
-description: "Add description."
+date: "2019-12-31"
+description: "Data science meets behavioural economics to explain why small samples generate extreme results more often."
 tags: ["Behavioural Economics", "Probability and Statistics"]
 slug: slow_thinking_small_samples
-draft: true
 output:
   blogdown::html_page:
     toc: true
@@ -17,7 +16,7 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#small-samples-are-more-extreme"><span class="toc-section-number">1</span> Small samples are more extreme</a></li>
-<li><a href="#visualise-the-expected-variance"><span class="toc-section-number">2</span> Visualise the expected variance</a></li>
+<li><a href="#visualise-the-expected-variation"><span class="toc-section-number">2</span> Visualise the expected variation</a></li>
 <li><a href="#stats-as-slow-thinking"><span class="toc-section-number">3</span> Stats as slow thinking</a></li>
 </ul>
 </div>
@@ -42,13 +41,13 @@ div#TOC li {
 </blockquote>
 <p>Again, you might have been tempted to appeal to the rural lifestyle for an explanation. But, this time, to suggest that the high cancer rates might be due to “limited access to good medical care, a high-fat diet, too much alcohol, and too much tobacco.”</p>
 <p>Clearly, something is off with our gut instinct here. The rural lifestyle can’t simultaneously explain both high and low incidence of kidney cancer.</p>
-<p>This pair of facts illustrate the concept of <strong>sample size neglect</strong>, a failure to acccurately account for sample size when making inferences from data. The outcome is that people tend to believe a small sample will be more representative of the true phenomenon than statistical theory predicts it actually will be.</p>
+<p>This pair of facts illustrate the concept of <strong>sample size neglect</strong>, a failure to accurately account for sample size when making inferences from data. The outcome is that people tend to believe a small sample will be more representative of the true phenomenon than statistical theory predicts it will be.</p>
 <p>So, the key here isn’t the <em>behaviour</em> of people who live in rural areas, it’s the <em>number</em> of people who live in rural areas.</p>
 <div id="small-samples-are-more-extreme" class="section level1">
 <h1><span class="header-section-number">1</span> Small samples are more extreme</h1>
 <p>Sampling is a foundational concept within statistics. The vast majority of the time the population we’re interested in is so large that it’s impractical and/or impossible to study it as a whole. Instead, to reduce the burden of the analysis, we take a proportion of the population and use that sample to make inferences. One key to using the sampling process properly is remembering the mantra that small samples generate extreme results more often.</p>
 <p>To see demonstrate this, consider the following example. Imagine we have two maternity wards. One, at Hospital Large, has 8 births each day. The other, at Hospital Small, has 4. We’re interested in comparing extreme results. In this context, that equates to a ‘single-sex day’ where all the babies born are the same sex. Intuitively, we understand <em>that</em> single-sex days will happen more often at Hospital Small for the same reason that we know instinctively that it’s easier to flip 4 heads in a row than it is 8. However, what we don’t seem to grasp so intuitively (which underlies sample size neglect), is <em>how much</em> more often single-sex days will happen.</p>
-<p>Actually consider your answer, how much more often will Hospital Small’s maternity ward have a single-sex day than the Hospital Large’s?</p>
+<p>Actually consider your answer, how much more often will Hospital Small’s maternity ward have a single-sex day than Hospital Large’s?</p>
 <p>We can find an exact answer to this question by comparing two binomial distributions. The random variables <span class="math inline">\(S\)</span> and <span class="math inline">\(L\)</span> denote the number of boys born each day at Hospital Small and Large respectively.</p>
 <p><span class="math display">\[\begin{aligned}
 S&amp;\sim \text{B}(4, 0.5) \\
@@ -71,29 +70,29 @@ L&amp;\sim \text{B}(8, 0.5)
 &amp;= 0.125
 \end{aligned}\]</span></p>
 <p>This means we can expect 12.5% of days at Hospital Small to be single-sex.</p>
-<p>So, to find out how much more often will Hospital Small’s maternity ward have a single-sex day than the Hospital Large’s we just need to compute:</p>
+<p>To find out how much more often Hospital Small’s maternity ward will have a single-sex day than the Hospital Large’s we just need to do some division:</p>
 <p><span class="math display">\[\begin{aligned}
 \frac{12.5}{0.78125} = 16
 \end{aligned}\]</span></p>
-<p>We see that Hospital Small, with its 4 births per day, will have 16 times more single-sex days than Hospital Large. How does that compare with your guess?</p>
+<p>So, Hospital Small, with its 4 births per day, will have 16 times more single-sex days than Hospital Large. How does that compare with your guess?</p>
 <p>If that was too much maths, then we can run a simulation to get an approximate answer instead. Let’s simulate 1000 days at each hospital and plot the frequencies of the number of boys born per day.</p>
 <p><img src="/posts/slow_thinking_small_samples_files/figure-html/unnamed-chunk-2-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>Adding up the yellow bars shows us that there were 132 single-sex days at Hospital Small and only 9 at Hospital Large. This means that single-sex days occurred roughly 15 times as often at Hospital Small, which isn’t too far away from the exact answer of 16.</p>
 <p>So, we’ve established that a smaller sample size (4 rather than 8 in our example) generates extreme results (single-sex days) more often than we might naturally expect. This means our fast thinking can lead us astray a little and many of us tend to underestimate just how variable small samples will be. What can we do about it? How can we remind ourselves that we should expect small samples to be more extreme when analysing data?</p>
 </div>
-<div id="visualise-the-expected-variance" class="section level1">
-<h1><span class="header-section-number">2</span> Visualise the expected variance</h1>
-<p>I recently came across an example from the UK in a similar vein to the one discussed by Wainer and Zwerling. In <em>The Art of Statistics</em> David Spiegelhalter discusses a piece of analysis by Paul Barden. Barden saw a BBC news report headlined “3-Fold Variation in Bowel Cancer Rate” and decided to dig a little deeper (discussed on his own blog <a href="https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html">here</a>).</p>
+<div id="visualise-the-expected-variation" class="section level1">
+<h1><span class="header-section-number">2</span> Visualise the expected variation</h1>
+<p>I recently came across an example from the UK in a similar vein to the one presented by Wainer and Zwerling. In <em>The Art of Statistics</em> David Spiegelhalter discusses a piece of analysis by Paul Barden. Barden saw a BBC news report headlined “3-Fold Variation in Bowel Cancer Rate” and decided to dig a little deeper (discussed on his own blog <a href="https://pb204.blogspot.com/2011/09/im-grateful-to-david-spiegelhalter-of.html">here</a>).</p>
 <p>It turns out the headline is true. In fact, there’s more than 3-fold variation. The highest mortality rate of 31 in 100,000 in Glasgow is 3.39 times that of the minimum rate found in The Borough of Rossendale.</p>
 <p>But, as we established above, small samples generate extreme results more often. So, we need to incorporate the idea that the cancer rate will be more variable in areas with smaller population sizes in our analysis. The easiest way to do this is with a <strong>funnel plot</strong> which visualises the expected variation at each sample size given the overall population mean.</p>
 <p><img src="/posts/slow_thinking_small_samples_files/figure-html/unnamed-chunk-5-1.png" width="776.64" style="display: block; margin: auto;" /></p>
-<p>The dashed yellow line represents a simple linear model of cancer rate as a function of population size. The fact that it’s virtually horizontal suggests there’s no relationship. The dark and light purple bands represent 95% and 99.8% confidence intervals respectively. They visualise the variation we expect at each population size simply as a statistical inevitability. We can see that the vast majority of the datapoints fall within these bounds, with Glasgow being the only true outlier. Taken together, this suggests that there likely isn’t anything more interesting going on here than in our simulation of the two hospitals above. Perhaps the headline should’ve instead read, “Variation in Bowel Cancer Rate About Right”.</p>
+<p>The dashed yellow line represents a simple linear model of cancer rate as a function of population size. The fact that it’s virtually horizontal suggests there’s no relationship. The dark and light purple bands represent 95% and 99.8% confidence intervals respectively. They visualise the variation we expect at each population size simply as a statistical inevitability. We can see that the vast majority of the data points fall within these bounds, with Glasgow being the only noticeable outlier. Taken together, this suggests that there likely isn’t anything more interesting going on here than in our simulation of the two imaginary hospitals. Perhaps the headline should’ve instead read, “Variation in Bowel Cancer Rate About Right”.</p>
 </div>
 <div id="stats-as-slow-thinking" class="section level1">
 <h1><span class="header-section-number">3</span> Stats as slow thinking</h1>
-<p>The metaphor of two modes of thinking, one fast and intuitive but prone to some predictable mistakes and the other slow and deliberate but sometimes hard to engage, has become fairly mainstream since Kahneman’s <em>Thinking, Fast and Slow</em> and the popularisation of behavioural economics. This metaphor is often used when discussing the ‘mistakes’ people are susceptible to. However, accepting the fallibility of our own reasoning is just the start of good decision-making, not an end in itself.</p>
+<p>The metaphor of two modes of thinking, one fast and intuitive but prone to some predictable mistakes and the other slow and deliberate but sometimes hard to engage, has become fairly mainstream since Kahneman’s <em>Thinking, Fast and Slow</em> and the popularisation of behavioural economics. This metaphor is often used when discussing the ‘mistakes’ people are susceptible to. However, accepting the fallibility of our intuitions is just the start of good decision-making, not an end in itself.</p>
 <p>The next step is to consider just what kind of slow thinking we should employ in a given situation. The simplest option might be a pros and cons list, or we could use an improper linear model if we want to get a little more fancy. Often, however, these won’t suffice and the slow thinking required is formal statistical analysis.</p>
 <p>This is where my interest in behavioural economics meets my interest in data science. To me, a useful way of framing the role of data science is as painfully slow thinking. It requires taking the right care to clean and format the data, choosing an appropriate method, checking the assumptions are valid, testing the sensitivity of your results, and ensuring you aren’t deluding yourself with your interpretation.</p>
-<p>When making large scale policy decisions, engaging in such painfully slow thinking is crucial. If you don’t, then you run the risk of misattributing run-of-the-mill statistical variation to an incorrect, but compelling, narrative like the wonders (and/or horrors) of the rural lifestyle. For example, the Wainer and Zwerling article I began this post with focused on a $1.7 billion investment by the Bill &amp; Melinda Gates foundation to follow up on research into what makes schools successful. One finding in such research is that amongst the most successful schools, small schools are overrepresented. This led the foundation along with the U.S Department of Education Smaller Learning Communities Program to make substantial investment in the creation of smaller schools.</p>
-<p>It’s easy to construct a story to explain why small schools cause better educational outcomes, perhaps by suggesting there might be more personal attention or individual encouragement for each student. However, the crucial fact, that painfully slow thinking like the production of a funnel plot would hopefully help you realise, is that small schools are also overrepresented when you look at the worst schools. Why? Because (please remember this if you ever get an important job that affects millions of people’s lives) small samples produce extreme results more often.</p>
+<p>When making large scale policy decisions, engaging in such painfully slow thinking is crucial. If you don’t, then you run the risk of misattributing run-of-the-mill statistical variation to an incorrect, but compelling, narrative like the wonders (and/or horrors) of the rural lifestyle.</p>
+<p>For example, the Wainer and Zwerling article I began this post with focused on a $1.7 billion investment by the Bill &amp; Melinda Gates foundation to implement research into what makes schools successful. One finding was that amongst the most successful schools, small schools are over-represented. This led the foundation, along with the U.S Department of Education Smaller Learning Communities Program, to make substantial investment in the creation of smaller schools. It’s easy to construct a story to explain why small schools cause better educational outcomes, perhaps by suggesting there might be more personal attention or individual encouragement for each student. However, the crucial fact, that painfully slow thinking like the production of a funnel plot would hopefully help you realise, is that small schools are also over-represented when you look at the worst schools. Why? Because (please remember this if you ever get an important job that affects millions of people’s lives) small samples produce extreme results more often.</p>
 </div>
