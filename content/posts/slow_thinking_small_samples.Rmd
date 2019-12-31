@@ -65,16 +65,44 @@ To see demonstrate this, consider the following example. Imagine we have two mat
 
 Actually consider your answer, how much more often will Hospital Small's maternity ward have a single-sex day than the Hospital Large's?
 
-We can find an exact answer to this question by comparing two binomial distributions, $S$ and $L$.
+We can find an exact answer to this question by comparing two binomial distributions. The random variables $S$ and $L$ denote the number of boys born each day at Hospital Small and Large respectively.
 
 $$\begin{aligned}
 S&\sim \text{B}(4, 0.5) \\
 L&\sim \text{B}(8, 0.5)
 \end{aligned}$$
 
-Add in binomial formula here.
+We're interested in the probability of the extreme outcomes (single-sex days) at each hospital. That is we want to find out how likely it is that the children born are either all boys or all girls.
 
-```{r}
+For Hospital Large:
+
+$$\begin{aligned}
+\text{Pr}(L = 0 \;\text{or}\; L = 8) &= \text{Pr}(L = 0) + \text{Pr}(L = 8) \\
+&= {8 \choose 0}\times 0.5^0 \times 0.5^8 + {8 \choose 8}\times 0.5^8 \times 0.5^0 \\
+&= 0.00390625 + 0.00390625 \\
+&= 0.0078125
+\end{aligned}$$
+
+This means we can expect 0.78125% of days at Hospital Large to be single-sex. 
+
+For Hospital Small:
+
+$$\begin{aligned}
+\text{Pr}(S = 0 \;\text{or}\; S = 4) &= \text{Pr}(S = 0) + \text{Pr}(S = 4) \\
+&= {4 \choose 0}\times 0.5^0 \times 0.5^4 + {4 \choose 4}\times 0.5^4 \times 0.5^0 \\
+&= 0.0625 + 0.0625 \\
+&= 0.125
+\end{aligned}$$
+
+This means we can expect 12.5% of days at Hospital Small to be single-sex. 
+
+So, to find out how much more often will Hospital Small's maternity ward have a single-sex day than the Hospital Large's we just need to compute:
+
+$$\begin{aligned}
+\frac{12.5}{0.78125} = 16
+\end{aligned}$$
+
+```{r, eval = F}
 large_exact <- dbinom(8, 8, 0.5)*2
 small_exact <- dbinom(4, 4, 0.5)*2
 small_exact/large_exact
@@ -153,7 +181,7 @@ glasgow <- subset(bowel_data, District == "Glasgow City")
 
 It turns out the headline is true. In fact, there's more than 3-fold variation. The highest mortality rate of `r round(max(bowel_data$prop_death)*100000)` in 100,000 in Glasgow is `r round(max_prop/min_prop, 2)` times that of the minimum rate found in The Borough of Rossendale.
 
-But, as we established above, small samples generate extreme results more often. So, we need to incorporate the idea that the cancer rate will be more variable in areas with smaller population sizes in our analysis. The easiest way to do this is with a ‘funnel plot’ which visualises the expected variation at each sample size given the overall population mean.
+But, as we established above, small samples generate extreme results more often. So, we need to incorporate the idea that the cancer rate will be more variable in areas with smaller population sizes in our analysis. The easiest way to do this is with a **funnel plot** which visualises the expected variation at each sample size given the overall population mean.
 
 ```{r}
 # Find funnel limits for lowest pop of 31332
@@ -210,4 +238,6 @@ The next step is to consider just what kind of slow thinking we should employ in
 
 This is where my interest in behavioural economics meets my interest in data science. To me, a useful way of framing the role of data science is as painfully slow thinking. It requires taking the right care to clean and format the data, choosing an appropriate method, checking the assumptions are valid, testing the sensitivity of your results, and ensuring you aren't deluding yourself with your interpretation. 
 
-Particularly when making large scale policy decisions, engaging in such painfully slow thinking is crucial. If you don't, then you run the risk of misattributing run-of-the-mill statistical variation to an incorrect, but compelling, narrative like the wonders (and horrors) of the rural lifestyle. For example, the Wainer and Zwerling article I began this post with focused on a $1.7 billion investment by the Bill & Melinda Gates foundation made to follow up on research on what makes schools successful. One apparent finding in such research is that amongst the most successful schools, small schools are overrepresented. This led the foundation along with the U.S Department of Education Smaller Learning Communities Program to make substantial investment in the creation of smaller schools. It's easy to construct a compelling narrative to explain why small schools cause better educational outcomes, perhaps appealing to there being more personal attention or individual encouragement for each student. However, as Wainer and Zwerling point out, small schools are also overrepresented when you look at the worst schools. Why? Because, please remember this mantra if you ever get an important job that affects millions of people's lives, small samples produce extreme results more often.
+When making large scale policy decisions, engaging in such painfully slow thinking is crucial. If you don't, then you run the risk of misattributing run-of-the-mill statistical variation to an incorrect, but compelling, narrative like the wonders (and/or horrors) of the rural lifestyle. For example, the Wainer and Zwerling article I began this post with focused on a $1.7 billion investment by the Bill & Melinda Gates foundation to follow up on research into what makes schools successful. One finding in such research is that amongst the most successful schools, small schools are overrepresented. This led the foundation along with the U.S Department of Education Smaller Learning Communities Program to make substantial investment in the creation of smaller schools.
+
+It's easy to construct a story to explain why small schools cause better educational outcomes, perhaps by suggesting there might be more personal attention or individual encouragement for each student. However, the crucial fact, that painfully slow thinking like the production of a funnel plot would hopefully help you realise, is that small schools are also overrepresented when you look at the worst schools. Why? Because (please remember this if you ever get an important job that affects millions of people's lives) small samples produce extreme results more often. 
