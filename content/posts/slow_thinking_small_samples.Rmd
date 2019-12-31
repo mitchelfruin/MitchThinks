@@ -62,7 +62,7 @@ Sampling is a foundational concept within statistics. The vast majority of the t
 
 To see demonstrate this, consider the following example. Imagine we have two maternity wards. One, at Hospital Large, has 8 births each day. The other, at Hospital Small, has 4. We're interested in comparing extreme results. In this context, that equates to a 'single-sex day' where all the babies born are the same sex. Intuitively, we understand *that* single-sex days will happen more often at Hospital Small for the same reason that we know instinctively that it's easier to flip 4 heads in a row than it is 8. However, what we don't seem to grasp so intuitively (which underlies sample size neglect), is *how much* more often single-sex days will happen. 
 
-Actually consider your answer, how much more often will Hospital Small's maternity ward have a single-sex day than Hospital Large's?
+Actually consider your answer: how much more often will Hospital Small's maternity ward have a single-sex day than Hospital Large's?
 
 We can find an exact answer to this question by comparing two binomial distributions. The random variables $S$ and $L$ denote the number of boys born each day at Hospital Small and Large respectively.
 
@@ -71,7 +71,7 @@ S&\sim \text{B}(4, 0.5) \\
 L&\sim \text{B}(8, 0.5)
 \end{aligned}$$
 
-We're interested in the probability of the extreme outcomes (single-sex days) at each hospital. That is we want to find out how likely it is that the children born are either all boys or all girls.
+We're interested in the probability of the extreme outcomes (single-sex days) at each hospital. That is, we want to find out how likely it is that the children born are either all boys or all girls.
 
 For Hospital Large:
 
@@ -95,7 +95,7 @@ $$\begin{aligned}
 
 This means we can expect 12.5% of days at Hospital Small to be single-sex. 
 
-To find out how much more often Hospital Small's maternity ward will have a single-sex day than the Hospital Large's we just need to do some division:
+To find out how much more often Hospital Small's maternity ward will have a single-sex day than Hospital Large's we just need to do some division:
 
 $$\begin{aligned}
 \frac{12.5}{0.78125} = 16
@@ -149,7 +149,7 @@ large_extreme <- sum(large_hosp == 8| large_hosp == 0)
 sim_ratio <- small_extreme/large_extreme
 ```
 
-Adding up the yellow bars shows us that there were `r small_extreme` single-sex days at Hospital Small and only `r large_extreme` at Hospital Large. This means that single-sex days occurred roughly `r round(sim_ratio)` times as often at Hospital Small, which isn't too far away from the exact answer of 16.
+Adding up the yellow bars shows us that there were `r small_extreme` single-sex days at Hospital Small and only `r large_extreme` at Hospital Large. This means that single-sex days occurred roughly `r round(sim_ratio)` times more often at Hospital Small, which isn't too far away from the exact answer of 16.
 
 So, we've established that a smaller sample size (4 rather than 8 in our example) generates extreme results (single-sex days) more often than we might naturally expect. This means our fast thinking can lead us astray a little and many of us tend to underestimate just how variable small samples will be. What can we do about it? How can we remind ourselves that we should expect small samples to be more extreme when analysing data?
 
