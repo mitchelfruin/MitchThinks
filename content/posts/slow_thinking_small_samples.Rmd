@@ -227,7 +227,7 @@ ggplot() +
         panel.grid.major = element_line())
 ```
 
-The dashed yellow line represents a simple linear model of cancer rate as a function of population size. The fact that it's virtually horizontal suggests there's no relationship. The dark and light purple bands represent 95% and 99.8% confidence intervals respectively. They visualise the variation we expect at each population size simply as a statistical inevitability. We can see that the vast majority of the data points fall within these bounds, with Glasgow being the only noticeable outlier. Taken together, this suggests that there likely isn't anything more interesting going on here than in our simulation of the two imaginary hospitals. Perhaps the headline should've instead read, "Variation in Bowel Cancer Rate About Right". 
+The dashed yellow line represents a linear model of cancer rate as a function of population size. The fact that it's virtually horizontal suggests there's no simple, global relationship. The dark and light purple bands represent 95% and 99.8% confidence intervals respectively. They visualise the variation we expect at each population size simply as a statistical inevitability. Glasgow sticks out as a prominent outlier and there are probably a few too many points outside the 95% interval but, on the whole, the data points fall pretty neatly within the bounds. There may well be regional differences in the bowel cancer rate, but the funnel plot reveals that in terms of baseline variation there isn't anything more interesting going on than in our simulation of the two imaginary hospitals. Perhaps the headline should've instead read, "Variation in Bowel Cancer Rate About Right". 
 
 # Stats as slow thinking
 
