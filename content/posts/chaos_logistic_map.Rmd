@@ -34,6 +34,7 @@ knitr::opts_chunk$set(echo = FALSE,
 # Packages
 library(tidyverse)
 library(plotly)
+library(shiny)
 ```
 
 Most non-fiction books teach you **what** to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you 'explain' why the Bank of England cut interest rates. Every now and then, however, you read a book that changes **how** you think, one that helps you see things beyond its few hundred pages slightly differently. That's what James Gleick's *Chaos* did for me. It's fantastic, I wish I'd read it much, much sooner, and anyone even remotely interested in science should make it their next book.
@@ -343,11 +344,13 @@ Best way to build intuition is to do it yourself.
 
 So, I made a shiny app that allows you to choose the starting x point for the population.
 
+<iframe width="1000" height="700" scrolling="no" frameborder="no" src="https://mitchelfruin.shinyapps.io/log_map/"> </iframe>
+
 Can choose 1 by itself or 2 to compare.
 
 Then click play and watch as we move through different values of the tuning parameter, $a$. Regardless of which starting value(s) you choose, you'll see stability at first with the population converging on a single equilibrium value, then there'll be a transition to 2-period cycling with the population switching between two values, next 4-period cycles, 8-period cycles, and so on, and eventually chaos. 
 
-```{r}
+```{r, eval = F}
 # Choose input options
 x_rand <- round(runif(3), 2)
 r_opts <- c(seq(2, 4, 0.05))
@@ -357,7 +360,7 @@ n_opts <- 100
 plot_df <- multiple_map(x_rand, r_opts, n_opts)
 ```
 
-```{r, fig.width=9, fig.height=6}
+```{r, fig.width=9, fig.height=6, eval=F}
 # Vary r
 plot_df %>%
   plot_ly(x = ~generation,
