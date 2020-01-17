@@ -348,9 +348,17 @@ Make a stripped back version of the real ap just for the blog.
 
 Better to have the text be in the blog itself. 
 
-<iframe width="1200" height="900" scrolling="no" frameborder="no" align="left" src="https://mitchelfruin.shinyapps.io/log_map/"> </iframe>
+To understand its properties better we'll compare 3 different simulated populations.
 
-Can choose 1 by itself or 2 to compare.
+<iframe width="900" height="700" scrolling="no" frameborder="no" align="left" src="https://mitchelfruin.shinyapps.io/log_map_lite/"> </iframe>
+
+Use the interactive graph that appears to build intuitions about non-linearity.
+
+* Click the play button to see how the simulations of your 3 populations change as the value of a changes.
+* Shift the slider manually to see how all the populations transition from steady state equilibria, to periodic cycles, to chaos.
+* Hover over the lines to see what value a particular population has in a given generation for that value of $a$.
+* Pick starting values close to one another and see how for some values of a the populations end up looking very different.
+
 
 Then click play and watch as we move through different values of the tuning parameter, $a$. Regardless of which starting value(s) you choose, you'll see stability at first with the population converging on a single equilibrium value, then there'll be a transition to 2-period cycling with the population switching between two values, next 4-period cycles, 8-period cycles, and so on, and eventually chaos. 
 

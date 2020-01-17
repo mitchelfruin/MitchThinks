@@ -99,9 +99,16 @@ x_{t+1} &amp;= ax_t(1-x_t)
 <p>So, I made a shiny app that allows you to choose the starting x point for the population.</p>
 <p>Make a stripped back version of the real ap just for the blog.</p>
 <p>Better to have the text be in the blog itself.</p>
-<iframe width="1200" height="900" scrolling="no" frameborder="no" align="left" src="https://mitchelfruin.shinyapps.io/log_map/">
+<p>To understand its properties better we’ll compare 3 different simulated populations.</p>
+<iframe width="900" height="700" scrolling="no" frameborder="no" align="left" src="https://mitchelfruin.shinyapps.io/log_map_lite/">
 </iframe>
-<p>Can choose 1 by itself or 2 to compare.</p>
+<p>Use the interactive graph that appears to build intuitions about non-linearity.</p>
+<ul>
+<li>Click the play button to see how the simulations of your 3 populations change as the value of a changes.</li>
+<li>Shift the slider manually to see how all the populations transition from steady state equilibria, to periodic cycles, to chaos.</li>
+<li>Hover over the lines to see what value a particular population has in a given generation for that value of <span class="math inline">\(a\)</span>.</li>
+<li>Pick starting values close to one another and see how for some values of a the populations end up looking very different.</li>
+</ul>
 <p>Then click play and watch as we move through different values of the tuning parameter, <span class="math inline">\(a\)</span>. Regardless of which starting value(s) you choose, you’ll see stability at first with the population converging on a single equilibrium value, then there’ll be a transition to 2-period cycling with the population switching between two values, next 4-period cycles, 8-period cycles, and so on, and eventually chaos.</p>
 <p>Question: Why do mirrors around 0.5 behave the same?</p>
 </div>
