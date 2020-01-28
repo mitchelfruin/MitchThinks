@@ -1,0 +1,46 @@
+---
+title: "Infinite Powers: Discovering things 2000 years late."
+author: "Mitchel Fruin"
+date: "2020-01-28"
+description: "Using examples from Strogatz's Infinite Powers to add whys to the whats we were taught in maths classes."
+tags: ["Book Summary"]
+slug: infinite_powers
+draft: true
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+
+```{r setup, include=FALSE}
+# RMarkdown
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center",
+                      fig.width = 8.09,
+                      fig.height = 5)
+
+# Packages
+library(tidyverse)
+```
+
+Recap the things you found most interesting. 
+
+Idea is that these are things you were just taught to know and never to understand. Want to add why things are true to everyone's knowledge that they are. 
+
+# The area of a circle
+
+# $\pi$
+
+# e

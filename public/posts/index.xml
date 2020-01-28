@@ -6,10 +6,21 @@
     <description>Recent content in Posts on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Infinite Powers: Discovering things 2000 years late.</title>
+      <link>/posts/infinite_powers/</link>
+      <pubDate>Tue, 28 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/infinite_powers/</guid>
+      <description>  1 The area of a circle 2 \(\pi\) 3 e   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Recap the things you found most interesting.
+Idea is that these are things you were just taught to know and never to understand. Want to add why things are true to everyone’s knowledge that they are.
+1 The area of a circle  2 \(\pi\)  3 e  </description>
+    </item>
     
     <item>
       <title>Slow thinking about small samples.</title>
