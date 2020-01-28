@@ -37,9 +37,9 @@ library(plotly)
 library(shiny)
 ```
 
-Most non-fiction books teach you **what** to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you 'explain' why the Bank of England cut interest rates. Every now and then, however, you read a book that changes **how** you think, one that helps you see things beyond its few hundred pages slightly differently. That's what James Gleick's *Chaos* did for me. It's fantastic, I wish I'd read it much, much sooner, and anyone even remotely interested in science should make it their next book.
+Most non-fiction books teach you **what** to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you 'explain' why the Bank of England cut interest rates. Every now and then, however, you read a book that changes **how** you think, one that helps you see things beyond its few hundred pages slightly differently. That's what James Gleick's *Chaos* did for me. It's fantastic, I wish I'd read it much, much sooner, and anyone even remotely interested in science should make it the next thing they pick up.
 
-Instead of butchering a full explanation of chaos, I thought I'd run through an example on my home turf. Chapter 3 discusses chaos in the context of population biology by, in large part, recounting a [1976 paper](http://abel.harvard.edu/archive/118r_spring_05/docs/may.pdf) from Robert May. I heard a guest lecture from him once, describing how studying complex ecosystems had helped him advise on the re-design of the banking system. It all went a fair distance over my head at the time. But, I think a combination of recognising his name, familiarity with population biology, and the memory of faculty members' deference for May, made the chapter stick in my mind. Stickiest of all was Gleick's summary of May's argument:
+Instead of butchering a full explanation of chaos, I thought I'd run through an example on my home turf. Chapter 3 of the book discusses chaos in the context of population biology by, in large part, recounting a [1976 paper](http://abel.harvard.edu/archive/118r_spring_05/docs/may.pdf) from Robert May. I heard a guest lecture from him once, describing how studying complex ecosystems had helped him advise on the re-design of the banking system. It went a fair distance over my head at the time. But, I think a combination of recognising his name, familiarity with population biology, and the memory of faculty members' deference for May, made the chapter stick in my mind. Stickiest of all was Gleick's summary of May's argument:
 
 > The world would be a better place... if every young student were given a pocket calculator and encouraged to play with the logistic difference equation. That simple calculation... could counter the distorted sense of the world's possibilities that comes from a standard scientific education.
 
@@ -47,15 +47,15 @@ Well, R is just a fancy pocket calculator. So, we best start playing.
 
 # The logistic map
 
-Biologists often explore how a group of individuals of a single species changes over time (a 'population's dynamics'). The simplest way to do this is to consider time as being discrete. This means thinking in terms of the changes from one chunk of time (day, week, season, year) to the next, rather than in continuous underlying time. 
+Biologists often explore how a group of individuals from the same species changes over time (a 'population's dynamics'). The simplest way to do this is to consider time as being discrete. This means thinking in terms of the changes from one chunk of time (day, week, season, year) to the next, rather than in continuous underlying time. 
 
-This simplification actually describes species with non-overlapping generations accurately. For example, EXAMPLE. In this case, 'studying dynamics' often means finding the mathemetical rules that tell us what we should expect the total number of individuals in the next generation, $N_{t+1}$, to be given how many individuals there are in this generation, $N_t$. This post does include some equations but just think of them all in this light, they're just rules telling you how many EXAMPLE you'll have next year if this year you've got X.
+This simplification actually describes species with non-overlapping generations fairly accurately. For example, EXAMPLE. In this case, 'studying dynamics' often means finding the mathemetical rules that tell us what we should expect the total number of individuals in the next generation, $N_{t+1}$, to be, given how many individuals there are in this generation, $N_t$. This post does include some equations, but just think of them all in this light, they're just rules telling you how many EXAMPLE you'll have next year if this year you've got X.
 
 So, say we're looking for an equation describing a population's dynamics from one year to the next. The simplest option might be to say that next year's population depends only on this year's and nothing else. This would give us the following equation:
 
 $$N_{t+1} = rN_t$$
 
-which says that the number of individuals next year, $N_{t+1}$, is just the number of individuals this year, $N_t$, multiplied by some parameter that encapsulates the growth rate, $r$. The growth rate $r$ could be influenced by the climate, the species life-history evolution, or anything else you can think of. Just for clarity, if you have 100 individuals this year and $r=0.5$, then next year you'll have 50.   
+which says that the number of individuals next year, $N_{t+1}$, is just the number of individuals this year, $N_t$, multiplied by some parameter that encapsulates the growth rate, $r$. The growth rate $r$ could be influenced by the climate, the species' life-history evolution, or anything else you can think of. Just for clarity, if you have 100 individuals this year and $r=0.5$, then next year you'll have 50, the year after you'll have 25, and so on.   
 
 Let's explore three populations starting with 100 individuals which have different growth rates. 
 
@@ -144,65 +144,33 @@ This illustrates a general pattern:
 
 * When $r < 1$, population goes to extinction.
 * When $r = 1$, population is constant over time.
-* When $r > 1$, population grows exponentially.  
+* When $r > 1$, population grows without limit.  
 
-A prediction of exponential growth is normally a good sign that your model is a little too unrealistic. If we want a little more realism, then we can add in what population biologists call 'density dependence' and what mathematicians call 'non-linearity'. This gives us an equation of the form:
+Our simple model is giving us 3 pretty unrealistic predictions. Either the population ceases to exist, never changes, or takes over the entire world. So, we need to inject a little more realism. To do so we can add in what population biologists call 'density dependence' and what mathematicians call 'non-linearity'. 
+
+'Density dependence' encapsulates the idea that often a population's growth rate depends on the number of individuals in that population. When the population is small, resources are abundant and the population grows as well-fed individuals reproduce. But, when the population is large, resources are scarce and the population shrinks as starving individuals die before reproducing. 
+
+To add density dependence into our model, we need the number of individuals this year to have both a positive and negative effect on next year's population. One example is an equation of the form:
 
 $$N_{t+1} = N_t(a - bN_{t})$$
 
-In his paper May tells us that we can use a transformation to make the equation simpler to work with. He defines what I'll call the *population proportion* in generation $t$ as
+In his paper May tells us that we can use a transformation to make this equation simpler to work with. He defines what I'll call the *population proportion* in generation $t$ as
 
 $$x_t = \frac{bN_t}{a}$$
 
 $x_t$ is the population in generation $t$ as a fraction of the maximum possible population. So, if $x_t = 0.5$, then the current population is half as big as the biggest one the environment could support. 
 
-But where does this helpful substitution come from? (probs don't include this)
-
-$$\begin{aligned}
-N_{t+1} &= aN_t - bN_{t}^2 \\
-\frac{\delta N_{t+1}}{\delta N_{t}} &= a - 2bN_t \\
-2bN_t &= a \\
-N_t &= \frac{a}{2b} \\
-\end{aligned}$$
-
-We can re-write the substitution in terms of $N$, 
+We can re-write this in terms of $x$, 
 
 $$N_t = \frac{ax_t}{b}$$
 
-and then substitute it into our equation:
+and then substitute it into our equation. After some algebra we get:
 
-$$\begin{aligned}
-N_{t+1} &= aN_t - bN_{t}^2 \\
-\frac{ax_{t+1}}{b} &= a\frac{ax_t}{b} - b(\frac{ax_t}{b})^2 \\
-\frac{ax_{t+1}}{b} &= \frac{a^2x_t}{b} - \frac{a^2x_t^2}{b} \\
-ax_{t+1} &= a^2x_t - a^2x_t^2 \\
-x_{t+1} &= ax_t - ax_t^2 \\
-x_{t+1} &= ax_t(1-x_t)
-\end{aligned}$$
+$$x_{t+1} = ax_t(1-x_t)$$
 
-What we end up with is **the logistic map**: an equation for the population proportion in generation t+1 as a function of the population proportion in generation t. 
+This is the logistic difference equation. It's also known as the **the logistic map** because it's an equation that maps the population proportion in generation t to the population proportion in generation t+1. 
 
-```{r}
-log_map_df <- expand.grid(a = c(seq(0.5, 4.5, 1)), x = c(seq(0, 1, 0.01))) %>%
-  mutate(y = a*x*(1-x),
-         a = as.factor(a))
-
-log_map_df %>%
-  ggplot(aes(x = x, y = y, col = a)) +
-  geom_line() +
-  scale_x_continuous("Pop. prop. at t") +
-  scale_y_continuous("Pop.\nprop\nat t+1", breaks = c(seq(0, 1.25, 0.25))) +
-  scale_color_viridis_d("a") +
-  theme_classic() +
-  theme(panel.grid.major = element_line(),
-        axis.title.y = element_text(angle = 0, vjust = 0.5))
-```
-
-Make clear the distinction between linear and non-linear dynamics. It's not just about having a curved line, e.g. exponential growth is linear dynamics.
-
-Play through the maths slowly. 
-
-# Summarising complexity
+# Visualising complexity
 
 ```{r}
 # Single input function
@@ -270,10 +238,16 @@ multiple_map <- function(x_opts, a_opts, n_opts) {
 }
 ```
 
-Stable point simulation, a = 2
+## Stable equilibrium
+
+For some values of $a$ SAY WHICH VALUES the system described by the logistic map converges on a stable equilibrium. 
+
+To see what this process looks like over time we can simulate populations in which $a = 2$ and see what happens.
+
+We'll simulate 100 generations for 3 different populations each with a random starting population proportion.
 
 ```{r}
-stable_sim <- multiple_map(x_opts = c(0.01, 0.2, 0.4, 0.6, 0.8, 0.99),
+stable_sim <- multiple_map(x_opts = round(runif(3), 3),
                            a_opts = 2,
                            n_opts = 100)
 
@@ -290,12 +264,42 @@ stable_sim %>%
         axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
+We see that regardless of the starting point, if $a=2$, then the population converges on a stable equilibrium proportion of $0.5$. 
+
+To understand why this happens, let's visualise the logistic map function itself when $a=2$.
+
+```{r}
+log_map_df <- expand.grid(a = 2, x = c(seq(0, 1, 0.01))) %>%
+  mutate(y = a*x*(1-x), a = as.factor(a))
+
+log_map_df %>%
+  ggplot(aes(x = x, y = y, col = a)) +
+  geom_line() +
+  scale_x_continuous("Population proportion at t") +
+  scale_y_continuous("Population\nproportion\nat t+1",
+                     breaks = c(seq(0, 1.25, 0.25))) +
+  scale_color_viridis_d("a") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))
+```
+
+The graph neatly illustrates the idea of density dependence that I described verbally before.
+
+So now imagine starting anywhere on the x-axis, you'll always end up at 0.5. 
+
+Graph with arrows?
+
+## Period doubling
+
+For other values of $a$, the logistic map exhibits cycles. 
+
+Do one for 2, 4, 8
+
 Stable cycle simulation, a = 3
 
 ```{r}
-cycle_sim <- multiple_map(x_opts = c(0.01, 0.2, 0.4, 0.6, 0.8, 0.99),
-                          a_opts = 3,
-                          n_opts = 100)
+cycle_sim <- multiple_map(x_opts = round(runif(3), 3), a_opts = 3, n_opts = 100)
 
 cycle_sim %>%
   ggplot(aes(x = generation, y = x, col = start_x)) +
@@ -310,10 +314,14 @@ cycle_sim %>%
         axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
+## Chaos
+
+Now for the really interesting part. For some values of $a$, the logistic map is **chaotic**. This means it shows no pattern at all. NEED PROPER DEFINITION HERE. 
+
 Chaos simulation, a = 3.65
 
 ```{r}
-chaos_sim <- multiple_map(x_opts = c(0.49, 0.5, 0.51),
+chaos_sim <- multiple_map(x_opts = round(runif(3), 3),
                           a_opts = 3.65,
                           n_opts = 100)
 
@@ -330,77 +338,46 @@ chaos_sim %>%
         axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
-But, how can we summarise this behaviour in a single graph. Make bifurcation diagram from May's paper.
+## Bifurcation diagram
 
-Can you make bifurcation diagram interactive so the user can zoom in?
+May summarised all of the behaviour we've seen so far into a single graph called a bifurcation diagram. 
+
+INSERT GRAPH.
+
+The graph is beautiful but, I think because it's showing long run outcomes as a function of a tuning parameter rather than direct outcomes, I found it very counter-intuitive when I first saw it.
+
+Fortunately, there's been more than 40 years' worth of technological advancement since May's paper. This means that even a no-name chump can build an interactive tool that hopefully makes May's point a little easier to grasp.
 
 # Building non-linear intuitions
 
-Bifurcation diagram is not intuitive at first glance because it's showing long run outcomes as a function of a tuning parameter rather than direct outcomes. Fortunately, there's been more than 40 years' worth of technological advancement since May's paper. This means that even a no-name chump who's not a Baron can build an interactive graph that helps make May's point a little easier to grasp.    
+I think that a good way to build intuition about a problem is to tinker with it  and see what happens. So, I made a shiny app that helps you to play around with the logistic map. 
 
-Walk through step by step what they can do with the graph.
+The idea is to compare 3 different imaginary populations. 
 
-Best way to build intuition is to do it yourself. 
+* You choose the starting point for each population.
+* You choose how many generations to simulate.
+* You choose the values of $a$ to compare across.
 
-So, I made a shiny app that allows you to choose the starting x point for the population.
+<iframe width="1100" height="700" scrolling="no" frameborder="no" align="left" src="https://mitchelfruin.shinyapps.io/log_map_lite/"> </iframe>
 
-Make a stripped back version of the real ap just for the blog. 
+Then, you can use the interactive graph that appears to build intuitions about non-linearity.
 
-Better to have the text be in the blog itself. 
-
-To understand its properties better we'll compare 3 different simulated populations.
-
-<iframe width="900" height="700" scrolling="no" frameborder="no" align="left" src="https://mitchelfruin.shinyapps.io/log_map_lite/"> </iframe>
-
-Use the interactive graph that appears to build intuitions about non-linearity.
-
-* Click the play button to see how the simulations of your 3 populations change as the value of a changes.
-* Shift the slider manually to see how all the populations transition from steady state equilibria, to periodic cycles, to chaos.
-* Hover over the lines to see what value a particular population has in a given generation for that value of $a$.
-* Pick starting values close to one another and see how for some values of a the populations end up looking very different.
-
-
-Then click play and watch as we move through different values of the tuning parameter, $a$. Regardless of which starting value(s) you choose, you'll see stability at first with the population converging on a single equilibrium value, then there'll be a transition to 2-period cycling with the population switching between two values, next 4-period cycles, 8-period cycles, and so on, and eventually chaos. 
-
-```{r, eval = F}
-# Choose input options
-x_rand <- round(runif(3), 2)
-r_opts <- c(seq(2, 4, 0.05))
-n_opts <- 100
-
-# Use function
-plot_df <- multiple_map(x_rand, r_opts, n_opts)
-```
-
-```{r, fig.width=9, fig.height=6, eval=F}
-# Vary r
-plot_df %>%
-  plot_ly(x = ~generation,
-          y = ~x,
-          color = ~start_x,
-          hoverinfo = "text+name",
-          text = ~paste("Generation:", generation, "<br>",
-                        "Population:", round(x, 4)),
-          frame = ~a) %>%
-  add_lines() %>%
-  animation_opts(frame = 800,
-                 transition = 100,
-                 easing = "linear") %>%
-  animation_slider(currentvalue = list(prefix = "a = ",
-                                       color = toRGB("black"),
-                                       size = 25),
-                   hide = FALSE) %>%
-  layout(xaxis = list(title = "Generation"),
-         yaxis = list(title = "Pop. Prop."))
-```
-
-Question: Why do mirrors around 0.5 behave the same?
+* Click the play button to see how the simulations of your 3 populations change as the value of $a$ changes. ADD THE VALUES OF A
+    + Regardless of which starting values you choose, you'll see the same process we worked through in the previous section. 
+    + First, there's stability with the population converging on a single equilibrium value
+    + Then, there's a transition to 2-period cycling with the population switching between two values, next 4-period cycling, 8-period cycling, and so on.
+    + Eventually, there's chaos.
+* You can shift the slider manually to see how the populations transition more slowly.
+* You can hover over the lines to see what value a particular population has in a given generation for that value of $a$.
+* Try picking starting values close to one another and see how for the chaotic values of $a$ the populations end up looking very different.
 
 # Studying non-elephant animals
 
-In the conclusion of his paper, May argues that non-linearity should be taught, and taught early. As he saw it, learning to extend linear mathemetics with Fourier transforms, orthogonal functions, and regression techniques, misleads scientists about the world they're trying to understand. "The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems.", he wrote. "Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences."
+In the conclusion of his paper, May argues that non-linearity should be taught, and taught early. As he saw it, learning to extend linear mathemetics with Fourier transforms, orthogonal functions, and regression techniques, misleads scientists about the world they're trying to understand.
 
-The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from *Chaos* which comes from the mathematician Stanislaw Ulam. He quipped that "to call the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'". That is, it's defining an entire subject in contrast to a niche class. 
+> "The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems... Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences."
+
+The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from *Chaos* which comes from the mathematician Stanislaw Ulam. He quipped that "to call the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'". That is, it's defining a the majority of a subject in contrast to a niche class. 
 
 The fact that vast swathes of science emphasise linearity has important implications. Something about people thinking in immediate causes from misunderstanding economics book. Poor at incorporating feedback loops or interative thinking. May's final sentence from over 40 years ago still rings true:
 

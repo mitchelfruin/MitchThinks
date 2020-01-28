@@ -17,7 +17,12 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#the-logistic-map"><span class="toc-section-number">1</span> The logistic map</a></li>
-<li><a href="#summarising-complexity"><span class="toc-section-number">2</span> Summarising complexity</a></li>
+<li><a href="#visualising-complexity"><span class="toc-section-number">2</span> Visualising complexity</a><ul>
+<li><a href="#stable-equilibrium"><span class="toc-section-number">2.1</span> Stable equilibrium</a></li>
+<li><a href="#period-doubling"><span class="toc-section-number">2.2</span> Period doubling</a></li>
+<li><a href="#chaos"><span class="toc-section-number">2.3</span> Chaos</a></li>
+<li><a href="#bifurcation-diagram"><span class="toc-section-number">2.4</span> Bifurcation diagram</a></li>
+</ul></li>
 <li><a href="#building-non-linear-intuitions"><span class="toc-section-number">3</span> Building non-linear intuitions</a></li>
 <li><a href="#studying-non-elephant-animals"><span class="toc-section-number">4</span> Studying non-elephant animals</a></li>
 </ul>
@@ -31,86 +36,100 @@ div#TOC li {
     background-position:0; 
 }
 </style>
-<p>Most non-fiction books teach you <strong>what</strong> to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you ‘explain’ why the Bank of England cut interest rates. Every now and then, however, you read a book that changes <strong>how</strong> you think, one that helps you see things beyond its few hundred pages slightly differently. That’s what James Gleick’s <em>Chaos</em> did for me. It’s fantastic, I wish I’d read it much, much sooner, and anyone even remotely interested in science should make it their next book.</p>
-<p>Instead of butchering a full explanation of chaos, I thought I’d run through an example on my home turf. Chapter 3 discusses chaos in the context of population biology by, in large part, recounting a <a href="http://abel.harvard.edu/archive/118r_spring_05/docs/may.pdf">1976 paper</a> from Robert May. I heard a guest lecture from him once, describing how studying complex ecosystems had helped him advise on the re-design of the banking system. It all went a fair distance over my head at the time. But, I think a combination of recognising his name, familiarity with population biology, and the memory of faculty members’ deference for May, made the chapter stick in my mind. Stickiest of all was Gleick’s summary of May’s argument:</p>
+<p>Most non-fiction books teach you <strong>what</strong> to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you ‘explain’ why the Bank of England cut interest rates. Every now and then, however, you read a book that changes <strong>how</strong> you think, one that helps you see things beyond its few hundred pages slightly differently. That’s what James Gleick’s <em>Chaos</em> did for me. It’s fantastic, I wish I’d read it much, much sooner, and anyone even remotely interested in science should make it the next thing they pick up.</p>
+<p>Instead of butchering a full explanation of chaos, I thought I’d run through an example on my home turf. Chapter 3 of the book discusses chaos in the context of population biology by, in large part, recounting a <a href="http://abel.harvard.edu/archive/118r_spring_05/docs/may.pdf">1976 paper</a> from Robert May. I heard a guest lecture from him once, describing how studying complex ecosystems had helped him advise on the re-design of the banking system. It went a fair distance over my head at the time. But, I think a combination of recognising his name, familiarity with population biology, and the memory of faculty members’ deference for May, made the chapter stick in my mind. Stickiest of all was Gleick’s summary of May’s argument:</p>
 <blockquote>
 <p>The world would be a better place… if every young student were given a pocket calculator and encouraged to play with the logistic difference equation. That simple calculation… could counter the distorted sense of the world’s possibilities that comes from a standard scientific education.</p>
 </blockquote>
 <p>Well, R is just a fancy pocket calculator. So, we best start playing.</p>
 <div id="the-logistic-map" class="section level1">
 <h1><span class="header-section-number">1</span> The logistic map</h1>
-<p>Biologists often explore how a group of individuals of a single species changes over time (a ‘population’s dynamics’). The simplest way to do this is to consider time as being discrete. This means thinking in terms of the changes from one chunk of time (day, week, season, year) to the next, rather than in continuous underlying time.</p>
-<p>This simplification actually describes species with non-overlapping generations accurately. For example, EXAMPLE. In this case, ‘studying dynamics’ often means finding the mathemetical rules that tell us what we should expect the total number of individuals in the next generation, <span class="math inline">\(N_{t+1}\)</span>, to be given how many individuals there are in this generation, <span class="math inline">\(N_t\)</span>. This post does include some equations but just think of them all in this light, they’re just rules telling you how many EXAMPLE you’ll have next year if this year you’ve got X.</p>
+<p>Biologists often explore how a group of individuals from the same species changes over time (a ‘population’s dynamics’). The simplest way to do this is to consider time as being discrete. This means thinking in terms of the changes from one chunk of time (day, week, season, year) to the next, rather than in continuous underlying time.</p>
+<p>This simplification actually describes species with non-overlapping generations fairly accurately. For example, EXAMPLE. In this case, ‘studying dynamics’ often means finding the mathemetical rules that tell us what we should expect the total number of individuals in the next generation, <span class="math inline">\(N_{t+1}\)</span>, to be, given how many individuals there are in this generation, <span class="math inline">\(N_t\)</span>. This post does include some equations, but just think of them all in this light, they’re just rules telling you how many EXAMPLE you’ll have next year if this year you’ve got X.</p>
 <p>So, say we’re looking for an equation describing a population’s dynamics from one year to the next. The simplest option might be to say that next year’s population depends only on this year’s and nothing else. This would give us the following equation:</p>
 <p><span class="math display">\[N_{t+1} = rN_t\]</span></p>
-<p>which says that the number of individuals next year, <span class="math inline">\(N_{t+1}\)</span>, is just the number of individuals this year, <span class="math inline">\(N_t\)</span>, multiplied by some parameter that encapsulates the growth rate, <span class="math inline">\(r\)</span>. The growth rate <span class="math inline">\(r\)</span> could be influenced by the climate, the species life-history evolution, or anything else you can think of. Just for clarity, if you have 100 individuals this year and <span class="math inline">\(r=0.5\)</span>, then next year you’ll have 50.</p>
+<p>which says that the number of individuals next year, <span class="math inline">\(N_{t+1}\)</span>, is just the number of individuals this year, <span class="math inline">\(N_t\)</span>, multiplied by some parameter that encapsulates the growth rate, <span class="math inline">\(r\)</span>. The growth rate <span class="math inline">\(r\)</span> could be influenced by the climate, the species’ life-history evolution, or anything else you can think of. Just for clarity, if you have 100 individuals this year and <span class="math inline">\(r=0.5\)</span>, then next year you’ll have 50, the year after you’ll have 25, and so on.</p>
 <p>Let’s explore three populations starting with 100 individuals which have different growth rates.</p>
 <p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-2-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>This illustrates a general pattern:</p>
 <ul>
 <li>When <span class="math inline">\(r &lt; 1\)</span>, population goes to extinction.</li>
 <li>When <span class="math inline">\(r = 1\)</span>, population is constant over time.</li>
-<li>When <span class="math inline">\(r &gt; 1\)</span>, population grows exponentially.</li>
+<li>When <span class="math inline">\(r &gt; 1\)</span>, population grows without limit.</li>
 </ul>
-<p>A prediction of exponential growth is normally a good sign that your model is a little too unrealistic. If we want a little more realism, then we can add in what population biologists call ‘density dependence’ and what mathematicians call ‘non-linearity’. This gives us an equation of the form:</p>
+<p>Our simple model is giving us 3 pretty unrealistic predictions. Either the population ceases to exist, never changes, or takes over the entire world. So, we need to inject a little more realism. To do so we can add in what population biologists call ‘density dependence’ and what mathematicians call ‘non-linearity’.</p>
+<p>‘Density dependence’ encapsulates the idea that often a population’s growth rate depends on the number of individuals in that population. When the population is small, resources are abundant and the population grows as well-fed individuals reproduce. But, when the population is large, resources are scarce and the population shrinks as starving individuals die before reproducing.</p>
+<p>To add density dependence into our model, we need the number of individuals this year to have both a positive and negative effect on next year’s population. One example is an equation of the form:</p>
 <p><span class="math display">\[N_{t+1} = N_t(a - bN_{t})\]</span></p>
-<p>In his paper May tells us that we can use a transformation to make the equation simpler to work with. He defines what I’ll call the <em>population proportion</em> in generation <span class="math inline">\(t\)</span> as</p>
+<p>In his paper May tells us that we can use a transformation to make this equation simpler to work with. He defines what I’ll call the <em>population proportion</em> in generation <span class="math inline">\(t\)</span> as</p>
 <p><span class="math display">\[x_t = \frac{bN_t}{a}\]</span></p>
 <p><span class="math inline">\(x_t\)</span> is the population in generation <span class="math inline">\(t\)</span> as a fraction of the maximum possible population. So, if <span class="math inline">\(x_t = 0.5\)</span>, then the current population is half as big as the biggest one the environment could support.</p>
-<p>But where does this helpful substitution come from? (probs don’t include this)</p>
-<p><span class="math display">\[\begin{aligned}
-N_{t+1} &amp;= aN_t - bN_{t}^2 \\
-\frac{\delta N_{t+1}}{\delta N_{t}} &amp;= a - 2bN_t \\
-2bN_t &amp;= a \\
-N_t &amp;= \frac{a}{2b} \\
-\end{aligned}\]</span></p>
-<p>We can re-write the substitution in terms of <span class="math inline">\(N\)</span>,</p>
+<p>We can re-write this in terms of <span class="math inline">\(x\)</span>,</p>
 <p><span class="math display">\[N_t = \frac{ax_t}{b}\]</span></p>
-<p>and then substitute it into our equation:</p>
-<p><span class="math display">\[\begin{aligned}
-N_{t+1} &amp;= aN_t - bN_{t}^2 \\
-\frac{ax_{t+1}}{b} &amp;= a\frac{ax_t}{b} - b(\frac{ax_t}{b})^2 \\
-\frac{ax_{t+1}}{b} &amp;= \frac{a^2x_t}{b} - \frac{a^2x_t^2}{b} \\
-ax_{t+1} &amp;= a^2x_t - a^2x_t^2 \\
-x_{t+1} &amp;= ax_t - ax_t^2 \\
-x_{t+1} &amp;= ax_t(1-x_t)
-\end{aligned}\]</span></p>
-<p>What we end up with is <strong>the logistic map</strong>: an equation for the population proportion in generation t+1 as a function of the population proportion in generation t.</p>
-<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-3-1.png" width="776.64" style="display: block; margin: auto;" /></p>
-<p>Make clear the distinction between linear and non-linear dynamics. It’s not just about having a curved line, e.g. exponential growth is linear dynamics.</p>
-<p>Play through the maths slowly.</p>
+<p>and then substitute it into our equation. After some algebra we get:</p>
+<p><span class="math display">\[x_{t+1} = ax_t(1-x_t)\]</span></p>
+<p>This is the logistic difference equation. It’s also known as the <strong>the logistic map</strong> because it’s an equation that maps the population proportion in generation t to the population proportion in generation t+1.</p>
 </div>
-<div id="summarising-complexity" class="section level1">
-<h1><span class="header-section-number">2</span> Summarising complexity</h1>
-<p>Stable point simulation, a = 2</p>
+<div id="visualising-complexity" class="section level1">
+<h1><span class="header-section-number">2</span> Visualising complexity</h1>
+<div id="stable-equilibrium" class="section level2">
+<h2><span class="header-section-number">2.1</span> Stable equilibrium</h2>
+<p>For some values of <span class="math inline">\(a\)</span> SAY WHICH VALUES the system described by the logistic map converges on a stable equilibrium.</p>
+<p>To see what this process looks like over time we can simulate populations in which <span class="math inline">\(a = 2\)</span> and see what happens.</p>
+<p>We’ll simulate 100 generations for 3 different populations each with a random starting population proportion.</p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-4-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>We see that regardless of the starting point, if <span class="math inline">\(a=2\)</span>, then the population converges on a stable equilibrium proportion of <span class="math inline">\(0.5\)</span>.</p>
+<p>To understand why this happens, let’s visualise the logistic map function itself when <span class="math inline">\(a=2\)</span>.</p>
 <p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-5-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>The graph neatly illustrates the idea of density dependence that I described verbally before.</p>
+<p>So now imagine starting anywhere on the x-axis, you’ll always end up at 0.5.</p>
+<p>Graph with arrows?</p>
+</div>
+<div id="period-doubling" class="section level2">
+<h2><span class="header-section-number">2.2</span> Period doubling</h2>
+<p>For other values of <span class="math inline">\(a\)</span>, the logistic map exhibits cycles.</p>
+<p>Do one for 2, 4, 8</p>
 <p>Stable cycle simulation, a = 3</p>
 <p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-6-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+</div>
+<div id="chaos" class="section level2">
+<h2><span class="header-section-number">2.3</span> Chaos</h2>
+<p>Now for the really interesting part. For some values of <span class="math inline">\(a\)</span>, the logistic map is <strong>chaotic</strong>. This means it shows no pattern at all. NEED PROPER DEFINITION HERE.</p>
 <p>Chaos simulation, a = 3.65</p>
 <p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-7-1.png" width="776.64" style="display: block; margin: auto;" /></p>
-<p>But, how can we summarise this behaviour in a single graph. Make bifurcation diagram from May’s paper.</p>
-<p>Can you make bifurcation diagram interactive so the user can zoom in?</p>
+</div>
+<div id="bifurcation-diagram" class="section level2">
+<h2><span class="header-section-number">2.4</span> Bifurcation diagram</h2>
+<p>May summarised all of the behaviour we’ve seen so far into a single graph called a bifurcation diagram.</p>
+<p>INSERT GRAPH.</p>
+<p>The graph is beautiful but, I think because it’s showing long run outcomes as a function of a tuning parameter rather than direct outcomes, I found it very counter-intuitive when I first saw it.</p>
+<p>Fortunately, there’s been more than 40 years’ worth of technological advancement since May’s paper. This means that even a no-name chump can build an interactive tool that hopefully makes May’s point a little easier to grasp.</p>
+</div>
 </div>
 <div id="building-non-linear-intuitions" class="section level1">
 <h1><span class="header-section-number">3</span> Building non-linear intuitions</h1>
-<p>Bifurcation diagram is not intuitive at first glance because it’s showing long run outcomes as a function of a tuning parameter rather than direct outcomes. Fortunately, there’s been more than 40 years’ worth of technological advancement since May’s paper. This means that even a no-name chump who’s not a Baron can build an interactive graph that helps make May’s point a little easier to grasp.</p>
-<p>Walk through step by step what they can do with the graph.</p>
-<p>Best way to build intuition is to do it yourself.</p>
-<p>So, I made a shiny app that allows you to choose the starting x point for the population.</p>
-<p>Make a stripped back version of the real ap just for the blog.</p>
-<p>Better to have the text be in the blog itself.</p>
-<p>To understand its properties better we’ll compare 3 different simulated populations.</p>
-<iframe width="900" height="700" scrolling="no" frameborder="no" align="left" src="https://mitchelfruin.shinyapps.io/log_map_lite/">
-</iframe>
-<p>Use the interactive graph that appears to build intuitions about non-linearity.</p>
+<p>I think that a good way to build intuition about a problem is to tinker with it and see what happens. So, I made a shiny app that helps you to play around with the logistic map.</p>
+<p>The idea is to compare 3 different imaginary populations.</p>
 <ul>
-<li>Click the play button to see how the simulations of your 3 populations change as the value of a changes.</li>
-<li>Shift the slider manually to see how all the populations transition from steady state equilibria, to periodic cycles, to chaos.</li>
-<li>Hover over the lines to see what value a particular population has in a given generation for that value of <span class="math inline">\(a\)</span>.</li>
-<li>Pick starting values close to one another and see how for some values of a the populations end up looking very different.</li>
+<li>You choose the starting point for each population.</li>
+<li>You choose how many generations to simulate.</li>
+<li>You choose the values of <span class="math inline">\(a\)</span> to compare across.</li>
 </ul>
-<p>Then click play and watch as we move through different values of the tuning parameter, <span class="math inline">\(a\)</span>. Regardless of which starting value(s) you choose, you’ll see stability at first with the population converging on a single equilibrium value, then there’ll be a transition to 2-period cycling with the population switching between two values, next 4-period cycles, 8-period cycles, and so on, and eventually chaos.</p>
-<p>Question: Why do mirrors around 0.5 behave the same?</p>
+<iframe width="1100" height="700" scrolling="no" frameborder="no" align="left" src="https://mitchelfruin.shinyapps.io/log_map_lite/">
+</iframe>
+<p>Then, you can use the interactive graph that appears to build intuitions about non-linearity.</p>
+<ul>
+<li>Click the play button to see how the simulations of your 3 populations change as the value of <span class="math inline">\(a\)</span> changes. ADD THE VALUES OF A
+<ul>
+<li>Regardless of which starting values you choose, you’ll see the same process we worked through in the previous section.</li>
+<li>First, there’s stability with the population converging on a single equilibrium value</li>
+<li>Then, there’s a transition to 2-period cycling with the population switching between two values, next 4-period cycling, 8-period cycling, and so on.</li>
+<li>Eventually, there’s chaos.</li>
+</ul></li>
+<li>You can shift the slider manually to see how the populations transition more slowly.</li>
+<li>You can hover over the lines to see what value a particular population has in a given generation for that value of <span class="math inline">\(a\)</span>.</li>
+<li>Try picking starting values close to one another and see how for the chaotic values of <span class="math inline">\(a\)</span> the populations end up looking very different.</li>
+</ul>
 </div>
 <div id="studying-non-elephant-animals" class="section level1">
 <h1><span class="header-section-number">4</span> Studying non-elephant animals</h1>
