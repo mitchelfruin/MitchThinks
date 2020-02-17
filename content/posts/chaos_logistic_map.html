@@ -74,33 +74,38 @@ div#TOC li {
 <h1><span class="header-section-number">2</span> Visualising complexity</h1>
 <div id="stable-equilibrium" class="section level2">
 <h2><span class="header-section-number">2.1</span> Stable equilibrium</h2>
-<p>For some values of <span class="math inline">\(a\)</span> SAY WHICH VALUES the system described by the logistic map converges on a stable equilibrium.</p>
-<p>To see what this process looks like over time we can simulate populations in which <span class="math inline">\(a = 2\)</span> and see what happens.</p>
-<p>We’ll simulate 100 generations for 3 different populations each with a random starting population proportion.</p>
+<p>When <span class="math inline">\(1&lt;a\leq3\)</span> the system described by the logistic map converges on a stable equilibrium population proportion of <span class="math inline">\(\frac{a-1}{a}\)</span>.</p>
+<p>For example, if we simulate a population with a random starting point in which <span class="math inline">\(a = 2\)</span>.</p>
 <p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-4-1.png" width="776.64" style="display: block; margin: auto;" /></p>
-<p>We see that regardless of the starting point, if <span class="math inline">\(a=2\)</span>, then the population converges on a stable equilibrium proportion of <span class="math inline">\(0.5\)</span>.</p>
+<p>We see that then the population converges on a stable equilibrium proportion.</p>
+<p><span class="math display">\[\frac{a-1}{a} = \frac{2-1}{2} = 0.5\]</span></p>
 <p>To understand why this happens, let’s visualise the logistic map function itself when <span class="math inline">\(a=2\)</span>.</p>
 <p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-5-1.png" width="776.64" style="display: block; margin: auto;" /></p>
-<p>The graph neatly illustrates the idea of density dependence that I described verbally before.</p>
-<p>So now imagine starting anywhere on the x-axis, you’ll always end up at 0.5.</p>
-<p>Graph with arrows?</p>
+<p>The graph neatly illustrates the idea of density dependence that I described verbally before. If the population proportion at time <span class="math inline">\(t\)</span> is higher than 0.5, then it will be decrease in value. If the population proportion at time <span class="math inline">\(t\)</span> is lower than 0.5, then it will increase in value. Anywhere you start on the on the x-axis the subsequent values will constrict into the the equilibrium value of 0.5.</p>
 </div>
 <div id="period-doubling" class="section level2">
 <h2><span class="header-section-number">2.2</span> Period doubling</h2>
-<p>For other values of <span class="math inline">\(a\)</span>, the logistic map exhibits cycles.</p>
-<p>Do one for 2, 4, 8</p>
-<p>Stable cycle simulation, a = 3</p>
+<p>As you increase <span class="math inline">\(a\)</span> past 3, the logistic map begins to exhibit cyclical behaviour.</p>
+<p>For <span class="math inline">\(3&lt;a\leq \approx3.45\)</span> we see stable 2-period cycles.</p>
+<p>E.g. <span class="math inline">\(a = 3.1\)</span>:</p>
 <p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-6-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>For <span class="math inline">\(\approx3.45&lt;a\leq \approx3.54\)</span> we see stable 4-period cycles.</p>
+<p>E.g. <span class="math inline">\(a = 3.5\)</span>:</p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-7-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>As you increase <span class="math inline">\(a\)</span> beyond 3.54 you see 8-period cycles, then 16, then 32 etc.</p>
+<p>E.g. Stable 8-peiod cycle simulation when <span class="math inline">\(a = 3.55\)</span>:</p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-8-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 </div>
 <div id="chaos" class="section level2">
 <h2><span class="header-section-number">2.3</span> Chaos</h2>
-<p>Now for the really interesting part. For some values of <span class="math inline">\(a\)</span>, the logistic map is <strong>chaotic</strong>. This means it shows no pattern at all. NEED PROPER DEFINITION HERE.</p>
-<p>Chaos simulation, a = 3.65</p>
-<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-7-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>Now for the really interesting part. When <span class="math inline">\(a \approx 3.56995\)</span>, the logistic map is <strong>chaotic</strong>. This means it exhibits aperiodic behaviour that depends sensitively on initial conditions. In english, that means there are no repeating patterns and two populations which start at values very close to one another end up with very different dynamics.</p>
+<p>E.g. <span class="math inline">\(a = 3.65\)</span>:</p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-9-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>Chaotic behaviour renders long-term prediction impossible.</p>
 </div>
 <div id="bifurcation-diagram" class="section level2">
 <h2><span class="header-section-number">2.4</span> Bifurcation diagram</h2>
-<p>May summarised all of the behaviour we’ve seen so far into a single graph called a bifurcation diagram.</p>
+<p>May summarised all of the behaviour we’ve seen so far into a single graph called a bifurcation diagram. It shows how the eventual population proportion changes with the value of <span class="math inline">\(a\)</span>.</p>
 <p>INSERT GRAPH.</p>
 <p>The graph is beautiful but, I think because it’s showing long run outcomes as a function of a tuning parameter rather than direct outcomes, I found it very counter-intuitive when I first saw it.</p>
 <p>Fortunately, there’s been more than 40 years’ worth of technological advancement since May’s paper. This means that even a no-name chump can build an interactive tool that hopefully makes May’s point a little easier to grasp.</p>
@@ -133,11 +138,14 @@ div#TOC li {
 </div>
 <div id="studying-non-elephant-animals" class="section level1">
 <h1><span class="header-section-number">4</span> Studying non-elephant animals</h1>
-<p>In the conclusion of his paper, May argues that non-linearity should be taught, and taught early. As he saw it, learning to extend linear mathemetics with Fourier transforms, orthogonal functions, and regression techniques, misleads scientists about the world they’re trying to understand. “The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems.”, he wrote. “Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences.”</p>
-<p>The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from <em>Chaos</em> which comes from the mathematician Stanislaw Ulam. He quipped that “to call the study of chaos ‘nonlinear science’ was like calling zoology ‘the study of nonelephant animals’”. That is, it’s defining an entire subject in contrast to a niche class.</p>
+<p>In the conclusion of his paper, May argues that non-linearity should be taught, and taught early. As he saw it, learning to extend linear mathemetics with Fourier transforms, orthogonal functions, and regression techniques, misleads scientists about the world they’re trying to understand.</p>
+<blockquote>
+<p>“The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems… Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences.”</p>
+</blockquote>
+<p>The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from <em>Chaos</em> which comes from the mathematician Stanislaw Ulam. He quipped that “to call the study of chaos ‘nonlinear science’ was like calling zoology ‘the study of nonelephant animals’”. That is, it’s defining a the majority of a subject in contrast to a niche class.</p>
 <p>The fact that vast swathes of science emphasise linearity has important implications. Something about people thinking in immediate causes from misunderstanding economics book. Poor at incorporating feedback loops or interative thinking. May’s final sentence from over 40 years ago still rings true:</p>
 <blockquote>
-<p>“Not only in research, but also in the everday world of politics and economics, we would all be better off if more people realized that simple nonlinear systems do not necessarily possess simple dynamical properties.”</p>
+<p>“Not only in research, but also in the everyday world of politics and economics, we would all be better off if more people realized that simple nonlinear systems do not necessarily possess simple dynamical properties.”</p>
 </blockquote>
 <p>Most things, especially the important things, are greater than the sum of their parts, and the hierarchical reductionism of much of science isn’t going to help us understand them even close to well enough.</p>
 </div>
