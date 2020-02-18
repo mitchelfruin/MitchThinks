@@ -6,13 +6,40 @@
     <description>Recent content in Tags on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Book summary</title>
+      <title>Complexity</title>
+      <link>/tags/complexity/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/complexity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interactive Visualisation</title>
+      <link>/tags/interactive-visualisation/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/interactive-visualisation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shiny</title>
+      <link>/tags/shiny/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Book Summary</title>
       <link>/tags/book-summary/</link>
       <pubDate>Tue, 28 Jan 2020 00:00:00 +0000</pubDate>
       
@@ -30,29 +57,11 @@
     </item>
     
     <item>
-      <title>Probability and Statistics</title>
+      <title>Probability and statistics</title>
       <link>/tags/probability-and-statistics/</link>
       <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/probability-and-statistics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Complexity</title>
-      <link>/tags/complexity/</link>
-      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/complexity/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Interactive Visualisation</title>
-      <link>/tags/interactive-visualisation/</link>
-      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/interactive-visualisation/</guid>
       <description></description>
     </item>
     

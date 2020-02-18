@@ -420,7 +420,7 @@ The idea is to compare 3 different imaginary populations.
 
 Then, you can use the interactive graph that appears to build intuitions about non-linearity.
 
-* Click the play button to see how the simulations of your 3 populations change as the value of $a$ changes. ADD THE VALUES OF A
+* Click the play button to see how the simulations of your 3 populations change as the value of $a$ changes.
     + Regardless of which starting values you choose, you'll see the same process we worked through in the previous section. 
     + First, there's stability with the population converging on a single equilibrium value
     + Then, there's a transition to 2-period cycling with the population switching between two values, next 4-period cycling, 8-period cycling, and so on.

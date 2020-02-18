@@ -1,3 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Mitchel Fruin">
+    <meta name="description" content="Mitchel Fruin&#39;s personal website">
+    <meta name="keywords" content="blog,data science,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Chaos with a pocket calculator."/>
+<meta name="twitter:description" content="Introduction to chaos theory using the simple population growth example from Robert May&#39;s classic paper."/>
+
+    <meta property="og:title" content="Chaos with a pocket calculator." />
+<meta property="og:description" content="Introduction to chaos theory using the simple population growth example from Robert May&#39;s classic paper." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/chaos_logistic_map/" />
+<meta property="article:published_time" content="2020-02-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-02-17T00:00:00+00:00" />
+
+
+    
+      <base href="/posts/chaos_logistic_map/">
+    
+    <title>
+  Chaos with a pocket calculator. · MitchThinks
+</title>
+
+    
+      <link rel="canonical" href="/posts/chaos_logistic_map/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.56.3" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      MitchThinks
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/tags/">Tags</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+
+<head>
+  <link rel="icon" type="image/ico" href="/images/favicon.ico">
+</head>
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Chaos with a pocket calculator.</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-02-17T00:00:00Z'>
+                Feb 17, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              9 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/tags/complexity/">Complexity</a>
+      <span class="separator">•</span>
+    <a href="/tags/interactive-visualisation/">Interactive Visualisation</a>
+      <span class="separator">•</span>
+    <a href="/tags/shiny/">Shiny</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
 
 <div id="TOC">
 <ul>
@@ -30,12 +159,12 @@ div#TOC li {
 <div id="the-logistic-map" class="section level1">
 <h1><span class="header-section-number">1</span> The logistic map</h1>
 <p>Biologists often explore how a group of individuals from the same species changes over time (a ‘population’s dynamics’). The simplest way to do this is to consider time as being discrete. This means thinking in terms of the changes from one chunk of time (day, week, season, year) to the next, rather than in continuous underlying time.</p>
-<p>This simplification actually describes species with non-overlapping generations fairly accurately. For example, EXAMPLE. In this case, ‘studying dynamics’ often means finding the mathemetical rules that tell us what we should expect the total number of individuals in the next generation, <span class="math inline">\(N_{t+1}\)</span>, to be, given how many individuals there are in this generation, <span class="math inline">\(N_t\)</span>. This post does include some equations, but just think of them all in this light, they’re just rules telling you how many EXAMPLE you’ll have next year if this year you’ve got X.</p>
+<p>This simplification actually describes species with non-overlapping generations, such as Dawson’s burrowing bee, fairly accurately. In this case, ‘studying dynamics’ often means finding the mathemetical rules that tell us what we should expect the total number of individuals in the next generation, <span class="math inline">\(N_{t+1}\)</span>, to be, given how many individuals there are in this generation, <span class="math inline">\(N_t\)</span>. This post does include some equations, but just think of them all in this light, they’re just rules telling you how many burrowing bees you’ll have next year given how many you’ve got this year.</p>
 <p>So, say we’re looking for an equation describing a population’s dynamics from one year to the next. The simplest option might be to say that next year’s population depends only on this year’s and nothing else. This would give us the following equation:</p>
 <p><span class="math display">\[N_{t+1} = rN_t\]</span></p>
 <p>which says that the number of individuals next year, <span class="math inline">\(N_{t+1}\)</span>, is just the number of individuals this year, <span class="math inline">\(N_t\)</span>, multiplied by some parameter that encapsulates the growth rate, <span class="math inline">\(r\)</span>. The growth rate <span class="math inline">\(r\)</span> could be influenced by the climate, the species’ life-history evolution, or anything else you can think of. Just for clarity, if you have 100 individuals this year and <span class="math inline">\(r=0.5\)</span>, then next year you’ll have 50, the year after you’ll have 25, and so on.</p>
 <p>Let’s explore three populations starting with 100 individuals which have different growth rates.</p>
-<p><img src="chaos_logistic_map_files/figure-html/unnamed-chunk-2-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-2-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>This illustrates a general pattern:</p>
 <ul>
 <li>When <span class="math inline">\(r &lt; 1\)</span>, population goes to extinction.</li>
@@ -61,11 +190,11 @@ div#TOC li {
 <h2><span class="header-section-number">2.1</span> Stable equilibrium</h2>
 <p>When <span class="math inline">\(1&lt;a\leq3\)</span> the system described by the logistic map converges on a stable equilibrium population proportion of <span class="math inline">\(\frac{a-1}{a}\)</span>.</p>
 <p>For example, if we simulate a population with a random starting point in which <span class="math inline">\(a = 2\)</span>.</p>
-<p><img src="chaos_logistic_map_files/figure-html/unnamed-chunk-4-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-4-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>We see that then the population converges on a stable equilibrium proportion.</p>
 <p><span class="math display">\[\frac{a-1}{a} = \frac{2-1}{2} = 0.5\]</span></p>
 <p>To understand why this happens, let’s visualise the logistic map function itself when <span class="math inline">\(a=2\)</span>.</p>
-<p><img src="chaos_logistic_map_files/figure-html/unnamed-chunk-5-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-5-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>The graph neatly illustrates the idea of density dependence that I described verbally before. If the population proportion at time <span class="math inline">\(t\)</span> is higher than 0.5, then it will be decrease in value. If the population proportion at time <span class="math inline">\(t\)</span> is lower than 0.5, then it will increase in value. Anywhere you start on the on the x-axis the subsequent values will constrict into the the equilibrium value of 0.5 eventually.</p>
 </div>
 <div id="period-doubling" class="section level2">
@@ -73,26 +202,26 @@ div#TOC li {
 <p>As you increase <span class="math inline">\(a\)</span> past 3, the logistic map begins to exhibit cyclical behaviour.</p>
 <p>For <span class="math inline">\(3&lt;a\leq \approx3.45\)</span> we see stable 2-period cycles.</p>
 <p>E.g. <span class="math inline">\(a = 3.1\)</span>:</p>
-<p><img src="chaos_logistic_map_files/figure-html/unnamed-chunk-6-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-6-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>For <span class="math inline">\(\approx3.45&lt;a\leq \approx3.54\)</span> we see stable 4-period cycles.</p>
 <p>E.g. <span class="math inline">\(a = 3.5\)</span>:</p>
-<p><img src="chaos_logistic_map_files/figure-html/unnamed-chunk-7-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-7-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>As you increase <span class="math inline">\(a\)</span> beyond 3.54 you see 8-period cycles, then 16, then 32 etc.</p>
 <p>E.g. Stable 8-peiod cycle simulation when <span class="math inline">\(a = 3.55\)</span>:</p>
-<p><img src="chaos_logistic_map_files/figure-html/unnamed-chunk-8-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-8-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 </div>
 <div id="chaos" class="section level2">
 <h2><span class="header-section-number">2.3</span> Chaos</h2>
 <p>Now for the really interesting part. When <span class="math inline">\(a \approx 3.56995\)</span>, the logistic map is <strong>chaotic</strong>. This means it exhibits aperiodic behaviour that depends sensitively on initial conditions. In english, that means there are no repeating patterns and two populations which start at values very close to one another end up with very different dynamics.</p>
 <p>E.g. <span class="math inline">\(a = 3.65\)</span>:</p>
-<p><img src="chaos_logistic_map_files/figure-html/unnamed-chunk-9-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-9-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>This chaotic behaviour renders long-term prediction impossible for two reasons. First, it means the system cannot be reduced to a neat forecasting formula as systems with linear dynamics can. Second, as very similar starting points generate very different endings, any small error in the initial measurements (which will always exist because you can’t measure the world to infinite precision) will lead to wildly incorrect predictions.</p>
 </div>
 <div id="bifurcation-diagram" class="section level2">
 <h2><span class="header-section-number">2.4</span> Bifurcation diagram</h2>
 <p>May summarised all of the behaviour we’ve seen so far into a single graph called a bifurcation diagram. It shows how the eventual population proportion changes with the value of <span class="math inline">\(a\)</span>.</p>
 <p>I made my own approximate version by simulating 100 generations for a range of starting values and a range of values of <span class="math inline">\(a\)</span>.</p>
-<p><img src="chaos_logistic_map_files/figure-html/unnamed-chunk-10-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/chaos_logistic_map_files/figure-html/unnamed-chunk-10-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 <p>Hopefully you recognise the pattern as <span class="math inline">\(a\)</span> increases. We see stable equilibria, followed by 2-period cycling, and then 4-period cycling, the 8-period cycling is just about perceptible, and then we’re into chaotic territory.</p>
 <p>The graph is beautiful but, I think because it’s showing long run outcomes as a function of a tuning parameter rather than direct outcomes, I found it very counter-intuitive when I first saw it.</p>
 <p>Fortunately, there’s been more than 40 years’ worth of technological advancement since May’s paper. This means we can build an interactive tools that hopefully makes May’s point a little easier to grasp.</p>
@@ -111,7 +240,7 @@ div#TOC li {
 </iframe>
 <p>Then, you can use the interactive graph that appears to build intuitions about non-linearity.</p>
 <ul>
-<li>Click the play button to see how the simulations of your 3 populations change as the value of <span class="math inline">\(a\)</span> changes. ADD THE VALUES OF A
+<li>Click the play button to see how the simulations of your 3 populations change as the value of <span class="math inline">\(a\)</span> changes.
 <ul>
 <li>Regardless of which starting values you choose, you’ll see the same process we worked through in the previous section.</li>
 <li>First, there’s stability with the population converging on a single equilibrium value</li>
@@ -136,3 +265,57 @@ div#TOC li {
 </blockquote>
 <p>Most things, especially the important things, are greater than the sum of their parts, and the hierarchical reductionism of much of science isn’t going to help us understand them even close to well enough.</p>
 </div>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>A man must have (a) code.</p>
+    
+     © 2020
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+       · 
+      [<a href="https://github.com/luizdepra/hugo-coder/tree/"></a>]
+    
+  </section>
+</footer>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
