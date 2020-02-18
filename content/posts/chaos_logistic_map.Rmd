@@ -380,15 +380,15 @@ This chaotic behaviour renders long-term prediction impossible for two reasons. 
 
 May summarised all of the behaviour we've seen so far into a single graph called a bifurcation diagram. It shows how the eventual population proportion changes with the value of $a$. 
 
-I made my own version by simulating 150 generations across a range of starting values and values of $a$. 
+I made my own version by simulating 100 generations across a range of starting values and values of $a$. 
 
 ```{r}
-bifurc_sim <- multiple_map(x_opts = seq(0.01, 0.99, 0.01),
+bifurc_sim <- multiple_map(x_opts = seq(0.02, 0.98, 0.02),
                            a_opts = seq(2, 4, 0.005),
-                           n_opts = 150)
+                           n_opts = 100)
 
 final_props <- bifurc_sim %>%
-  filter(generation == 150) %>%
+  filter(generation == 100) %>%
   mutate(a = as.numeric(as.character(a)),
          x = as.numeric(x))
 
@@ -401,7 +401,7 @@ ggplot(final_props, aes(x = a, y = x)) +
         axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
-Each dot represents the population proportion in the 200th generation of one simulation. Hopefully you recognise the pattern as $a$ increases. We see stable equilibria, followed by 2-period cycling, and then 4-period cycling, the 8-period cycling is just about perceptible, and then we're into chaotic territory.
+Each dot represents the population proportion in the 100th generation of one simulation. Hopefully you recognise the pattern as $a$ increases. We see stable equilibria, followed by 2-period cycling, and then 4-period cycling, the 8-period cycling is just about perceptible, and then we're into chaotic territory.
 
 The graph is beautiful but, I think because it's showing long run outcomes as a function of a tuning parameter rather than direct outcomes, I found it very counter-intuitive when I first saw it.
 
