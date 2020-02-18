@@ -37,7 +37,16 @@ Idea is that these are things you were just taught to know and never to understa
       <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/chaos_logistic_map/</guid>
-      <description>1 The logistic map 2 Visualising complexity 2.1 Stable equilibrium 2.2 Period doubling 2.3 Chaos 2.4 Bifurcation diagram  3 Building non-linear intuitions 4 Studying non-elephant animals   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Most non-fiction books teach you what to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you ‘explain’ why the Bank of England cut interest rates.</description>
+      <description>div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Most non-fiction books teach you what to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you &amp;lsquo;explain&amp;rsquo; why the Bank of England cut interest rates. Every now and then, however, you read a book that changes how you think, one that helps you see things beyond its few hundred pages slightly differently.</description>
+    </item>
+    
+    <item>
+      <title>Chaos with a pocket calculator.</title>
+      <link>/posts/chaos_logistic_map/</link>
+      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/chaos_logistic_map/</guid>
+      <description>div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Most non-fiction books teach you what to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you &amp;lsquo;explain&amp;rsquo; why the Bank of England cut interest rates. Every now and then, however, you read a book that changes how you think, one that helps you see things beyond its few hundred pages slightly differently.</description>
     </item>
     
     <item>
@@ -105,6 +114,15 @@ Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in t
       
       <guid>/posts/doughnut_economics/</guid>
       <description>1 Goal: GDP growth \(\rightarrow\) The Doughnut. 2 Big Picture: Self contained market \(\rightarrow\) Embedded economy. 3 Behavioural: Rational economic man \(\rightarrow\) Social, adaptable humans. 4 Complexity: Mechanical equilibrium \(\rightarrow\) Dynamic complexity. 5 Inequality: Growth will even it up \(\rightarrow\) Distributive by design. 6 Environment: Growth will clean it up \(\rightarrow\) Regenerative by design. 7 Growth: Growth addicted \(\rightarrow\) Growth agnostic.   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  If you want to see the full code for this post then you can find the .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/posts/chaos_logistic_map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/chaos_logistic_map/</guid>
+      <description>1 The logistic map 2 Visualising complexity 2.1 Stable equilibrium 2.2 Period doubling 2.3 Chaos 2.4 Bifurcation diagram  3 Building non-linear intuitions 4 Studying non-elephant animals   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Most non-fiction books teach you what to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you ‘explain’ why the Bank of England cut interest rates.</description>
     </item>
     
   </channel>

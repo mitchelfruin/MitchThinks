@@ -1,11 +1,10 @@
 ---
 title: "Chaos with a pocket calculator."
 author: "Mitchel Fruin"
-date: "2019-09-25"
+date: "2020-02-17"
 description: "Introduction to chaos theory using the simple population growth example from Robert May's classic paper."
-tags: ["Complexity", "Interactive Visualisation"]
+tags: ["Complexity", "Interactive Visualisation", "Shiny"]
 slug: chaos_logistic_map
-draft: true
 output:
   blogdown::html_page:
     toc: true
@@ -49,7 +48,7 @@ Well, R is just a fancy pocket calculator. So, we best start playing.
 
 Biologists often explore how a group of individuals from the same species changes over time (a 'population's dynamics'). The simplest way to do this is to consider time as being discrete. This means thinking in terms of the changes from one chunk of time (day, week, season, year) to the next, rather than in continuous underlying time. 
 
-This simplification actually describes species with non-overlapping generations fairly accurately. For example, EXAMPLE. In this case, 'studying dynamics' often means finding the mathemetical rules that tell us what we should expect the total number of individuals in the next generation, $N_{t+1}$, to be, given how many individuals there are in this generation, $N_t$. This post does include some equations, but just think of them all in this light, they're just rules telling you how many EXAMPLE you'll have next year if this year you've got X.
+This simplification actually describes species with non-overlapping generations, such as Dawson's burrowing bee, fairly accurately. In this case, 'studying dynamics' often means finding the mathemetical rules that tell us what we should expect the total number of individuals in the next generation, $N_{t+1}$, to be, given how many individuals there are in this generation, $N_t$. This post does include some equations, but just think of them all in this light, they're just rules telling you how many burrowing bees you'll have next year given how many you've got this year.
 
 So, say we're looking for an equation describing a population's dynamics from one year to the next. The simplest option might be to say that next year's population depends only on this year's and nothing else. This would give us the following equation:
 
@@ -285,7 +284,7 @@ log_map_df %>%
         axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
-The graph neatly illustrates the idea of density dependence that I described verbally before. If the population proportion at time $t$ is higher than 0.5, then it will be decrease in value. If the population proportion at time $t$ is lower than 0.5, then it will increase in value. Anywhere you start on the on the x-axis the subsequent values will constrict into the the equilibrium value of 0.5.
+The graph neatly illustrates the idea of density dependence that I described verbally before. If the population proportion at time $t$ is higher than 0.5, then it will be decrease in value. If the population proportion at time $t$ is lower than 0.5, then it will increase in value. Anywhere you start on the on the x-axis the subsequent values will constrict into the the equilibrium value of 0.5 eventually.
 
 ## Period doubling
 
@@ -375,17 +374,37 @@ chaos_sim %>%
         axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
-Chaotic behaviour renders long-term prediction impossible. 
+This chaotic behaviour renders long-term prediction impossible for two reasons. First, it means the system cannot be reduced to a neat forecasting formula as systems with linear dynamics can. Second, as very similar starting points generate very different endings, any small error in the initial measurements (which will always exist because you can't measure the world to infinite precision) will lead to wildly incorrect predictions.  
 
 ## Bifurcation diagram
 
 May summarised all of the behaviour we've seen so far into a single graph called a bifurcation diagram. It shows how the eventual population proportion changes with the value of $a$. 
 
-INSERT GRAPH.
+I made my own approximate version by simulating 100 generations for a range of starting values and a range of values of $a$. 
+
+```{r}
+bifurc_sim <- multiple_map(x_opts = seq(0.04, 0.96, 0.02),
+                           a_opts = seq(2, 4, 0.01),
+                           n_opts = 75)
+
+final_props <- bifurc_sim %>%
+  filter(generation == 75) %>%
+  mutate(a = as.numeric(as.character(a)),
+         x = as.numeric(x))
+
+ggplot(final_props, aes(x = a, y = x)) +
+  geom_point(size = 0.35, col = "#440154FF") +
+  scale_y_continuous("'Final' population\nproportion x") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(),
+        axis.title.y = element_text(angle = 0, vjust = 0.5))
+```
+
+Hopefully you recognise the pattern as $a$ increases. We see stable equilibria, followed by 2-period cycling, and then 4-period cycling, the 8-period cycling is just about perceptible, and then we're into chaotic territory.
 
 The graph is beautiful but, I think because it's showing long run outcomes as a function of a tuning parameter rather than direct outcomes, I found it very counter-intuitive when I first saw it.
 
-Fortunately, there's been more than 40 years' worth of technological advancement since May's paper. This means that even a no-name chump can build an interactive tool that hopefully makes May's point a little easier to grasp.
+Fortunately, there's been more than 40 years' worth of technological advancement since May's paper. This means we can build an interactive tools that hopefully makes May's point a little easier to grasp.
 
 # Building non-linear intuitions
 
@@ -416,9 +435,9 @@ In the conclusion of his paper, May argues that non-linearity should be taught, 
 
 > "The mathmetical intuition so developed ill equips the student to confront the bizarre behaviour exhibited by the simplest discrete nonlinear systems... Yet such nonlinear systems are surely the rule, not the exception, outside the physical sciences."
 
-The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from *Chaos* which comes from the mathematician Stanislaw Ulam. He quipped that "to call the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'". That is, it's defining a the majority of a subject in contrast to a niche class. 
+The crucial notion that nonlinear systems are the norm rather than the exception is summed up in my favourite quote from *Chaos* which comes from the mathematician Stanislaw Ulam. He quipped that "to call the study of chaos 'nonlinear science' was like calling zoology 'the study of nonelephant animals'". 
 
-The fact that vast swathes of science emphasise linearity has important implications. Something about people thinking in immediate causes from misunderstanding economics book. Poor at incorporating feedback loops or interative thinking. May's final sentence from over 40 years ago still rings true:
+The fact that vast swathes of science emphasise linearity has important implications. For one, it means that people tend to think too much in terms of direct effects rather than the indirect effects and feedback loops that govern most real-world systems. May's final sentence from over 40 years ago still rings true:
 
 > "Not only in research, but also in the everyday world of politics and economics, we would all be better off if more people realized that simple nonlinear systems do not necessarily possess simple dynamical properties."
 

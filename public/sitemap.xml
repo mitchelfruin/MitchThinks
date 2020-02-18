@@ -54,6 +54,11 @@
   </url>
   
   <url>
+    <loc>/posts/chaos_logistic_map/</loc>
+    <lastmod>2019-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/complexity/</loc>
     <lastmod>2019-09-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -116,6 +121,11 @@
   <url>
     <loc>/posts/doughnut_economics/</loc>
     <lastmod>2019-08-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/chaos_logistic_map/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
