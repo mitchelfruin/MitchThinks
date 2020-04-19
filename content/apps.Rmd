@@ -1,0 +1,23 @@
+---
+slug: apps
+title: "Apps"
+date: "Last edited `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  blogdown::html_page
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Intro
+
+I'm a big fan of [Shiny](https://shiny.rstudio.com/) and have used it to make some Web Apps.
+
+# The Logistic Map
+
+I made an app to enable users to gain a more intuitive understanding of the logistic map function. 
+
+* You can find the Shiny app [here](https://mitchelfruin.shinyapps.io/log_map/).
+* You can find the accompanying blog post [here](https://mitchthinks.netlify.app/posts/chaos_logistic_map/).
+* You can find the GitHub repo [here](https://github.com/mitchelfruin/log_map_app).

@@ -61,20 +61,10 @@ math = true
         weight = 1
         url = "https://github.com/mitchelfruin"
     [[params.social]]
-        name = "LinkedIn"
-        icon = "fab fa-linkedin"
-        weight = 2
-        url = "https://www.linkedin.com/in/mitchelfruin/"
-    [[params.social]]
         name = "Kaggle"
         icon = "fab fa-kaggle"
-        weight = 3
+        weight = 2
         url = "https://www.kaggle.com/mitchelfruin"
-    [[params.social]]
-        name = "DataCamp"
-        icon = "fas fa-database"
-        weight = 4
-        url = "https://www.datacamp.com/profile/mitchelfruin"
 
 [taxonomies]
   category = "categories"
@@ -86,11 +76,15 @@ math = true
     weight = 1
     url = "posts/"
 [[menu.main]]
-    name = "Tags"
+    name = "Apps"
     weight = 2
+    url = "apps/"
+[[menu.main]]
+    name = "Tags"
+    weight = 3
     url = "tags/"
 [[menu.main]]
     name = "About"
-    weight = 3
+    weight = 4
     url = "about/"
         

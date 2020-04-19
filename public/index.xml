@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MitchThinks</title>
@@ -10,6 +10,15 @@
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>All models are wrong, but all are useful.</title>
+      <link>/posts/interactive_sir_model/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/interactive_sir_model/</guid>
+      <description>div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  We have heard a lot about ‘models’ in the news lately. For some people, this might be the first time they’ve ever properly considered just how one should go about making real-world decisions based on a fake-world computer simulation. There are plenty of great introductions to the kinds of modelling being done to understand the Coronovirus pandemic, for example in the washington post (link) on on rviews (link).</description>
+    </item>
     
     <item>
       <title>Chaos with a pocket calculator.</title>
@@ -113,8 +122,20 @@ Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in t
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>The Site Education Employment Contact me   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  The Site I built the site using the R package blogdown for a few reasons:
- To learn the (very) basics of web development. To encourage myself to read (and actually think about what I’ve learned). To use R for something that didn’t feel like work.  The site is still very much a work-in-progress but I plan to write:</description>
+      <description>Education I have a B.A. in Biological Sciences from the University of Oxford and an M.Sc. in Behavioural Economics from the University of Essex.
+The majority of the coding skills I’ve picked up are self taught. In particular, I’m a big fan of DataCamp and you can find a list of the courses I’ve completed here.
+ Employment I currently work as a Junior Data Scientist in the Intelligence Team at a marketing agency called SHARE.</description>
+    </item>
+    
+    <item>
+      <title>Apps</title>
+      <link>/apps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/apps/</guid>
+      <description> Intro I’m a big fan of Shiny and have used it to make some Web Apps.
+ The Logistic Map I made an app to enable users to gain a more intuitive understanding of the logistic map function.
+ You can find the Shiny app here. You can find the accompanying blog post here. You can find the GitHub repo here.   </description>
     </item>
     
   </channel>

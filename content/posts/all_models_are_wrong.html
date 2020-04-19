@@ -1,0 +1,71 @@
+---
+title: "All models are wrong, but all are useful."
+author: "Mitchel Fruin"
+date: "2020-02-17"
+description: "Introduction to the SIR models used in epidemiology."
+tags: ["Probability and Statistics", "Interactive Visualisation", "Shiny"]
+slug: interactive_sir_model
+draft: true
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
+
+
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+<p>We have heard a lot about ‘models’ in the news lately. For some people, this might be the first time they’ve ever properly considered just how one should go about making real-world decisions based on a fake-world computer simulation. There are plenty of great introductions to the kinds of modelling being done to understand the Coronovirus pandemic, for example in the washington post (link) on on rviews (link). So, whilst I did dust off some second year lecture notes for this post to give you a (very) basic intro to the SIR framework which form the foundation of epidemiological modelling I wanted to talk a little more abstractly about the role and goals of models themselves.</p>
+<p>First off, let’s be clear what we’re talking about.</p>
+<blockquote>
+<p>Model: A simplified abstract version of the real world.</p>
+</blockquote>
+<p>To me, there are two key aspects to this simple definition.</p>
+<ul>
+<li>The necessity of abstraction.
+<ul>
+<li>The reason we need abstraction is for model specification. Need to be clear about the well-defined components of our models. We need to use a formal language (either maths or a programming language) to describe the system our model reflects not a natural language (ambiguity).</li>
+</ul></li>
+<li>The trade-off between simplification and faithfulness to the real world.
+<ul>
+<li>We want simplification so we can understand the important variables in the system we’re modelling (and eventually hopefully control it by adjusting them)</li>
+<li>We also want to describe the real world as faithfully as possible. However, parable of the maps.</li>
+<li>Where to place your model on this trade-off is a judgement call. You might suggest using fancy techniques to choose how complicated your model should be e.g. cross validation. However, then you’re just navigating a different trade-off between interpretability and accuracy. Science is rarely an exact science (an idea the news re-iterates on a daily basis).</li>
+</ul></li>
+</ul>
+<p>There are lots of mantras taught to students early on in their scientific education. Chief among mine was the basis of the title of this post, “All models are wrong, but some are useful”, from the statistician George Box.</p>
+<p>Traditionally, this was taken to mean that even though your model will never be a perfect representation of the real world that doesn’t mean it can’t help you understand the real-world. In other words, it meant that if you figured out the right specification you could find ‘a lie that reveals the truth’ (another facourite mantra).</p>
+<p>However, we live in a time where computers more powerful than the ones used to put a man on the moon fit in our pocket or on our laps. And, whilst they are exceptionally useful for sharing memes and watching porn I think they also could mean that we need to update Box’s mantra, ‘All models are wrong, but <strong>all</strong> are useful’. This is because modern computers allows us to interactively play with our model’s ‘wrong-ness’, they let us harness its imperfections to understand the system it describes in a much more intuitive manner than if we had come up with a single useful specfication in the first place.</p>
+<p>What are the conditions for intuitive experitse:
+* Causal feedback for learning
+* Low variance environment</p>
+<p>I’ll try to illustrate this point in the context of epidemiology. Need to mention Brett Victor. Perhaps add his point about the printing press here.</p>
+<p>Talk about how you have included each of the things you have discussed in your simulation. E.g. infectiousness as a weighted coin.</p>
+<p>SIR models</p>
+<p>Compartment models</p>
+<p>Rates of change</p>
+<p>Build app where user can run their own simulations.</p>
+<ul>
+<li>Choose infectiousness
+<ul>
+<li>Binomial distribution (weighted coin)</li>
+</ul></li>
+<li>Choose social distancing proportion
+<ul>
+<li>Just proportion or velocity of all?</li>
+</ul></li>
+<li>Choose death rate
+<ul>
+<li>Varying poisson distributions</li>
+</ul></li>
+</ul>
+<p>Real world models are vastly more complicated than what I’ve described. They include many more variables (e.g. include the existence of different locations home vs. work), allow many more parameters to vary (e.g. age-specific death rates), and are calibrated using population-level data (e.g. the density of population in a region). But, using interactive design thinking and principles is still key in understanding them. We use incredibly powerful machines to make models, machines which would’ve made us seem like gods or witches in 1440 when the printing press was invented. Yet, for the most part, summaries of these models or copies of academic papers are presented to us via the magic, powerful medium of a computer as if it were just a very expensive stone tablet. We interact with an academic paper the same way online as we do in print. This means we’re throwing away the opportunity to understand all the possible different permutations of our models, removing the possibility of seeing how <strong>all</strong> of them are useful in developing our intuitive understanding of the system we want to know and tame.</p>
+<p>I don’t know how the briefings go down when SAGE reports to the PM and his advisors about the results of their modelling. Perhaps they are presenting interactive tools with sliding scales which cause alterations in intuitive visualisations giving all viewers and instinctive feel for the dynamics of the system at hand (especially those without PhDs in epidemiology or maths). But I suspect, like most of science, despite using technology and scientific theory from the cutting edge of 2020, they’re probably stuck in 1440 when it comes to presentation. Maybe I’m wrong, I hope so.</p>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Probability and statistics on MitchThinks</title>
@@ -6,10 +6,19 @@
     <description>Recent content in Probability and statistics on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/probability-and-statistics/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>All models are wrong, but all are useful.</title>
+      <link>/posts/interactive_sir_model/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/interactive_sir_model/</guid>
+      <description>div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  We have heard a lot about ‘models’ in the news lately. For some people, this might be the first time they’ve ever properly considered just how one should go about making real-world decisions based on a fake-world computer simulation. There are plenty of great introductions to the kinds of modelling being done to understand the Coronovirus pandemic, for example in the washington post (link) on on rviews (link).</description>
+    </item>
     
     <item>
       <title>Slow thinking about small samples.</title>

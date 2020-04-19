@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on MitchThinks</title>
@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>Probability and statistics</title>
+      <link>/tags/probability-and-statistics/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/probability-and-statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Shiny</title>
       <link>/tags/shiny/</link>
       <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
@@ -39,7 +48,7 @@
     </item>
     
     <item>
-      <title>Book summary</title>
+      <title>Book Summary</title>
       <link>/tags/book-summary/</link>
       <pubDate>Tue, 28 Jan 2020 00:00:00 +0000</pubDate>
       
@@ -53,15 +62,6 @@
       <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/behavioural-economics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Probability and statistics</title>
-      <link>/tags/probability-and-statistics/</link>
-      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/probability-and-statistics/</guid>
       <description></description>
     </item>
     
