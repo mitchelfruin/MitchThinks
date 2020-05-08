@@ -1,10 +1,10 @@
 ---
-title: "Infinite Powers: Discovering things 2000 years late."
+title: "NBA RDD"
 author: "Mitchel Fruin"
-date: "2020-01-28"
-description: "Using examples from Strogatz's Infinite Powers to add whys to the whats we were taught in maths classes."
-tags: ["Book Summary"]
-slug: infinite_powers
+date: "2020-04-19"
+description: "Exploring NBA rookies' salaries using a regression discontinuity design."
+tags: ["Probability and Statistics"]
+slug: nba_rdd
 draft: true
 output:
   blogdown::html_page:
@@ -32,15 +32,19 @@ knitr::opts_chunk$set(echo = FALSE,
                       fig.height = 5)
 
 # Packages
-library(tidyverse)
+library(nbastatR)
 ```
 
-Recap the things you found most interesting. 
+```{r, eval = FALSE}
+# Get draft data
+nba_drafts <- drafts(draft_years = 1995:2019)
 
-Idea is that these are things you were just taught to know and never to understand. Want to add why things are true to everyone's knowledge that they are. 
+# Get bio data for each player in drafts
+salaries <- bref_bios(players = nba_drafts$namePlayer,
+                      player_ids = nba_drafts$idPlayer,
+                      return_message = FALSE)
+```
 
-# The area of a circle
 
-# $\pi$
 
-# e
+

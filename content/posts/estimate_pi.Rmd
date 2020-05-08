@@ -1,0 +1,181 @@
+---
+title: "Estimating Pi 2000 years too late."
+author: "Mitchel Fruin"
+date: "2020-05-08"
+description: "Comparing Archimedes' estimate of Pi with Rchimedes estimate."
+tags: 
+slug: estimate_pi
+draft: true
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+
+```{r setup, include=FALSE}
+# RMarkdown
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center",
+                      fig.width = 8.09,
+                      fig.height = 5)
+
+# Packages
+library(tidyverse)
+library(scales)
+library(plotly)
+```
+
+A couple of month's ago I read Steven Strogatz's Inifinite Powers.
+
+It's a good book overall but the first half is great. I'd recommend it to anyone who ever asked, "but, like, why?" in a maths class in secondary school and didn't get a good answer (typically either a 'don't interrupt me' look or worse, "because it is"). 
+
+My two favourite sections invovled Storgatz recounting how Archimedes discovered the formula for the area of a circle and how he estimated $\pi$. This post will only cover the latter. The reason being that there's a popular data science interview question which requires the applicant to estimate $\pi$. So, I thought it would be fun to compare Archimedes' estimate to what I'll be (shamelessly and repeatedly) calling **R**chimedes' estimate.
+
+# Archimedes' estimate
+
+# **R**chimedes' estimate
+
+Ok, you're dressed to impress, you've politely said yes to a tea because you read a social psychology paper once that said interviewers preferred candidates that did, and you can feel a few beads of nervous sweat on the small of your back. You sit down at the interview table and the interviewer hands you a laptop with a set of instructions already open:
+
+> You have a function which takes the input $n$ and outputs $n$ random numbers between 0 and 1. Estimate the value of $\pi$.
+
+After the customary moment of panic, you decide actually think it through. 
+
+Well, the easiest way you can think of to estimate $\pi$ is to find the area of a circle with a radius of $1$. 
+
+After all,
+
+$$\begin{aligned}
+\text{Area of a circle} &= \pi \times \text{radius}^2 \\
+\end{aligned}$$
+
+So if $\text{radius} = 1$, then 
+
+$$\begin{aligned}
+\text{Area of a circle} &= \pi \times 1^2 \\
+&= \pi
+\end{aligned}$$
+
+Alright, so what would a circle with radius of 1 look like?
+
+```{r, fig.asp=1}
+circleFun <- function(center = c(0, 0), diameter = 2, npoints = 100){
+    r = diameter / 2
+    tt <- seq(0, 2*pi, length.out = npoints)
+    xx <- center[1] + r * cos(tt)
+    yy <- center[2] + r * sin(tt)
+    return(data.frame(x = xx, y = yy))
+}
+
+r_1 <- circleFun(npoints = 10000)
+
+r_1 %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point(size = 0.5, col = "purple") +
+  geom_vline(aes(xintercept = 0)) +
+  geom_hline(aes(yintercept = 0)) +
+  theme_minimal()
+```
+
+```{r, fig.asp = 1}
+random_xy <- tibble(x = runif(1000), 
+                    y = runif(1000))
+
+r_1 %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point(size = 0.5, col = "purple") +
+  geom_point(data = random_xy, aes(x = x, y = y)) +
+  geom_vline(aes(xintercept = 0)) +
+  geom_hline(aes(yintercept = 0)) +
+  theme_minimal()
+```
+
+Find the area of a circle with radius 1.
+
+```{r}
+R_chimedes <- function(n_points) {
+  # Generate random pair of coordinates between 0 and 1
+  x <- runif(n_points)
+  y <- runif(n_points)
+  # For each pair find distance from the origin
+  o_dist <- sqrt(x^2 + y^2)
+  # If o_dist <= 1, then inside or on circle
+  in_or_out <- o_dist <= 1
+  # Estimate pi
+  4 * mean(in_or_out == TRUE)
+}
+```
+
+How many random points do we need before we are more accurate than Archimedes?
+
+Lets try a few different powers of 10.
+
+```{r}
+set.seed(1)
+estimates <- tibble(n_points = 10^(2:7),
+                    attempt_1 = map_dbl(n_points, R_chimedes),
+                    attempt_2 = map_dbl(n_points, R_chimedes),
+                    attempt_3 = map_dbl(n_points, R_chimedes))
+
+estimates %>%
+  pivot_longer(cols = c(attempt_1, attempt_2, attempt_3),
+               names_to = "Estimate") %>%
+  ggplot(aes(x = n_points, y = value, col = Estimate)) +
+  geom_point(aes(shape = Estimate)) +
+  geom_hline(aes(yintercept = pi)) +
+  geom_line(aes(lty = Estimate)) +
+  scale_x_log10(breaks = 10^(2:7),
+                labels = trans_format("log10", math_format(10^.x))) +
+  scale_color_viridis_d() +
+  theme_minimal()
+
+estimates %>%
+  pivot_longer(cols = c(attempt_1, attempt_2, attempt_3),
+               names_to = "Estimate") %>%
+  ggplot(aes(x = n_points, y = value, col = Estimate)) +
+  geom_point(aes(shape = Estimate)) +
+  geom_hline(aes(yintercept = pi)) +
+  geom_line(aes(lty = Estimate)) +
+  scale_x_log10(breaks = 10^(5:7),
+                labels = trans_format("log10", math_format(10^.x)),
+                limits = c(10^5, 10^7)) +
+  scale_y_continuous(limits = c(3.135, 3.145)) +
+  scale_color_viridis_d() +
+  theme_minimal()
+```
+
+```{r}
+estimates %>%
+  mutate(Pi = pi) %>%
+  pivot_longer(cols = c(attempt_1, attempt_2, attempt_3, Pi),
+               names_to = "Estimate") %>%
+  plot_ly(x = ~n_points,
+          y = ~value,
+          color = ~Estimate,
+          colors = viridis_pal(direction = -1)(4),
+          text = ~paste0(Estimate, ": ", value),
+          hoverinfo = "text") %>%
+  add_markers(symbol = ~Estimate,
+              showlegend = FALSE) %>%
+  add_lines(showlegend = FALSE) %>%
+  layout(xaxis = list(title = "Number of Points", type = "log"),
+         yaxis = list(title = "Value"))
+```
+
+# Knowing vs. Understanding
+
+About undersatdning vs. knowing.
+
+For a long time, definitely throughout all of school, all I really did was *know* stuff. Now, I want to *understand* stuff. And even if that means there's less stuff involved, I'm fine with that. Value of understanding is that you begin to see connections between seemingly disparate points of *knowledge*.

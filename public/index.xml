@@ -6,10 +6,29 @@
     <description>Recent content on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 08 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Estimating Pi 2000 years too late.</title>
+      <link>/posts/estimate_pi/</link>
+      <pubDate>Fri, 08 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/estimate_pi/</guid>
+      <description>1 Archimedes’ estimate 2 Rchimedes’ estimate 3 Knowing vs. Understanding   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  A couple of month’s ago I read Steven Strogatz’s Inifinite Powers.
+It’s a good book overall but the first half is great. I’d recommend it to anyone who ever asked, “but, like, why?” in a maths class in secondary school and didn’t get a good answer (typically either a ‘don’t interrupt me’ look or worse, “because it is”).</description>
+    </item>
+    
+    <item>
+      <title>NBA RDD</title>
+      <link>/posts/nba_rdd/</link>
+      <pubDate>Sun, 19 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/nba_rdd/</guid>
+      <description> div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  </description>
+    </item>
     
     <item>
       <title>All models are wrong, but all are useful.</title>
@@ -27,17 +46,6 @@
       
       <guid>/posts/chaos_logistic_map/</guid>
       <description>1 The logistic map 2 Visualising complexity 2.1 Stable equilibrium 2.2 Period doubling 2.3 Chaos 2.4 Bifurcation diagram  3 Building non-linear intuitions 4 Studying non-elephant animals   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Most non-fiction books teach you what to think. They give you a new set of facts to trot out when someone brings up pop psychology at the pub or let you feel smug when you ‘explain’ why the Bank of England cut interest rates.</description>
-    </item>
-    
-    <item>
-      <title>Infinite Powers: Discovering things 2000 years late.</title>
-      <link>/posts/infinite_powers/</link>
-      <pubDate>Tue, 28 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/infinite_powers/</guid>
-      <description>  1 The area of a circle 2 \(\pi\) 3 e   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Recap the things you found most interesting.
-Idea is that these are things you were just taught to know and never to understand. Want to add why things are true to everyone’s knowledge that they are.
-1 The area of a circle  2 \(\pi\)  3 e  </description>
     </item>
     
     <item>

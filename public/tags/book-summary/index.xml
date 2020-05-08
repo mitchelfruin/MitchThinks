@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Book Summary on MitchThinks</title>
+    <title>Book summary on MitchThinks</title>
     <link>/tags/book-summary/</link>
-    <description>Recent content in Book Summary on MitchThinks</description>
+    <description>Recent content in Book summary on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/book-summary/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Infinite Powers: Discovering things 2000 years late.</title>
-      <link>/posts/infinite_powers/</link>
-      <pubDate>Tue, 28 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/infinite_powers/</guid>
-      <description>  1 The area of a circle 2 \(\pi\) 3 e   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  Recap the things you found most interesting.
-Idea is that these are things you were just taught to know and never to understand. Want to add why things are true to everyone’s knowledge that they are.
-1 The area of a circle  2 \(\pi\)  3 e  </description>
-    </item>
     
     <item>
       <title>A Field Guide to Lies and Statistics (Daniel Levitin, 2016).</title>
