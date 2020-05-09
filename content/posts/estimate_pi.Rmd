@@ -71,15 +71,14 @@ $$\begin{aligned}
 Alright, so what would a circle with radius of 1 look like?
 
 ```{r, fig.asp=1}
-circleFun <- function(center = c(0, 0), diameter = 2, npoints = 100){
-    r = diameter / 2
-    tt <- seq(0, 2*pi, length.out = npoints)
-    xx <- center[1] + r * cos(tt)
-    yy <- center[2] + r * sin(tt)
-    return(data.frame(x = xx, y = yy))
+circle_coords <- function(center = c(0, 0), radius = 1, n_points = 1000) {
+    centre_angle <- seq(0, 2*pi, length.out = n_points)
+    x_coord <- center[1] + radius * cos(centre_angle)
+    y_coord <- center[2] + radius * sin(centre_angle)
+    tibble(x = x_coord, y = y_coord)
 }
 
-r_1 <- circleFun(npoints = 10000)
+r_1 <- circle_coords()
 
 r_1 %>%
   ggplot(aes(x = x, y = y)) +
@@ -89,10 +88,24 @@ r_1 %>%
   theme_minimal()
 ```
 
-```{r, fig.asp = 1}
-random_xy <- tibble(x = runif(1000), 
-                    y = runif(1000))
+How does this help us? Well, if we use the random number function twice we can generate pairs of random coordinates. Let's plot 100 such coordinates:
 
+```{r}
+random_xy <- tibble(x = runif(100), y = runif(100)) %>%
+  mutate(o_dist = sqrt(x^2 + y^2),
+         in_circle = if_else(o_dist <= 1, T, F))
+```
+
+```{r, fig.asp=1}
+random_xy %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  theme_minimal()
+```
+
+Now, if we superimpose our random pairs of coordinates onto our circle with radius 1:
+
+```{r, fig.asp = 1}
 r_1 %>%
   ggplot(aes(x = x, y = y)) +
   geom_point(size = 0.5, col = "purple") +
@@ -102,7 +115,53 @@ r_1 %>%
   theme_minimal()
 ```
 
-Find the area of a circle with radius 1.
+Hopefully the plan is starting to become clear. We need to calculate the proportion of random points that are inside the circle. 
+
+```{r, fig.asp = 1}
+r_1 %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point(size = 0.5, col = "purple") +
+  geom_point(data = random_xy, aes(x = x, y = y, col = in_circle)) +
+  geom_vline(aes(xintercept = 0)) +
+  geom_hline(aes(yintercept = 0)) +
+  scale_color_viridis_d(guide = "none") +
+  theme_minimal()
+```
+
+```{r}
+prop_inside <- mean(random_xy$in_circle)
+pi_estimate <- 4*prop_inside
+```
+
+In this instance, the proportion of our random points that fall inside the circle is `r prop_inside`. 
+
+So, to find an estimate for the area of the circle (which we know to be $\pi$) all we have to do is multiply that proportion by 4. In this case, our estimate for $\pi$ turns out to be `r pi_estimate`. 
+
+That's an ok estimate but what if we wanted a greater degree of accuracy. All we need to do is use a greater number of random points. 
+
+Say we ran through the whole process again but this time with 1000 points:
+
+```{r, fig.asp=1}
+random_xy <- tibble(x = runif(1000), y = runif(1000)) %>%
+  mutate(o_dist = sqrt(x^2 + y^2),
+         in_circle = if_else(o_dist <= 1, T, F))
+
+r_1 %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point(size = 0.5, col = "purple") +
+  geom_point(data = random_xy, aes(x = x, y = y, col = in_circle)) +
+  geom_vline(aes(xintercept = 0)) +
+  geom_hline(aes(yintercept = 0)) +
+  scale_color_viridis_d(guide = "none") +
+  theme_minimal()
+```
+
+```{r}
+prop_inside <- mean(random_xy$in_circle)
+pi_estimate <- 4*prop_inside
+```
+
+Now, the proportion of points inside the circle is `r prop_inside` giving us an estimate for $\pi$ of `r pi_estimate`. 
 
 ```{r}
 R_chimedes <- function(n_points) {
