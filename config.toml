@@ -28,7 +28,6 @@ math = true
     keywords = "blog,data science,personal"
     info = "Junior Data Scientist"
     avatarurl = "images/Mitch_Headshot_Colour.jpg"
-    footercontent = "A man must have (a) code."
 
     dateformat = "Jan 2, 2006"
 
