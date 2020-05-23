@@ -45,6 +45,10 @@ My two favourite sections invovled Storgatz recounting how Archimedes discovered
 
 # Archimedes' estimate
 
+<center>
+![Archimedes' first step](/images/estimate_pi.png)
+</center>
+
 # **R**chimedes' estimate
 
 Ok, you're dressed to impress, you've politely said yes to a tea because you read a social psychology paper once that said interviewers preferred candidates that did, and you can feel a few beads of nervous sweat on the small of your back. You sit down at the interview table and the interviewer hands you a laptop with a set of instructions already open:
@@ -70,7 +74,7 @@ $$\begin{aligned}
 
 Alright, so what would a circle with radius of 1 look like?
 
-```{r, fig.asp=1}
+```{r, fig.width = 5, fig.height = 5}
 circle_coords <- function(center = c(0, 0), radius = 1, n_points = 1000) {
     centre_angle <- seq(0, 2*pi, length.out = n_points)
     x_coord <- center[1] + radius * cos(centre_angle)
@@ -96,7 +100,7 @@ random_xy <- tibble(x = runif(100), y = runif(100)) %>%
          in_circle = if_else(o_dist <= 1, T, F))
 ```
 
-```{r, fig.asp=1}
+```{r, fig.width = 5, fig.height = 5}
 random_xy %>%
   ggplot(aes(x = x, y = y)) +
   geom_point() +
@@ -105,7 +109,7 @@ random_xy %>%
 
 Now, if we superimpose our random pairs of coordinates onto our circle with radius 1:
 
-```{r, fig.asp = 1}
+```{r, fig.width = 5, fig.height = 5}
 r_1 %>%
   ggplot(aes(x = x, y = y)) +
   geom_point(size = 0.5, col = "purple") +
@@ -117,7 +121,7 @@ r_1 %>%
 
 Hopefully the plan is starting to become clear. We need to calculate the proportion of random points that are inside the circle. 
 
-```{r, fig.asp = 1}
+```{r, fig.width = 5, fig.height = 5}
 r_1 %>%
   ggplot(aes(x = x, y = y)) +
   geom_point(size = 0.5, col = "purple") +
@@ -141,7 +145,7 @@ That's an ok estimate but what if we wanted a greater degree of accuracy. All we
 
 Say we ran through the whole process again but this time with 1000 points:
 
-```{r, fig.asp=1}
+```{r, fig.width = 5, fig.height = 5}
 random_xy <- tibble(x = runif(1000), y = runif(1000)) %>%
   mutate(o_dist = sqrt(x^2 + y^2),
          in_circle = if_else(o_dist <= 1, T, F))
