@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = FALSE,
 # Packages
 library(tidyverse)
 library(scales)
-library(plotly)
+library(ggforce)
 ```
 
 A couple of month's ago I read Steven Strogatz's Inifinite Powers.
@@ -45,9 +45,47 @@ My two favourite sections invovled Storgatz recounting how Archimedes discovered
 
 # Archimedes' estimate
 
+$\pi$ is defined as the ratio between the circumference and diameter of a circle
+
+$$\pi = \frac{C}{d}$$
+
+We know that the diameter is twice the radius:
+
+$$d = 2r$$
+
+So, we know that we can write:
+
+$$\pi = \frac{C}{2r}$$
+
+What we need is an estimate for C. 
+
+If we approximate the circumference of a circle using a hexagon inside it (as shown in the image below), then we know that (because a hexagon is 6 equilateral triangles) the distance around the edge of the hexagon (in bold) is $6r$.  
+
 <center>
-![Archimedes' first step](/images/estimate_pi.png)
+![Internal hexagon for lower bound.](/images/pi_hexagon_in.png)
 </center>
+
+So, if we know that 6 times the radius is an underestimate of the circumference of the circle, then we can write:
+
+$$C > 6r$$
+
+If we substitue this into our previous formula for $\pi$ we get:
+
+$$\pi = \frac{C}{2r} > \frac{6r}{2r} = 3$$
+
+In other words, we get a lower bound for the true value of $\pi$. We know it must be larger than 3. 
+
+If you carry out the same process with a hexagon that is outside the circle, then we can get an upper bound for $\pi$. 
+
+<center>
+![External hexagon for upper bound](/images/pi_hexagon_out.png)
+</center>
+
+Staggeringly, Archimedes carried out a process equivalent to the one we just played through with a hexagon on a 96-sided shape and found the following interval:
+
+$$3\frac{10}{70} < \pi < 3\frac{10}{71}$$
+
+This means he found $\pi$ correct to 2 decimal places, $3.14$, which is as much  precision as most people know $\pi$ to nowadays.
 
 # **R**chimedes' estimate
 
@@ -86,7 +124,7 @@ r_1 <- circle_coords()
 
 r_1 %>%
   ggplot(aes(x = x, y = y)) +
-  geom_point(size = 0.5, col = "purple") +
+  geom_point(size = 0.5, col = "#440154FF") +
   geom_vline(aes(xintercept = 0)) +
   geom_hline(aes(yintercept = 0)) +
   theme_minimal()
@@ -95,6 +133,7 @@ r_1 %>%
 How does this help us? Well, if we use the random number function twice we can generate pairs of random coordinates. Let's plot 100 such coordinates:
 
 ```{r}
+set.seed(1)
 random_xy <- tibble(x = runif(100), y = runif(100)) %>%
   mutate(o_dist = sqrt(x^2 + y^2),
          in_circle = if_else(o_dist <= 1, T, F))
@@ -112,23 +151,26 @@ Now, if we superimpose our random pairs of coordinates onto our circle with radi
 ```{r, fig.width = 5, fig.height = 5}
 r_1 %>%
   ggplot(aes(x = x, y = y)) +
-  geom_point(size = 0.5, col = "purple") +
+  geom_point(size = 0.5, col = "#440154FF") +
   geom_point(data = random_xy, aes(x = x, y = y)) +
   geom_vline(aes(xintercept = 0)) +
   geom_hline(aes(yintercept = 0)) +
   theme_minimal()
 ```
 
-Hopefully the plan is starting to become clear. We need to calculate the proportion of random points that are inside the circle. 
+Hopefully the plan is starting to become clear. 
+
+We need to calculate the proportion of random points that are inside the circle. 
 
 ```{r, fig.width = 5, fig.height = 5}
 r_1 %>%
   ggplot(aes(x = x, y = y)) +
-  geom_point(size = 0.5, col = "purple") +
+  geom_point(size = 0.5, col = "#440154FF") +
   geom_point(data = random_xy, aes(x = x, y = y, col = in_circle)) +
   geom_vline(aes(xintercept = 0)) +
   geom_hline(aes(yintercept = 0)) +
-  scale_color_viridis_d(guide = "none") +
+  scale_color_manual(guide = "none",
+                     values = c("#31688EFF", "#FDE725FF")) +
   theme_minimal()
 ```
 
@@ -141,22 +183,24 @@ In this instance, the proportion of our random points that fall inside the circl
 
 So, to find an estimate for the area of the circle (which we know to be $\pi$) all we have to do is multiply that proportion by 4. In this case, our estimate for $\pi$ turns out to be `r pi_estimate`. 
 
-That's an ok estimate but what if we wanted a greater degree of accuracy. All we need to do is use a greater number of random points. 
+That's an ok estimate but, what if we want a greater degree of accuracy? All we need to do is use more random points. 
 
 Say we ran through the whole process again but this time with 1000 points:
 
 ```{r, fig.width = 5, fig.height = 5}
+set.seed(1)
 random_xy <- tibble(x = runif(1000), y = runif(1000)) %>%
   mutate(o_dist = sqrt(x^2 + y^2),
          in_circle = if_else(o_dist <= 1, T, F))
 
 r_1 %>%
   ggplot(aes(x = x, y = y)) +
-  geom_point(size = 0.5, col = "purple") +
+  geom_point(size = 0.5, col = "#440154FF") +
   geom_point(data = random_xy, aes(x = x, y = y, col = in_circle)) +
   geom_vline(aes(xintercept = 0)) +
   geom_hline(aes(yintercept = 0)) +
-  scale_color_viridis_d(guide = "none") +
+  scale_color_manual(guide = "none",
+                     values = c("#31688EFF", "#FDE725FF")) +
   theme_minimal()
 ```
 
@@ -165,7 +209,9 @@ prop_inside <- mean(random_xy$in_circle)
 pi_estimate <- 4*prop_inside
 ```
 
-Now, the proportion of points inside the circle is `r prop_inside` giving us an estimate for $\pi$ of `r pi_estimate`. 
+Now, the proportion of points inside the circle is `r prop_inside` giving us an estimate for $\pi$ of `r pi_estimate`. `R` provides the value of $\pi$ to 6 decimal places as `r pi`. We're getting closer. 
+
+# Can we beat a guy whose been dead for 2000 years?
 
 ```{r}
 R_chimedes <- function(n_points) {
@@ -187,54 +233,51 @@ Lets try a few different powers of 10.
 
 ```{r}
 set.seed(1)
-estimates <- tibble(n_points = 10^(2:7),
+estimates <- tibble(n_points = 10^(2:8),
                     attempt_1 = map_dbl(n_points, R_chimedes),
                     attempt_2 = map_dbl(n_points, R_chimedes),
-                    attempt_3 = map_dbl(n_points, R_chimedes))
-
-estimates %>%
-  pivot_longer(cols = c(attempt_1, attempt_2, attempt_3),
-               names_to = "Estimate") %>%
-  ggplot(aes(x = n_points, y = value, col = Estimate)) +
-  geom_point(aes(shape = Estimate)) +
-  geom_hline(aes(yintercept = pi)) +
-  geom_line(aes(lty = Estimate)) +
-  scale_x_log10(breaks = 10^(2:7),
-                labels = trans_format("log10", math_format(10^.x))) +
-  scale_color_viridis_d() +
-  theme_minimal()
-
-estimates %>%
-  pivot_longer(cols = c(attempt_1, attempt_2, attempt_3),
-               names_to = "Estimate") %>%
-  ggplot(aes(x = n_points, y = value, col = Estimate)) +
-  geom_point(aes(shape = Estimate)) +
-  geom_hline(aes(yintercept = pi)) +
-  geom_line(aes(lty = Estimate)) +
-  scale_x_log10(breaks = 10^(5:7),
-                labels = trans_format("log10", math_format(10^.x)),
-                limits = c(10^5, 10^7)) +
-  scale_y_continuous(limits = c(3.135, 3.145)) +
-  scale_color_viridis_d() +
-  theme_minimal()
+                    attempt_3 = map_dbl(n_points, R_chimedes)) %>%
+  pivot_longer(cols = -n_points, names_to = "Estimate") %>%
+  mutate(pi_6dp = pi,
+         archimedes_low = 3 + 10/71,
+         archimedes_high = 3 + 10/70)
 ```
 
 ```{r}
 estimates %>%
-  mutate(Pi = pi) %>%
-  pivot_longer(cols = c(attempt_1, attempt_2, attempt_3, Pi),
-               names_to = "Estimate") %>%
-  plot_ly(x = ~n_points,
-          y = ~value,
-          color = ~Estimate,
-          colors = viridis_pal(direction = -1)(4),
-          text = ~paste0(Estimate, ": ", value),
-          hoverinfo = "text") %>%
-  add_markers(symbol = ~Estimate,
-              showlegend = FALSE) %>%
-  add_lines(showlegend = FALSE) %>%
-  layout(xaxis = list(title = "Number of Points", type = "log"),
-         yaxis = list(title = "Value"))
+  ggplot(aes(x = n_points, y = value)) +
+  geom_ribbon(aes(ymin = archimedes_low, ymax = archimedes_high),
+              fill = "#440154FF",
+              alpha = 0.2) +
+  geom_line(aes(y = pi_6dp), col = "#440154FF", lty = 2) +
+  geom_point(aes(shape = Estimate, col = Estimate), size = 1.5) +
+  scale_x_log10("No. of random points",
+                breaks = 10^(2:8),
+                labels = trans_format("log10", math_format(10^.x))) +
+  scale_y_continuous("Value") +
+  scale_color_manual(values = c("#31688EFF", "#35B779FF", "#FDE725FF")) +
+  labs(caption = "The dashed purple line is pi to 6 dp.\nThe purple band is the range Archimedes calculated.") +
+  theme_minimal() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
+```
+
+```{r}
+estimates %>%
+  ggplot(aes(x = n_points, y = value)) +
+  geom_ribbon(aes(ymin = archimedes_low, ymax = archimedes_high),
+              fill = "#440154FF",
+              alpha = 0.2) +
+  geom_line(aes(y = pi_6dp), col = "#440154FF", lty = 2) +
+  geom_point(aes(shape = Estimate, col = Estimate), size = 1.5) +
+  scale_x_log10("No. of random points",
+                breaks = 10^(6:8),
+                labels = trans_format("log10", math_format(10^.x)),
+                limits = c(10^6, 10^8)) +
+  scale_y_continuous("Value", limits = c(3.139, 3.145)) +
+  scale_color_manual(values = c("#31688EFF", "#35B779FF", "#FDE725FF")) +
+  labs(caption = "The dashed purple line is pi to 6 dp.\nThe purple band is the range Archimedes calculated.") +
+  theme_minimal() +
+  theme(axis.title.y = element_text(angle = 0, vjust = 0.5))
 ```
 
 # Knowing vs. Understanding

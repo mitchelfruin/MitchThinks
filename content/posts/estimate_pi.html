@@ -13,20 +13,13 @@ output:
     number_sections: true
 ---
 
-<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
-<script src="/rmarkdown-libs/plotly-binding/plotly.js"></script>
-<script src="/rmarkdown-libs/typedarray/typedarray.min.js"></script>
-<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
-<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
-<link href="/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/plotly-main/plotly-latest.min.js"></script>
 
 <div id="TOC">
 <ul>
 <li><a href="#archimedes-estimate"><span class="toc-section-number">1</span> Archimedes’ estimate</a></li>
 <li><a href="#rchimedes-estimate"><span class="toc-section-number">2</span> <strong>R</strong>chimedes’ estimate</a></li>
-<li><a href="#knowing-vs.understanding"><span class="toc-section-number">3</span> Knowing vs. Understanding</a></li>
+<li><a href="#can-we-beat-a-guy-whose-been-dead-for-2000-years"><span class="toc-section-number">3</span> Can we beat a guy whose been dead for 2000 years?</a></li>
+<li><a href="#knowing-vs.understanding"><span class="toc-section-number">4</span> Knowing vs. Understanding</a></li>
 </ul>
 </div>
 
@@ -43,9 +36,29 @@ div#TOC li {
 <p>My two favourite sections invovled Storgatz recounting how Archimedes discovered the formula for the area of a circle and how he estimated <span class="math inline">\(\pi\)</span>. This post will only cover the latter. The reason being that there’s a popular data science interview question which requires the applicant to estimate <span class="math inline">\(\pi\)</span>. So, I thought it would be fun to compare Archimedes’ estimate to what I’ll be (shamelessly and repeatedly) calling <strong>R</strong>chimedes’ estimate.</p>
 <div id="archimedes-estimate" class="section level1">
 <h1><span class="header-section-number">1</span> Archimedes’ estimate</h1>
+<p><span class="math inline">\(\pi\)</span> is defined as the ratio between the circumference and diameter of a circle</p>
+<p><span class="math display">\[\pi = \frac{C}{d}\]</span></p>
+<p>We know that the diameter is twice the radius:</p>
+<p><span class="math display">\[d = 2r\]</span></p>
+<p>So, we know that we can write:</p>
+<p><span class="math display">\[\pi = \frac{C}{2r}\]</span></p>
+<p>What we need is an estimate for C.</p>
+<p>If we approximate the circumference of a circle using a hexagon inside it (as shown in the image below), then we know that (because a hexagon is 6 equilateral triangles) the distance around the edge of the hexagon (in bold) is <span class="math inline">\(6r\)</span>.</p>
 <center>
-<img src="/images/estimate_pi.png" alt="Archimedes’ first step" />
+<img src="/images/pi_hexagon_in.png" alt="Internal hexagon for lower bound." />
 </center>
+<p>So, if we know that 6 times the radius is an underestimate of the circumference of the circle, then we can write:</p>
+<p><span class="math display">\[C &gt; 6r\]</span></p>
+<p>If we substitue this into our previous formula for <span class="math inline">\(\pi\)</span> we get:</p>
+<p><span class="math display">\[\pi = \frac{C}{2r} &gt; \frac{6r}{2r} = 3\]</span></p>
+<p>In other words, we get a lower bound for the true value of <span class="math inline">\(\pi\)</span>. We know it must be larger than 3.</p>
+<p>If you carry out the same process with a hexagon that is outside the circle, then we can get an upper bound for <span class="math inline">\(\pi\)</span>.</p>
+<center>
+<img src="/images/pi_hexagon_out.png" alt="External hexagon for upper bound" />
+</center>
+<p>Staggeringly, Archimedes carried out a process equivalent to the one we just played through with a hexagon on a 96-sided shape and found the following interval:</p>
+<p><span class="math display">\[3\frac{10}{70} &lt; \pi &lt; 3\frac{10}{71}\]</span></p>
+<p>This means he found <span class="math inline">\(\pi\)</span> correct to 2 decimal places, <span class="math inline">\(3.14\)</span>, which is as much precision as most people know <span class="math inline">\(\pi\)</span> to nowadays.</p>
 </div>
 <div id="rchimedes-estimate" class="section level1">
 <h1><span class="header-section-number">2</span> <strong>R</strong>chimedes’ estimate</h1>
@@ -70,22 +83,25 @@ div#TOC li {
 <p><img src="/posts/estimate_pi_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Now, if we superimpose our random pairs of coordinates onto our circle with radius 1:</p>
 <p><img src="/posts/estimate_pi_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p>Hopefully the plan is starting to become clear. We need to calculate the proportion of random points that are inside the circle.</p>
+<p>Hopefully the plan is starting to become clear.</p>
+<p>We need to calculate the proportion of random points that are inside the circle.</p>
 <p><img src="/posts/estimate_pi_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p>In this instance, the proportion of our random points that fall inside the circle is 0.85.</p>
-<p>So, to find an estimate for the area of the circle (which we know to be <span class="math inline">\(\pi\)</span>) all we have to do is multiply that proportion by 4. In this case, our estimate for <span class="math inline">\(\pi\)</span> turns out to be 3.4.</p>
-<p>That’s an ok estimate but what if we wanted a greater degree of accuracy. All we need to do is use a greater number of random points.</p>
+<p>In this instance, the proportion of our random points that fall inside the circle is 0.82.</p>
+<p>So, to find an estimate for the area of the circle (which we know to be <span class="math inline">\(\pi\)</span>) all we have to do is multiply that proportion by 4. In this case, our estimate for <span class="math inline">\(\pi\)</span> turns out to be 3.28.</p>
+<p>That’s an ok estimate but, what if we want a greater degree of accuracy? All we need to do is use more random points.</p>
 <p>Say we ran through the whole process again but this time with 1000 points:</p>
 <p><img src="/posts/estimate_pi_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p>Now, the proportion of points inside the circle is 0.785 giving us an estimate for <span class="math inline">\(\pi\)</span> of 3.14.</p>
+<p>Now, the proportion of points inside the circle is 0.787 giving us an estimate for <span class="math inline">\(\pi\)</span> of 3.148. <code>R</code> provides the value of <span class="math inline">\(\pi\)</span> to 6 decimal places as 3.1415927. We’re getting closer.</p>
+</div>
+<div id="can-we-beat-a-guy-whose-been-dead-for-2000-years" class="section level1">
+<h1><span class="header-section-number">3</span> Can we beat a guy whose been dead for 2000 years?</h1>
 <p>How many random points do we need before we are more accurate than Archimedes?</p>
 <p>Lets try a few different powers of 10.</p>
-<p><img src="/posts/estimate_pi_files/figure-html/unnamed-chunk-10-1.png" width="776.64" style="display: block; margin: auto;" /><img src="/posts/estimate_pi_files/figure-html/unnamed-chunk-10-2.png" width="776.64" style="display: block; margin: auto;" /></p>
-<div id="htmlwidget-1" style="width:776.64px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"eb2b3600696b":["function () ","plotlyVisDat"]},"cur_data":"eb2b3600696b","attrs":{"eb2b3600696b":{"x":{},"y":{},"text":{},"hoverinfo":"text","color":{},"colors":["#FDE725FF","#35B779FF","#31688EFF","#440154FF"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","mode":"markers","symbol":{},"showlegend":false,"inherit":true},"eb2b3600696b.1":{"x":{},"y":{},"text":{},"hoverinfo":"text","color":{},"colors":["#FDE725FF","#35B779FF","#31688EFF","#440154FF"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","mode":"lines","showlegend":false,"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Number of Points","type":"log"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Value"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[100,1000,10000,100000,1000000,10000000],"y":[3.28,3.164,3.1196,3.14468,3.144292,3.140718],"text":["attempt_1: 3.28","attempt_1: 3.164","attempt_1: 3.1196","attempt_1: 3.14468","attempt_1: 3.144292","attempt_1: 3.140718"],"hoverinfo":["text","text","text","text","text","text"],"type":"scatter","mode":"markers","showlegend":false,"name":"attempt_1","marker":{"color":"rgba(253,231,37,1)","symbol":"circle","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"line":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[100,1000,10000,100000,1000000,10000000],"y":[3.16,3.104,3.1504,3.141,3.143028,3.1419128],"text":["attempt_2: 3.16","attempt_2: 3.104","attempt_2: 3.1504","attempt_2: 3.141","attempt_2: 3.143028","attempt_2: 3.1419128"],"hoverinfo":["text","text","text","text","text","text"],"type":"scatter","mode":"markers","showlegend":false,"name":"attempt_2","marker":{"color":"rgba(53,183,121,1)","symbol":"triangle-up","line":{"color":"rgba(53,183,121,1)"}},"textfont":{"color":"rgba(53,183,121,1)"},"error_y":{"color":"rgba(53,183,121,1)"},"error_x":{"color":"rgba(53,183,121,1)"},"line":{"color":"rgba(53,183,121,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[100,1000,10000,100000,1000000,10000000],"y":[2.76,3.148,3.1284,3.13748,3.139788,3.1416476],"text":["attempt_3: 2.76","attempt_3: 3.148","attempt_3: 3.1284","attempt_3: 3.13748","attempt_3: 3.139788","attempt_3: 3.1416476"],"hoverinfo":["text","text","text","text","text","text"],"type":"scatter","mode":"markers","showlegend":false,"name":"attempt_3","marker":{"color":"rgba(49,104,142,1)","symbol":"square","line":{"color":"rgba(49,104,142,1)"}},"textfont":{"color":"rgba(49,104,142,1)"},"error_y":{"color":"rgba(49,104,142,1)"},"error_x":{"color":"rgba(49,104,142,1)"},"line":{"color":"rgba(49,104,142,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[100,1000,10000,100000,1000000,10000000],"y":[3.14159265358979,3.14159265358979,3.14159265358979,3.14159265358979,3.14159265358979,3.14159265358979],"text":["Pi: 3.14159265358979","Pi: 3.14159265358979","Pi: 3.14159265358979","Pi: 3.14159265358979","Pi: 3.14159265358979","Pi: 3.14159265358979"],"hoverinfo":["text","text","text","text","text","text"],"type":"scatter","mode":"markers","showlegend":false,"name":"Pi","marker":{"color":"rgba(68,1,84,1)","symbol":"cross-thin-open","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"line":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[100,1000,10000,100000,1000000,10000000],"y":[3.28,3.164,3.1196,3.14468,3.144292,3.140718],"text":["attempt_1: 3.28","attempt_1: 3.164","attempt_1: 3.1196","attempt_1: 3.14468","attempt_1: 3.144292","attempt_1: 3.140718"],"hoverinfo":["text","text","text","text","text","text"],"type":"scatter","mode":"lines","showlegend":false,"name":"attempt_1","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"line":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[100,1000,10000,100000,1000000,10000000],"y":[3.16,3.104,3.1504,3.141,3.143028,3.1419128],"text":["attempt_2: 3.16","attempt_2: 3.104","attempt_2: 3.1504","attempt_2: 3.141","attempt_2: 3.143028","attempt_2: 3.1419128"],"hoverinfo":["text","text","text","text","text","text"],"type":"scatter","mode":"lines","showlegend":false,"name":"attempt_2","marker":{"color":"rgba(53,183,121,1)","line":{"color":"rgba(53,183,121,1)"}},"textfont":{"color":"rgba(53,183,121,1)"},"error_y":{"color":"rgba(53,183,121,1)"},"error_x":{"color":"rgba(53,183,121,1)"},"line":{"color":"rgba(53,183,121,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[100,1000,10000,100000,1000000,10000000],"y":[2.76,3.148,3.1284,3.13748,3.139788,3.1416476],"text":["attempt_3: 2.76","attempt_3: 3.148","attempt_3: 3.1284","attempt_3: 3.13748","attempt_3: 3.139788","attempt_3: 3.1416476"],"hoverinfo":["text","text","text","text","text","text"],"type":"scatter","mode":"lines","showlegend":false,"name":"attempt_3","marker":{"color":"rgba(49,104,142,1)","line":{"color":"rgba(49,104,142,1)"}},"textfont":{"color":"rgba(49,104,142,1)"},"error_y":{"color":"rgba(49,104,142,1)"},"error_x":{"color":"rgba(49,104,142,1)"},"line":{"color":"rgba(49,104,142,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[100,1000,10000,100000,1000000,10000000],"y":[3.14159265358979,3.14159265358979,3.14159265358979,3.14159265358979,3.14159265358979,3.14159265358979],"text":["Pi: 3.14159265358979","Pi: 3.14159265358979","Pi: 3.14159265358979","Pi: 3.14159265358979","Pi: 3.14159265358979","Pi: 3.14159265358979"],"hoverinfo":["text","text","text","text","text","text"],"type":"scatter","mode":"lines","showlegend":false,"name":"Pi","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"line":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p><img src="/posts/estimate_pi_files/figure-html/unnamed-chunk-11-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/estimate_pi_files/figure-html/unnamed-chunk-12-1.png" width="776.64" style="display: block; margin: auto;" /></p>
 </div>
 <div id="knowing-vs.understanding" class="section level1">
-<h1><span class="header-section-number">3</span> Knowing vs. Understanding</h1>
+<h1><span class="header-section-number">4</span> Knowing vs. Understanding</h1>
 <p>About undersatdning vs. knowing.</p>
 <p>For a long time, definitely throughout all of school, all I really did was <em>know</em> stuff. Now, I want to <em>understand</em> stuff. And even if that means there’s less stuff involved, I’m fine with that. Value of understanding is that you begin to see connections between seemingly disparate points of <em>knowledge</em>.</p>
 </div>
