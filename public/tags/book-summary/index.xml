@@ -6,10 +6,19 @@
     <description>Recent content in Book summary on MitchThinks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/book-summary/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Estimating Pi 2000 years too late.</title>
+      <link>/posts/estimate_pi/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/estimate_pi/</guid>
+      <description>1 Archimedes’ estimate 2 Rchimedes’ estimate 3 Can we beat a guy who’s been dead for over 2000 years? 4 Knowing vs. Understanding   div#TOC li { list-style:none; background-image:none; background-repeat:none; background-position:0; }  I was given Infinite Powers by Steven Strogatz as a Christmas present (thanks Grandma). It’s a good book and I’d recommend it to anyone who ever sat in a maths class and genuinely asked the teacher, “err, but, like, why?</description>
+    </item>
     
     <item>
       <title>A Field Guide to Lies and Statistics (Daniel Levitin, 2016).</title>
