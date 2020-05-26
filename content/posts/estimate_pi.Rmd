@@ -96,7 +96,7 @@ $$3 < \pi < 3.46$$
 
 Staggeringly, Archimedes carried out a process equivalent to the one we just played through with a 96-sided shape and found the following interval:
 
-$$3\frac{10}{70} < \pi < 3\frac{10}{71}$$
+$$3\frac{10}{71} < \pi < 3\frac{10}{70}$$
 Which rounded to 3 decimal places is:
 
 $$3.141 < \pi < 3.143$$
