@@ -1,0 +1,81 @@
+---
+title: "The ubiquity of Simpson's paradox."
+author: "Mitchel Fruin"
+date: "2020-08-09"
+description: "Exploring the presence of a statistical paradox in evolutionary biology and economics."
+tags: ["Probability and Statistics", "Evolution", "Economics"]
+slug: simpsons_paradox
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+
+```{r setup, include=FALSE}
+# RMarkdown
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center",
+                      fig.width = 8.09,
+                      fig.height = 5)
+
+# Packages
+library(tidyverse)
+```
+
+Potential titles:
+
+* Reframing hidden evolutionary trade-offs as Simpson's paradox
+
+What are the take-aways?
+
+* van Noordwijk & de Jong (1986) acquisition vs. allocation model is an example of Simpson's paradox.
+    + At each level of acquisition, there is a negative relationship between survival and reproduction. 
+    + However, by aggregating across acquisition levels you reverse the sign of the apparent relationship.
+* Simpson's paradox shows up in evolutionary biology.
+    + Can it be resolved by asking the right causal question?
+* Can this framing be a route for using Causal Inference in evolutionary biology?
+    + Can you re-analyse some of the data in van Noordwijk & de Jong using Pearl's causal diagrams?
+
+Maybe open with example from Economics? That seemed to resonate with Annie.
+
+# Simpson's paradox 
+
+Recently read *The Book of Why* by Judea Pearl & Dana MacKenzie. 
+Scrolling through their blog (link) I saw a post re-iterating a point they had made in their chapter Paradoxes Galore in the context of coronvirus deaths by race.
+Race and coronavirus example with UK data.
+
+As almost anyone whose done some introductory statistics is, I was familiar, with Simpson's paradox and the original UC Berkely example. 
+
+However, until I read *The Book of Why* it hadn't really dawned on me before how significant a problem it was. Pearl & MacKenzie make the point that there is no data-driven/theory-blind way to determine whether or not you should aggregate the data. You can only make that choice by asking the right causal question.
+
+It then dawned on me that I had seen the same problem ages ago in one of my favourite Biology papers but discussed without any reference to Simpson's paradox.
+
+# Hidden evolutionary trade-offs
+
+In 1986, Arie van Noordwijk and Gerdien de Jong Acquisition and Allocation of Resources: Their Influence on Variation in Life History Tactics.
+
+# Hidden economic trade-offs
+
+They draw quick analogy at the end of their paper which really crystallises the point. 
+
+Within a given budget level we expect house price and car price to be negatively correlated. 
+
+* People who earn 30k a year and spent a large fraction of that on a house will have less money left to spend on a car. 
+* People who earn 60k a year and spent a large fraction of that on a house will similarly have less money left over to spend on a car.
+
+But on the whole, i.e. across many budget levels, we expect house price and car price to be positively correlated. 
+
+* People who earn 60k a year will have both a more expensive house and more expensive car than people who earn 30k a year.
+
