@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Mitchel Fruin">
+    <meta name="description" content="Mitchel Fruin&#39;s personal website">
+    <meta name="keywords" content="blog,data science,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Simpson&#39;s paradox can hide trade-offs."/>
+<meta name="twitter:description" content="Exploring the presence of a statistical paradox in evolutionary biology and economics."/>
+
+    <meta property="og:title" content="Simpson&#39;s paradox can hide trade-offs." />
+<meta property="og:description" content="Exploring the presence of a statistical paradox in evolutionary biology and economics." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/simpsons_paradox/" />
+<meta property="article:published_time" content="2020-08-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-09T00:00:00+00:00" />
+
+
+    
+      <base href="/posts/simpsons_paradox/">
+    
+    <title>
+  Simpson&#39;s paradox can hide trade-offs. · MitchThinks
+</title>
+
+    
+      <link rel="canonical" href="/posts/simpsons_paradox/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.56.3" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      MitchThinks
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/posts/">Posts</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/apps/">Apps</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/tags/">Tags</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+
+<head>
+  <link rel="icon" type="image/ico" href="/images/favicon.ico">
+  <meta name="follow_it-verification-code" content="f2tGJGDUDbQf2VFFX41T"/>
+</head>
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Simpson&#39;s paradox can hide trade-offs.</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-08-09T00:00:00Z'>
+                Aug 9, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              4 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/tags/probability-and-statistics/">Probability and Statistics</a>
+      <span class="separator">•</span>
+    <a href="/tags/evolution/">Evolution</a>
+      <span class="separator">•</span>
+    <a href="/tags/economics/">Economics</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+
+<div id="TOC">
+<ul>
+<li><a href="#simpsons-paradox"><span class="toc-section-number">1</span> Simpson’s paradox</a></li>
+<li><a href="#hidden-evolutionary-trade-offs"><span class="toc-section-number">2</span> Hidden evolutionary trade-offs</a></li>
+<li><a href="#hidden-economic-trade-offs"><span class="toc-section-number">3</span> Hidden economic trade-offs</a></li>
+</ul>
+</div>
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+<p>Alternative titles:</p>
+<ul>
+<li>The ladder of causation, evolutionary trade-offs, and Simpson’s paradox.
+<ul>
+<li>Can’t resolve the issue from data alone.</li>
+<li>Include more about the experiments that support the existence of a trade-off.</li>
+</ul></li>
+</ul>
+<div id="simpsons-paradox" class="section level1">
+<h1><span class="header-section-number">1</span> Simpson’s paradox</h1>
+<p>Recently read <em>The Book of Why</em> by Judea Pearl &amp; Dana MacKenzie.
+Scrolling through their blog (link) I saw a post re-iterating a point they had made in their chapter Paradoxes Galore in the context of coronvirus deaths by race.
+Race and coronavirus example with UK data.</p>
+<p>As almost anyone whose done some introductory statistics is, I was familiar, with Simpson’s paradox and the original UC Berkely example.</p>
+<p>However, until I read <em>The Book of Why</em> it hadn’t really dawned on me before how significant a problem it was. Pearl &amp; MacKenzie make the point that there is no data-driven/theory-blind way to determine whether or not you should aggregate the data. You can only make that choice by asking the right causal question.</p>
+<p>It then dawned on me that I had seen the same problem ages ago in one of my favourite Biology papers but discussed without any reference to Simpson’s paradox.</p>
+</div>
+<div id="hidden-evolutionary-trade-offs" class="section level1">
+<h1><span class="header-section-number">2</span> Hidden evolutionary trade-offs</h1>
+<p>In 1986, Arie van Noordwijk and Gerdien de Jong Acquisition and Allocation of Resources: Their Influence on Variation in Life History Tactics.</p>
+<p>Diagram for overall model:</p>
+<p><img src="/posts/simpsons_paradox_files/figure-html/unnamed-chunk-1-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>Diagram for when variation in acquisition &gt;&gt; than variation in allocation:</p>
+<p><img src="/posts/simpsons_paradox_files/figure-html/unnamed-chunk-2-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>Diagram for when variation in acquisition &lt;&lt; than variation in allocation:</p>
+<p><img src="/posts/simpsons_paradox_files/figure-html/unnamed-chunk-3-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hidden-economic-trade-offs" class="section level1">
+<h1><span class="header-section-number">3</span> Hidden economic trade-offs</h1>
+<p>They draw quick analogy at the end of their paper which really crystallises the point.</p>
+<p>Within a given budget level we expect house price and car price to be negatively correlated.</p>
+<ul>
+<li>People who earn 30k a year and spent a large fraction of that on a house will have less money left to spend on a car.</li>
+<li>People who earn 60k a year and spent a large fraction of that on a house will similarly have less money left over to spend on a car.</li>
+</ul>
+<p>But on the whole, i.e. across many budget levels, we expect house price and car price to be positively correlated.</p>
+<ul>
+<li>People who earn 60k a year will have both a more expensive house and more expensive car than people who earn 30k a year.</li>
+</ul>
+<p>Imagine three facts about me (if you know me, then you’ll have to try pretty hard):</p>
+<ol style="list-style-type: decimal">
+<li>I earn 50k a year.</li>
+<li>I own a house.</li>
+<li>I own a car.</li>
+</ol>
+<p>Now consider the following two scenarios:</p>
+<p><strong>Scenario 1.</strong> If I told you that my imaginary house was more expensive than the average house in the UK, what would you predict about the value of my car compared to the UK average?</p>
+<p>A. My car is worth the same as the UK average.
+B. My car is worth less than the UK average.
+C. My car is worth more than the UK average.</p>
+<p>I expect that you picked option C meaning you thought that if I had an expensive house then it stands to reason that I’d have an expensive car too. I.e. You predicted that there’s a <strong>positive correlation</strong> between house value and car value in the general population.</p>
+<p><strong>Scenario 2.</strong> If I told you that my house was more expensive than the average house for people who earn 50k, what would you predict about the value of my car compared to the average for people who earn 50k?</p>
+<p>A. My car is worth the same as the 50k-earner average.
+B. My car is worth less than the 50k-earner average.
+C. My car is worth more than the 50k-earner average.</p>
+<p>I expect that you picked option B meaning you thought that if I had an expensive house, then I must have less money left in my 50k budget to spend on a car, an therefore will have a cheaper than average car. I.e. You predicted that there’s a <strong>negative correlation</strong> between house value and car value in the sub-population of people earning 50k a year.</p>
+<p>Predicted the opposite relationship between the same two variables in the different scenarios.</p>
+<p>These two choices illustrate an interesting pattern that crops up reasonably often. When we split data into groups or group data into populations we can reverse the relationship between two variables.</p>
+</div>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    <form action="https://api.follow.it/subscription-form/ZFI3NnZwcHFIWnYwNHN3NzZwRTVucHVsQ01EK3BKTjRHZ1NLTGtQSFNucXRuNGNNdi93eTdhcFhFdllzTXpQMjJQVTZvRWRZbEhFdUYybFVZME5lSkx4UTZwVDhOVjlEZHlpVGFtR2locWtuUzJwRmNTZDJNNFhLVHlGMHF0R2J8UFdDemZsSGhxSHNTSU5GbVY4bkpROHg0NlB4ZTR2S3RKeTNtTDI2UHROND0=/8" method="post"><p>Enter your email for updates:  <input type="text" style="width:250px" name="email"/></p><input type="hidden" value="Mitchthinks" name="uri"/><input type="hidden" name="loc" value="en_US"/><input type="submit" value="Subscribe" /></form>
+    </br>
+    
+     © 2020
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+       · 
+      [<a href="https://github.com/luizdepra/hugo-coder/tree/"></a>]
+    
+  </section>
+</footer>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

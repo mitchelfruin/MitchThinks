@@ -1,0 +1,92 @@
+---
+title: "Simpson's paradox can hide trade-offs."
+author: "Mitchel Fruin"
+date: "2020-08-09"
+description: "Exploring the presence of a statistical paradox in evolutionary biology and economics."
+tags: ["Probability and Statistics", "Evolution", "Economics"]
+slug: simpsons_paradox
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#simpsons-paradox"><span class="toc-section-number">1</span> Simpson’s paradox</a></li>
+<li><a href="#hidden-evolutionary-trade-offs"><span class="toc-section-number">2</span> Hidden evolutionary trade-offs</a></li>
+<li><a href="#hidden-economic-trade-offs"><span class="toc-section-number">3</span> Hidden economic trade-offs</a></li>
+</ul>
+</div>
+
+<style type="text/css">
+div#TOC li {
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+</style>
+<p>Alternative titles:</p>
+<ul>
+<li>The ladder of causation, evolutionary trade-offs, and Simpson’s paradox.
+<ul>
+<li>Can’t resolve the issue from data alone.</li>
+<li>Include more about the experiments that support the existence of a trade-off.</li>
+</ul></li>
+</ul>
+<div id="simpsons-paradox" class="section level1">
+<h1><span class="header-section-number">1</span> Simpson’s paradox</h1>
+<p>Recently read <em>The Book of Why</em> by Judea Pearl &amp; Dana MacKenzie.
+Scrolling through their blog (link) I saw a post re-iterating a point they had made in their chapter Paradoxes Galore in the context of coronvirus deaths by race.
+Race and coronavirus example with UK data.</p>
+<p>As almost anyone whose done some introductory statistics is, I was familiar, with Simpson’s paradox and the original UC Berkely example.</p>
+<p>However, until I read <em>The Book of Why</em> it hadn’t really dawned on me before how significant a problem it was. Pearl &amp; MacKenzie make the point that there is no data-driven/theory-blind way to determine whether or not you should aggregate the data. You can only make that choice by asking the right causal question.</p>
+<p>It then dawned on me that I had seen the same problem ages ago in one of my favourite Biology papers but discussed without any reference to Simpson’s paradox.</p>
+</div>
+<div id="hidden-evolutionary-trade-offs" class="section level1">
+<h1><span class="header-section-number">2</span> Hidden evolutionary trade-offs</h1>
+<p>In 1986, Arie van Noordwijk and Gerdien de Jong Acquisition and Allocation of Resources: Their Influence on Variation in Life History Tactics.</p>
+<p>Diagram for overall model:</p>
+<p><img src="/posts/simpsons_paradox_files/figure-html/unnamed-chunk-1-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>Diagram for when variation in acquisition &gt;&gt; than variation in allocation:</p>
+<p><img src="/posts/simpsons_paradox_files/figure-html/unnamed-chunk-2-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+<p>Diagram for when variation in acquisition &lt;&lt; than variation in allocation:</p>
+<p><img src="/posts/simpsons_paradox_files/figure-html/unnamed-chunk-3-1.png" width="776.64" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hidden-economic-trade-offs" class="section level1">
+<h1><span class="header-section-number">3</span> Hidden economic trade-offs</h1>
+<p>They draw quick analogy at the end of their paper which really crystallises the point.</p>
+<p>Within a given budget level we expect house price and car price to be negatively correlated.</p>
+<ul>
+<li>People who earn 30k a year and spent a large fraction of that on a house will have less money left to spend on a car.</li>
+<li>People who earn 60k a year and spent a large fraction of that on a house will similarly have less money left over to spend on a car.</li>
+</ul>
+<p>But on the whole, i.e. across many budget levels, we expect house price and car price to be positively correlated.</p>
+<ul>
+<li>People who earn 60k a year will have both a more expensive house and more expensive car than people who earn 30k a year.</li>
+</ul>
+<p>Imagine three facts about me (if you know me, then you’ll have to try pretty hard):</p>
+<ol style="list-style-type: decimal">
+<li>I earn 50k a year.</li>
+<li>I own a house.</li>
+<li>I own a car.</li>
+</ol>
+<p>Now consider the following two scenarios:</p>
+<p><strong>Scenario 1.</strong> If I told you that my imaginary house was more expensive than the average house in the UK, what would you predict about the value of my car compared to the UK average?</p>
+<p>A. My car is worth the same as the UK average.
+B. My car is worth less than the UK average.
+C. My car is worth more than the UK average.</p>
+<p>I expect that you picked option C meaning you thought that if I had an expensive house then it stands to reason that I’d have an expensive car too. I.e. You predicted that there’s a <strong>positive correlation</strong> between house value and car value in the general population.</p>
+<p><strong>Scenario 2.</strong> If I told you that my house was more expensive than the average house for people who earn 50k, what would you predict about the value of my car compared to the average for people who earn 50k?</p>
+<p>A. My car is worth the same as the 50k-earner average.
+B. My car is worth less than the 50k-earner average.
+C. My car is worth more than the 50k-earner average.</p>
+<p>I expect that you picked option B meaning you thought that if I had an expensive house, then I must have less money left in my 50k budget to spend on a car, an therefore will have a cheaper than average car. I.e. You predicted that there’s a <strong>negative correlation</strong> between house value and car value in the sub-population of people earning 50k a year.</p>
+<p>Predicted the opposite relationship between the same two variables in the different scenarios.</p>
+<p>These two choices illustrate an interesting pattern that crops up reasonably often. When we split data into groups or group data into populations we can reverse the relationship between two variables.</p>
+</div>
