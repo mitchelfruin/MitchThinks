@@ -1,5 +1,5 @@
 ---
-title: "NBA RDD"
+title: "The high price of finishing 31st."
 author: "Mitchel Fruin"
 date: "2020-04-19"
 description: "Exploring NBA rookies' salaries using a regression discontinuity design."

@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>NBA RDD</title>
+      <title>The high price of finishing 31st.</title>
       <link>/posts/nba_rdd/</link>
       <pubDate>Sun, 19 Apr 2020 00:00:00 +0000</pubDate>
       
@@ -125,10 +125,10 @@ Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in t
     
     <item>
       <title></title>
-      <link>/verification-follow_it-f2tgjgdudbqf2vffx41t/</link>
+      <link>/follow_it-verification-code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/verification-follow_it-f2tgjgdudbqf2vffx41t/</guid>
+      <guid>/follow_it-verification-code/</guid>
       <description>f2tGJGDUDbQf2VFFX41T</description>
     </item>
     
@@ -138,9 +138,10 @@ Dynamics Agents Networks Emergence Evolution  I’ll try to illustrate each in t
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>Education I have a B.A. in Biological Sciences from the University of Oxford and an M.Sc. in Behavioural Economics from the University of Essex.
-The majority of the coding skills I’ve picked up are self taught. In particular, I’m a big fan of DataCamp and you can find a list of the courses I’ve completed here.
- Employment I currently work as a Junior Data Scientist in the Intelligence Team at a marketing agency called SHARE.</description>
+      <description> The Site I built the site using the excellent blogdown R package.
+ Contact If I’ve made a mistake in a post, then please let me know by logging a GitHub issue here.
+ Education I have a B.A. in Biological Sciences from the University of Oxford and an M.Sc. in Behavioural Economics from the University of Essex.
+ </description>
     </item>
     
     <item>

@@ -10,24 +10,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Education
-
-I have a B.A. in Biological Sciences from the University of Oxford and an M.Sc. in Behavioural Economics from the University of Essex. 
-
-The majority of the coding skills I've picked up are self taught. In particular, I'm a big fan of DataCamp and you can find a list of the courses I've completed [here](https://www.datacamp.com/profile/mitchelfruin).
-
-# Employment
-
-I currently work as a Junior Data Scientist in the Intelligence Team at a marketing agency called [SHARE](https://sharecreative.com/intelligence-suite).
-
 # The Site
 
-I built the site using the excellent [`blogdown`](https://bookdown.org/yihui/blogdown/) R package for a few reasons:
-
-* To learn the (very) basics of web development.
-* To encourage myself to read (and actually think about what I've learned). 
-* To use R for something that didn't feel like work.
+I built the site using the excellent [`blogdown`](https://bookdown.org/yihui/blogdown/) R package.
 
 # Contact
 
-Contact me via either of the interactive icons on the homepage. 
+If I've made a mistake in a post, then please let me know by logging a GitHub issue [here](https://github.com/mitchelfruin/MitchThinks/issues).
+
+# Education
+
+I have a B.A. in Biological Sciences from the University of Oxford and an M.Sc. in Behavioural Economics from the University of Essex.
