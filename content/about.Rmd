@@ -16,7 +16,7 @@ I built the site using the excellent [`blogdown`](https://bookdown.org/yihui/blo
 
 # Contact
 
-If I've made a mistake in a post, then please let me know by logging a GitHub issue [here](https://github.com/mitchelfruin/MitchThinks/issues).
+If I've made a mistake in a post, then please let me know by logging a GitHub issue [here](https://github.com/mitchelfruin/MitchThinks/issues) or [emailing me](mailto:mitch.thinks.blog@gmail.com).
 
 # Education
 
